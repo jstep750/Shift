@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<!-- jQuery  -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+</head>
+<body>
+<h2>파이어베이스 웹서버 입니다.</h2>
+<input type="button" id="button1" onclick="googleLogout();" value="로그아웃" />
+
+<!-- The core Firebase JS SDK is always required and must be listed first -->
+<script src="https://www.gstatic.com/firebasejs/8.2.2/firebase-app.js"></script>
+
+<!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+<script src="https://www.gstatic.com/firebasejs/8.2.2/firebase-analytics.js"></script>
+
+<script src="/__/firebase/7.23.0/firebase-analytics.js"></script>
+
+<script src="/__/firebase/7.23.0/firebase-auth.js"></script>
+
+<script src="https://www.gstatic.com/firebasejs/3.6.1/firebase.js"></script>
+
+<script>
+var firebaseConfig = {
+    apiKey: "AIzaSyCXRTprV0yWYk8YrVpopvkFM4Cv_Nmhb2g",
+    authDomain: "shift-f80bc.firebaseapp.com",
+    databaseURL: "https://shift-f80bc-default-rtdb.firebaseio.com",
+    projectId: "shift-f80bc",
+    storageBucket: "shift-f80bc.appspot.com",
+    messagingSenderId: "111516463886",
+    appId: "1:111516463886:web:f7ae7d49add43d4cc0dd5f",
+    measurementId: "G-QXHD4RJNKQ"
+};
+firebase.initializeApp(firebaseConfig);
+
+var user = firebase.auth().currentUser;
+console.log(user);
+
+firebase.auth().onAuthStateChanged(function(user) {
+  console.log(user);
+    if (user) {
+    // User is signed in.
+    var name, email, photoUrl, uid, emailVerified;
+    name = user.displayName;
+    email = user.email;
+    photoUrl = user.photoURL;
+    emailVerified = user.emailVerified;
+    uid = user.uid;  // The user's ID, unique to the Firebase project. Do NOT use
+                    // this value to authenticate with your backend server, if
+                    // you have one. Use User.getToken() instead.
+    console.log(name)
+    console.log(email)
+    console.log(photoUrl)
+    console.log(emailVerified)
+    console.log(uid)
+
+    alert(user.displayName+"님, 안녕하세요!")		// 인증 후 어떤 데이터를 받아오는지 확인해보기 위함. 
+  }
+  else{
+    //alert("로그인 페이지로 이동");
+    //window.location.href = "";
+  }
+});
+
+function googleLogout() {
+  firebase.auth().signOut().then(function() {
+    alert("로그아웃 성공");
+  // Sign-out successful.
+  }).catch(function(error) {
+    alert("에러");
+  // An error happened.
+  });
+}
+</script>
+</body>
+</html>
