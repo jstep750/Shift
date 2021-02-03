@@ -62,11 +62,43 @@
                 <div class="media d-block d-md-flex mt-3">
                   <img id="gameImage" class="d-flex mb-3 mx-auto z-depth-1" src="https://mdbootstrap.com/img/Photos/Avatars/img (30).jpg"
                     alt="Generic placeholder image" style="width: 100px;">
+<<<<<<< Updated upstream
                   <div class="media-body text-center text-md-left ml-md-3 ml-0">
                     <h5 id="gameName" class="mt-0 font-weight-bold">Caroline Horwitz</h5>
                     <h6 id="genre" class="mt-0 font-weight-bold">nickName :  </h6>
                     <h6 id="playTime" class="mt-0 font-weight-bold">email : </h6>
                     <h6 id="userName" class="mt-0 font-weight-bold">account : </h6>
+=======
+                  <div class="media-body text-md-left text-md-left ml-md-3 ml-0">
+                    <table class="table table-borderless">
+                      <tbody>
+                        <tr>
+                          <td scope="row">게임제목</td>
+                          <td>메이플스토리</td>
+                        </tr>
+                        <tr>
+                          <td scope="row">장르</td>
+                          <td>mmorpg</td>
+                        </tr>
+                        <tr>
+                          <td scope="row">예상 플레이타임</td>
+                          <td>3000시간</td>
+                        </tr>
+                        <tr>
+                          <td scope="row">기간</td>
+                          <td>2003</td>
+                        </tr>
+                        <tr>
+                          <td scope="row">간단한 설명, 해시태그</td>
+                          <td>#현질ㅈ망겜#그저#빛원기#원기형#사랑해요</td>
+                        </tr>
+                        
+
+                      </tbody>                     
+                      
+                    </table>
+                    <!--id 추가, 위에꺼랑 아래꺼 다 id 바꿈-->      
+>>>>>>> Stashed changes
                   </div>
                 </div>
               </div>
@@ -76,193 +108,20 @@
 
             <!--Reply-->
             <div class="card mb-3 wow fadeIn">
-              <div class="card-header font-weight-bold">Leave a reply</div>
+              <div class="card-header font-weight-bold" style="background-color: #bed7f4">{게임 정보}</div>
               <div class="card-body">
-
-                <!-- Default form reply -->
-                <form>
-
-                  <!-- Comment -->
-                  <div class="form-group">
-                    <label for="replyFormComment">Your comment</label>
-                    <textarea class="form-control" id="replyFormComment" rows="5"></textarea>
-                  </div>
-
-                  <!-- Name -->
-                  <label for="replyFormName">Your name</label>
-                  <input type="email" id="replyFormName" class="form-control">
-
-                  <br>
-
-                  <!-- Email -->
-                  <label for="replyFormEmail">Your e-mail</label>
-                  <input type="email" id="replyFormEmail" class="form-control">
-
-
-                  <div class="text-center mt-4">
-                    <button class="btn btn-info btn-md" type="submit">Post</button>
-                  </div>
-                </form>
-                <!-- Default form reply -->
-
-
-
+                <h6 id="gameCompany" class="mt-0 font-weight-bold">제작사:</h6>
+                <h6 id="profitRatio" class="mt-0 font-weight-bold">수익권 비율:  </h6>
+                <h6 id="profitCost" class="mt-0 font-weight-bold">수익권 가격: </h6>
+                <h6 id="estAge" class="mt-0 font-weight-bold">예상 연령: </h6>
+                <h6 id="inappPurchase" class="mt-0 font-weight-bold">인앱 구매: </h6>
+                <h6 id="addBool" class="mt-0 font-weight-bold">광고: </h6>
+                <h6 id="devComment" class="mt-0 font-weight-bold">개발자 코멘트: </h6> 
+                
               </div>
             </div>
             <!--/.Reply-->
-
-            <!--Card-->
-            <div class="card mb-4 wow fadeIn">
-              <!--Card content-->
-              <div class="card-body">
-                <div>
-                    <h4 class="mb-3">Billing address</h4>
-                    <form class="needs-validation" novalidate="">
-                      <div class="row">
-                        <div class="col-md-6 mb-3">
-                          <label for="firstName">First name</label>
-                          <input type="text" class="form-control" id="firstName" placeholder="" value="" required="">
-                          <div class="invalid-feedback">
-                            Valid first name is required.
-                          </div>
-                        </div>
-                        <div class="col-md-6 mb-3">
-                          <label for="lastName">Last name</label>
-                          <input type="text" class="form-control" id="lastName" placeholder="" value="" required="">
-                          <div class="invalid-feedback">
-                            Valid last name is required.
-                          </div>
-                        </div>
-                      </div>
-          
-                      <div class="mb-3">
-                        <label for="username">Username</label>
-                        <div class="input-group">
-                          <div class="input-group-prepend">
-                            <span class="input-group-text">@</span>
-                          </div>
-                          <input type="text" class="form-control" id="username" placeholder="Username" required="">
-                          <div class="invalid-feedback" style="width: 100%;">
-                            Your username is required.
-                          </div>
-                        </div>
-                      </div>
-          
-                      <div class="mb-3">
-                        <label for="email">Email <span class="text-muted">(Optional)</span></label>
-                        <input type="email" class="form-control" id="email" placeholder="you@example.com">
-                        <div class="invalid-feedback">
-                          Please enter a valid email address for shipping updates.
-                        </div>
-                      </div>
-          
-                      <div class="mb-3">
-                        <label for="address">Address</label>
-                        <input type="text" class="form-control" id="address" placeholder="1234 Main St" required="">
-                        <div class="invalid-feedback">
-                          Please enter your shipping address.
-                        </div>
-                      </div>
-          
-                      <div class="mb-3">
-                        <label for="address2">Address 2 <span class="text-muted">(Optional)</span></label>
-                        <input type="text" class="form-control" id="address2" placeholder="Apartment or suite">
-                      </div>
-          
-                      <div class="row">
-                        <div class="col-md-5 mb-3">
-                          <label for="country">Country</label>
-                          <select class="custom-select d-block w-100" id="country" required="">
-                            <option value="">Choose...</option>
-                            <option>United States</option>
-                          </select>
-                          <div class="invalid-feedback">
-                            Please select a valid country.
-                          </div>
-                        </div>
-                        <div class="col-md-4 mb-3">
-                          <label for="state">State</label>
-                          <select class="custom-select d-block w-100" id="state" required="">
-                            <option value="">Choose...</option>
-                            <option>California</option>
-                          </select>
-                          <div class="invalid-feedback">
-                            Please provide a valid state.
-                          </div>
-                        </div>
-                        <div class="col-md-3 mb-3">
-                          <label for="zip">Zip</label>
-                          <input type="text" class="form-control" id="zip" placeholder="" required="">
-                          <div class="invalid-feedback">
-                            Zip code required.
-                          </div>
-                        </div>
-                      </div>
-                      <hr class="mb-4">
-                      <div class="custom-control custom-checkbox">
-                        <input type="checkbox" class="custom-control-input" id="same-address">
-                        <label class="custom-control-label" for="same-address">Shipping address is the same as my billing address</label>
-                      </div>
-                      <div class="custom-control custom-checkbox">
-                        <input type="checkbox" class="custom-control-input" id="save-info">
-                        <label class="custom-control-label" for="save-info">Save this information for next time</label>
-                      </div>
-                      <hr class="mb-4">
-          
-                      <h4 class="mb-3">Payment</h4>
-          
-                      <div class="d-block my-3">
-                        <div class="custom-control custom-radio">
-                          <input id="credit" name="paymentMethod" type="radio" class="custom-control-input" checked="" required="">
-                          <label class="custom-control-label" for="credit">Credit card</label>
-                        </div>
-                        <div class="custom-control custom-radio">
-                          <input id="debit" name="paymentMethod" type="radio" class="custom-control-input" required="">
-                          <label class="custom-control-label" for="debit">Debit card</label>
-                        </div>
-                        <div class="custom-control custom-radio">
-                          <input id="paypal" name="paymentMethod" type="radio" class="custom-control-input" required="">
-                          <label class="custom-control-label" for="paypal">PayPal</label>
-                        </div>
-                      </div>
-                      <div class="row">
-                        <div class="col-md-6 mb-3">
-                          <label for="cc-name">Name on card</label>
-                          <input type="text" class="form-control" id="cc-name" placeholder="" required="">
-                          <small class="text-muted">Full name as displayed on card</small>
-                          <div class="invalid-feedback">
-                            Name on card is required
-                          </div>
-                        </div>
-                        <div class="col-md-6 mb-3">
-                          <label for="cc-number">Credit card number</label>
-                          <input type="text" class="form-control" id="cc-number" placeholder="" required="">
-                          <div class="invalid-feedback">
-                            Credit card number is required
-                          </div>
-                        </div>
-                      </div>
-                      <div class="row">
-                        <div class="col-md-3 mb-3">
-                          <label for="cc-expiration">Expiration</label>
-                          <input type="text" class="form-control" id="cc-expiration" placeholder="" required="">
-                          <div class="invalid-feedback">
-                            Expiration date required
-                          </div>
-                        </div>
-                        <div class="col-md-3 mb-3">
-                          <label for="cc-cvv">CVV</label>
-                          <input type="text" class="form-control" id="cc-cvv" placeholder="" required="">
-                          <div class="invalid-feedback">
-                            Security code required
-                          </div>
-                        </div>
-                      </div>
-                      <hr class="mb-4">
-                      <button class="btn btn-primary btn-lg btn-block" type="submit">Continue to checkout</button>
-                    </form>
-                  </div>
-              </div>
+            
 
             </div>
             <!--/.Card-->
@@ -284,7 +143,7 @@
 
     <!--Copyright-->
     <div class="footer-copyright py-3">
-      © 2019 Copyright:
+      © 2021 Copyright:
       <a href="https://mdbootstrap.com/education/bootstrap/" target="_blank"> MDBootstrap.com </a>
     </div>
     <!--/.Copyright-->
