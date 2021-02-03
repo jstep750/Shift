@@ -24,7 +24,11 @@
       .carousel {
         height: 60vh;
       }
-
+      @media (min-width: 1500px) {
+  .container {
+    max-width: 1440px;
+  }
+}
       @media (max-width: 740px) {
         html,
         body,
@@ -44,6 +48,19 @@
           font-size: 12px;
         }
       }
+      @media(max-width: 850px) {
+        
+        body{
+          
+        }
+        
+        .carousel {
+          height: 100vh;
+        }
+        .third_font{
+          font-size: 10px;
+        }
+      }
       @media (min-width: 800px) and (max-width: 850px) {
         html,
         body,
@@ -61,6 +78,7 @@
                   background: #1C2331!important;
               }
           }
+      
     </style>
 </head>
 
@@ -152,20 +170,20 @@
   <div style="height:100px"></div>
   <!--Main layout-->
   <main>
-    <div class="container">
+    <div class="container" >
 
       <!--Section: Main info-->
       <section class="mt-5 wow fadeIn">
 
         <!--Grid row-->
         <div class="row">
-          <div class="col-md-6 mb-4 mt-5">
+          <div class="col-md-6 mb-4 mt-5 text-default_op">
 
             <!-- Main heading -->
-            <h3 class="h3 mb-3">왜 Shift일까?</h3>
-            <p style="font-weight: 600;"><br><strong>Shift</strong>는 
+            <h1 class="mb-3 font-weight-bold">왜 Shift일까?</h1>
+            <p style="font-weight: 600; font-size: 24px;"><br><strong>Shift</strong>는 
               <strong class="font-weight-bold">인디게임사를 위한 B2C 투자 사이트</strong>입니다.</p>
-            <p style="font-weight: 500;">다양한 게이머들과 투자자들이 모여서 <strong class="font-weight-bold">게임의 데모버전</strong>을 플레이해보고 투자합니다.  미래의 게임의 플레이어들에게 투자받아보세요!</p>
+            <p style="font-weight: 500; font-size: 24px;">다양한 게이머들과 투자자들이 모여서 <strong class="font-weight-bold">게임의 데모버전</strong>을 플레이해보고 투자합니다.  미래의 게임의 플레이어들에게 투자받아보세요!</p>
             <!-- Main heading -->
 
             
@@ -203,15 +221,19 @@
             <div class="row"> 
              <img  src="img\shift\natural_gradient_sample.png" alt="" style="width: 100%; height: auto;">
              <div class="" style="
-              color: black;
+              color: #333333;
               font-weight: 500;
               position: absolute;
               top: 5vw;
               left: 1vw;
               padding-top: 20px;
               padding-left: 20px;
-              "><h1 class="thirdh1_font">게이머들이 정해주는</h1><h1 class="font-weight-bold thirdh1_font">게임의 가치</h1><br><br>
-              <p class="third_font" style="color: black; font-weight: 600;">
+              font-size: 24px;
+              "><h1 class="thirdh1_font" style="font-size: 36px;">게이머들이 정해주는</h1><h1 class="font-weight-bold thirdh1_font" style="font-size: 36px;">게임의 가치</h1><br><br>
+              <p class="third_font" 
+              style="color:#333333;
+              line-height: 33px;
+               font-weight: 500;">
                 Shift는 자유로운 투자 환경을 투자자들에게 제공합니다.<br>
                 자신이 생각하는 게임의 가치만큼 투자합니다.<br>
                 <br>
@@ -237,16 +259,16 @@
       <hr class="my-5">
       <!--section start: shift sequence-->
       <section>
-        <h3 class="font-weight-bold">기업 진행 절차</h3>
-        <h6 style="color: gray;">"Shift"는  아래와 같은 절차로 게임사의 발전과 투자금 유치를 기원합니다.</h6>
-        <div class="container" style="border: solid 1px grey; padding: 15px;">
-          <p style="font-size: 10px;">*화살표를 누르시면, 이전 또는 다음 단계의 상세내용을 확인할 수 있습니다.</p>
+        <h3 class="font-weight-bold text-default_op" style="font-size: 36px;">기업 진행 절차</h3>
+        <h6 style="color: #999999; font-size: 24px;">"Shift"는  아래와 같은 절차로 게임사의 발전과 투자금 유치를 기원합니다.</h6>
+        <div class="container text-default_op" style="border: solid 1px #C4C4C4; padding: 15px;">
+          <p style="font-size: 14px; color: #999999;">*화살표를 누르시면, 이전 또는 다음 단계의 상세내용을 확인할 수 있습니다.</p>
           <div id="carouselExampleIndicators"  style=" height: 30vw;max-height: 400px;" class="carousel slide" data-ride="carousel">
             
-            <div class="carousel-inner third_font" style="margin-left: 5vw;margin-right: 5vw; width: 85%;">
+            <div class="carousel-inner third_font" style="margin-left: 5vw;margin-right: 5vw; width: 85%;font-size: 24px;">
               <!--1st step-->
               <div class="carousel-item active">
-                <p><strong style="color: #598091;">1st STEP</strong> 신청하기</p>
+                <p style="font-size: 30px;"><strong style="color: #598091; ">1st STEP</strong> 신청하기</p>
                 <div class="grid_op mb-5">          
                   <div class="st1op"></div>
                   <div class="st0op"></div>
@@ -265,7 +287,7 @@
               </div>
               <!--2nd step-->
               <div class="carousel-item">
-                <p><strong style="color: #659058;">2nd STEP</strong> 내부심사 거치기</p>
+                <p style="font-size: 30px;"><strong style="color: #659058;">2nd STEP</strong> 내부심사 거치기</p>
                 <div class="grid_op mb-5">                 
                   <div class="st1op"></div>
                   <div class="st2op"></div>
@@ -284,7 +306,7 @@
               </div>
               <!--3rd step-->
               <div class="carousel-item">
-                <p><strong style="color: #B4B333;">3rd STEP</strong> 계약하기</p>
+                <p style="font-size: 30px;"><strong style="color: #B4B333;">3rd STEP</strong> 계약하기</p>
                 <div class="grid_op mb-5">                 
                   <div class="st1op"></div>
                   <div class="st2op"></div>
@@ -300,7 +322,7 @@
               </div>
               <!--4th step-->
               <div class="carousel-item">               
-                <p><strong style="color: #EDCE37;">4th STEP</strong> 유저 테스트 진행하기</p>
+                <p style="font-size: 30px;"><strong style="color: #EDCE37;">4th STEP</strong> 유저 테스트 진행하기</p>
                 <div class="grid_op mb-5">                 
                   <div class="st1op"></div>
                   <div class="st2op"></div>
@@ -313,7 +335,7 @@
               </div>
               <div class="carousel-item">
                 
-                <p><strong style="color: #E97424;">5th STEP</strong> 옥션 진행하기</p>
+                <p style="font-size: 30px;"><strong style="color: #E97424;">5th STEP</strong> 옥션 진행하기</p>
                 <div class="grid_op mb-5">                 
                   <div class="st1op"></div>
                   <div class="st2op"></div>
@@ -329,7 +351,7 @@
               </div>
               <div class="carousel-item">
                 
-                <p><strong style="color: #CD1D27;">6rd STEP</strong> 게임 출시하기</p>
+                <p style="font-size: 30px;"><strong style="color: #CD1D27;">6rd STEP</strong> 게임 출시하기</p>
                 <div class="grid_op mb-5">                 
                   <div class="st1op"></div>
                   <div class="st2op"></div>
@@ -344,11 +366,11 @@
              
             </div>
             <a class="carousel-control-prev" style="line-height: 30px;" href="#carouselExampleIndicators" role="button" data-slide="prev">
-              <span class="carousel-control-prev-icon" style="height: 100px; width:100px; font-size:100px;" aria-hidden="true"></span>
+              <span class="carousel-control-prev-icon" style="height: 100px; width:100px; font-size:80px;" aria-hidden="true"></span>
               <span class="sr-only">Previous</span>
             </a>
             <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-              <span class="carousel-control-next-icon" style="height: 100px; width:100px; font-size:100px;" aria-hidden="true"></span>
+              <span class="carousel-control-next-icon" style="height: 100px; width:100px; font-size:80px;" aria-hidden="true"></span>
               <span class="sr-only">Next</span>
             </a>
           </div>
@@ -363,14 +385,14 @@
       
       <hr class="my-5">
   
-        <section class="mt-5 wow fadeIn">
+        <section class="mt-5 wow fadeIn text-default_op">
   
           <!--Grid row-->
           <div class="row" style="justify-content: center;">
-            <div class="col-md-6 mb-3 mt-5">
+            <div class="col mb-3 mt-5" style="font-size: 24px;">
   
               <!-- Main heading -->
-              <h3 class="h3 mb-3 font-weight-bold">유저들의 투자 용이</h3><br>
+              <h2 class="h2 mb-3 font-weight-bold" style="font-size: 36px;">유저들의 투자 용이</h2><br>
               <p>유저들에게 <strong class="font-weight-bold">'수익권'</strong>이라는 실질적인 이득을
                 보장해줌으로써 투자 동기를 부여합니다.</p><br>
                 <p>게임 개발과정에 참여하는 느낌을 제공해줌으로써 유저들이 마케팅에 직접 참여하게끔 유도합니다.</p>
@@ -394,20 +416,20 @@
 
       <hr class="my-5">
       <section>
-        <div class="row wow fadeIn">
+        <div class="row wow fadeIn text-default_op">
           <div class="container" style="position: relative; ">
             <div class="row" style="justify-content: flex-end;"> 
              <img  src="img\shift\land_operating.png" alt="" style="filter: opacity(20%);">
              <div class="" style="
-              color: black;
+              
               font-weight: 500;
               position: absolute;
               top: 1vw;
               left: 1vw;
               padding-top: 20px;
               padding-left: 20px;
-              "><h3 class="thirdh1_font font-weight-bold">운영권 보장</h3><br><br>
-              <p class="third_font" style="color: black; font-weight: 500;">
+              "><h3 class="thirdh1_font font-weight-bold" style="font-size: 36px;">운영권 보장</h3><br><br>
+              <p class="third_font" style="font-size: 24px;" font-weight: 500;">
                 Shift에서는 게임사의 지분을 투자자들에게 팜으로써<br>
                 투자자로 하여금 게임사와 함께 발전하는 기분을 느끼게 해줍니다.<br>
                 <br>
