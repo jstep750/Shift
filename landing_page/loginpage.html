@@ -2,6 +2,7 @@
 <html lang="en">
 
 <head>
+    <title>로그인-Shift</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
@@ -19,7 +20,20 @@
   .container {
     max-width: 1440px;
   }
+  .form-control::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+            color: #B1B1B1;
+            opacity: 1; /* Firefox */
 }
+
+.form-control:-ms-input-placeholder { /* Internet Explorer 10-11 */
+            color: #B1B1B1;
+}
+
+.form-control::-ms-input-placeholder { /* Microsoft Edge */
+            color: #B1B1B1;
+ }
+}
+
   </style>
 </head>
 
@@ -27,7 +41,7 @@
     <img src="img/Group 1.svg" class="mt-4">
 </header>
 
-<body style="background-color: aliceblue;">
+<body">
     <!-- Navbar -->
   <nav class="navbar fixed-top bg-white navbar-expand-lg navbar-light white scrolling-navbar">
     <div class="container">
@@ -105,6 +119,23 @@
             
           <!--Grid column-->
           <div class="col-md-6 col-xs-12 mb-4">
+              <div  class="text-center" style="border: solid 1px #C4C4C4; color: #333333;">
+                <p class="font-weight-bold mb-5 mt-5 h4">로그인</p>
+                <div style="padding: 10px 10px;">
+                    <div class="form-group text-left font-weight-bold">
+                        <label for="usr">아이디</label>
+                        <input type="text" class="form-control" id="usr" placeholder="ENTER YOUR ID">
+                      </div>
+                      <div class="form-group text-left font-weight-bold">
+                        <label for="pwd">비밀번호</label>
+                        <input type="password" class="form-control" id="pwd" placeholder="ENTER YOUR PASSWORD">
+                      </div>
+                </div>
+                <div>
+                    <a type="button" class="btn" href="">로그인</a>
+                </div>
+
+            </div>
             
             <!--Card : Dynamic content wrapper-->
             <div class="card mb-4 text-center wow fadeIn">
