@@ -127,3 +127,6 @@ body,
   .text-default_op{
     color: #333333;
   }
+  .btn {
+    text-transform: unset !important;
+  }

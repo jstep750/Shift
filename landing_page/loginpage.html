@@ -15,10 +15,12 @@
   <!-- Your custom styles (optional) -->
   <link href="css/style.min.css" rel="stylesheet">
   <link rel="stylesheet" href="app.css">
+  <script src="https://kit.fontawesome.com/22de0a02bc.js" crossorigin="anonymous"></script>
   <style>
        @media (min-width: 1500px) {
   .container {
     max-width: 1440px;
+    
   }
   .form-control::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
             color: #B1B1B1;
@@ -108,20 +110,20 @@
   <!-- Navbar -->   
 
   <!--Main layout-->
-  <main class="mt-4 pt-4">
-    <div class="container">
+  <main class="mt-4 pt-4" style="min-height: 100%; align-items: center;">
+    <div class="container mt-5" style="">
 
       <!--Section: Post-->
       <section class="mt-0">
 
         <!--Grid row-->
-        <div class="row justify-content-center">
+        <div class="row justify-content-center align-middle">
             
           <!--Grid column-->
-          <div class="col-md-6 col-xs-12 mb-4">
+          <div class=" col-xl-4 col-lg-6 col-md-10 col-sm-12 col-xs-12 mb-4">
               <div  class="text-center" style="border: solid 1px #C4C4C4; color: #333333;">
                 <p class="font-weight-bold mb-5 mt-5 h4">로그인</p>
-                <div style="padding: 10px 10px;">
+                <div style="padding: 20px 20px;">
                     <div class="form-group text-left font-weight-bold">
                         <label for="usr">아이디</label>
                         <input type="text" class="form-control" id="usr" placeholder="ENTER YOUR ID">
@@ -130,98 +132,51 @@
                         <label for="pwd">비밀번호</label>
                         <input type="password" class="form-control" id="pwd" placeholder="ENTER YOUR PASSWORD">
                       </div>
-                </div>
-                <div style="padding: 10px 10px;">
-                    <a type="button" class="btn btn-block text-white" 
+                
+                <div style="height: 30px;"></div>
+                    <a type="button" class="btn btn-block text-white font-weight-bold" 
                     style="
                     background-color: #17375E;
                     border-radius: 1rem;
+                    font-size: 20px;
                     " href="">로그인</a>
+                    <div class="" style="height: 20px;"></div>
+                    <a type="button" class="btn btn-block font-weight-bold" 
+                    style="
+                    border: 2px solid #17375E;
+                    color: #17375E;
+                    border-radius: 1rem;
+                    font-size: 20px;
+                    " href="">회원가입</a>
                 </div>
-
+                <div style="padding:20px 20px;">
+                    <a class="mt-5" href="#" style="
+                    color: #4E6784;
+                    font-size: 15px;
+                    ">회원정보를 잊으셨나요?</a>
+                    <a type="button" class="btn btn-block font-weight-bold mt-5" 
+                    style="
+                    border: 2px solid #17375E;
+                    color: #17375E;
+                    border-radius: 1rem;
+                    font-size: 20px;
+                    text-transform: capitalize;
+                    " href="">Google 로그인</a>
+                    <div style="height: 20px;"></div>
+                    <a type="button" class="btn btn-block font-weight-bold mb-5" 
+                    style="
+                    border: 2px solid #17375E;
+                    color: #17375E;
+                    border-radius: 1rem;
+                    font-size: 20px;
+                    text-transform: capitalize;
+                    
+                    " href="">kakao 로그인</a>
+                </div>
+              </div>
             </div>
             
-            <!--Card : Dynamic content wrapper-->
-            <div class="card mb-4 text-center wow fadeIn">
-
-                <!--Card image-->
-                <div class="view overlay">
-                  <img src="https://mdbootstrap.com/img/Marketing/mdb-press-pack/mdb-angular.jpg" class="card-img-top"
-                    alt="">
-                  <a href="https://mdbootstrap.com/angular/" target="_blank">
-                    <div class="mask rgba-white-slight"></div>
-                  </a>
-                </div>
-  
-                <!--Card content-->
-                <div class="card-body">
-                  <!--Title-->
-                  <h4 class="card-title">MDB with Angular</h4>
-                  <!--Text-->
-                  <p class="card-text">Built with Angular 5, Bootstrap 4 and TypeScript. CLI version available. </p>
-                  <a href="https://mdbootstrap.com/angular/" target="_blank" class="btn btn-primary btn-md">Free download
-                    <i class="fas fa-download ml-2"></i>
-                  </a>
-                </div>
-  
-            </div>
-            <!--/.Card : Dynamic content wrapper-->
-
-            <!--Card : Dynamic content wrapper-->
-            <div class="card mb-4 text-center wow fadeIn">
-
-                <!--Card image-->
-                <div class="view overlay">
-                    <img src="https://mdbootstrap.com/img/Marketing/mdb-press-pack/mdb-vue.jpg" class="card-img-top" alt="">
-                    <a href="https://mdbootstrap.com/vue/" target="_blank">
-                    <div class="mask rgba-white-slight"></div>
-                    </a>
-                </div>
-
-                <!--Card content-->
-                <div class="card-body">
-                    <!--Title-->
-                    <h4 class="card-title">MDB with Vue</h4>
-                    <!--Text-->
-                    <p class="card-text">Based on the latest Bootstrap 4 and Vue 2.5.7. </p>
-                    <a href="https://mdbootstrap.com/vue/" target="_blank" class="btn btn-primary btn-md">Free download
-                    <i class="fas fa-download ml-2"></i>
-                    </a>
-                </div>
-  
-            </div>
-            <!--/.Card : Dynamic content wrapper-->
-
-            <!--Card : Dynamic content wrapper-->
-            <div class="card mb-4 text-center wow fadeIn">
-
-                <!--Card image-->
-                <div class="view overlay">
-                    <img src="https://mdbootstrap.com/img/Marketing/mdb-press-pack/mdb-react.jpg" class="card-img-top" alt="">
-                    <a href="https://mdbootstrap.com/react/" target="_blank">
-                    <div class="mask rgba-white-slight"></div>
-                    </a>
-                </div>
-
-                <!--Card content-->
-                <div class="card-body">
-                    <!--Title-->
-                    <h4 class="card-title">MDB with React</h4>
-                    <!--Text-->
-                    <p class="card-text">Based on the latest Bootstrap 4 and React 16. </p>
-                    <a href="https://mdbootstrap.com/react/" target="_blank" class="btn btn-primary btn-md">Free download
-                    <i class="fas fa-download ml-2"></i>
-                    </a>
-                </div>
-  
-            </div>
-            <!--/.Card : Dynamic content wrapper-->
-
-          </div>
-          <!--Grid column-->
-
-        </div>
-        <!--Grid row-->
+        </div> 
 
       </section>
       <!--Section: Post-->
@@ -231,7 +186,11 @@
   <!--Main layout-->
 
   <!--Footer-->
-  <footer class="page-footer text-center font-small" style="background-color: white;">
+  <footer class="page-footer text-center font-small" style="
+  text-align: center;
+  background-color: white;
+  border-top: 1px solid grey;
+  ">
     <div style="height: 10px;"></div>
     <p class="mb-3" style="color: #333333;">Copyright © 2021 Shift</p>
     <p style="color: #333333;">상호: Shift | 대표: 김용운 | 개인정보관리책임자: 미입력 | 전화: 미입력 | 이메일: karlxyz99@korea.ac.kr</p>
