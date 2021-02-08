@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<!-- jQuery  -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <meta charset="UTF-8">
+    <meta name="Generator" content="EditPlus®">
+    <meta name="Author" content="">
+    <meta name="Keywords" content="">
+    <meta name="Description" content="">
+    <style type="text/css">
+		#main {width: 500px; margin: 0 auto;}
+		hr {
+			display: block;
+			height: 1px;
+			border: 0;
+			border-top: 1px solid #ccc;
+			margin: 1em 0;
+			padding: 0; 
+		}
+	</style>
+</head>
+<body>
+    <h2 id="title">Shift 웹서버 입니다!!</h2>
+    <input type="button" id="button1" onclick="myPage();" value="마이페이지" />
+    <input type="button" id="button2" onclick="googleLogout();" value="로그아웃" />
+    <br>
+    <input type="text" id="addGame" />
+    <input type="button" id="button3" onclick="writeGameData();" value="게임 데이터 저장" />
+
+    <div id="main">
+		<h2>Firebase Realtime Database Example</h2>
+    
+        <h5>이름</h5><input type="text" id="gameName" size="10"/>
+        <h5>가격</h5><input type="text" id="price" size="10"/>
+        <h5>개수</h5><input type="text" id="number" size="10"/>
+		<!-- <input type="text" id="message" placeholder="메세지를 입력하세요" size="40"> -->
+        <button type="button" onclick="buyGame()">Buy</button>
+        <button type="button" onclick="sellGame()">Sell</button>
+		<hr>
+		<h3>Result</h3>
+		<textarea rows="10" cols="60" id="result" readonly></textarea>
+		<p>
+		<button type="button" onclick="deleteall()">Delete All</button>
+		</p>
+	</div>
+
+<!-- The core Firebase JS SDK is always required and must be listed first -->
+<script src="https://www.gstatic.com/firebasejs/8.2.2/firebase-app.js"></script>
+
+<!-- TODO: Add SDKs for Firebase products that you want to use https://firebase.google.com/docs/web/setup#available-libraries -->
+<script src="https://www.gstatic.com/firebasejs/8.2.2/firebase-analytics.js"></script>
+
+<script src="https://www.gstatic.com/firebasejs/8.2.2/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.2.2/firebase-firestore.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.2.2/firebase-database.js"></script>
+<script src="/__/firebase/7.23.0/firebase-database.js"></script> 
+
+<script>
+var firebaseConfig = {
+    apiKey: "AIzaSyCXRTprV0yWYk8YrVpopvkFM4Cv_Nmhb2g",
+    authDomain: "shift-f80bc.firebaseapp.com",
+    databaseURL: "https://shift-f80bc-default-rtdb.firebaseio.com",
+    projectId: "shift-f80bc",
+    storageBucket: "shift-f80bc.appspot.com",
+    messagingSenderId: "111516463886",
+    appId: "1:111516463886:web:f7ae7d49add43d4cc0dd5f",
+    measurementId: "G-QXHD4RJNKQ"
+};
+
+// Initialize Firebase
+firebase.initializeApp(firebaseConfig);
+
+//var messageField = document.getElementById("message");
+//var result = document.getElementById("result");
+
+var addGame = document.getElementById("addGame");
+
+var gameName = document.getElementById("gameName");
+var price = document.getElementById("price");
+var number = document.getElementById("number");
+
+// Get a reference to the database service
+var database = firebase.database();
+
+
+function writeUserData() {
+    var rootRef = firebase.database().ref("user");
+    rootRef.set({
+        like: '5'
+    }).then(success => {
+            console.log('success',success);
+        },
+        error => {
+            console.log('error',error);
+        }
+    );
+  alert("클릭");
+}
+
+function writeGameData() {
+    var gameRef = firebase.database().ref('game/'+addGame.value);
+    gameRef.transaction(function(currentData) {
+        if (currentData === null) {
+            return { number: 30 };
+        } else {
+            alert('Game already exists.');
+            return; // Abort the transaction.
+        }
+    }, function(error, committed, snapshot) {
+        if (error) {
+            alert('Transaction failed abnormally!'+ error);
+        } else if (!committed) {
+            alert('We aborted the transaction (because game already exists).');
+        } else {
+            alert('Game ' +addGame.value +' added!');
+        }
+    });
+
+    /*var rootRef = firebase.database().ref("game/"+addGame.value);
+    rootRef.set({
+        number: 20
+    }).then(success => {
+            console.log('success',success);
+        },
+        error => {
+            console.log('error',error);
+        }
+    );*/
+}
+
+//고유 아이디 만들기
+function guid() {
+    function s4() {
+        return ((1 + Math.random()) * 0x10000 | 0).toString(16).substring(1);
+    }
+    return s4() + s4() + '-' + s4() + '-' + s4() + '-' + s4() + '-' + s4() + s4() + s4();
+}
+
+//메세지 읽기
+var messageRef = database.ref("message");
+messageRef.on('child_added', function(snapshot) {
+    var data = snapshot.val();
+    var message = data.text;
+    if(message != undefined){
+        result.value += message + "\n";
+    }
+});
+
+//전부 삭제되면 결과창의 내용도 지워 준다.
+var messageRef = database.ref("message");
+messageRef.on('child_removed', function(snapshot) {
+    result.value = "";
+    messageField.value = "";
+});
+
+//메세지 저장
+/*function savedata() {
+    var uuid = guid();
+    var message = messageField.value;
+    if (message == "")
+    {
+        alert("메시지를 입력하세요");
+        return true;
+    } 
+    database.ref('message/' + uuid).set({
+        text: message
+    });
+    messageField.value = "";
+}*/
+
+var userName;
+var userId;
+
+function buyGame() {
+    var uuid = guid();
+    var gameRef = firebase.database().ref('game/' + gameName.value);
+    var gameNum;
+
+    gameRef.transaction((game) => {
+        if (game) {
+            if (game.number && (game.number>0)) {
+                alert("* "+game.number+"-"+document.getElementById('number').value);
+                game.number = game.number - document.getElementById('number').value;
+                gameNum = game.number;
+                if (gameName.value == "" || price.value == "" || number.value == ""){
+                    alert("메시지를 입력하세요");
+                    return true;
+                }
+
+                var total = price.value*number.value;
+                var message = userName+" / "+gameName.value+" / "+gameNum+" / "+price.value+" / "+number.value+" / "+total;
+                database.ref('message/' + guid()).set({
+                    game: gameName.value,
+                    remain: gameNum,
+                    price: price.value,
+                    number : number.value,
+                    text: message
+                });
+
+                var flag = false;
+                var userRef = firebase.database().ref('user/' + userId);
+                userRef.transaction((user) => {
+                    if (user) {
+                        if (user.cash && (user.cash>0)) {
+                            var cash = user.cash;
+                            user.cash = user.cash - total;
+                            alert(user.cash + "-" + total + "=" + left);
+                            flag = true;
+                        }
+                        else if (user.cash && !(user.cash>0)){
+                            alert("cash 부족 :"+user.cash);
+                        }
+                        else{
+                            alert("error");
+                        }
+                    }
+                    return user;
+                }); 
+                
+                if(flag){
+                    var userRef = firebase.database().ref('user/' + userId + '/buy/' + uuid);
+                    userRef.transaction((usergame) => {
+                        if (usergame) {
+                            if (user.cash && (user.cash>0)) {
+                                var cash = user.cash;
+                                user.cash = user.cash - total;
+                                alert(user.cash + "-" + total + "=" + left);
+                                flag = true;
+                            }
+                            else if (user.cash && !(user.cash>0)){
+                                alert("cash 부족 :"+user.cash);
+                            }
+                            else{
+                                alert("error");
+                            }
+                        }
+                        return usergame;
+                    }); 
+                    database.ref('user/' + userId + '/buy/' + uuid).set({
+                        game: gameName.value,
+                        price: price.value,
+                        number : number.value
+                    });
+                }
+
+                //messageField.value = "";
+                gameName.value = "";
+                price.value = "";
+                number.value = "";
+            } 
+            else if(game.number && !(game.number>0)) {
+                gameNum = game.number;
+                alert("* "+gameNum+"-"+document.getElementById('number').value);
+            }
+            else{
+                alert("error");
+            }
+        }
+        return game;
+    });
+}
+
+function sellGame() {
+    var uuid = guid();
+    var gameRef = firebase.database().ref('game/' + gameName.value);
+    var gameNum;
+    var flag = false;
+
+    gameRef.transaction((game) => {
+        if (game) {
+            if (game.number && (game.number>0)) {
+                alert("* "+game.number+"-"+document.getElementById('number').value);
+                game.number = game.number - document.getElementById('number').value;
+                gameNum = game.number;
+                flag = true;
+                if(flag){
+                    if (gameName.value == "" || price.value == "" || number.value == "")
+                    {
+                        alert("메시지를 입력하세요");
+                        return true;
+                    } 
+                    database.ref('user/' + user.uid + 'payment/' + uuid).set({
+                        game: gameName.value,
+                        price: price.value,
+                        number : number.value
+                    });
+                    var total = price.value*number.value;
+                    var message = userName+" / "+gameName.value+" / "+gameNum+" / "+price.value+" / "+number.value+" / "+total;
+                    database.ref('message/' + uuid).set({
+                        game: gameName.value,
+                        remain: gameNum,
+                        price: price.value,
+                        number : number.value,
+                        text: message
+                    });
+                    //messageField.value = "";
+                    gameName.value = "";
+                    price.value = "";
+                    number.value = "";
+                }
+                //post.starCount--;
+                //post.stars[uid] = null;
+            } 
+            else if(game.number && !(game.number>0)) {
+                gameNum = game.number;
+                alert("* "+gameNum+"-"+document.getElementById('number').value);
+            }
+            else{
+                alert("error");
+            }
+        }
+        return game;
+    });
+}
+
+//삭제
+function deleteall(){
+    database.ref("message").remove();
+}
+
+var db = firebase.firestore();
+
+firebase.auth().onAuthStateChanged(function(user) {
+  console.log(user);
+    if (user) {
+    // User is signed in.
+    var name, email, photoUrl, uid, emailVerified;
+    name = user.displayName;
+    email = user.email;
+    photoUrl = user.photoURL;
+    emailVerified = user.emailVerified;
+    uid = user.uid;  // The user's ID, unique to the Firebase project. Do NOT use
+                    // this value to authenticate with your backend server, if
+                    // you have one. Use User.getToken() instead.
+    console.log(name)
+    console.log(email)
+    console.log(photoUrl)
+    console.log(emailVerified)
+    console.log(uid)
+
+    userName = user.displayName;
+    userId = user.uid;
+
+    var adaRef = firebase.database().ref('user/'+user.uid);
+    adaRef.transaction(function(currentData) {
+        if (currentData === null) {
+            return { name: user.displayName, cash: 100 };
+        } else {
+            alert(currentData.name+" / "+currentData.cash);
+            return; // Abort the transaction.
+        }
+    }, function(error, committed, snapshot) {
+        if (error) {
+            alert('Transaction failed abnormally!'+ error);
+        } else if (!committed) {
+            alert('We aborted the transaction (because user already exists).');
+        } else {
+            alert('User '+ user.uid + ' added!');
+        }
+    });
+    //alert(user.displayName+"님, 안녕하세요!")		// 인증 후 어떤 데이터를 받아오는지 확인해보기 위함. 
+    document.getElementById("title").textContent = user.displayName+"님, 안녕하세요!";
+  }
+  else{
+    alert("로그인 페이지로 이동");
+    window.location.href = "login.html";
+  }
+});
+
+
+function googleLogout() {
+  firebase.auth().signOut().then(function() {
+    alert("로그아웃 성공");
+  // Sign-out successful.
+  }).catch(function(error) {
+    alert("에러");
+  // An error happened.
+  });
+}
+
+
+function myPage() {
+  var user = firebase.auth().currentUser;
+  var href = "user-page.html?id="+user.uid;
+  window.location.href = href;
+}
+
+</script>
+</body>
+</html>

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<!-- jQuery  -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+</head>
+<body>
+<h2 id="title">User 페이지 입니다!</h2>
+<input type="button" id="button1" onclick="goBack();" value="뒤로가기" />
+<input type="button" id="button1" onclick="deleteGame();" value="수정" />
+
+<h4>게임</h4>
+<ul>
+</ul>
+
+<!-- The core Firebase JS SDK is always required and must be listed first -->
+<script src="https://www.gstatic.com/firebasejs/8.2.2/firebase-app.js"></script>
+
+<!-- TODO: Add SDKs for Firebase products that you want to use https://firebase.google.com/docs/web/setup#available-libraries -->
+<script src="https://www.gstatic.com/firebasejs/8.2.2/firebase-analytics.js"></script>
+
+<script src="https://www.gstatic.com/firebasejs/8.2.2/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.2.2/firebase-firestore.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.2.2/firebase-database.js"></script>
+
+<script>
+var firebaseConfig = {
+    apiKey: "AIzaSyCXRTprV0yWYk8YrVpopvkFM4Cv_Nmhb2g",
+    authDomain: "shift-f80bc.firebaseapp.com",
+    databaseURL: "https://shift-f80bc-default-rtdb.firebaseio.com",
+    projectId: "shift-f80bc",
+    storageBucket: "shift-f80bc.appspot.com",
+    messagingSenderId: "111516463886",
+    appId: "1:111516463886:web:f7ae7d49add43d4cc0dd5f",
+    measurementId: "G-QXHD4RJNKQ"
+};
+
+// Initialize Firebase
+firebase.initializeApp(firebaseConfig);
+
+var db = firebase.firestore();
+var gameId = window.location.search.substr(4);
+//alert(gameId);
+
+firebase.auth().onAuthStateChanged(function(user) {
+    console.log(user);
+    if (user) {
+        var docRef = db.collection("user").doc(user.uid);
+        docRef.get().then(function(doc) {
+        if (doc.exists) {
+            console.log("Document data:", doc.data());
+            document.getElementById("title").textContent = doc.get("name")+" 페이지 입니다!"
+            alert(doc.get("name")+"/"+doc.get("email")+"/"+doc.get("photoUrl"));
+        } else {
+            // doc.data() will be undefined in this case
+            console.log("No such document!");
+        }
+        }).catch(function(error) {
+            console.log("Error getting document:", error);
+        });
+    }
+    else{
+        alert("로그인 페이지로 이동");
+        window.location.href = "index.html";
+    }
+});
+
+function goBack() {
+    window.location.href = "auth.html";
+}
+
+
+</script>
+</body>
+</html>

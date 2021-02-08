@@ -1,0 +1,18 @@
+.Group-1 {
+    width: 100px;
+    height: 40px;
+    margin: 0 90px 0 0;
+    object-fit: contain;
+  }
+  
+  .iPhone-8---5 {
+    width: 375px;
+    height: 667px;
+    margin: 31px 532px 39px 533px;
+    padding: 24px 22px 77px 25px;
+    border-radius: 12px;
+    border: solid 1px #9eccff;
+    background-color: #ffffff;
+  }
+
+  

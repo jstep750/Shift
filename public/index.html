@@ -8,122 +8,17 @@
 
 </head>
 <body>
-<h2>Shift 웹서버 입니다!</h2>
-<input type="button" id="button1" onclick="googleLogout();" value="로그아웃" />
+<!-- svg -->
 
-<button type="button" id="googlebtn" onclick="googleLogin();">구글 로그인</button>
+<img src="img/Group 1.svg"
+class="Group-1">
+<link rel="stylesheet" href="app.css">
 
-<!-- The core Firebase JS SDK is always required and must be listed first -->
-<script src="https://www.gstatic.com/firebasejs/8.2.2/firebase-app.js"></script>
+<h2>Shift 웹서버 입니다!!</h2>
 
-<!-- TODO: Add SDKs for Firebase products that you want to use https://firebase.google.com/docs/web/setup#available-libraries -->
-<script src="https://www.gstatic.com/firebasejs/8.2.2/firebase-analytics.js"></script>
-
-<!-- <script src="https://www.gstatic.com/firebasejs/8.2.2/firebase-auth.js"></script>
-<script src="https://www.gstatic.com/firebasejs/8.2.2/firebase-firestore.js"></script>
-<script src="https://www.gstatic.com/firebasejs/8.2.2/firebase-database.js"></script> -->
-
-<!-- Firebase App (the core Firebase SDK) is always required and must be listed first -->
-<!-- <script src="/__/firebase/7.23.0/firebase-app.js"></script> -->
-
-<!-- If you enabled Analytics in your project, add the Firebase SDK for Analytics -->
-<!-- <script src="/__/firebase/7.23.0/firebase-analytics.js"></script> -->
-
-<script src="/__/firebase/7.23.0/firebase-auth.js"></script>
-<script src="/__/firebase/7.23.0/firebase-firestore.js"></script>
-<script src="/__/firebase/7.23.0/firebase-database.js"></script>
-
-<!-- <script src="https://www.gstatic.com/firebasejs/3.6.1/firebase.js"></script> -->
 
 <script>
-
-var firebaseConfig = {
-    apiKey: "AIzaSyCXRTprV0yWYk8YrVpopvkFM4Cv_Nmhb2g",
-    authDomain: "shift-f80bc.firebaseapp.com",
-    databaseURL: "https://shift-f80bc-default-rtdb.firebaseio.com",
-    projectId: "shift-f80bc",
-    storageBucket: "shift-f80bc.appspot.com",
-    messagingSenderId: "111516463886",
-    appId: "1:111516463886:web:f7ae7d49add43d4cc0dd5f",
-    measurementId: "G-QXHD4RJNKQ"
-};
-// Initialize Firebase
-firebase.initializeApp(firebaseConfig);
-
-firebase.auth().onAuthStateChanged(function(user) {
-    if (user) {
-      // User is signed in.
-      alert("로그인 O");
-      console.log(user)		// 인증 후 어떤 데이터를 받아오는지 확인해보기 위함.
-      //window.location.href = "auth.html";
-    } else {
-      // No user is signed in.
-      //window.location.href = "auth_google.html";
-      alert("로그인 X");
-      console.log(user)		// 인증 후 어떤 데이터를 받아오는지 확인해보기 위함.
-    }
-  });
-
-function googleLogin(){
-  var user = firebase.auth().currentUser;
-  if (user) {
-    // User is signed in.
-    alert("이미 로그인");
-    console.log(user)		// 인증 후 어떤 데이터를 받아오는지 확인해보기 위함.  
-  } 
-  else {
-    // No user is signed in.
-    alert("로그인 시작");
-    var provider = new firebase.auth.GoogleAuthProvider();
-    firebase.auth().signInWithRedirect(provider);
-    /*firebase.auth().getRedirectResult().then(function(result) {
-      if (result.credential) {
-        // This gives you a Google Access Token. You can use it to access the Google API.
-        var token = result.credential.accessToken;
-      }
-      // The signed-in user info.
-      var user = result.user;
-      console.log(user)
-      alert("로그인 성공");
-    }).catch(function(error) {
-      // Handle Errors here.
-      var errorCode = error.code;
-      var errorMessage = error.message;
-      // The email of the user's account used.
-      var email = error.email;
-      // The firebase.auth.AuthCredential type that was used.
-      var credential = error.credential;
-      alert("에러");
-    });*/
-  }
-}
-
-function googleLogout() {
-  firebase.auth().signOut().then(function() {
-    alert("로그아웃 성공");
-  // Sign-out successful.
-  }).catch(function(error) {
-    alert("에러");
-  // An error happened.
-  });
-}
-
-/*firebase.auth().setPersistence(firebase.auth.Auth.Persistence.SESSION)
-  .then(function() {
-    alert("setPersistence");
-    // Existing and future Auth states are now persisted in the current
-    // session only. Closing the window would clear any existing state even
-    // if a user forgets to sign out.
-    // ...
-    // New sign-in will be persisted with session persistence.
-    //return firebase.auth().signInWithEmailAndPassword(email, password);
-  })
-  .catch(function(error) {
-    // Handle Errors here.
-    var errorCode = error.code;
-    var errorMessage = error.message;
-  });*/
-  
+  window.location.href = "landingpage_fin/instruct_company.html";  
 </script>
 </body>
 </html>

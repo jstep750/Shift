@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<!-- jQuery  -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+</head>
+<body>
+<h2 id="title">Game 페이지 입니다!</h2>
+<input type="button" id="button1" onclick="goBack();" value="뒤로가기" />
+<input type="button" id="button1" onclick="deleteGame();" value="삭제" />
+
+<h4>방문자</h4>
+<ul>
+</ul>
+
+<div id="content-placeholder"></div>
+
+
+<script id="some-template" type="text/x-handlebars-template">
+    <table>
+      <thead>
+        <th>name</th>
+        <th>company</th>
+        <th>genre</th>
+        <th>playtime</th>
+        <th>view</th>
+      </thead>
+      <tbody>
+        {{#games}}
+          <tr>
+            <td>{{name}}</td>
+            <td>{{company}}</td>
+            <td>{{genre}}</td>
+            <td>{{playtime}}</td>
+            <td>{{view}}</td>
+          </tr>
+        {{/games}}
+      </tbody>
+    </table>
+</script>
+
+
+<!-- The core Firebase JS SDK is always required and must be listed first -->
+<script src="https://www.gstatic.com/firebasejs/8.2.2/firebase-app.js"></script>
+
+<!-- TODO: Add SDKs for Firebase products that you want to use https://firebase.google.com/docs/web/setup#available-libraries -->
+<script src="https://www.gstatic.com/firebasejs/8.2.2/firebase-analytics.js"></script>
+
+<script src="https://www.gstatic.com/firebasejs/8.2.2/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.2.2/firebase-firestore.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.2.2/firebase-database.js"></script>
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.7.6/handlebars.min.js" integrity="sha512-zT3zHcFYbQwjHdKjCu6OMmETx8fJA9S7E6W7kBeFxultf75OPTYUJigEKX58qgyQMi1m1EgenfjMXlRZG8BXaw==" crossorigin="anonymous"></script>
+
+<script>
+var firebaseConfig = {
+    apiKey: "AIzaSyCXRTprV0yWYk8YrVpopvkFM4Cv_Nmhb2g",
+    authDomain: "shift-f80bc.firebaseapp.com",
+    databaseURL: "https://shift-f80bc-default-rtdb.firebaseio.com",
+    projectId: "shift-f80bc",
+    storageBucket: "shift-f80bc.appspot.com",
+    messagingSenderId: "111516463886",
+    appId: "1:111516463886:web:f7ae7d49add43d4cc0dd5f",
+    measurementId: "G-QXHD4RJNKQ"
+};
+
+// Initialize Firebase
+firebase.initializeApp(firebaseConfig);
+
+
+// 템플릿 해석
+var source   = $("#some-template").html();
+var template = Handlebars.compile(source);
+// 데이터 
+/*var data = { users: [
+    {username: "alan", firstName: "Alan", lastName: "Johnson", email: "alan@test.com" },
+    {username: "allison", firstName: "Allison", lastName: "House", email: "allison@test.com" },
+    {username: "ryan", firstName: "Ryan", lastName: "Carson", email: "ryan@test.com" }
+    ]};*/
+
+var db = firebase.firestore();
+var gameId = window.location.search.substr(4);
+
+var data = new Object();
+var gameArray = new Array();
+
+db.collection("game").get().then((querySnapshot) => {
+    querySnapshot.forEach((doc) => {
+        console.log(doc.id, " => ", doc.data());
+        var query = db.collection("view").where("page","==",doc.id);
+        query.get()
+        .then(function(querySnapshot) {
+            var game = new Object();
+            flag = true;
+            game.id = doc.id;
+            game.name = doc.get("name");
+            game.company = doc.get("company");
+            game.genre = doc.get("genre");
+            game.playtime = doc.get("playtime");
+            querySnapshot.forEach(function(doc1) {
+                // doc.data() is never undefined for query doc snapshots
+                console.log(doc1.id, " => ", doc1.data());
+                var num = doc1.get("num")
+                game.view = num;
+                flag = false;
+            });
+            if(flag){
+              game.view = 0;
+            }
+            gameArray.push(game);
+            console.log("gameArray:"+ gameArray);
+            console.log("data:"+data);
+            data.games = gameArray;
+                // div id=content-placeholder 에 결과 내역을 렌더링한다 
+            $("#content-placeholder").html(template(data));
+        })
+        .catch(function(error) {
+            console.log("Error getting documents: ", error);
+        });
+    });
+});
+
+
+
+//alert(gameId);
+//makeVisitors();
+
+/*firebase.auth().onAuthStateChanged(function(user) {
+    console.log(user);
+    if (user) {
+        storeView(gameId);
+        var docRef = db.collection("game").doc(gameId);
+        docRef.get().then(function(doc) {
+        if (doc.exists) {
+            console.log("Document data:", doc.data());
+            document.getElementById("title").textContent = doc.get("name")+" 페이지 입니다!"
+            //alert(user.displayName+"님, "+doc.get("name")+"방문");
+        } else {
+            // doc.data() will be undefined in this case
+            console.log("No such document!");
+        }
+        }).catch(function(error) {
+            console.log("Error getting document:", error);
+        });
+    }
+    else{
+        alert("로그인 페이지로 이동");
+        window.location.href = "index.html";
+    }
+});*/
+
+/*function makeVisitors(){
+    var query = db.collection("view").where("page","==",gameId);
+    query.get()
+    .then(function(querySnapshot) {
+        var node = document.createElement('li');
+        querySnapshot.forEach(function(doc) {
+            // doc.data() is never undefined for query doc snapshots
+            console.log(doc.id, " => ", doc.data());
+            var uid = doc.get("user");
+            var docRef = db.collection("user").doc(uid);
+            docRef.get().then(function(doc1) {
+                if (doc1.exists) {
+                    node.appendChild(document.createTextNode(doc1.get("name")+"/"+doc1.get("email")+"/"+doc.get("num")+"회")); 
+                    document.querySelector('ul').appendChild(node); 
+                }
+            }).catch(function(error) {
+            console.log("Error getting document:", error);
+            });
+        });
+    })
+    .catch(function(error) {
+        console.log("Error getting documents: ", error);
+    });
+}
+
+function goBack() {
+    window.location.href = "auth.html";
+}
+
+function deleteGame() {
+    db.collection("game").doc(gameId).delete().then(function() {
+        console.log("Document successfully deleted!");
+    }).catch(function(error) {
+        console.error("Error removing document: ", error);
+    });
+    var query = db.collection("view").where("page","==",gameId); 
+    query.get()
+    .then(function(querySnapshot) {
+        querySnapshot.forEach(function(doc) {
+            // doc.data() is never undefined for query doc snapshots
+            console.log(doc.id, " => ", doc.data());
+            db.collection("view").doc(doc.id).delete().then(function() {
+                console.log("Document successfully deleted!");
+            }).catch(function(error) {
+                console.error("Error removing document: ", error);
+            });
+        });
+    })
+    .catch(function(error) {
+        console.log("Error getting documents: ", error);
+    }); 
+    alert("삭제되었습니다");
+    window.location.href = "auth.html";
+}
+
+function storeView(page) {
+  var user = firebase.auth().currentUser;
+  var db = firebase.firestore();
+
+  var query = db.collection("view").where("user","==",user.uid).where("page","==",page);
+  query.get()
+    .then(function(querySnapshot) {
+        var flag = true;
+        querySnapshot.forEach(function(doc) {
+            // doc.data() is never undefined for query doc snapshots
+            console.log(doc.id, " => ", doc.data());
+            var ref = db.collection("view").doc(doc.id);
+            ref.update({
+              num : firebase.firestore.FieldValue.increment(1)
+            })
+            .then(function() {
+                console.log("Document successfully updated!");
+            })
+            .catch(function(error) {
+                // The document probably doesn't exist.
+                console.error("Error updating document: ", error);
+            });
+            flag = false;
+        });
+        if(flag){
+            db.collection("view").add({
+                user: user.uid,
+                page: page,
+                num: 1
+            })
+            .then(function(docRef) {
+                console.log("Document written with ID: ", docRef.id);
+            })
+            .catch(function(error) {
+                console.error("Error adding document: ", error);
+            });
+            var node = document.createElement('li');
+            node.appendChild(document.createTextNode(user.displayName+"/"+user.email+"/1회")); 
+            document.querySelector('ul').appendChild(node); 
+        }
+    })
+    .catch(function(error) {
+        console.log("Error getting documents: ", error);
+    });
+  //alert(page+"클릭");
+}*/
+
+</script>
+</body>
+</html>

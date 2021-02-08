@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
+  <!-- Bootstrap core CSS -->
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+  <!-- Material Design Bootstrap -->
+  <link href="css/mdb.min.css" rel="stylesheet">
+  <!-- Your custom styles (optional) -->
+  <link href="css/style.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="app.css">
+</head>
+
+<header class="text-center">
+    <img src="img/Group 1.svg" class="mt-4">
+</header>
+
+<body style="background-color: aliceblue;">   
+
+  <!--Main layout-->
+  <main class="mt-4 pt-4">
+    <div class="container">
+
+      <!--Section: Post-->
+      <section class="mt-0">
+
+        <!--Grid row-->
+        <div class="row justify-content-center">
+            
+          <!--Grid column-->
+          <div class="col-md-6 col-xs-12 mb-4">
+
+            <!--Reply-->
+            <div class="card mb-4 wow fadeIn">
+              <div class="card-header font-weight-bold">Add game</div>
+              <div class="card-body">
+
+                <!-- Default form reply -->
+                <form>
+
+                  <!-- Name -->
+                  <label for="gameName">Game name</label>
+                  <input type="text" id="gameName" class="form-control">
+
+                  <br>
+
+                  <!-- Email -->
+                  <label for="gameCompany">company</label>
+                  <input type="text" id="gameCompany" class="form-control">
+
+                  <br>
+
+                  <!-- Email -->
+                  <label for="gameGenre">genre</label>
+                  <input type="text" id="gameGenre" class="form-control">
+
+                  <br>
+                  
+                  <!-- Email -->
+                  <label for="gamePlaytime">play time</label>
+                  <input type="text" id="gamePlaytime" class="form-control">
+
+                  <br>
+
+                  <!-- Email -->
+                  <label for="gamePhoto">photo URL</label>
+                  <input type="email" id="gamePhoto" class="form-control">
+
+                  <br>
+                  <!-- Comment -->
+                  <div class="form-group">
+                    <label for="gameDescription">description</label>
+                    <textarea class="form-control" id="gameDescription" rows="5"></textarea>
+                  </div>
+
+                  <div class="text-center mt-4">
+                    <input type="button" class="btn btn-info btn-md" id="button1" onclick="makeGame();" value="만들기" />
+                    <input type="button" class="btn btn-info btn-md" id="button2" onclick="goBack();" value="뒤로가기" />
+                  </div>
+                </form>
+                <!-- Default form reply -->
+
+              </div>
+            </div>
+            <!--/.Reply-->
+
+          </div>
+          <!--Grid column-->
+
+        </div>
+        <!--Grid row-->
+
+      </section>
+      <!--Section: Post-->
+
+    </div>
+  </main>
+  <!--Main layout-->
+
+  <!--Footer-->
+  <footer class="page-footer text-center font-small mdb-color darken-2 mt-4 wow fadeIn">
+
+    <!--Copyright-->
+    <div class="footer-copyright py-3">
+      © 2019 Copyright:
+      <a href="https://mdbootstrap.com/education/bootstrap/" target="_blank"> MDBootstrap.com </a>
+    </div>
+    <!--/.Copyright-->
+
+  </footer>
+  <!--/.Footer-->
+
+  <!-- SCRIPTS -->
+  <!-- JQuery -->
+  <script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
+  <!-- Bootstrap tooltips -->
+  <script type="text/javascript" src="js/popper.min.js"></script>
+  <!-- Bootstrap core JavaScript -->
+  <script type="text/javascript" src="js/bootstrap.min.js"></script>
+  <!-- MDB core JavaScript -->
+  <script type="text/javascript" src="js/mdb.min.js"></script>
+  <!-- Initializations -->
+  <script type="text/javascript">
+  
+    // Animations initialization
+    new WOW().init();
+
+  </script>
+
+  <!-- The core Firebase JS SDK is always required and must be listed first -->
+<script src="https://www.gstatic.com/firebasejs/8.2.2/firebase-app.js"></script>
+
+<!-- TODO: Add SDKs for Firebase products that you want to use https://firebase.google.com/docs/web/setup#available-libraries -->
+<script src="https://www.gstatic.com/firebasejs/8.2.2/firebase-analytics.js"></script>
+
+<script src="https://www.gstatic.com/firebasejs/8.2.2/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.2.2/firebase-firestore.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.2.2/firebase-database.js"></script>
+
+<script>
+var firebaseConfig = {
+    apiKey: "AIzaSyCXRTprV0yWYk8YrVpopvkFM4Cv_Nmhb2g",
+    authDomain: "shift-f80bc.firebaseapp.com",
+    databaseURL: "https://shift-f80bc-default-rtdb.firebaseio.com",
+    projectId: "shift-f80bc",
+    storageBucket: "shift-f80bc.appspot.com",
+    messagingSenderId: "111516463886",
+    appId: "1:111516463886:web:f7ae7d49add43d4cc0dd5f",
+    measurementId: "G-QXHD4RJNKQ"
+};
+
+// Initialize Firebase
+firebase.initializeApp(firebaseConfig);
+
+function goBack() {
+  window.location.href = "home2.html"
+}
+
+function makeGame() {
+  alert("button click");
+  var db = firebase.firestore();
+  var gameName = document.getElementById('gameName').value;
+  var gameCompany = document.getElementById('gameCompany').value;
+  var gameGenre = document.getElementById('gameGenre').value;
+  var gamePlaytime = document.getElementById('gamePlaytime').value;
+  var gamePhoto = document.getElementById('gamePhoto').value;
+  var gameDescription = document.getElementById('gameDescription').value;
+  db.collection("game").add({
+    name : gameName,
+    company : gameCompany,
+    genre : gameGenre,
+    playtime : gamePlaytime,
+    photoUrl : gamePhoto,
+    description : gameDescription
+  })
+  .then(function(docRef) {
+      alert(gameName+" 게임 생성");
+  })
+  .catch(function(error) {
+      console.error("Error adding document: ", error);
+  });
+}
+
+
+</script>
+</body>
+
+</html>

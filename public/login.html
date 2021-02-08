@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<!-- jQuery  -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://cdn.firebase.com/libs/firebaseui/4.0.0/firebaseui.js"></script>
+  <link type="text/css" rel="stylesheet" href="https://www.gstatic.com/firebasejs/ui/4.6.1/firebase-ui-auth.css" />
+
+</head>
+<body>
+<!-- svg -->
+
+<img src="img/Group 1.svg"
+class="Group-1">
+<link rel="stylesheet" href="app.css">
+
+<h2>Shift 웹서버 입니다!!</h2>
+<input type="button" id="logout" onclick="logout();" value="로그아웃" />
+
+<button type="button" id="googleLogin" onclick="googleLogin();">구글 로그인</button>
+<br>
+<input type="text" id="userEmail" value="@naver.com"/>
+<input type="button" id="emailBtn" onclick="signUpEmail();" value="이메일 전송" />
+<input type="button" id="emailBtn" onclick="changePassword();" value="비밀번호 변경" />
+<br>
+<input type="text" id="userID" value="아이디"/>
+<input type="text" id="userPassword" value="PW"/>
+<br>
+<input type="button" id="signupBtn" onclick="signUp();" value="회원가입" />
+<input type="button" id="pwLogin" onclick="pwLogin();" value="로그인" />
+
+<!-- The core Firebase JS SDK is always required and must be listed first -->
+<script src="https://www.gstatic.com/firebasejs/8.2.2/firebase-app.js"></script>
+
+<!-- TODO: Add SDKs for Firebase products that you want to use https://firebase.google.com/docs/web/setup#available-libraries -->
+<script src="https://www.gstatic.com/firebasejs/8.2.2/firebase-analytics.js"></script>
+
+<script src="https://www.gstatic.com/firebasejs/8.2.2/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.2.2/firebase-firestore.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.2.2/firebase-database.js"></script>
+
+<!-- Firebase App (the core Firebase SDK) is always required and must be listed first -->
+<!-- <script src="/__/firebase/7.23.0/firebase-app.js"></script> -->
+
+<!-- If you enabled Analytics in your project, add the Firebase SDK for Analytics -->
+<!-- <script src="/__/firebase/7.23.0/firebase-analytics.js"></script> -->
+
+<!-- <script src="/__/firebase/7.23.0/firebase-auth.js"></script>
+<script src="/__/firebase/7.23.0/firebase-firestore.js"></script>
+<script src="/__/firebase/7.23.0/firebase-database.js"></script> -->
+
+<!-- <script src="https://www.gstatic.com/firebasejs/3.6.1/firebase.js"></script> -->
+
+<script>
+
+var firebaseConfig = {
+    apiKey: "AIzaSyCXRTprV0yWYk8YrVpopvkFM4Cv_Nmhb2g",
+    authDomain: "shift-f80bc.firebaseapp.com",
+    databaseURL: "https://shift-f80bc-default-rtdb.firebaseio.com",
+    projectId: "shift-f80bc",
+    storageBucket: "shift-f80bc.appspot.com",
+    messagingSenderId: "111516463886",
+    appId: "1:111516463886:web:f7ae7d49add43d4cc0dd5f",
+    measurementId: "G-QXHD4RJNKQ"
+};
+// Initialize Firebase
+firebase.initializeApp(firebaseConfig);
+
+firebase.auth().onAuthStateChanged(function(user) {
+    if (user) {
+      // User is signed in.
+      alert("로그인 O");
+      console.log(user)		// 인증 후 어떤 데이터를 받아오는지 확인해보기 위함.
+      var db = firebase.firestore();
+      var flag = true;
+      var docRef = db.collection("user").doc(user.uid);
+      docRef.get().then(function(doc) {
+        if (doc.exists) {
+            console.log("Document data:", doc.data()); 
+            window.location.href = "auth.html";
+        } 
+        else {
+            db.collection("user").doc(user.uid).set({
+                name: user.displayName,
+                email: user.email,
+                photoUrl: user.photoURL,
+                emailVerified: user.emailVerified,
+                uid: user.uid,
+                account:"",
+            })
+            .then(function() {
+                console.log("Document successfully written!");
+            })
+            .catch(function(error) {
+                console.error("Error writing document: ", error);
+            });
+            alert("회원가입 완료");
+        }
+      }).catch(function(error) {
+          console.log("Error getting document:", error);
+      });
+    } else {
+      // No user is signed in.
+      //window.location.href = "auth_google.html";
+      alert("로그인 X");
+      console.log(user)		// 인증 후 어떤 데이터를 받아오는지 확인해보기 위함.
+    }
+});
+
+var emailVerified = false;
+var email;
+
+function googleLogin(){
+  var user = firebase.auth().currentUser;
+  if (user) {
+    // User is signed in.
+    alert("로그인 완료");
+    console.log(user)		// 인증 후 어떤 데이터를 받아오는지 확인해보기 위함.  
+    window.location.href = "auth.html";
+  } 
+  else {
+    // No user is signed in.
+    alert("로그인 시작");
+    var provider = new firebase.auth.GoogleAuthProvider();
+    firebase.auth().signInWithRedirect(provider);
+    /*firebase.auth().getRedirectResult().then(function(result) {
+      if (result.credential) {
+        // This gives you a Google Access Token. You can use it to access the Google API.
+        var token = result.credential.accessToken;
+      }
+      // The signed-in user info.
+      var user = result.user;
+      console.log(user)
+      alert("로그인 성공");
+    }).catch(function(error) {
+      // Handle Errors here.
+      var errorCode = error.code;
+      var errorMessage = error.message;
+      // The email of the user's account used.
+      var email = error.email;
+      // The firebase.auth.AuthCredential type that was used.
+      var credential = error.credential;
+      alert("에러");
+    });*/
+  }
+}
+
+function makeGame() {
+  var user = firebase.auth().currentUser;
+  var db = firebase.firestore();
+  var game_name = document.getElementById('game_name').value;
+  db.collection("game").add({
+    uid: user.uid,
+    company: "A",
+    genre: "B",
+    name: game_name,
+    playtime : "10:00"
+  })
+  .then(function(docRef) {
+      alert(game_name+" 게임 생성");
+      console.log("Document written with ID: ", docRef.id);
+      var node = document.createElement('li');
+      var a = document.createElement('a');
+      a.href = "/game.html?id="+docRef.id;
+      a.appendChild(document.createTextNode(game_name+" (조회수: 0)"));
+      node.appendChild(a);
+      document.querySelector('ul').appendChild(node);  
+  })
+  .catch(function(error) {
+      console.error("Error adding document: ", error);
+  });
+}
+
+function changePassword(){
+  var emailAddress = document.getElementById('userEmail').value;
+  var auth = firebase.auth();
+  auth.sendPasswordResetEmail(emailAddress).then(function() {
+    alert("비밀번호 변경 이메일 전송");
+    // Email sent.
+  }).catch(function(error) {
+    alert(error.code+" "+error.message);
+    // An error happened.
+  });
+}
+
+function logout() {
+  firebase.auth().signOut().then(function() {
+    alert("로그아웃 성공");
+  // Sign-out successful.
+  }).catch(function(error) {
+    alert("에러");
+  // An error happened.
+  });
+}
+
+function signUp(){
+  if(emailVerified == false){
+    alert("이메일 인증을 완료해주세요");
+  }
+  else{
+    alert("회원가입 클릭");
+    var email = document.getElementById('userEmail').value;
+    var password = document.getElementById('userPassword').value;
+    var name = document.getElementById('userID').value;
+    var db = firebase.firestore();
+    if(!name || !password){
+      alert("회원가입 정보를 적어주세요");
+    }
+    else{
+      firebase.auth().createUserWithEmailAndPassword(email, password)
+      .then((user) => {
+        db.collection("user").add({
+            name: name,
+            email: email,
+            uid: user.uid,
+            account:"",
+        })
+        .then(function() {
+            console.log("Document successfully written!");
+            var user1 = firebase.auth().currentUser;
+            user1.updateProfile({
+              displayName: name
+            }).then(function() {
+              alert(user1.displayName+"님 회원가입");
+              // Update successful.
+            }).catch(function(error) {
+              // An error happened.
+              alert("이름 설정 에러");
+              console.log(errorCode);
+              console.log(errorMessage);
+            });
+            alert("회원가입 완료");
+            window.location.href = auth.html;
+        })
+        .catch(function(error) {
+            console.error("Error writing document: ", error);
+            console.log(error.code);
+            console.log(error.message);
+        });
+      })
+      .catch((error) => {
+        alert("회원가입 에러1");
+      });
+    }
+  }
+}
+
+function signUpEmail(){
+  var actionCodeSettings = {
+    // URL you want to redirect back to. The domain (www.example.com) for this
+    // URL must be in the authorized domains list in the Firebase Console.
+    url: 'https://shift-f80bc.web.app/login_email.html',
+    // This must be true.
+    handleCodeInApp: true
+  };
+
+  var email = document.getElementById('userEmail').value;
+  var password = document.getElementById('userPassword').value;
+  firebase.auth().sendSignInLinkToEmail(email, actionCodeSettings)
+  .then(() => {
+    // The link was successfully sent. Inform the user.
+    // Save the email locally so you don't need to ask the user for it again
+    // if they open the link on the same device.
+    window.localStorage.setItem('emailForSignIn', email);
+    alert("이메일 전송 성공");
+    // ...
+  })
+  .catch((error) => {
+    var errorCode = error.code;
+    var errorMessage = error.message;
+    console.log(errorCode);
+    alert(errorMessage);
+    // ...
+  });
+}
+
+function pwLogin(){
+  var email = document.getElementById('userEmail').value;
+  var password = document.getElementById('userPassword').value;
+  firebase.auth().signInWithEmailAndPassword(email, password)
+  .then((user) => {
+    alert("로그인 성공");
+    window.location.href = "auth.html";
+    // Signed in
+    // ...
+  })
+  .catch((error) => {
+    var errorCode = error.code;
+    var errorMessage = error.message;
+    console.log(errorCode);
+    alert(errorMessage);
+  });
+}
+
+/*firebase.auth().setPersistence(firebase.auth.Auth.Persistence.SESSION)
+  .then(function() {
+    alert("setPersistence");
+    // Existing and future Auth states are now persisted in the current
+    // session only. Closing the window would clear any existing state even
+    // if a user forgets to sign out.
+    // ...
+    // New sign-in will be persisted with session persistence.
+    //return firebase.auth().signInWithEmailAndPassword(email, password);
+  })
+  .catch(function(error) {
+    // Handle Errors here.
+    var errorCode = error.code;
+    var errorMessage = error.message;
+  });*/
+  
+</script>
+</body>
+</html>
