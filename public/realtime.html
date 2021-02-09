@@ -116,17 +116,6 @@ function writeGameData() {
             alert('Game ' +addGame.value +' added!');
         }
     });
-
-    /*var rootRef = firebase.database().ref("game/"+addGame.value);
-    rootRef.set({
-        number: 20
-    }).then(success => {
-            console.log('success',success);
-        },
-        error => {
-            console.log('error',error);
-        }
-    );*/
 }
 
 //고유 아이디 만들기
@@ -151,7 +140,7 @@ messageRef.on('child_added', function(snapshot) {
 var messageRef = database.ref("message");
 messageRef.on('child_removed', function(snapshot) {
     result.value = "";
-    messageField.value = "";
+    //messageField.value = "";
 });
 
 //메세지 저장
@@ -174,143 +163,130 @@ var userId;
 
 function buyGame() {
     var uuid = guid();
-    var gameRef = firebase.database().ref('game/' + gameName.value);
-    var gameNum;
 
-    gameRef.transaction((game) => {
-        if (game) {
-            if (game.number && (game.number>0)) {
-                alert("* "+game.number+"-"+document.getElementById('number').value);
-                game.number = game.number - document.getElementById('number').value;
-                gameNum = game.number;
-                if (gameName.value == "" || price.value == "" || number.value == ""){
-                    alert("메시지를 입력하세요");
-                    return true;
-                }
+    alert("buy "+gameName.value);
 
-                var total = price.value*number.value;
-                var message = userName+" / "+gameName.value+" / "+gameNum+" / "+price.value+" / "+number.value+" / "+total;
-                database.ref('message/' + guid()).set({
-                    game: gameName.value,
-                    remain: gameNum,
-                    price: price.value,
-                    number : number.value,
-                    text: message
-                });
+    //var userId = firebase.auth().currentUser.uid;
+    //gameRef = firebase.database().ref('game/' + gameName.value);
 
-                var flag = false;
-                var userRef = firebase.database().ref('user/' + userId);
-                userRef.transaction((user) => {
-                    if (user) {
-                        if (user.cash && (user.cash>0)) {
-                            var cash = user.cash;
-                            user.cash = user.cash - total;
-                            alert(user.cash + "-" + total + "=" + left);
-                            flag = true;
-                        }
-                        else if (user.cash && !(user.cash>0)){
-                            alert("cash 부족 :"+user.cash);
-                        }
-                        else{
-                            alert("error");
-                        }
-                    }
-                    return user;
-                }); 
-                
-                if(flag){
-                    var userRef = firebase.database().ref('user/' + userId + '/buy/' + uuid);
-                    userRef.transaction((usergame) => {
-                        if (usergame) {
-                            if (user.cash && (user.cash>0)) {
-                                var cash = user.cash;
-                                user.cash = user.cash - total;
-                                alert(user.cash + "-" + total + "=" + left);
-                                flag = true;
-                            }
-                            else if (user.cash && !(user.cash>0)){
-                                alert("cash 부족 :"+user.cash);
-                            }
-                            else{
-                                alert("error");
-                            }
-                        }
-                        return usergame;
-                    }); 
-                    database.ref('user/' + userId + '/buy/' + uuid).set({
-                        game: gameName.value,
-                        price: price.value,
-                        number : number.value
-                    });
-                }
+    firebase.database().ref('/game/' + gameName.value).once('value').then((snapshot) => {
+        //var username = (snapshot.val() && snapshot.val().username) || 'Anonymous';
+        var gameNum = snapshot.val().number;
+        firebase.database().ref('/user/' + userId).once('value').then((snapshot1) => {
+            //var username = (snapshot.val() && snapshot.val().username) || 'Anonymous';
+            var cash = snapshot1.val().cash;
+            var gName = gameName.value;
+            var num = number.value*1; 
+            var totalpay = price.value * number.value;
+            var message = userName+"님 : 게임 "+gameName.value+"(잔여 "+(gameNum-num)+"개) / 가격 "+price.value+" / 개수 +"+number.value+" / 캐쉬 "+ (-totalpay);
+            console.log(message);
 
-                //messageField.value = "";
-                gameName.value = "";
-                price.value = "";
-                number.value = "";
-            } 
-            else if(game.number && !(game.number>0)) {
-                gameNum = game.number;
-                alert("* "+gameNum+"-"+document.getElementById('number').value);
+            if(gameNum-num < 0){
+                alert("game 부족"+gameNum+"-"+num);
+            }
+            else if(cash-totalpay < 0){
+                alert("cash 부족"+cash+"-"+totalpay);
             }
             else{
-                alert("error");
+                firebase.database().ref('/user/'+userId+'/userGame/'+gName).once('value').then((snapshot2) => {
+                    var addMessage = {  game: gameName.value,
+                                    remain: gameNum - num,
+                                    price: price.value*1,
+                                    number : number.value*1,
+                                    text: message };
+                    var addOrder = { remain: gameNum - num,
+                                    price: price.value*1,
+                                    number : number.value*1,
+                                    text: message };
+                    var updates = {};
+                    updates['game/' + gameName.value + '/number'] = gameNum - num;
+                    updates['game/' + gameName.value + '/buy/' + uuid] = addOrder;
+                    updates['user/' + userId + '/cash'] = cash - totalpay;
+                    updates['message/' + uuid] = addMessage;
+
+                    if(snapshot2.exists()){
+                        alert("exist "+ gName +" / "+ snapshot2.val().number +"+"+ num +"개 / "+ snapshot2.val().payment +"-"+ totalpay+"원");
+                        updates['user/'+ userId + '/userGame/' + gName +'/number'] = snapshot2.val().number + num;
+                        updates['user/'+ userId + '/userGame/' + gName +'/payment'] = snapshot2.val().payment - totalpay;
+                    }
+                    else{
+                        alert("add "+gName+" / "+num+"개 / "+-totalpay+"원");
+                        var addData = {
+                            number : num,
+                            payment : -totalpay
+                        };
+                        updates['user/'+ userId + '/userGame/' + gName] = addData;
+                    }
+                    firebase.database().ref().update(updates);
+                    alert("update 완료");
+                    gameName.value = "";
+                    price.value = "";
+                    number.value = "";
+                });  
             }
-        }
-        return game;
+        }); 
     });
 }
 
 function sellGame() {
     var uuid = guid();
-    var gameRef = firebase.database().ref('game/' + gameName.value);
-    var gameNum;
-    var flag = false;
 
-    gameRef.transaction((game) => {
-        if (game) {
-            if (game.number && (game.number>0)) {
-                alert("* "+game.number+"-"+document.getElementById('number').value);
-                game.number = game.number - document.getElementById('number').value;
-                gameNum = game.number;
-                flag = true;
-                if(flag){
-                    if (gameName.value == "" || price.value == "" || number.value == "")
-                    {
-                        alert("메시지를 입력하세요");
-                        return true;
-                    } 
-                    database.ref('user/' + user.uid + 'payment/' + uuid).set({
-                        game: gameName.value,
-                        price: price.value,
-                        number : number.value
-                    });
-                    var total = price.value*number.value;
-                    var message = userName+" / "+gameName.value+" / "+gameNum+" / "+price.value+" / "+number.value+" / "+total;
-                    database.ref('message/' + uuid).set({
-                        game: gameName.value,
-                        remain: gameNum,
-                        price: price.value,
-                        number : number.value,
-                        text: message
-                    });
-                    //messageField.value = "";
-                    gameName.value = "";
-                    price.value = "";
-                    number.value = "";
-                }
-                //post.starCount--;
-                //post.stars[uid] = null;
-            } 
-            else if(game.number && !(game.number>0)) {
-                gameNum = game.number;
-                alert("* "+gameNum+"-"+document.getElementById('number').value);
+    alert("sell "+gameName.value);
+
+    //var userId = firebase.auth().currentUser.uid;
+    //gameRef = firebase.database().ref('game/' + gameName.value);
+
+    firebase.database().ref('/game/' + gameName.value).once('value').then((snapshot) => {
+        //var username = (snapshot.val() && snapshot.val().username) || 'Anonymous';
+        var gameNum = snapshot.val().number;
+        firebase.database().ref('/user/' + userId).once('value').then((snapshot1) => {
+            //var username = (snapshot.val() && snapshot.val().username) || 'Anonymous';
+            var cash = snapshot1.val().cash;
+            var gName = gameName.value;
+            var num = number.value*1; 
+            var totalpay = price.value * number.value;
+            var message = userName+"님 : 게임 "+gameName.value+"(잔여 "+(gameNum+num)+"개) / 가격 "+price.value+" / 개수 -"+number.value+" / 캐쉬 +"+ (totalpay);
+            console.log(message);
+
+            if(true){
+                firebase.database().ref('/user/'+userId+'/userGame/'+gName).once('value').then((snapshot2) => {
+                    var addMessage = {  game: gameName.value,
+                                    remain: gameNum + num,
+                                    price: price.value*1,
+                                    number : -number.value*1,
+                                    text: message };
+                    var addOrder = { remain: gameNum + num,
+                                    price: price.value*1,
+                                    number : -number.value*1,
+                                    text: message };
+
+                    var updates = {};
+                    updates['game/' + gameName.value + '/number'] = gameNum + num;
+                    updates['game/' + gameName.value + '/sell/' + uuid] = addOrder;
+                    updates['user/' + userId + '/cash'] = cash + totalpay;
+                    updates['message/'+ uuid] = addMessage;
+
+                    if(snapshot2.exists()){
+                        if(snapshot2.val().number - num >= 0){
+                            alert("exist "+ gName +" / "+ snapshot2.val().number +"-"+ num +"개 / "+ snapshot2.val().payment +"+"+ totalpay+"원");
+                            updates['user/'+ userId + '/userGame/' + gName +'/number'] = snapshot2.val().number - num;
+                            updates['user/'+ userId + '/userGame/' + gName +'/payment'] = snapshot2.val().payment + totalpay;
+                            firebase.database().ref().update(updates);
+                            alert("update 완료");
+                            gameName.value = "";
+                            price.value = "";
+                            number.value = "";
+                        }
+                        else{
+                            alert("game 부족: "+snapshot2.val().number+"-"+num);
+                        }
+                    }
+                    else{
+                        alert(gName+" doesn't exists");
+                    }
+                });  
             }
-            else{
-                alert("error");
-            }
-        }
-        return game;
+        }); 
     });
 }
 
@@ -342,8 +318,8 @@ firebase.auth().onAuthStateChanged(function(user) {
     userName = user.displayName;
     userId = user.uid;
 
-    var adaRef = firebase.database().ref('user/'+user.uid);
-    adaRef.transaction(function(currentData) {
+    var userRef = firebase.database().ref('user/'+user.uid);
+    userRef.transaction(function(currentData) {
         if (currentData === null) {
             return { name: user.displayName, cash: 100 };
         } else {
@@ -354,7 +330,7 @@ firebase.auth().onAuthStateChanged(function(user) {
         if (error) {
             alert('Transaction failed abnormally!'+ error);
         } else if (!committed) {
-            alert('We aborted the transaction (because user already exists).');
+            alert(user.uid + '님 안녕하세요!');
         } else {
             alert('User '+ user.uid + ' added!');
         }
@@ -384,6 +360,223 @@ function myPage() {
   var user = firebase.auth().currentUser;
   var href = "user-page.html?id="+user.uid;
   window.location.href = href;
+}
+
+function test(){
+        /*var rootRef = firebase.database().ref("/");
+    
+    rootRef.transaction((root) => {
+        if(root){
+            console.log(root);
+            if(root.game && root.user){
+                console.log(root.game);
+                console.log(root.user);
+                var userId = firebase.auth().currentUser.uid;
+                return firebase.database().ref('/users/' + userId).once('value').then((snapshot) => {
+                var username = (snapshot.val() && snapshot.val().username) || 'Anonymous';
+                // ...
+                });
+
+                if (root.game.gName && root.user.userId) {
+                    var gName = gameName.value;
+                    var num = number.value*1; 
+                    var gameNum = root.game.gName.number - num;
+                    var totalpay = price.value * number.value;
+                    var message = userName+"님 : 게임 "+gameName.value+"(잔여 "+gameNum+"개) / 가격 "+price.value+"/ 개수 "+number.value+"/ 캐쉬 "+ (-totalpay);
+                    
+                    alert(message);
+                    console.log(gameName.value+"/"+gameNum*1+"/"+price.value*1+"/"+number.value*1+"/"+message+"/");
+                    if(!(root.game.gName.number - num >= 0) ){
+                        alert("game 부족: "+root.game.gName.number+"-"+number);
+                    }
+                    else if(!(root.user.userId.cash - totalpay >= 0) ){
+                        alert("cash 부족: "+root.user.userId.cash+"-"+totalpay);
+                    }
+                    else if(root.user.userId.userGame.gName){
+                        database.ref('message/' + uuid).set({
+                            game: gameName.value,
+                            remain: gameNum*1,
+                            price: price.value*1,
+                            number : number.value*1,
+                            text: message
+                        }, (error) => {
+                        if (error) {
+                            alert(error.code+" / "+error.message);
+                            console.log(error.code+" / "+error.message);
+                            // The write failed...
+                        } else {
+                            // Data saved successfully!
+                            root.game.gName.number = gameNum;
+                            root.user.userId.cash -= totalpay;
+                            root.user.userGame.gName.number += num;
+                            root.user.userGame.gName.payment -= total;
+                        }
+                        });
+                    }
+                    else if(!root.user.userId.userGame.gName){
+                        database.ref('message/' + uuid).set({
+                            game: gameName.value,
+                            remain: gameNum*1,
+                            price: price.value*1,
+                            number : number.value*1,
+                            text: message
+                        }, (error) => {
+                        if (error) {
+                            alert(error.code+" / "+error.message);
+                            console.log(error.code+" / "+error.message);
+                            // The write failed...
+                        } else {
+                            // Data saved successfully!
+                            database.ref('user/'+ userId + '/userGame/' + gName).set({ 
+                                number : num,
+                                payment: -totalpay 
+                            }, (error1) => {
+                            if (error1) {
+                                alert("* "+error.code+" / "+error.message);
+                                console.log(error.code+" / "+error.message);
+                                // The write failed...
+                            } else {
+                                // Data saved successfully!
+                                root.game.gName.number = gameNum;
+                                root.user.userId.cash -= total;
+                                root.user.userGame.gName.number += num;
+                                root.user.userGame.gName.payment -= total;
+                            }
+                            });
+                        }
+                        });
+                    }
+                }
+            }
+        }
+        
+        return root;
+    });*/
+
+
+    /*var gameRef = firebase.database().ref('game/' + gameName.value);
+    
+    gameRef.transaction((game) => {
+        if (game) {
+            if (game.number && (game.number>0)) {
+                if (gameName.value == "" || price.value == "" || number.value == ""){
+                    alert("메시지를 입력하세요");
+                    return true;
+                }
+                var gameNum = game.number - document.getElementById('number').value*1;
+                var total = price.value * number.value;
+                var message = userName+"님 : 게임 "+gameName.value+"(잔여 "+gameNum+"개) / 가격 "+price.value+"/ 개수 "+number.value+"/ 캐쉬 "+ (-total);
+                alert(message);
+                console.log(gameName.value+"/"+gameNum*1+"/"+price.value*1+"/"+number.value*1+"/"+message+"/");
+                database.ref('message/' + uuid).set({
+                    game: gameName.value,
+                    remain: gameNum*1,
+                    price: price.value*1,
+                    number : number.value*1,
+                    text: message
+                });
+                var num = number.value*1; 
+
+                var updates = {};
+                updates['game/' + gameName.value] = estimateSnapshot.val().priority + 1;{number : number-document.getElementById('number').value*1};
+                updates['user/' + userId] = {cash : cash - total};
+                updates['user/'+ userId + '/userGame/' + gName] = { number : number + num, payment : payment - total }
+
+                firebase.database().ref().update(updates);
+                gameName.value = "";
+                price.value = "";
+                number.value = "";
+            } 
+            else if(game.number && !(game.number>0)) {
+                gameNum = game.number;
+                alert("* "+gameNum+"-"+document.getElementById('number').value);
+            }
+            else{
+                alert("error");
+            }
+        }
+        return game;
+    });*/
+
+
+    /*var gameRef = firebase.database().ref('game/' + gameName.value);
+    var gameNum;
+    gameRef.transaction((game) => {
+        if (game) {
+            if (game.number && (game.number>0)) {
+                alert("* "+game.number+"-"+document.getElementById('number').value);
+                game.number = game.number - document.getElementById('number').value*1;
+                gameNum = game.number;
+                if (gameName.value == "" || price.value == "" || number.value == ""){
+                    alert("메시지를 입력하세요");
+                    return true;
+                }
+                var total = price.value * number.value;
+                var message = userName+"님 : 게임 "+gameName.value+"(잔여 "+gameNum+"개) / 가격 "+price.value+"/ 개수 "+number.value+"/ 캐쉬 "+ (-total);
+                database.ref('message/' + uuid).set({
+                    game: gameName.value,
+                    remain: gameNum*1,
+                    price: price.value*1,
+                    number : number.value*1,
+                    text: message
+                });
+                gameName.value = "";
+                price.value = "";
+                number.value = "";
+            } 
+            else if(game.number && !(game.number>0)) {
+                gameNum = game.number;
+                alert("* "+gameNum+"-"+document.getElementById('number').value);
+            }
+            else{
+                alert("error");
+            }
+        }
+        return game;
+    });
+
+    var total = price.value * number.value;
+    var userRef = firebase.database().ref('user/' + userId);
+    userRef.transaction((user) => {
+        if (user) {
+            if (user.cash && (user.cash - total >=0)) {
+                var cash = user.cash;
+                user.cash = user.cash - total;
+                alert(cash + "-" + total + "=" + user.cash);
+            }
+            else if (user.cash && !(user.cash - total >=0)){
+                alert("cash 부족 :"+user.cash);
+            }
+            else{
+                alert("error");
+            }
+        }
+        return user;
+    }); 
+
+    var gName = gameName.value;
+    var num = number.value*1; 
+    var userGameRef = firebase.database().ref('user/'+ userId + '/userGame/' + gName);
+    userGameRef.transaction(function(currentData) {
+        if (currentData === null) {
+            return { number : num,
+                    payment: -total };
+        } else {
+            return{ number : currentData.number + num, 
+                payment : currentData.payment - total };
+        }
+        alert(currentData.game+"/"+currentData.number+"/"+currentData.payment);
+    }, function(error, committed, snapshot) {
+        if (error) {
+            alert('Transaction failed abnormally!'+ error);
+        } else if (!committed) {
+            alert('We aborted the transaction (because userGame already exists).');
+        } else {
+            alert('UserGame '+ gName);
+        }
+    });*/
+    
+    //messageField.value = "";
 }
 
 </script>

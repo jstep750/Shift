@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<!-- jQuery  -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+</head>
+<body>
+<h2 id="title">Game 페이지 입니다!</h2>
+<input type="button" id="button1" onclick="goBack();" value="뒤로가기" />
+<input type="button" id="button1" onclick="deleteGame();" value="삭제" />
+
+<h4>방문자</h4>
+<ul>
+</ul>
+
+<!-- The core Firebase JS SDK is always required and must be listed first -->
+<script src="https://www.gstatic.com/firebasejs/8.2.2/firebase-app.js"></script>
+
+<!-- TODO: Add SDKs for Firebase products that you want to use https://firebase.google.com/docs/web/setup#available-libraries -->
+<script src="https://www.gstatic.com/firebasejs/8.2.2/firebase-analytics.js"></script>
+
+<script src="https://www.gstatic.com/firebasejs/8.2.2/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.2.2/firebase-firestore.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.2.2/firebase-database.js"></script>
+
+<script>
+var firebaseConfig = {
+    apiKey: "AIzaSyCXRTprV0yWYk8YrVpopvkFM4Cv_Nmhb2g",
+    authDomain: "shift-f80bc.firebaseapp.com",
+    databaseURL: "https://shift-f80bc-default-rtdb.firebaseio.com",
+    projectId: "shift-f80bc",
+    storageBucket: "shift-f80bc.appspot.com",
+    messagingSenderId: "111516463886",
+    appId: "1:111516463886:web:f7ae7d49add43d4cc0dd5f",
+    measurementId: "G-QXHD4RJNKQ"
+};
+
+// Initialize Firebase
+firebase.initializeApp(firebaseConfig);
+
+var db = firebase.firestore();
+var gameId = window.location.search.substr(4);
+//alert(gameId);
+//makeVisitors();
+
+firebase.auth().onAuthStateChanged(function(user) {
+    console.log(user);
+    if (user) {
+        storeView(gameId);
+        var docRef = db.collection("game").doc(gameId);
+        docRef.get().then(function(doc) {
+        if (doc.exists) {
+            console.log("Document data:", doc.data());
+            document.getElementById("title").textContent = doc.get("name")+" 페이지 입니다!"
+            //alert(user.displayName+"님, "+doc.get("name")+"방문");
+        } else {
+            // doc.data() will be undefined in this case
+            console.log("No such document!");
+        }
+        }).catch(function(error) {
+            console.log("Error getting document:", error);
+        });
+    }
+    else{
+        alert("로그인 페이지로 이동");
+        window.location.href = "index.html";
+    }
+});
+
+var userName, userId, userEmail;
+
+firebase.auth().onAuthStateChanged(function(user) {
+  console.log(user);
+    if (user) {
+    userName = user.displayName;
+    userId = user.uid;
+    userEmail = user.email;
+
+    var userRef = firebase.database().ref('user/'+user.uid);
+    userRef.transaction(function(currentData) {
+        if (currentData === null) {
+            return { name: user.displayName, cash: 100 };
+        } else {
+            alert(currentData.name+" / "+currentData.cash);
+            return; // Abort the transaction.
+        }
+    }, function(error, committed, snapshot) {
+        if (error) {
+            alert('Transaction failed abnormally!'+ error);
+        } else if (!committed) {
+            alert(user.uid + '님 안녕하세요!');
+        } else {
+            alert('User '+ user.uid + ' added!');
+        }
+    });
+    //alert(user.displayName+"님, 안녕하세요!")		// 인증 후 어떤 데이터를 받아오는지 확인해보기 위함. 
+    storeView();
+    document.getElementById("title").textContent = user.displayName+"님, 안녕하세요!";
+  }
+  else{
+    alert("로그인 페이지로 이동");
+    window.location.href = "login.html";
+  }
+});
+
+function storeView(){
+    firebase.database().ref('/gamePage/'+gameId).once('value').then((snapshot) => {
+        var gameName = snapshot.val().name;
+        var gameView = snapshot.val().view*1;
+        firebase.database().ref('/user/'+userId+'/userView/'+gameId).once('value').then((snapshot2) => {
+            var viewNum = snapshot2.val().number;
+            var updates = {};
+            var addUser = { name : userName,
+                            email : userEmail,
+                            number: viewNum + 1  };
+            updates['gamePage/' + gameId + '/view'] = gameView + 1;
+            updates['gamePage/' + gameId + '/viewer/' + userId] = addUser;
+            
+            if(snapshot2.exists()){
+                updates['user/'+ userId + '/userView/' + gameId +'/number'] = viewNum + 1;                
+            }
+            else{
+                var addData = {
+                    name : gameName,
+                    number : 1
+                };
+                updates['user/'+ userId + '/userView/' + gameId] = addData;
+            }
+            firebase.database().ref().update(updates);
+            alert("view update 완료");
+            makeVisitors();
+        });
+    });
+}
+
+function makeVisitors(){
+    var gameListRef = firebase.database().ref('gamePage/'+gameId+'/viewer');
+    gameListRef.on('value', (snapshot) => {
+        if(snapshot.exists()){
+            var node = document.createElement('li');
+            node.appendChild(document.createTextNode(snapshot.val().name+"/"+snapshot.val().email+"/"+snapshot.val().number+"회")); 
+            document.querySelector('ul').appendChild(node);
+        }
+    });
+}
+
+/*function makeVisitors(){
+    var query = db.collection("view").where("page","==",gameId);
+    query.get()
+    .then(function(querySnapshot) {
+        var node = document.createElement('li');
+        querySnapshot.forEach(function(doc) {
+            // doc.data() is never undefined for query doc snapshots
+            console.log(doc.id, " => ", doc.data());
+            var uid = doc.get("user");
+            var docRef = db.collection("user").doc(uid);
+            docRef.get().then(function(doc1) {
+                if (doc1.exists) {
+                    var num = doc.get("num");
+                    node.appendChild(document.createTextNode(doc1.get("name")+"/"+doc1.get("email")+"/"+num+"회")); 
+                    document.querySelector('ul').appendChild(node); 
+                }
+            }).catch(function(error) {
+            console.log("Error getting document:", error);
+            });
+        });
+    })
+    .catch(function(error) {
+        console.log("Error getting documents: ", error);
+    });
+}*/
+
+function goBack() {
+    window.location.href = "auth.html";
+}
+
+/*function deleteGame() {
+    var query = db.collection("view").where("page","==",gameId); 
+    query.get()
+    .then(function(querySnapshot) {
+        querySnapshot.forEach(function(doc) {
+            // doc.data() is never undefined for query doc snapshots
+            console.log(doc.id, " => ", doc.data());
+            db.collection("view").doc(doc.id).delete().then(function() {
+                console.log("Document successfully deleted!");
+            }).catch(function(error) {
+                console.error("Error removing document: ", error);
+            });
+        });
+    })
+    .catch(function(error) {
+        console.log("Error getting documents: ", error);
+    }); 
+    db.collection("game").doc(gameId).delete().then(function() {
+        console.log("Document successfully deleted!");
+    }).catch(function(error) {
+        console.error("Error removing document: ", error);
+    });
+    alert("삭제되었습니다");
+    //window.location.href = "auth.html";
+}*/
+
+/*function storeView(page) {
+  var user = firebase.auth().currentUser;
+  var db = firebase.firestore();
+
+  var query = db.collection("view").where("user","==",user.uid).where("page","==",page);
+  query.get()
+    .then(function(querySnapshot) {
+        var flag = true;
+        querySnapshot.forEach(function(doc) {
+            // doc.data() is never undefined for query doc snapshots
+            console.log(doc.id, " => ", doc.data());
+            var ref = db.collection("view").doc(doc.id);
+            ref.update({
+              num : firebase.firestore.FieldValue.increment(1)
+            })
+            .then(function() {
+                console.log("Document successfully updated!");
+            })
+            .catch(function(error) {
+                // The document probably doesn't exist.
+                console.error("Error updating document: ", error);
+            });
+            flag = false;
+        });
+        if(flag){
+            db.collection("view").add({
+                user: user.uid,
+                page: page,
+                num: 1
+            })
+            .then(function(docRef) {
+                console.log("Document written with ID: ", docRef.id);
+            })
+            .catch(function(error) {
+                console.error("Error adding document: ", error);
+            });
+            var node = document.createElement('li');
+            node.appendChild(document.createTextNode(user.displayName+"/"+user.email+"/1회")); 
+            document.querySelector('ul').appendChild(node); 
+        }
+    })
+    .catch(function(error) {
+        console.log("Error getting documents: ", error);
+    });
+  //alert(page+"클릭");
+}*/
+
+</script>
+</body>
+</html>

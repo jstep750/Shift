@@ -48,7 +48,19 @@ var firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 
 var db = firebase.firestore();
-db.collection("game").get().then((querySnapshot) => {
+
+var gameListRef = firebase.database().ref('gamePage/');
+gameListRef.on('value', (snapshot) => {
+  if(snapshot.exists()){
+    var node = document.createElement('li');
+    var a = document.createElement('a');
+    a.href = "/game_copy.html?id="+snapshot.key;
+    a.appendChild(document.createTextNode(snapshot.val().name+" (조회수: "+snapshot.val().view+")"));
+    node.appendChild(a);
+    document.querySelector('ul').appendChild(node);  
+  }
+});
+/*db.collection("game").get().then((querySnapshot) => {
     querySnapshot.forEach((doc) => {
         console.log(doc.id, " => ", doc.data());
         var query = db.collection("view").where("page","==",doc.id);
@@ -58,7 +70,6 @@ db.collection("game").get().then((querySnapshot) => {
             var node = document.createElement('li');
             var a = document.createElement('a');
             a.href = "/game.html?id="+doc.id;
-            
             querySnapshot.forEach(function(doc1) {
                 // doc.data() is never undefined for query doc snapshots
                 console.log(doc1.id, " => ", doc1.data());
@@ -76,8 +87,10 @@ db.collection("game").get().then((querySnapshot) => {
             console.log("Error getting documents: ", error);
         });
     });
-});
+});*/
 
+
+var userId;
 
 firebase.auth().onAuthStateChanged(function(user) {
   console.log(user);
@@ -96,7 +109,7 @@ firebase.auth().onAuthStateChanged(function(user) {
     console.log(photoUrl)
     console.log(emailVerified)
     console.log(uid)
-
+    userId = uid;
     //alert(user.displayName+"님, 안녕하세요!")		// 인증 후 어떤 데이터를 받아오는지 확인해보기 위함. 
     document.getElementById("title").textContent = user.displayName+"님, 안녕하세요!";
   }
@@ -124,99 +137,53 @@ function myPage() {
   window.location.href = href;
 }
 
-/*function getTimeStamp() {
-  var d = new Date();
-  var s =
-    leadingZeros(d.getFullYear(), 4) + '-' +
-    leadingZeros(d.getMonth() + 1, 2) + '-' +
-    leadingZeros(d.getDate(), 2) + ' ' +
-
-    leadingZeros(d.getHours(), 2) + ':' +
-    leadingZeros(d.getMinutes(), 2) + ':' +
-    leadingZeros(d.getSeconds(), 2);
-
-  return s;
-}
-
-function leadingZeros(n, digits) {
-  var zero = '';
-  n = n.toString();
-
-  if (n.length < digits) {
-    for (i = 0; i < digits - n.length; i++)
-      zero += '0';
-  }
-  return zero + n;
-}*/
-
-/*function storeView(page) {
+function makeGame() {
   var user = firebase.auth().currentUser;
   var db = firebase.firestore();
+  var gameName = document.getElementById('game_name').value;
 
-  var query = db.collection("view").where("user","==",user.uid).where("page","==",page);
-  query.get()
-    .then(function(querySnapshot) {
-        var flag = true;
-        querySnapshot.forEach(function(doc) {
-            // doc.data() is never undefined for query doc snapshots
-            console.log(doc.id, " => ", doc.data());
-            var ref = db.collection("view").doc(doc.id);
-            ref.update({
-              num : firebase.firestore.FieldValue.increment(1)
-            })
-            .then(function() {
-                console.log("Document successfully updated!");
-            })
-            .catch(function(error) {
-                // The document probably doesn't exist.
-                console.error("Error updating document: ", error);
-            });
-            flag = false;
-        });
-        if(flag){
-          db.collection("view").add({
-            user: user.uid,
-            page: page,
-            num: 1
+  var docRef = db.collection("game").doc(gameName);
+  docRef.get().then(function(doc) {
+      if (doc.exists) {
+          alert("같은 이름의 게임이 이미 존재합니다");
+          console.log("Document data:", doc.data());
+      } 
+      else {
+          alert(userId+" / "+gameName+"추가");
+          db.collection("game").add({
+            uid: userId,
+            company: "A",
+            genre: "B",
+            name: gameName,
+            playtime : "10:00"
           })
           .then(function(docRef) {
+              alert(gameName+" 게임 생성");
               console.log("Document written with ID: ", docRef.id);
+              var node = document.createElement('li');
+              var a = document.createElement('a');
+              a.href = "/game.html?id="+docRef.id;
+              a.appendChild(document.createTextNode(gameName+" (조회수: 0)"));
+              node.appendChild(a);
+              document.querySelector('ul').appendChild(node);  
+
+              var gamePageRef = firebase.database().ref('gamePage/'+docRef.id);
+              gamePageRef.set({
+                  name: gameName,
+                  number: 30, 
+                  view: 0
+              }).then(success => {
+                      console.log('success',success);},
+                  error => {
+                      console.log('error',error);}
+              );
           })
           .catch(function(error) {
               console.error("Error adding document: ", error);
           });
-        }
-    })
-    .catch(function(error) {
-        console.log("Error getting documents: ", error);
-    });
-  alert(page+"클릭");
-}*/
-
-
-function makeGame() {
-  var user = firebase.auth().currentUser;
-  var db = firebase.firestore();
-  var game_name = document.getElementById('game_name').value;
-  db.collection("game").add({
-    uid: user.uid,
-    company: "A",
-    genre: "B",
-    name: game_name,
-    playtime : "10:00"
-  })
-  .then(function(docRef) {
-      alert(game_name+" 게임 생성");
-      console.log("Document written with ID: ", docRef.id);
-      var node = document.createElement('li');
-      var a = document.createElement('a');
-      a.href = "/game.html?id="+docRef.id;
-      a.appendChild(document.createTextNode(game_name+" (조회수: 0)"));
-      node.appendChild(a);
-      document.querySelector('ul').appendChild(node);  
-  })
-  .catch(function(error) {
-      console.error("Error adding document: ", error);
+      }
+  }).catch(function(error) {
+      console.log("Error getting document:", error);
   });
 }
 
