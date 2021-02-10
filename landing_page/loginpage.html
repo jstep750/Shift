@@ -150,10 +150,10 @@
                     " href="make_account.html">회원가입</a>
                 </div>
                 <div style="padding:20px 20px;">
-                    <a class="mt-5" href="find_account.html" style="
+                    <a class="mt-5" style="
                     color: #4E6784;
                     font-size: 15px;
-                    ">회원정보를 잊으셨나요?</a>
+                    " href="find_account_password.html">비밀번호를 잊으셨나요?</a>
                     <a type="button" class="btn btn-block font-weight-bold mt-5" 
                     style="
                     border: 2px solid #17375E;
@@ -250,7 +250,7 @@ firebase.auth().onAuthStateChanged(function(user) {
       docRef.get().then(function(doc) {
         if (doc.exists) {
             console.log("Document data:", doc.data()); 
-            window.location.href = "auth.html";
+            //window.location.href = "auth.html";
         } 
         else {
             db.collection("user").doc(user.uid).set({
