@@ -14,83 +14,102 @@
   <!-- Your custom styles (optional) -->
   <link href="css/style.min.css" rel="stylesheet">
   <link rel="stylesheet" href="app.css">
+  <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
+crossorigin="anonymous"></script>
+
   <style>
        @media (min-width: 1500px) {
   .container {
     max-width: 1440px;
   }
 }
+
+@media all and (min-width: 992px) {
+	.navbar .nav-item .dropdown-menu{ display: none;}
+	.navbar .nav-item:hover .nav-link{ color: #fff;  }
+	.navbar .nav-item:hover .dropdown-menu{ display: block; }
+	.navbar .nav-item .dropdown-menu{ margin-top:0; }
+  
+}
+@media  screen and (min-width: 992px) {
+  .dropdown:hover>.dropdown-menu {
+    display: block;
+    
+  }
+  
+}
   </style>
+  
+    <script>
+  $(document).ready(function() {  
+    function toggleNavbarMethod() {  
+        if ($(window).width() > 768) {  
+            $('.navbar .dropdown').on('mouseover', function(){  
+                $('.dropdown-toggle', this).trigger('click');   
+            }).on('mouseout', function(){  
+                $('.dropdown-toggle', this).trigger('click').blur();  
+            });  
+        }  
+        else {  
+            $('.navbar .dropdown').off('mouseover').off('mouseout');  
+        }  
+    }  
+    toggleNavbarMethod();  
+    $(window).resize(toggleNavbarMethod);  
+}); 
+  
+  </script>
 </head>
 
-<header class="text-center">
-    <img src="img/Group 1.svg" class="mt-4">
-</header>
 
-<body style="background-color: aliceblue;">
+
+<body >
     <!-- Navbar -->
-  <nav class="navbar fixed-top bg-white navbar-expand-lg navbar-light white scrolling-navbar">
-    <div class="container">
-
-      <!-- Brand -->
-      <a class="navbar-brand mr-5" href="#" target="_blank">
-        <img
-        src="img\shift\shift_logo.png"
-        height="30"
-        alt=""
-        loading="lazy"
-        width="50vw"
-      />
-      </a>
-
-      <!-- Collapse -->
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-        aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-
-      <!-- Links -->
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        
-
- <ul class="navbar-nav mr-auto">
-          
-  <li class="nav-item">      
-      <a class="nav-link font-weight-bold" href="https://mdbootstrap.com/docs/jquery/" target="_blank">쉬프트란</a>          
-  </li>
-  <li class="nav-item">
-    <a class="nav-link font-weight-bold " href="https://mdbootstrap.com/docs/jquery/getting-started/download/" target="_blank">옥션</a>
-  </li>
-  
-</ul>
-        
-       
-        
-          <ul class="navbar-nav nav-flex-icons">
-          <li class="nav-item">
-            <a href="loginpage.html" class="nav-link small grey-text" target="_blank">
-              로그인
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="make_account.html" class="nav-link small grey-text" target="_blank">
-              회원가입
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="#" class="nav-link small grey-text" target="_blank">
-              고객센터
-            </a>
-          </li>
+    
+    <nav class="navbar fixed-top bg-white navbar-expand-lg navbar-light white scrolling-navbar">
+      <div class="container">
+        <a class="navbar-brand mr-5" href="#" target="_blank">
+          <img
+          src="img\shift\shift_logo.png"
+          height="30"
+          alt=""
+          loading="lazy"
+          width="50vw"
+        />
+        </a>
+      
+       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main_nav">
+         <span class="navbar-toggler-icon"></span>
+       </button>
+       <div class="collapse navbar-collapse" id="main_nav">
+     
+     <ul class="navbar-nav mr-auto">
+       <li class="nav-item dropdown"> <a class="nav-link font-weight-bold" data-toggle="dropdown" role="button" aria-expanded="false" href="#">쉬프트란</a>
+        <ul class="dropdown-menu shadow" style="border: 0px;">
+          <li><a class="dropdown-item font-weight-bold" style="font-size: 14px; color: #17375E;" href="#"> 서비스 소개</a></li>
+          <li><a class="dropdown-item" style="font-size: 14px;" href="#"> 쉬프트 펀딩이란 </a></li>
+          <div></div>
+        </ul> <!-- 이거 border 왼쪽 오른쪽 중에 뭐가 더 나은지....-->
+       </li>
+       <li class="nav-item dropdown"><a class="nav-link font-weight-bold" data-toggle="dropdown" role="button" aria-expanded="false" href="#"> 옥션 </a>
+        <ul class="dropdown-menu">
+          <li><a class="dropdown-item" href="#"> 진행중 옥션</a></li>
+          <li><a class="dropdown-item" href="#"> 대기중 옥션 </a></li>
+          <div></div>
         </ul>
-        
-        <!-- Right -->
-        
-
+      </li>
+      
+       
+     </ul>
+     <div class="navbar-nav" role="button" style="font-size: small; padding-left: 6px;">
+       <a type="button" class="nav-item nav-link" href="loginpage.html">로그인</a>
+       <a type="button" class="nav-item nav-link" href="make_account.html">회원가입</a>
+       <a type="button" class="nav-item nav-link" href="#">고객센터</a>
+     </div>
+       </div> <!-- navbar-collapse.// -->
       </div>
-
-    </div>
-  </nav>
+      
+     </nav>
   <!-- Navbar -->   
 
   <!--Main layout-->
