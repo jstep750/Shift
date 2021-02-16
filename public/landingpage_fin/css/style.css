@@ -118,7 +118,20 @@ body,
     background-color: #C4C4C4;
     
   }
+  .fill {object-fit: fill;}
+  .contain {object-fit: contain;}
+  .cover {object-fit: cover;}
+  .scale-down {object-fit: scale-down;}
+  .none {object-fit: none;}
   .btn_height{
     max-height: 30px;
   }
-  
+  .lnd_font_size{
+    font-size: 20px;
+  }
+  .text-default_op{
+    color: #333333;
+  }
+  .btn {
+    text-transform: unset !important;
+  }

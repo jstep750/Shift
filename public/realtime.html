@@ -194,7 +194,8 @@ function buyGame() {
                                     price: price.value*1,
                                     number : number.value*1,
                                     text: message };
-                    var addOrder = { remain: gameNum - num,
+                    var addOrder = { user: userId, 
+                                    remain: gameNum - num,
                                     price: price.value*1,
                                     number : number.value*1,
                                     text: message };
@@ -255,7 +256,8 @@ function sellGame() {
                                     price: price.value*1,
                                     number : -number.value*1,
                                     text: message };
-                    var addOrder = { remain: gameNum + num,
+                    var addOrder = { user: userId,
+                                    remain: gameNum + num,
                                     price: price.value*1,
                                     number : -number.value*1,
                                     text: message };
