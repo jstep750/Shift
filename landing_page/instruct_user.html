@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Shift 소개-유저</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
+  <!-- Bootstrap core CSS -->
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+  <!-- Material Design Bootstrap -->
+  <link href="css/mdb.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="css\mdb.min_5.css">
+  <!-- Your custom styles (optional) -->
+  <link href="css/style.css" rel="stylesheet">
+  <link rel="stylesheet" href="app.css">
+  <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
+crossorigin="anonymous"></script>
+
+  <style>
+      @media (min-width: 1501px) {
+  .container {
+    max-width: 1440px;
+  }
+  .third_font{
+    font-size: 24px;
+  }
+  .third_captionfont{
+          font-size: 14px;
+        }
+    .thirdh1_font{
+        font-size: 36px;
+    }
+      }
+  @media (max-width: 1501px) {
+  .third_font{
+    font-size: 16px;
+  }
+  .third_captionfont{
+          font-size: 14px;
+        }
+    .thirdh1_font{
+        font-size: 36px;
+    }
+}
+@media (min-width: 740px){
+  .font-step{
+    font-size: 30px;
+  }
+}
+      @media (max-width: 740px) {
+        html,
+        body,
+        header,
+        .carousel {
+          height: 100vh;
+        }
+        .third_font{
+          font-size: 16px;
+        }
+        .font-step{
+         font-size: 16px;
+        }
+      }
+      @media (max-width: 1000px) {
+        .third_font{
+          font-size: 16px;
+        }
+        .third_captionfont{
+          font-size: 10px;
+        }
+        .thirdh1_font{
+          font-size: 24px;
+        }
+        .thirdh4_font{
+          font-size: 12px;
+        }
+      }
+      @media(max-width: 850px) {
+        
+        body{
+          
+        }
+        .third_captionfont{
+          font-size: 10px;
+        }
+        
+        .carousel {
+          height: 100vh;
+        }
+        .third_font{
+          font-size: 12px;
+        }
+      }
+      @media (min-width: 800px) and (max-width: 850px) {
+        html,
+        body,
+        header,
+        .carousel {
+          height: 100vh;
+        }
+        .third_font{
+          font-size: 16px;
+        }
+        .third_captionfont{
+          font-size: 10px;
+        }
+      }
+      
+    
+      
+
+@media all and (min-width: 992px) {
+	.navbar .nav-item .dropdown-menu{ display: none;}
+	.navbar .nav-item:hover .nav-link{ color: #fff;  }
+	.navbar .nav-item:hover .dropdown-menu{ display: block; }
+	.navbar .nav-item .dropdown-menu{ margin-top:0; }
+  
+}
+@media  screen and (min-width: 992px) {
+  .dropdown:hover>.dropdown-menu {
+    display: block;
+    
+  }
+  
+}
+a.active.nav-link{color: #17375E!important;border-bottom: 1px solid #17375E!important;}
+  </style>
+  
+    <script>
+  $(document).ready(function() {  
+    function toggleNavbarMethod() {  
+        if ($(window).width() > 768) {  
+            $('.navbar .dropdown').on('mouseover', function(){  
+                $('.dropdown-toggle', this).trigger('click');   
+            }).on('mouseout', function(){  
+                $('.dropdown-toggle', this).trigger('click').blur();  
+            });  
+        }  
+        else {  
+            $('.navbar .dropdown').off('mouseover').off('mouseout');  
+        }  
+    }  
+    toggleNavbarMethod();  
+    $(window).resize(toggleNavbarMethod);  
+}); 
+  
+  </script>
+</head>
+
+
+
+<body >
+    <!-- Navbar -->
+    
+    <nav class="navbar fixed-top bg-white navbar-expand-lg navbar-light white scrolling-navbar">
+      <div class="container">
+        <a class="navbar-brand mr-5" href="#" target="_blank">
+          <img
+          src="img\shift\shift_logo.png"
+          height="30"
+          alt=""
+          loading="lazy"
+          width="50vw"
+        />
+        </a>
+      
+       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main_nav">
+         <span class="navbar-toggler-icon"></span>
+       </button>
+       <div class="collapse navbar-collapse" id="main_nav">
+     
+     <ul class="navbar-nav mr-auto">
+       <li class="nav-item dropdown"> <a class="nav-link font-weight-bold" data-toggle="dropdown" role="button" aria-expanded="false" href="#">쉬프트란</a>
+        <ul class="dropdown-menu" style="">
+          <li><a class="dropdown-item" href="#"> 서비스 소개</a></li>
+          <li><a class="dropdown-item" href="#"> 쉬프트 펀딩이란 </a></li>
+          <div></div>
+        </ul> <!-- 이거 border 왼쪽 오른쪽 중에 뭐가 더 나은지....-->
+       </li>
+       <li class="nav-item dropdown"><a class="nav-link font-weight-bold" data-toggle="dropdown" role="button" aria-expanded="false" href="#"> 옥션 </a>
+        <ul class="dropdown-menu">
+          <li><a class="dropdown-item" href="#"> 진행중 옥션</a></li>
+          <li><a class="dropdown-item" href="#"> 대기중 옥션 </a></li>
+          <div></div>
+        </ul>
+      </li>
+      
+       
+     </ul>
+     <div class="navbar-nav" role="button" style="font-size: small; padding-left: 6px;">
+       <a type="button" class="nav-item nav-link" href="loginpage.html">로그인</a>
+       <a type="button" class="nav-item nav-link" href="make_account.html">회원가입</a>
+       <a type="button" class="nav-item nav-link" href="#">고객센터</a>
+     </div>
+       </div> <!-- navbar-collapse.// -->
+      </div>
+      
+     </nav>
+  <!-- Navbar -->   
+
+  <!--Main layout-->
+  <main class="mt-4 pt-4">
+    <div class="container_main" style="position: relative;">
+        <img class="cover" src="img\shift\landingpageuser_header.jpg" width="100%" style="filter: grayscale(50%);
+        min-height: 350px;
+        
+        margin-top: -20%;
+        " alt="">
+        <div class="text-white" style="
+          
+          position: absolute;
+          bottom: 3vw;
+          right: 3.2vw;
+          font-size: 3vh;"><div class="mb-3">게임이 <strong class="font-weight-bold">자산</strong>이 된다<br></div>
+          <h3 style="font-size: 4vh;" class="font-weight-bold">Game becomes an Asset</h3>
+          <h2 style="font-size: 3vh;" class="font-weight-bold">즐기고 내가 번다.</h2>
+        </div>
+      </div>
+      <div style="height:5vh"></div>
+      <div style="height: 10vh;"></div>
+    <div class="container">
+
+      <!--Section: Post-->
+      <section class="mt-0">
+          <!-- Tabs navs -->
+<ul class="nav nav-tabs mb-3" id="ex1" role="tablist" style="border-bottom: 1px solid #B1B1B1;">
+    <li class="nav-item" role="presentation">
+      <a
+        class="nav-link active text-center"
+        id="ex1-tab-1"
+        data-toggle="tab"
+        data-mdb-toggle="tab"
+        href="#ex1-tabs-1"
+        role="tab"
+        aria-controls="ex1-tabs-1"
+        aria-selected="true"
+        style="width: 160px;font-size: 16px; font-weight: 900;"
+        >유저</a
+      >
+    </li>
+    <li class="nav-item" role="presentation">
+      <a
+        class="nav-link text-center"
+        id="ex1-tab-2"
+        data-mdb-toggle="tab"
+        data-toggle="tab"
+        href="#ex1-tabs-2"
+        role="tab"
+        aria-controls="ex1-tabs-2"
+        aria-selected="false"
+        style="width: 160px;font-size: 16px; font-weight: 900;"
+        >게임사</a
+      >
+    </li>
+  </ul>
+  <!-- Tabs navs -->
+  
+  <!-- Tabs content -->
+  <div class="tab-content" id="ex1-content">
+    <div
+      class="tab-pane fade show active"
+      id="ex1-tabs-1"
+      role="tabpanel"
+      aria-labelledby="ex1-tab-1"
+    >
+    <div class="container">
+      <div style="height: 100px;"></div>
+      <div class="row">
+        <div class="col-md-8">
+          <p class="thirdh1_font">데모버전 <span class="font-weight-bold" style="color: #17375E;">플레이</span>하고<br> 
+            좋아하는 게임의 <span class="font-weight-bold" style="color: #17375E;">투자자</span>가 된다.</p>
+          <p>Shift는 <span class="font-weight-bold">인디 게임사를 위한 B2C 투자 사이트</span>입니다.<br>
+             좋아하는 게임에 대한 <span class="font-weight-bold">지원</span>과 <span class="font-weight-bold">수익창출</span>을 동시에 할 수 있습니다.<br>
+              <br></p>
+            <p class="" style="color: #757575;">*옥션을 통한 상승분은 원저작권자에게 전달됩니다.</p>
+            <div class="btn btn-sm btn-rounded text-white" style="background-color: #17375E;font-size: 20px; padding-left: 48px; padding-right: 48px;">사전예약하러가기 ></div>
+    
+        </div>
+        <div class="col-md-4">
+          <img src="img\shift\gamer.png" alt="" style="width: 100%;">
+        </div>
+      </div>
+      <div class="row wow fadeIn mt-5">
+        <div class="container" style="position: relative; ">
+          <div class="row"> 
+           <img class="cover" src="img\shift\natural_gradient_sample.png" alt="" 
+           style="width: 100%; min-height: 400px;filter: opacity(60%) ;">
+           <div class="" style="
+            color: #333333;
+            font-weight: 500;
+            position: absolute;
+            top: 5vw;
+            left: 1vw;
+            padding-top: 20px;
+            padding-left: 20px;
+            font-size: 24px;
+            "><h1 class="thirdh1_font" style="">게이머들이 정해주는</h1><h1 class="font-weight-bold thirdh1_font mb-5" style="">게임의 가치</h1>
+            <p class="third_font" 
+            style="color:#333333;
+           
+             font-weight: 500;">
+              Shift는 자유로운 투자 환경을 투자자들에게 제공합니다.<br>
+              자신이 생각하는 게임의 가치만큼 입찰합니다.<br>
+              <br>
+              게이머가 평가하는 게임의 가치가 높을수록 입찰가격은 높아지고<br>
+              입찰가격이 높아지면 높아질수록 게임사가 받는 투자금도 커집니다.<br>
+              <br>
+              게이머와 함께 투자 문화를 만들어보세요.
+            </p>
+            
+          </div>
+          </div>
+          
+          
+        </div>
+        
+       
+        
+      </div><!--여기까지 게이머들이 정해주는 게임의 가치-->
+      <div class="container mt-5">
+        <h1 class="font-weight-bold">쉬프트 펀딩이란?</h1>
+        <p><br><br>게임을 가진 게임사가 원활한 자금조달을 위해 증권을 발행하면,<br>
+        다수(Crowds)의 투자자가 정해진 투자한도 내에서 투자하고 해당 증권을 받는 투자형태<br>
+        즉, 마이크로 엔젤 투자를 말합니다.</p>
+        <img src="img\shift\Group 414.png" style="width: 100%;" alt="">
+      </div>
+      <div style="height: 100px;"></div>
+      <div class="container mt-5">
+        <h1 class="font-weight-bold text-default_op thirdh1_font" style="">서비스 진행 절차</h1>
+        <h4 class="thirdh4_font" style="color: #999999;">"Shift"는  아래와 같은 절차로 서비스를 진행합니다.</h4>
+
+
+        <div class="container text-default_op" style="border: solid 1px #C4C4C4; padding: 15px; position: relative;">
+          <p  class="mb-5 third_captionfont" style=" color: #999999;">*화살표를 누르시면, 이전 또는 다음 단계의 상세내용을 확인할 수 있습니다.</p>
+          <div id="carouselExampleIndicators"  style=" height: 25vw;max-height: 400px;min-height: 300px;" class="carousel slide" data-bs-ride="carousel" data-mdb-ride="carousel">
+            
+            <div class="carousel-inner third_font" style="margin-left: 3vw; margin-right: 5vw; width: 85%; padding-left: 4vw;">
+              <!--1st step-->
+              <div class="carousel-item active" >
+                <p class="font-step" style=""><strong style="color: #598091; ">1st STEP</strong> 대기중 게임 플레이해보기</p>
+                <div class="grid_op_4 mb-5">          
+                  <div class="st1op"></div>
+                  <div class="st0op"></div>
+                  <div class="st0op"></div>
+                  <div class="st0op"></div>
+                  
+                </div>
+                
+                <p>한 달 이내에 출시될 여러 게임들이 여러분들을 기다리고 있습니다.</p>
+                <p>대기중인 게임들을 플레이해보고 리뷰도 작성해보세요! 다양한 이벤트 쿠폰을 증정합니다.<br></p>
+                <a  class="btn mt-5" href="#" target="_blank"
+                style="border-radius: 10rem;  background-color: #598091; color: white; font-size: 16px;">대기중 옥션 ></a>
+                
+              </div>
+              <!--2nd step-->
+              <div class="carousel-item">
+                <p class="font-step"><strong style="color: #659058;">2nd STEP</strong> 옥션 참여하기</p>
+                <div class="grid_op_4 mb-5">                 
+                  <div class="st1op"></div>
+                  <div class="st2op"></div>
+                  <div class="st0op"></div>
+                  <div class="st0op"></div>
+                  
+                </div>
+                <p>
+                  옥션에 참여하여 다양한 게임들을 구경해보세요. 다양한 게임들의 데모버전을 플레이하고,<br>
+                  투자하고 싶은 게임에 입찰해보세요!
+                </p>
+                <a  class="btn mt-5" href="#" target="_blank"
+                style="border-radius: 10rem;  background-color: #659058; color: white;font-size: 16px;">진행중 옥션 ></a>
+                
+              </div>
+              <!--3rd step-->
+              <div class="carousel-item">
+                <p class="font-step"><strong style="color: #EDCE37;">3rd STEP</strong> 투자하기</p>
+                <div class="grid_op_4 mb-5">                 
+                  <div class="st1op"></div>
+                  <div class="st2op"></div>
+                  <div class="st4op"></div>
+                  <div class="st0op"></div>
+                  
+                </div>
+                <p>옥션에서 놓쳤어도 유저간 거래를 통해 지분을 구매할 수 있습니다.</p>
+                <p>투자하고 싶은 게임을 구매해보세요!</p>
+                
+              </div>
+              <!--4th step-->
+              <div class="carousel-item">               
+                <p class="font-step"><strong style="color: #CD1D27;">4th STEP</strong> 추후 수익실현</p>
+                <div class="grid_op_4 mb-5">                 
+                  <div class="st1op"></div>
+                  <div class="st2op"></div>
+                  <div class="st4op"></div>
+                  <div class="st6op"></div>
+                </div>
+                <p>게임의 수익성에 따라 가지고 있는 지분의 가치가 상승할 수 있습니다!</p>
+                <p>상승 가능성이 있는 게임에 투자해보세요!</p>
+              </div>
+              
+             
+            </div>
+            <a class="carousel-control-prev" style="line-height: 30px;" href="#carouselExampleIndicators" role="button" data-slide="prev">
+              <span class="carousel-control-prev-icon" style="height: 100px; width:100px; font-size:80px;" aria-hidden="true"></span>
+              <span class="sr-only">Previous</span>
+            </a>
+            <a class="carousel-control-next" href="#carouselExampleIndicators" data-slide="next">
+              <span class="carousel-control-next-icon" style="height: 100px; width:100px; font-size:80px;" aria-hidden="true"></span>
+              <span class="sr-only">Next</span>
+            </a>
+          </div>
+          
+         
+        </div>
+        
+      </div><!--여기까지 서비스 진행 절차-->
+      <div class="row wow fadeIn mt-5">
+        <div class="container" style="position: relative; ">
+          <div class="row"> 
+           <img class="cover" src="img\shift\Group 406.png" alt="" 
+           style="width: 100%; min-height: 400px;">
+           <div class="" style="
+            color: #333333;
+            font-weight: 500;
+            position: absolute;
+            top: 3vw;
+            left: 1vw;
+            padding-top: 20px;
+            padding-left: 20px;
+            font-size: 24px;
+            "><h1 class="thirdh1_font" style="">보다 안전하게</h1><h1 class="font-weight-bold thirdh1_font mb-5" style="">진행되는 투자</h1>
+            <p class="third_font" 
+            style="color:#333333;
+           
+             font-weight: 500;">
+              Shift에서는 개발이 약 한달 남은 프로젝트에 한해서만 신청을 받고 있습니다.<br>
+              기한을 어길 경우 위약금이 책정되고 개발에 실패하면 위약금을 투자자분들께 나누어드립니다.<br>
+              또한 개발된 이후 지속적인 공시로 게임이 제대로 운영되고 있는지 정보를 투자자분들과 공유합니다.<br> 
+            </p>
+            
+          </div>
+          </div>
+          
+          
+        </div>
+        
+       
+        
+      </div><!--보다 안전하게 진행되는 투자-->
+      <div class="row wow fadeIn">
+        <div class="container" style="position: relative; ">
+          <div class="row"> 
+           <img class="cover" src="img\shift\Group 398.png" alt="" 
+           style="width: 100%; min-height: 400px;">
+           <div class="" style="
+            color: #333333;
+            font-weight: 500;
+            position: absolute;
+            top: 5vw;
+            left: 1vw;
+            padding-top: 20px;
+            padding-left: 20px;
+            font-size: 24px;
+            "><h1 class="thirdh1_font" style="color: #17375E; font-weight: 900;">더 좋은 게임이 더 많이 만들어지기를 응원합니다.</h1>
+            <div style="height: 50px;"></div>
+            <p class="third_font mt-5" 
+            style="color:#333333;
+           
+             font-weight: 500;">
+              Shift에서는 유저들의 투자, 테스트 진행률 등으로<br>
+              어떤 게임을 유저들이 원하는지 알 수 있습니다.<br>
+              보다 많은 유저가 많이 리뷰하고 투자할수록<br>
+              더 많은 좋은 게임들이 투자 기회를 얻을 수 있습니다.<br>
+              인디게임 생태계에 더 나은 미래를 위해 인디게임의 선순환에 기여해보세요!!
+             
+             
+            </p>
+            
+          </div>
+          </div>
+          
+          
+        </div>
+        
+       
+        
+      </div><!--보다 안전하게 진행되는 투자-->
+      <div class="container" style="background-image: linear-gradient(to right, #17375E, #ffffff);">
+        <div class="row">
+          <div class="col-md-8 text-white" style="padding: 5vw 5vw 5vw;">
+            <p class="third_font">Game becomes an asset</p>
+            <div style="height: 50px;"></div>
+            <p class="thirdh1_font font-weight-bold">
+              쉬프트가 인디게임 프로젝트를<br>
+              유저와 함께<br>
+              새로운 자산으로 성공한 프로젝트로 만듭니다.
+            </p>
+            <a class="btn btn-outline-light third_font font-weight-bold" style="border-radius: 10rem;" href="">지금 시작하기</a>
+            
+          </div>
+          <div class="col-md-4" style="padding-top: 7vw;">
+            <p style="
+            color: #17375E;
+            font-family: LobsterTwo;
+            font-style: normal;
+            font-weight: normal;
+            font-size: 200px;
+            line-height: 250px;">Shift</p>
+          </div>
+        </div>
+      </div>
+      
+  </div>
+    </div>
+    <div class="tab-pane fade" id="ex1-tabs-2" role="tabpanel" aria-labelledby="ex1-tab-2">
+      <div class="container">
+          <div style="height: 100px;"></div>
+          <p class="thirdh1_font">게이머들은 <span class="font-weight-bold" style="color: #17375E;">게임</span>의<br> 
+            <span class="font-weight-bold" style="color: #17375E;">가치</span>를 안다.</p>
+          <p>게이머들에게 게임을 선보이고 투자받아보세요.<br>
+             자유로운 투자 환경이 더 높은 투자 유치를 가능하게<br>
+              해줍니다.<br></p>
+            <p class="" style="color: #757575;">*옥션을 통한 상승분은 원저작권자에게 전달됩니다.</p>
+            <a class="btn btn-sm btn-rounded text-white" style="background-color: #17375E;font-size: 20px; padding-left: 48px; padding-right: 48px;" href="instruct_company.html">자세히 보기 ></a>
+
+      </div>
+      <div style="height: 30vh;"></div>
+    </div>
+   
+  </div>
+  <!-- Tabs content -->
+
+        
+
+       
+    </div>
+  </main>
+  <!--Main layout-->
+
+  <!--Footer-->
+  <footer class="page-footer text-center font-small" style="background-color: white; border-top: 1px solid gray;">
+    <div style="height: 10px;"></div>
+    <p class="mb-3" style="color: #333333;">Copyright © 2021 Shift</p>
+    <p style="color: #333333;">상호: Shift | 대표: 김용운 | 개인정보관리책임자: 미입력 | 전화: 미입력 | 이메일: karlxyz99@korea.ac.kr</p>
+    <div style="height: 3px;"></div>
+  </footer>
+  <!--/.Footer-->
+
+  <!-- SCRIPTS -->
+  <!-- JQuery -->
+  <script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
+  <!-- Bootstrap tooltips -->
+  <script type="text/javascript" src="js/popper.min.js"></script>
+  <!-- Bootstrap core JavaScript -->
+  <script type="text/javascript" src="js/bootstrap.min.js"></script>
+  <!-- MDB core JavaScript -->
+  <script type="text/javascript" src="js/mdb.min.js"></script>
+  <!-- Initializations -->
+  <script type="text/javascript">
+  
+    // Animations initialization
+    new WOW().init();
+
+  </script>
+
+  <!-- The core Firebase JS SDK is always required and must be listed first -->
+<script src="https://www.gstatic.com/firebasejs/8.2.2/firebase-app.js"></script>
+
+<!-- TODO: Add SDKs for Firebase products that you want to use https://firebase.google.com/docs/web/setup#available-libraries -->
+<script src="https://www.gstatic.com/firebasejs/8.2.2/firebase-analytics.js"></script>
+
+<script src="https://www.gstatic.com/firebasejs/8.2.2/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.2.2/firebase-firestore.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.2.2/firebase-database.js"></script>
+
+<script>
+var firebaseConfig = {
+    apiKey: "AIzaSyCXRTprV0yWYk8YrVpopvkFM4Cv_Nmhb2g",
+    authDomain: "shift-f80bc.firebaseapp.com",
+    databaseURL: "https://shift-f80bc-default-rtdb.firebaseio.com",
+    projectId: "shift-f80bc",
+    storageBucket: "shift-f80bc.appspot.com",
+    messagingSenderId: "111516463886",
+    appId: "1:111516463886:web:f7ae7d49add43d4cc0dd5f",
+    measurementId: "G-QXHD4RJNKQ"
+};
+
+// Initialize Firebase
+firebase.initializeApp(firebaseConfig);
+
+</script>
+</body>
+
+</html>

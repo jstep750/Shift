@@ -90,6 +90,13 @@ body,
     gap: 5px;
     grid-template-columns: repeat(6, 1fr); /*fraction의 기준은 그리드의 크기*/
   }
+  .grid_op_4{
+    display: grid;
+    height: 6px;
+    width: 80%;
+    gap: 5px;
+    grid-template-columns: repeat(4, 1fr); /*fraction의 기준은 그리드의 크기*/
+  }
   .st1op {
     background-color:#598091;
     
@@ -135,3 +142,15 @@ body,
   .btn {
     text-transform: unset !important;
   }
+  .carousel-inner>.item {
+    -webkit-transition: 0s !important;
+    -o-transition: 0s !important;
+    transition: 0s !important;
+}
+.bgchart{
+    background-image: url("..\..\img\shift\Group 406.png");
+  }
+ @font-face{
+   font-family: 'LobsterTwo';
+   src: url("../font/Lobstertwo/LobsterTwo-Regular.ttf");
+ }
