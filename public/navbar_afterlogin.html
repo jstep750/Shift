@@ -14,6 +14,9 @@
   <!-- Your custom styles (optional) -->
   <link href="css/style.min.css" rel="stylesheet">
   <link rel="stylesheet" href="app.css">
+  <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
+crossorigin="anonymous"></script>
+
   <style>
        @media (min-width: 1500px) {
   .container {
@@ -22,10 +25,11 @@
 }
 
 @media all and (min-width: 992px) {
-	.navbar .nav-item .dropdown-menu{ display: none; }
+	.navbar .nav-item .dropdown-menu{ display: none;}
 	.navbar .nav-item:hover .nav-link{ color: #fff;  }
 	.navbar .nav-item:hover .dropdown-menu{ display: block; }
 	.navbar .nav-item .dropdown-menu{ margin-top:0; }
+  
 }
 @media  screen and (min-width: 992px) {
   .dropdown:hover>.dropdown-menu {
@@ -62,26 +66,58 @@
 <body >
     <!-- Navbar -->
     
-    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-      <a class="navbar-brand" href="#">Navbar</a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main_nav">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="main_nav">
-    <ul class="navbar-nav">
-      <li class="nav-item active"> <a class="nav-link" href="#">Home </a> </li>
-      <li class="nav-item"><a class="nav-link" href="#"> About </a></li>
-      <li class="nav-item"><a class="nav-link" href="#"> Services </a></li>
-      <li class="nav-item dropdown">
-         <a class="nav-link  dropdown-toggle" href="#" data-toggle="dropdown">  More items  </a>
-          <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="#"> Submenu item 1</a></li>
-            <li><a class="dropdown-item" href="#"> Submenu item 2 </a></li>
-          </ul>
+    <nav class="navbar fixed-top bg-white navbar-expand-lg navbar-light white scrolling-navbar">
+      <div class="container">
+        <a class="navbar-brand mr-5" href="#" target="_blank">
+          <img
+          src="img\shift\shift_logo.png"
+          height="30"
+          alt=""
+          loading="lazy"
+          width="50vw"
+        />
+        </a>
+      
+       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main_nav">
+         <span class="navbar-toggler-icon"></span>
+       </button>
+       <div class="collapse navbar-collapse" id="main_nav">
+     
+     <ul class="navbar-nav mr-auto">
+       <li class="nav-item dropdown"> <a class="nav-link font-weight-bold" data-toggle="dropdown" role="button" aria-expanded="false" href="#">쉬프트란</a>
+        <ul class="dropdown-menu" style="">
+          <li><a class="dropdown-item" style="font-size: 14px;" href="instruct_user.html"> 서비스 소개</a></li>
+          
+        </ul> <!-- 이거 border 왼쪽 오른쪽 중에 뭐가 더 나은지....-->
+       </li>
+       <li class="nav-item dropdown"><a class="nav-link font-weight-bold" data-toggle="dropdown" role="button" aria-expanded="false" href="#">옥션</a>
+        <ul class="dropdown-menu">
+          <li><a class="dropdown-item" href="#"> 진행중 옥션</a></li>
+          <li><a class="dropdown-item" href="#"> 대기중 옥션 </a></li>
+          <div></div>
+        </ul>
       </li>
-    </ul>
-      </div> <!-- navbar-collapse.// -->
-    </nav>
+      
+       
+     </ul>
+     <div class="navbar-nav" role="button" style="font-size: small;">
+        <li class="nav-item dropdown"> <a class="nav-link font-weight-bold" data-toggle="dropdown" role="button" aria-expanded="false" href="#">회원</a>
+            <ul class="dropdown-menu" style="">
+              <li><a class="dropdown-item" style="font-size: 14px;" href="#"> 마이 페이지</a></li>
+              <li><a class="dropdown-item" style="font-size: 14px;" href="#"> 마이 포트폴리오 </a></li>
+              <li><a class="dropdown-item" style="font-size: 14px;" href="#"> 쉬프팅 머니 충전 </a></li>
+              <li><a class="dropdown-item" style="font-size: 14px;" href="#"> 개인정보 관리 </a></li>
+              <li><a class="dropdown-item" style="font-size: 14px;" href="#"> 로그아웃 </a></li>
+              <div></div>
+            </ul> <!-- 이거 border 왼쪽 오른쪽 중에 뭐가 더 나은지....-->
+           </li>
+       <a type="" class="nav-item nav-link mr-1" style="padding-left: 6px;" href="#">고객센터</a>
+       <a class="btn-lg" style="color: #B1B1B1; padding: 2px; padding-left: 6px;" role="button" href="#"><i class="far fa-bell"></i></a>
+     </div>
+       </div> <!-- navbar-collapse.// -->
+      </div>
+      
+     </nav>
   <!-- Navbar -->   
 
   <!--Main layout-->

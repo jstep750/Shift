@@ -58,7 +58,6 @@ db.collection("game").get().then((querySnapshot) => {
             var node = document.createElement('li');
             var a = document.createElement('a');
             a.href = "/game.html?id="+doc.id;
-            
             querySnapshot.forEach(function(doc1) {
                 // doc.data() is never undefined for query doc snapshots
                 console.log(doc1.id, " => ", doc1.data());
@@ -102,7 +101,7 @@ firebase.auth().onAuthStateChanged(function(user) {
   }
   else{
     alert("로그인 페이지로 이동");
-    window.location.href = "login.html";
+    window.location.href = "loginpage.html";
   }
 });
 

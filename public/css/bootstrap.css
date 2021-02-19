@@ -576,6 +576,11 @@ pre code {
     max-width: 1140px;
   }
 }
+@media (min-width: 1500px) {
+  .container {
+    max-width: 1440px;
+  }
+}
 
 .container-fluid {
   width: 100%;
@@ -3684,8 +3689,8 @@ input[type="button"].btn-block {
 }
 
 .custom-checkbox .custom-control-input:indeterminate ~ .custom-control-label::before {
-  border-color: #007bff;
-  background-color: #007bff;
+  border-color: #17375E;
+  background-color: #17375E;
 }
 
 .custom-checkbox .custom-control-input:indeterminate ~ .custom-control-label::after {
@@ -3693,11 +3698,11 @@ input[type="button"].btn-block {
 }
 
 .custom-checkbox .custom-control-input:disabled:checked ~ .custom-control-label::before {
-  background-color: rgba(0, 123, 255, 0.5);
+  background-color: #17375E;
 }
 
 .custom-checkbox .custom-control-input:disabled:indeterminate ~ .custom-control-label::before {
-  background-color: rgba(0, 123, 255, 0.5);
+  background-color: #17375E;
 }
 
 .custom-radio .custom-control-label::before {
@@ -4119,7 +4124,7 @@ input[type="button"].btn-block {
 .nav-pills .nav-link.active,
 .nav-pills .show > .nav-link {
   color: #fff;
-  background-color: #007bff;
+  background-color: #17375E;
 }
 
 .nav-fill .nav-item {

@@ -37,6 +37,25 @@
 }
 
   </style>
+  <script>
+    $(document).ready(function() {  
+      function toggleNavbarMethod() {  
+          if ($(window).width() > 768) {  
+              $('.navbar .dropdown').on('mouseover', function(){  
+                  $('.dropdown-toggle', this).trigger('click');   
+              }).on('mouseout', function(){  
+                  $('.dropdown-toggle', this).trigger('click').blur();  
+              });  
+          }  
+          else {  
+              $('.navbar .dropdown').off('mouseover').off('mouseout');  
+          }  
+      }  
+      toggleNavbarMethod();  
+      $(window).resize(toggleNavbarMethod);  
+  }); 
+    
+    </script>
 </head>
 
 <header class="text-center">
@@ -44,69 +63,52 @@
 </header>
 
 <body">
-    <!-- Navbar -->
-  <nav class="navbar fixed-top bg-white navbar-expand-lg navbar-light white scrolling-navbar">
-    <div class="container">
-
-      <!-- Brand -->
-      <a class="navbar-brand mr-5" href="#" target="_blank">
-        <img
-        src="img\shift\shift_logo.png"
-        height="30"
-        alt=""
-        loading="lazy"
-        width="50vw"
-      />
-      </a>
-
-      <!-- Collapse -->
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-        aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-
-      <!-- Links -->
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        
-
- <ul class="navbar-nav mr-auto">
+     <!-- Navbar -->
+    
+     <nav class="navbar fixed-top bg-white navbar-expand-lg navbar-light white scrolling-navbar">
+      <div class="container">
+        <a class="navbar-brand mr-5" href="#" target="_blank">
+          <img
+          src="img\shift\shift_logo.png"
+          height="30"
+          alt=""
+          loading="lazy"
+          width="50vw"
+        />
+        </a>
+      
+       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main_nav">
+         <span class="navbar-toggler-icon"></span>
+       </button>
+       <div class="collapse navbar-collapse" id="main_nav">
+     
+     <ul class="navbar-nav mr-auto">
+       <li class="nav-item dropdown"> <a class="nav-link font-weight-bold" data-toggle="dropdown" role="button" aria-expanded="false" href="#">쉬프트란</a>
+        <ul class="dropdown-menu" style="">
+          <li><a class="dropdown-item" href="instruct_user.html"> 서비스 소개</a></li>
           
-  <li class="nav-item">      
-      <a class="nav-link font-weight-bold" href="https://mdbootstrap.com/docs/jquery/" target="_blank">쉬프트란</a>          
-  </li>
-  <li class="nav-item">
-    <a class="nav-link font-weight-bold " href="https://mdbootstrap.com/docs/jquery/getting-started/download/" target="_blank">옥션</a>
-  </li>
-  
-</ul>
-        
-       
-        
-          <ul class="navbar-nav nav-flex-icons">
-          <li class="nav-item">
-            <a href="" class="nav-link small grey-text" target="_blank" id="loginNav" onclick="logout();">
-              로그인
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="make_account.html" class="nav-link small grey-text" target="_blank">
-              회원가입
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="#" class="nav-link small grey-text" target="_blank">
-              고객센터
-            </a>
-          </li>
+          <div></div>
+        </ul> <!-- 이거 border 왼쪽 오른쪽 중에 뭐가 더 나은지....-->
+       </li>
+       <li class="nav-item dropdown"><a class="nav-link font-weight-bold" data-toggle="dropdown" role="button" aria-expanded="false" href="#"> 옥션 </a>
+        <ul class="dropdown-menu">
+          <li><a class="dropdown-item" href="#"> 진행중 옥션</a></li>
+          <li><a class="dropdown-item" href="#"> 대기중 옥션 </a></li>
+          <div></div>
         </ul>
-        
-        <!-- Right -->
-        
-
+      </li>
+      
+       
+     </ul>
+     <div class="navbar-nav" role="button" style="font-size: small; padding-left: 6px;">
+       <a type="button" class="nav-item nav-link" href="loginpage.html">로그인</a>
+       <a type="button" class="nav-item nav-link" href="make_account.html">회원가입</a>
+       <a type="button" class="nav-item nav-link" href="#">고객센터</a>
+     </div>
+       </div> <!-- navbar-collapse.// -->
       </div>
-
-    </div>
-  </nav>
+      
+     </nav>
   <!-- Navbar -->   
 
   <!--Main layout-->
@@ -120,9 +122,9 @@
         <div class="row justify-content-center align-middle">
             
           <!--Grid column-->
-          <div class=" col-xl-4 col-lg-6 col-md-10 col-sm-12 col-xs-12 mb-4">
+          <div class=" col-xl-6 col-lg-6 col-md-10 col-sm-12 col-xs-12 mb-4">
               <div  class="text-center" style="border: solid 1px #C4C4C4; color: #333333;">
-                <p class="font-weight-bold mb-5 mt-5 h4" >로그인</p>
+                <p class="font-weight-bold mb-5 mt-5 h4">로그인</p>
                 <div style="padding: 20px 20px;">
                     <div class="form-group text-left font-weight-bold">
                         <label for="usr">이메일</label>
@@ -148,14 +150,13 @@
                     border-radius: 1rem;
                     font-size: 20px;
                     " href="make_account.html">회원가입</a>
-                  <div style="height: 30px;"></div>
-                    <a class="mt-4" href="find_account_password.html" style="
-                    color: #4E6784;
-                    font-size: 15px;
-                    ">회원정보를 잊으셨나요?</a>
                 </div>
                 <div style="padding:20px 20px;">
-                    <a type="button" class="btn btn-block font-weight-bold mt-0" 
+                    <a class="mt-5" style="
+                    color: #4E6784;
+                    font-size: 15px;
+                    " href="find_account_password.html">비밀번호를 잊으셨나요?</a>
+                    <a type="button" class="btn btn-block font-weight-bold mt-5" 
                     style="
                     border: 2px solid #17375E;
                     color: #17375E;
@@ -213,7 +214,7 @@
     // Animations initialization
     new WOW().init();
 
-</script>
+  </script>
 
   <!-- The core Firebase JS SDK is always required and must be listed first -->
 <script src="https://www.gstatic.com/firebasejs/8.2.2/firebase-app.js"></script>
@@ -244,7 +245,6 @@ firebase.auth().onAuthStateChanged(function(user) {
     if (user) {
       // User is signed in.
       alert(user.displayName+"님 로그인");
-      document.getElementById('loginNav').innerText = '로그아웃';
       console.log(user)		// 인증 후 어떤 데이터를 받아오는지 확인해보기 위함.
       var db = firebase.firestore();
       var flag = true;
@@ -252,7 +252,6 @@ firebase.auth().onAuthStateChanged(function(user) {
       docRef.get().then(function(doc) {
         if (doc.exists) {
             console.log("Document data:", doc.data()); 
-            //document.getElementById('loginLink').value = '로그아웃';
             //window.location.href = "auth.html";
         } 
         else {
@@ -313,19 +312,6 @@ function googleLogin(){
     alert("로그인 시작");
     var provider = new firebase.auth.GoogleAuthProvider();
     firebase.auth().signInWithRedirect(provider);
-  }
-}
-
-function logout() {
-  alert(document.getElementById('loginNav').innerText);
-  if(document.getElementById('loginNav').innerText == "로그아웃"){
-      firebase.auth().signOut().then(function() {
-      alert("로그아웃 성공");
-    // Sign-out successful.
-    }).catch(function(error) {
-      alert("에러");
-    // An error happened.
-    });
   }
 }
 
