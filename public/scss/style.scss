@@ -1,15 +1,41 @@
 // Your custom styles
 
-.gradient-custom {
-  background: #3a7bd5;
-  /* fallback for old browsers */
-  background: -webkit-linear-gradient(to right, #3a6073, #3a7bd5);
-  /* Chrome 10-25, Safari 5.1-6 */
-  background: -webkit-gradient(linear, left top, right top, from(#3a6073), to(#3a7bd5));
-  background: -webkit-linear-gradient(left, #3a6073, #3a7bd5);
-  background: -o-linear-gradient(left, #3a6073, #3a7bd5);
-  background: linear-gradient(to right, #3a6073, #3a7bd5);
-  /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */ }
+/* Required height of parents of the Half Page Carousel for proper displaying carousel itself */
+html,
+body,
+.view {
+  height: 100%; }
 
-.card-comments img {
-  width: 4rem; }
+@media (max-width: 740px) {
+  .full-page-intro {
+    height: 1000px; } }
+
+/* Half Page Carousel itself*/
+.carousel {
+  height: 50%; }
+  .carousel .carousel-inner {
+    height: 100%; }
+    .carousel .carousel-inner .carousel-item,
+    .carousel .carousel-inner .active {
+      height: 100%; }
+
+/* Adjustment for mobile devices*/
+@media (max-width: 776px) {
+  .carousel {
+    height: 100%; } }
+
+/* Navbar animation */
+.navbar {
+  background-color: rgba(0, 0, 0, 0.3); }
+
+.top-nav-collapse {
+  background-color: #1C2331; }
+
+/* Adding color to the Navbar on mobile */
+@media only screen and (max-width: 768px) {
+  .navbar {
+    background-color: #1C2331; } }
+
+/* Footer color for sake of consistency with Navbar */
+.page-footer {
+  background-color: #1C2331; }
