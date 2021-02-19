@@ -101,7 +101,7 @@
        
      </ul>
      <div class="navbar-nav" role="button" style="font-size: small; padding-left: 6px;">
-       <a type="button" class="nav-item nav-link" href="loginpage.html">로그인</a>
+       <a type="button" class="nav-item nav-link" id="loginNav" onclick="logout();">로그인</a>
        <a type="button" class="nav-item nav-link" href="make_account.html">회원가입</a>
        <a type="button" class="nav-item nav-link" href="#">고객센터</a>
      </div>
@@ -245,6 +245,7 @@ firebase.auth().onAuthStateChanged(function(user) {
     if (user) {
       // User is signed in.
       alert(user.displayName+"님 로그인");
+      document.getElementById("loginNav").textContent = "로그아웃";
       console.log(user)		// 인증 후 어떤 데이터를 받아오는지 확인해보기 위함.
       var db = firebase.firestore();
       var flag = true;
@@ -280,6 +281,21 @@ firebase.auth().onAuthStateChanged(function(user) {
       console.log(user)		// 인증 후 어떤 데이터를 받아오는지 확인해보기 위함.
     }
 });
+
+
+function logout() {
+  alert(document.getElementById("loginNav").textContent);
+  if(document.getElementById("loginNav").textContent == "로그아웃"){
+    firebase.auth().signOut().then(function() {
+      alert("로그아웃 성공");
+    // Sign-out successful.
+    }).catch(function(error) {
+      alert("에러");
+    // An error happened.
+    });
+  }
+}
+
 
 function pwLogin(){
   var email = document.getElementById('userEmail').value;
