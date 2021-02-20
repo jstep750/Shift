@@ -262,6 +262,7 @@ firebase.auth().onAuthStateChanged(function(user) {
                 photoUrl: user.photoURL,
                 emailVerified: user.emailVerified,
                 account:"",
+                uid: user.uid
             })
             .then(function() {
                 console.log("Document successfully written!");
