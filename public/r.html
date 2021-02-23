@@ -1,0 +1,206 @@
+<script>/*function sellGame() {
+    alert("sell "+gameName.value);
+
+    alert(userId);
+    var messageRef = database.ref('user/'+userId+'/cash');
+    var total1 = 0;
+    messageRef.on('child_added', function(snapshot) {
+        var data = snapshot.val();
+        console.log(data);
+        total1 += data;
+        var updates = {};
+        updates['user/'+userId+'/total_cash'] = total1;
+        firebase.database().ref().update(updates);    
+        document.getElementById('cash').textContent = total1;
+    });
+
+    var messageRef = database.ref('user/'+userId+'/waiting_cash');
+    var total2 = 0;
+    messageRef.on('child_added', function(snapshot) {
+        var data = snapshot.val();
+        console.log(data);
+        total2 += data;
+        var updates = {};
+        updates['user/'+userId+'/total_waiting_cash'] = total2;
+        firebase.database().ref().update(updates);    
+        document.getElementById('waiting_cash').textContent = total2;
+    });
+
+    firebase.database().ref('/game/' + gameName.value).once('value').then((snapshot) => {
+        //var username = (snapshot.val() && snapshot.val().username) || 'Anonymous';
+        //var gameNum = snapshot.val().number;
+        firebase.database().ref('/user/' + userId).once('value').then((snapshot1) => {
+            //var username = (snapshot.val() && snapshot.val().username) || 'Anonymous';
+            
+            var cash = snapshot1.val().total_cash;
+            var waiting_cash = snapshot1.val().total_waiting_cash;
+            alert(cash+'/'+waiting_cash);
+            console.log(cash+'/'+waiting_cash);
+            var gName = gameName.value;
+            var gPrice = price.value*1;
+            var totalpay = gPrice*number.value;
+
+            if(cash == undefined || waiting_cash == undefined){
+                alert("새로고침해 주세요");
+            }
+            else if(cash-totalpay < 0){
+                alert("cash 부족"+cash+"-"+totalpay);
+            }
+            else{
+                var buyRef = database.ref('/game/'+ gName +'/buy/');
+                buyRef.orderByChild("price").equalTo(gPrice).once('value').then((parentSnapshot) => { 
+                var buyNum = 0;
+                var dealNum = 0;
+                var gNum = number.value*1; // 신청 개수
+                var sellNum = gNum;   //미채결개수
+                var updates = {};
+                var message = userName+"님 : 게임 "+gName+"(미체결 "+sellNum+"개) / 가격 "+gPrice+" / 개수 +"+(gNum-sellNum)+" / 캐쉬 "+ (-totalpay)+" / 대기 "+sellNum*gPrice;
+                console.log(message);
+
+                if(parentSnapshot.exists()){    //buy > 0
+
+                    //var updateCash = 0;
+                    var buyer = new Array();
+                    parentSnapshot.forEach(function (snapshot2) {
+                        var uuid = guid(); 
+                        totalpay = gPrice*gNum;
+                        console.log(snapshot2.key);
+                        console.log(snapshot2.val());
+
+                        if(snapshot2.exists() && sellNum > 0){ // buyprice == sellprice (buy O)
+                            buyNum = snapshot2.val().number;
+                            console.log("buyNum:"+buyNum);
+                            console.log("buyer:"+snapshot2.val().user);
+                            //game_sell(add)0, game_deal(add)0, game_buy(update)0
+                            //user_cash(update)0, user_deal(add)0, user_waiting_cash(update), user_waiting_sell(add)0
+                            //buyer_cash(update), buyer_deal(add), buyer_waiting_cash(update), buyer_waiting_buy(update)
+
+                            if(buyNum > gNum){ // buy이 더 많아서 미채결(sell)x (gNum 모두 deal)
+                                sellNum = 0; 
+                                dealNum = gNum;
+                                buyNum = buyNum - gNum;
+                                updates['game/' + gName + '/buy/' + snapshot2.key +'/number'] = buyNum;  //buynum 업데이트
+                            }
+                            else if(buyNum < gNum){ // buy만큼 deal, 나머지 미채결 O (sell)
+                                sellNum = gNum - buyNum;    //미채결 수 = 신청 개수 - 파는 수
+                                dealNum = buyNum;
+                                buyNum = 0;
+
+                                /*var addSell = {  user: userId,          
+                                                price: gPrice,
+                                                number: sellNum };
+
+                                var addUserSell = {  game: gName,
+                                                    price: gPrice,
+                                                    number: sellNum };
+                                updates['game/'+ gName +'/sell/'+ uuid] = addSell; // 미체결 add
+                                updates['user/' + userId + '/waiting_sell/'+ uuid] = addUserSell; // 미체결 add*/
+                                updates['game/' + gName + '/buy/' + snapshot2.key] = null;  //buynum 업데이트
+                            }
+                            else{   //buy만큼 deal, 미채결(sell)x
+                                sellNum = 0;
+                                dealNum = buyNum;
+                                buyNum = 0;
+                                updates['game/' + gName + '/buy/' + snapshot2.key] = null;  //buynum 업데이트
+                            }
+
+                            console.log("buyNum:"+buyNum);
+                            console.log(dealNum +"="+ gNum +"-"+ sellNum);
+                            dealNum = gNum - sellNum;
+
+                            updates['user/' + userId + '/cash/'+ uuid] = -dealNum*gPrice;  //user cash 업데이트
+                            console.log(waiting_cash);
+                            //updates['user/' + userId + '/waiting_cash'] = waiting_cash + sellNum*gPrice;  //user waiting_cash 업데이트
+
+                            message = userName+"님 : 게임 "+gName+"(미체결 "+sellNum+"개) / 가격 "+gPrice+" / 개수 +"+dealNum+" / 캐쉬 "+ (-dealNum*gPrice)+" / 대기 +0";
+                            alert(message);
+                            console.log(message);
+
+                            var addDeal = { user: userId, 
+                                price: gPrice,
+                                number : dealNum,
+                                text: message };
+
+                            var addUserDeal = { game: gName, 
+                                                price: gPrice,
+                                                number : dealNum };
+
+                            updates['game/'+ gName +'/deal/'+ uuid] = addDeal; //deal add
+                            updates['user/'+ userId + '/deal/'+ uuid] = addUserDeal; //deal add(user)
+                            
+                            var addMessage = { 
+                                text: message };
+                            updates['message/' + uuid] = addMessage;
+                            //game_sell(add)0, game_deal(add)0, game_buy(update)0
+                            //user_cash(update)0, user_deal(add)0, user_waiting_cash(update)0, user_waiting_sell(add)0
+                            //buyer_cash(update)0, buyer_deal(add)0, buyer_waiting_cash(update)0, buyer_waiting_buy(update)0
+
+                            buyer.push({uid: uuid, buyer: snapshot2.val().user, key: snapshot2.key, number: dealNum, price: gPrice, deal: addUserDeal});
+                            for(i in buyer){
+                                var s2 = buyer[i];
+                                console.log(s2);
+                                database.ref('user/'+ s2.buyer +'/').once('value').then((snapshot3) => { // buyer
+                                    updates['user/' + s2.buyer + '/waiting_cash/'+s2.uid] = - s2.number*s2.price; // waiting_cash 업데이트 (-)
+                                    updates['user/' + s2.buyer + '/cash/'+s2.uid] = + s2.number*s2.price; // cash 업데이트(+)
+                                    
+                                    updates['user/' + s2.buyer + '/deal/'+s2.uid] = s2.deal; // deal add(buyer)
+
+                                    database.ref('user/'+ s2.buyer +'/waiting_buy/'+ s2.key).once('value').then((snapshot4) => {
+                                        if(snapshot4.val().number - s2.number > 0){
+                                            updates['user/'+ s2.buyer +'/waiting_buy/'+ s2.key+'/number'] = snapshot4.val().number - s2.number; 
+                                        }
+                                        else{
+                                            updates['user/'+ s2.buyer +'/waiting_buy/'+ s2.key] = null; 
+                                        }
+                                        // waiting_buy 업데이트 (- 체결수) 
+
+                                        firebase.database().ref().update(updates);
+                                        number.value = gNum;
+                                        //alert("update 완료!");
+                                    });
+                                });
+                            }
+                            //firebase.database().ref().update(updates);
+                            //number.value = gNum;
+                            //alert("update 완료!");
+                            gNum = sellNum;  //신청수 <= 미채결수
+                        }
+                    });
+                }
+                if(gNum > 0){ //미체결(buyx->dealx / sell만)
+                    var uuid = guid();
+                    sellNum = gNum;    //미채결 수 = 신청 개수 - 파는 수
+                    dealNum = 0;
+                    buyNum = 0;
+                    message = userName+"님 : 게임 "+gName+"(미체결 "+sellNum+"개) / 가격 "+gPrice+" / 개수 +0 / 캐쉬 "+ (-sellNum*gPrice)+" / 대기 +"+sellNum;
+                    alert(message);
+
+                    var addSell = {  user: userId,
+                                    price: gPrice,
+                                    number: sellNum };
+
+                    var addUserSell = {  game: gName,
+                                        price: gPrice,
+                                        number: sellNum };
+
+                    updates['user/' + userId + '/cash/'+ uuid] = - sellNum*gPrice;  //user cash 업데이트
+                    updates['user/' + userId + '/waiting_cash/'+ uuid] = + sellNum*gPrice;  //user waiting_cash 업데이트
+                    
+                    updates['game/'+ gName +'/sell/'+ uuid] = addSell; // 미체결 add
+                    updates['user/' + userId + '/waiting_sell/'+ uuid] = addUserSell; // 미체결 add
+
+                    var addMessage = {
+                                text: message };
+                    updates['message/' + uuid] = addMessage;
+
+                    firebase.database().ref().update(updates);
+                    alert("update 완료");
+                    gameName.value = "";
+                    price.value = "";
+                    number.value = "";
+                }
+                });   
+            }
+        }); 
+    });
+}*.</script>

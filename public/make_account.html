@@ -145,7 +145,7 @@
                     border-radius: 1rem;
                     font-size: 20px;
                     text-transform: capitalize;
-                    " href="">google 계정으로 회원가입</a>
+                    " onclick="googleLogin();">google 계정으로 회원가입</a>
                 </div>
                 <div style="padding:20px 20px;">
                     <p>
@@ -224,7 +224,40 @@ var firebaseConfig = {
 
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
-
+function googleLogin(){
+  var user = firebase.auth().currentUser;
+  if (user) {
+    // User is signed in.
+    alert("로그인 완료");
+    console.log(user)		// 인증 후 어떤 데이터를 받아오는지 확인해보기 위함.  
+    window.location.href = "auth.html";
+  } 
+  else {
+    // No user is signed in.
+    alert("로그인 시작");
+    var provider = new firebase.auth.GoogleAuthProvider();
+    firebase.auth().signInWithRedirect(provider);
+    /*firebase.auth().getRedirectResult().then(function(result) {
+      if (result.credential) {
+        // This gives you a Google Access Token. You can use it to access the Google API.
+        var token = result.credential.accessToken;
+      }
+      // The signed-in user info.
+      var user = result.user;
+      console.log(user)
+      alert("로그인 성공");
+    }).catch(function(error) {
+      // Handle Errors here.
+      var errorCode = error.code;
+      var errorMessage = error.message;
+      // The email of the user's account used.
+      var email = error.email;
+      // The firebase.auth.AuthCredential type that was used.
+      var credential = error.credential;
+      alert("에러");
+    });*/
+  }
+}
 </script>
 </body>
 
