@@ -28,7 +28,7 @@
     <input type="text" id="addGame" />
     <input type="button" id="button3" onclick="writeGameData();" value="게임 데이터 저장" />
 
-    <h4>Game:<span id="gameName"></span> <span id="gameNum"></span></h4>
+    <h4>Game:<span id="user_gameName"></span> <span id="gameNum">0</span></h4>
     <h4>Cash:<span id="cash"></span></h4>
     <h4>Waiting cash:<span id="waiting_cash"></span></h4>
 
@@ -524,7 +524,7 @@ function sellGame() {
         var data = snapshot.val();
         console.log(data);
         total3 += data;
-        document.getElementById('gameName').textContent = gameName.value+" ";
+        document.getElementById('user_gameName').textContent = gameName.value+" ";
         document.getElementById('gameNum').textContent = total3;
     });
 
@@ -536,7 +536,7 @@ function sellGame() {
             
             var cash = snapshot1.val().total_cash;
             var waiting_cash = snapshot1.val().total_waiting_cash;
-            var user_gameNum = getElementById('gameNum').textContent;
+            var user_gameNum = document.getElementById('gameNum').textContent;
             alert(cash+'/'+waiting_cash);
             console.log(cash+'/'+waiting_cash);
             var gName = gameName.value;
@@ -547,7 +547,7 @@ function sellGame() {
                 alert("새로고침해 주세요");
             }
             else if(user_gameNum < number.value){
-                alert("게임이 부족합니다 "+user_gameNum+" < "+number);
+                alert("게임이 부족합니다 "+user_gameNum+" < "+number.value);
             }
             /*else if(cash-totalpay < 0){
                 alert("cash 부족"+cash+"-"+totalpay);
