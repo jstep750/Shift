@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>고객센터-Shift</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
+  <!-- Bootstrap core CSS -->
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+  <!-- Material Design Bootstrap -->
+  <link href="css/mdb.min.css" rel="stylesheet">
+  <!-- Your custom styles (optional) -->
+  <link href="css/style.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="app.css">
+  <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
+crossorigin="anonymous"></script>
+
+  <style>
+       @media (min-width: 1501px) {
+  .container {
+    max-width: 1440px;
+  }
+  .third_font{
+    font-size: 24px;
+  }
+  .third_captionfont{
+          font-size: 14px;
+        }
+    .thirdh1_font{
+        font-size: 36px;
+    }
+    .thirdh2_font{
+        font-size: 30px;
+    }
+      }
+    .thirdh3_font{
+      font-size: 20px;
+    }
+  @media (max-width: 1501px) {
+  .third_font{
+    font-size: 16px;
+  }
+  .third_captionfont{
+          font-size: 14px;
+        }
+    .thirdh1_font{
+        font-size: 36px;
+    }
+    .thirdh2_font{
+        font-size: 30px;
+    }
+    .thirdh3_font{
+      font-size: 20px;
+    }
+}
+@media (min-width: 740px){
+  .font-step{
+    font-size: 30px;
+  }
+}
+      @media (max-width: 740px) {
+        html,
+        body,
+        header,
+        .carousel {
+          height: 100vh;
+        }
+        .third_font{
+          font-size: 16px;
+        }
+        .font-step{
+         font-size: 16px;
+        }
+      }
+      @media (max-width: 1000px) {
+        .third_font{
+          font-size: 16px;
+        }
+        .third_captionfont{
+          font-size: 10px;
+        }
+        .thirdh1_font{
+          font-size: 24px;
+        }
+        .thirdh2_font{
+        font-size: 20px;
+        }
+        .thirdh3_font{
+        font-size: 16px;
+        }
+        .thirdh4_font{
+          font-size: 12px;
+        }
+      }
+      @media(max-width: 850px) {
+        
+        body{
+          
+        }
+        .third_captionfont{
+          font-size: 10px;
+        }
+        
+        .carousel {
+          height: 100vh;
+        }
+        .third_font{
+          font-size: 12px;
+        }
+      }
+      @media (min-width: 800px) and (max-width: 850px) {
+        html,
+        body,
+        header,
+        .carousel {
+          height: 100vh;
+        }
+        .third_font{
+          font-size: 16px;
+        }
+        .third_captionfont{
+          font-size: 10px;
+        }
+      }
+      
+
+@media all and (min-width: 992px) {
+	.navbar .nav-item .dropdown-menu{ display: none;}
+	.navbar .nav-item:hover .nav-link{ color: #fff;  }
+	.navbar .nav-item:hover .dropdown-menu{ display: block; }
+	.navbar .nav-item .dropdown-menu{ margin-top:0; }
+  
+}
+@media  screen and (min-width: 992px) {
+  .dropdown:hover>.dropdown-menu {
+    display: block;
+    
+  }
+  
+}
+  </style>
+  
+    <script>
+  $(document).ready(function() {  
+    function toggleNavbarMethod() {  
+        if ($(window).width() > 768) {  
+            $('.navbar .dropdown').on('mouseover', function(){  
+                $('.dropdown-toggle', this).trigger('click');   
+            }).on('mouseout', function(){  
+                $('.dropdown-toggle', this).trigger('click').blur();  
+            });  
+        }  
+        else {  
+            $('.navbar .dropdown').off('mouseover').off('mouseout');  
+        }  
+    }  
+    toggleNavbarMethod();  
+    $(window).resize(toggleNavbarMethod);  
+}); 
+  
+  </script>
+</head>
+
+
+
+<body style="background-color: #F5F9FF;">
+    <!-- Navbar -->
+    
+    <nav class="navbar fixed-top bg-white navbar-expand-lg navbar-light white scrolling-navbar">
+      <div class="container">
+        <a class="navbar-brand mr-5" href="#" target="_blank">
+          <img
+          src="img\shift\shift_logo.png"
+          height="30"
+          alt=""
+          loading="lazy"
+          width="50vw"
+        />
+        </a>
+      
+       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main_nav">
+         <span class="navbar-toggler-icon"></span>
+       </button>
+       <div class="collapse navbar-collapse" id="main_nav">
+     
+     <ul class="navbar-nav mr-auto">
+       <li class="nav-item dropdown"> <a class="nav-link font-weight-bold" data-toggle="dropdown" role="button" aria-expanded="false" href="#">쉬프트란</a>
+        <ul class="dropdown-menu" style="">
+          <li><a class="dropdown-item" style="font-size: 14px;" href="instruct_user.html"> 서비스 소개</a></li>
+          
+          <div></div>
+        </ul> <!-- 이거 border 왼쪽 오른쪽 중에 뭐가 더 나은지....-->
+       </li>
+       <li class="nav-item dropdown"><a class="nav-link font-weight-bold" data-toggle="dropdown" role="button" aria-expanded="false" href="#"> 옥션 </a>
+        <ul class="dropdown-menu">
+          <li><a class="dropdown-item" href="#"> 진행중 옥션</a></li>
+          <li><a class="dropdown-item" href="#"> 대기중 옥션 </a></li>
+          <div></div>
+        </ul>
+      </li>
+      
+       
+     </ul>
+     <div class="navbar-nav" role="button" style="font-size: small; padding-left: 6px;">
+       <a type="button" class="nav-item nav-link" href="loginpage.html">로그인</a>
+       <a type="button" class="nav-item nav-link" href="make_account.html">회원가입</a>
+       <a type="button" class="nav-item nav-link" href="#">고객센터</a>
+     </div>
+       </div> <!-- navbar-collapse.// -->
+      </div>
+      
+     </nav>
+  <!-- Navbar -->   
+
+  <!--Main layout-->
+  <main style="padding-bottom: 90px;min-height: 100%;">
+      <div style="height: 200px;"></div>
+    <div class="container mt-5 pt-5" style="padding: 80px; background-color: #FFFFFF;">
+        <div class="thirdh2_font font-weight-bold mb-5" style="color: #17375E;">문의하기</div>
+            <div class="form-check-inline">
+            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+            <label class="form-check-label" for="flexRadioDefault1">
+              사업문의
+            </label>
+          </div>
+            <div class="form-check-inline">
+            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>
+            <label class="form-check-label" for="flexRadioDefault2">
+              제휴문의
+            </label>
+          </div>
+          <div class="form-check-inline">
+            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+            <label class="form-check-label" for="flexRadioDefault1">
+              광고문의
+            </label>
+          </div>
+          <div class="form-check-inline">
+            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>
+            <label class="form-check-label" for="flexRadioDefault2">
+              기타
+            </label>
+          </div>
+          <div class="mb-3 mt-3">    
+            <input type="name" class="form-control" id="exampleFormControlInput1" placeholder="이름">
+          </div>
+          <div class="mb-3">
+            <input type="contact" class="form-control" id="exampleFormControlInput1" placeholder="연락처">
+          </div>
+          <div class="mb-3">
+            <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="이메일">
+          </div>
+          <div class="mb-3">
+            <textarea class="form-control" id="exampleFormControlTextarea1" rows="5" placeholder="문의하실 내용을 남겨주세요"></textarea>
+          </div>
+         
+                <div class="form-group ml-4 mb-0 text-left">
+                    <input type="checkbox" class="form-check-input" id="">
+                    <label for="개인정보처리방침동의" style="font-weight: 700; font-size: 18px;">개인정보처리방침 동의</label>
+                <div class="row">
+                    <div class="col-md-7">
+                    
+                    <p class="mt-2" style="font-size: 14px;">Shift는 문의자 파악만을 목적으로 개인정보 수집 및 이용하며,<br>
+                    회원의 개인정보를 안전하게 취급하는데 최선을 다합니다.</p>
+                </div>
+                <div class="col-md-5 text-right">
+                    <a href="#" class="btn font-weight-bold" style="background-color: #17375E; color: #FFFFFF; font-size: 15px; padding: 5px 40px 5px 40px; border-radius: 0.5rem;">제출하기</a></div>
+                </div>
+            
+        </div>
+    </div>
+    </main>
+  
+  <!--Main layout-->
+
+  <!--Footer-->
+  <footer class="page-footer text-center font-small" style="background-color: white; border-top: 1px solid gray;">
+    <div style="height: 10px;"></div>
+    <p class="mb-3" style="color: #333333;">Copyright © 2021 Shift</p>
+    <p style="color: #333333;">상호: Shift | 대표: 김용운 | 개인정보관리책임자: 미입력 | 전화: 미입력 | 이메일: karlxyz99@korea.ac.kr</p>
+    <div style="height: 3px;"></div>
+  </footer>
+  <!--/.Footer-->
+
+  <!-- SCRIPTS -->
+  <!-- JQuery -->
+  <script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
+  <!-- Bootstrap tooltips -->
+  <script type="text/javascript" src="js/popper.min.js"></script>
+  <!-- Bootstrap core JavaScript -->
+  <script type="text/javascript" src="js/bootstrap.min.js"></script>
+  <!-- MDB core JavaScript -->
+  <script type="text/javascript" src="js/mdb.min.js"></script>
+  <!-- Initializations -->
+  <script type="text/javascript">
+  
+    // Animations initialization
+    new WOW().init();
+
+  </script>
+
+  <!-- The core Firebase JS SDK is always required and must be listed first -->
+<script src="https://www.gstatic.com/firebasejs/8.2.2/firebase-app.js"></script>
+
+<!-- TODO: Add SDKs for Firebase products that you want to use https://firebase.google.com/docs/web/setup#available-libraries -->
+<script src="https://www.gstatic.com/firebasejs/8.2.2/firebase-analytics.js"></script>
+
+<script src="https://www.gstatic.com/firebasejs/8.2.2/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.2.2/firebase-firestore.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.2.2/firebase-database.js"></script>
+
+<script>
+var firebaseConfig = {
+    apiKey: "AIzaSyCXRTprV0yWYk8YrVpopvkFM4Cv_Nmhb2g",
+    authDomain: "shift-f80bc.firebaseapp.com",
+    databaseURL: "https://shift-f80bc-default-rtdb.firebaseio.com",
+    projectId: "shift-f80bc",
+    storageBucket: "shift-f80bc.appspot.com",
+    messagingSenderId: "111516463886",
+    appId: "1:111516463886:web:f7ae7d49add43d4cc0dd5f",
+    measurementId: "G-QXHD4RJNKQ"
+};
+
+// Initialize Firebase
+firebase.initializeApp(firebaseConfig);
+
+</script>
+</body>
+
+</html>
