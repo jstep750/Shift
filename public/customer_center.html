@@ -205,7 +205,7 @@ crossorigin="anonymous"></script>
        
      </ul>
      <div class="navbar-nav" role="button" style="font-size: small; padding-left: 6px;">
-       <a type="button" class="nav-item nav-link" href="loginpage.html">로그인</a>
+       <a type="button" class="nav-item nav-link" id="loginNav" onclick="logout();">로그인</a>
        <a type="button" class="nav-item nav-link" href="make_account.html">회원가입</a>
        <a type="button" class="nav-item nav-link" href="#">고객센터</a>
      </div>
@@ -221,44 +221,41 @@ crossorigin="anonymous"></script>
     <div class="container mt-5 pt-5" style="padding: 80px; background-color: #FFFFFF;">
         <div class="thirdh2_font font-weight-bold mb-5" style="color: #17375E;">문의하기</div>
             <div class="form-check-inline">
-            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+            <input class="form-check-input" type="radio" name="flexRadioDefault" id="check1">
             <label class="form-check-label" for="flexRadioDefault1">
               사업문의
             </label>
           </div>
             <div class="form-check-inline">
-            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>
+            <input class="form-check-input" type="radio" name="flexRadioDefault" id="check2">
             <label class="form-check-label" for="flexRadioDefault2">
               제휴문의
             </label>
           </div>
           <div class="form-check-inline">
-            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+            <input class="form-check-input" type="radio" name="flexRadioDefault" id="check3">
             <label class="form-check-label" for="flexRadioDefault1">
               광고문의
             </label>
           </div>
           <div class="form-check-inline">
-            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>
+            <input class="form-check-input" type="radio" name="flexRadioDefault" id="check4" checked>
             <label class="form-check-label" for="flexRadioDefault2">
               기타
             </label>
           </div>
           <div class="mb-3 mt-3">    
-            <input type="name" class="form-control" id="exampleFormControlInput1" placeholder="이름">
+            <input type="name" class="form-control" id="name" placeholder="이름">
           </div>
           <div class="mb-3">
-            <input type="contact" class="form-control" id="exampleFormControlInput1" placeholder="연락처">
+            <input type="email" class="form-control" id="email" placeholder="이메일">
           </div>
           <div class="mb-3">
-            <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="이메일">
-          </div>
-          <div class="mb-3">
-            <textarea class="form-control" id="exampleFormControlTextarea1" rows="5" placeholder="문의하실 내용을 남겨주세요"></textarea>
+            <textarea class="form-control" id="inquiry" rows="5" placeholder="문의하실 내용을 남겨주세요"></textarea>
           </div>
          
                 <div class="form-group ml-4 mb-0 text-left">
-                    <input type="checkbox" class="form-check-input" id="">
+                    <input type="checkbox" class="form-check-input" id="privacyCheckBox">
                     <label for="개인정보처리방침동의" style="font-weight: 700; font-size: 18px;">개인정보처리방침 동의</label>
                 <div class="row">
                     <div class="col-md-7">
@@ -267,7 +264,7 @@ crossorigin="anonymous"></script>
                     회원의 개인정보를 안전하게 취급하는데 최선을 다합니다.</p>
                 </div>
                 <div class="col-md-5 text-right">
-                    <a href="#" class="btn font-weight-bold" style="background-color: #17375E; color: #FFFFFF; font-size: 15px; padding: 5px 40px 5px 40px; border-radius: 0.5rem;">제출하기</a></div>
+                    <a onclick="submit();" class="btn font-weight-bold" style="background-color: #17375E; color: #FFFFFF; font-size: 15px; padding: 5px 40px 5px 40px; border-radius: 0.5rem;">제출하기</a></div>
                 </div>
             
         </div>
@@ -327,6 +324,119 @@ var firebaseConfig = {
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
 
+firebase.auth().onAuthStateChanged(function(user) {
+    if (user) {
+      // User is signed in.
+      //alert(user.displayName+"님 로그인");
+      document.getElementById("loginNav").textContent = "로그아웃";
+      document.getElementById('name').value = user.displayName;
+      document.getElementById('email').value = user.email;
+      //console.log(user)		// 인증 후 어떤 데이터를 받아오는지 확인해보기 위함.
+      var db = firebase.firestore();
+      var flag = true;
+      var docRef = db.collection("user").doc(user.uid);
+      docRef.get().then(function(doc) {
+        if (doc.exists) {
+            console.log("Document data:", doc.data()); 
+            //window.location.href = "register_complete.html";
+        } 
+        else {
+            db.collection("user").doc(user.uid).set({
+                name: user.displayName,
+                email: user.email,
+                photoUrl: user.photoURL,
+                emailVerified: user.emailVerified,
+                account:"",
+                uid: user.uid
+            })
+            .then(function() {
+                console.log("Document successfully written!");
+                alert(user.displayName+"님 회원가입 완료");
+            })
+            .catch(function(error) {
+                console.error("Error writing document: ", error);
+            });
+        }
+      }).catch(function(error) {
+          console.log("Error getting document:", error);
+      });
+    } else {
+      // No user is signed in.
+      //alert("로그인 X");
+      //console.log(user)		// 인증 후 어떤 데이터를 받아오는지 확인해보기 위함.
+    }
+});
+
+function logout() {
+  alert(document.getElementById("loginNav").textContent);
+  if(document.getElementById("loginNav").textContent == "로그아웃"){
+    firebase.auth().signOut().then(function() {
+      alert("로그아웃 성공");
+      window.location.href = "loginpage.html";
+    // Sign-out successful.
+    }).catch(function(error) {
+      alert("에러");
+    // An error happened.
+    });
+  }
+  else{
+    window.location.href = "loginpage.html";
+  }
+}
+
+function submit(){
+  var db = firebase.firestore();
+  var type = "";
+  var checked = 0;
+  if(document.getElementById('check4').checked){
+    checked = 4;
+    type = "기타";
+  }
+  else if(document.getElementById('check3').checked){
+    checked = 3;
+    type = "광고문의";
+  }
+  else if(document.getElementById('check2').checked){
+    checked = 2;
+    type = "제휴문의";
+  }
+  else if(document.getElementById('check1').checked){
+    checked = 1;
+    type = "사업문의";
+  }
+  //alert("button click "+checked);
+
+  var name = document.getElementById('name').value;
+  var email = document.getElementById('email').value;
+  var inquiry = document.getElementById('inquiry').value;
+  var privacyChecked = document.getElementById('privacyCheckBox').checked;
+
+  if(inquiry=="" || inquiry==null){
+    alert("문의사항을 입력해주세요");
+  }
+  else if(privacyChecked == false){
+    alert("개인정보처리방침에 동의해주세요");
+  }
+  else{
+    db.collection("inquiry").add({
+      type : type,
+      name : name,
+      email : email,
+      inquiry : inquiry,
+      privacyChecked : privacyChecked
+    })
+    .then(function(docRef) {
+        alert("제출이 완료되었습니다");
+        document.getElementById('name').value = "";
+        document.getElementById('email').value = "";
+        document.getElementById('inquiry').value = "";
+        document.getElementById('privacyCheckBox').checked = false;
+    })
+    .catch(function(error) {
+        console.error("Error adding document: ", error);
+    }); 
+  }
+}
 </script>
 </body>
 
