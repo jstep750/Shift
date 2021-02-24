@@ -205,7 +205,7 @@ crossorigin="anonymous"></script>
        
      </ul>
      <div class="navbar-nav" role="button" style="font-size: small; padding-left: 6px;">
-       <a type="button" class="nav-item nav-link" href="loginpage.html">로그인</a>
+       <a type="button" class="nav-item nav-link" id="loginNav" onclick="logout();">로그인</a>
        <a type="button" class="nav-item nav-link" href="make_account.html">회원가입</a>
        <a type="button" class="nav-item nav-link" href="#">고객센터</a>
      </div>
@@ -387,6 +387,63 @@ var firebaseConfig = {
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
 
+firebase.auth().onAuthStateChanged(function(user) {
+    if (user) {
+      // User is signed in.
+      //alert(user.displayName+"님 로그인");
+      document.getElementById("loginNav").textContent = "로그아웃";
+      //console.log(user)		// 인증 후 어떤 데이터를 받아오는지 확인해보기 위함.
+      var db = firebase.firestore();
+      var flag = true;
+      var docRef = db.collection("user").doc(user.uid);
+      docRef.get().then(function(doc) {
+        if (doc.exists) {
+            console.log("Document data:", doc.data()); 
+            //window.location.href = "register_complete.html";
+        } 
+        else {
+            db.collection("user").doc(user.uid).set({
+                name: user.displayName,
+                email: user.email,
+                photoUrl: user.photoURL,
+                emailVerified: user.emailVerified,
+                account:"",
+                uid: user.uid
+            })
+            .then(function() {
+                console.log("Document successfully written!");
+                alert(user.displayName+"님 회원가입 완료");
+            })
+            .catch(function(error) {
+                console.error("Error writing document: ", error);
+            });
+        }
+      }).catch(function(error) {
+          console.log("Error getting document:", error);
+      });
+    } else {
+      // No user is signed in.
+      //alert("로그인 X");
+      //console.log(user)		// 인증 후 어떤 데이터를 받아오는지 확인해보기 위함.
+    }
+});
+
+function logout() {
+  alert(document.getElementById("loginNav").textContent);
+  if(document.getElementById("loginNav").textContent == "로그아웃"){
+    firebase.auth().signOut().then(function() {
+      alert("로그아웃 성공");
+      window.location.href = "loginpage.html";
+    // Sign-out successful.
+    }).catch(function(error) {
+      alert("에러");
+    // An error happened.
+    });
+  }
+  else{
+    window.location.href = "loginpage.html";
+  }
+}
 </script>
 </body>
 

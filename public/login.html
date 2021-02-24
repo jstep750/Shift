@@ -186,6 +186,7 @@ function changePassword(){
 function logout() {
   firebase.auth().signOut().then(function() {
     alert("로그아웃 성공");
+    window.location.href="loginpage.html";
   // Sign-out successful.
   }).catch(function(error) {
     alert("에러");
@@ -230,7 +231,7 @@ function signUp(){
               console.log(errorMessage);
             });
             alert("회원가입 완료");
-            window.location.href = auth.html;
+            window.location.href = register_complete.html;
         })
         .catch(function(error) {
             console.error("Error writing document: ", error);
