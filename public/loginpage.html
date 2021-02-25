@@ -103,7 +103,7 @@
      <div class="navbar-nav" role="button" style="font-size: small; padding-left: 6px;">
        <a type="button" class="nav-item nav-link" id="loginNav" onclick="logout();">로그인</a>
        <a type="button" class="nav-item nav-link" href="make_account.html">회원가입</a>
-       <a type="button" class="nav-item nav-link" href="#">고객센터</a>
+       <a type="button" class="nav-item nav-link" href="customer_center.html">고객센터</a>
      </div>
        </div> <!-- navbar-collapse.// -->
       </div>
@@ -331,7 +331,6 @@ function googleLogin(){
     alert("로그인 시작");
     var provider = new firebase.auth.GoogleAuthProvider();
     firebase.auth().signInWithRedirect(provider);
-    window.location.href = "loginpage.html";
   }
 }
 
