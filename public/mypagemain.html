@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>마이페이지-Shift</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
+  <!-- Bootstrap core CSS -->
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+  <!-- Material Design Bootstrap -->
+  <link href="css/mdb.min.css" rel="stylesheet">
+  <!-- Your custom styles (optional) -->
+  <link href="css/style.min.css" rel="stylesheet">
+  <link href="css/style.css" rel="stylesheet">
+  <link rel="stylesheet" href="app.css">
+  <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
+crossorigin="anonymous"></script>
+
+  <style>
+ 
+         @media (min-width: 1501px) {
+  .container {
+    max-width: 1440px;
+  }
+  .third_font{
+    font-size: 24px;
+  }
+  .third_captionfont{
+          font-size: 14px;
+        }
+    .thirdh1_font{
+        font-size: 36px;
+    }
+    .thirdh2_font{
+        font-size: 30px;
+    }
+      
+    .thirdh3_font{
+      font-size: 20px;
+    }
+    .thirdh4_font{
+      font-size: 16px;
+    }
+         }
+  @media (max-width: 1501px) {
+  .third_font{
+    font-size: 24px;
+  }
+  
+  .third_captionfont{
+          font-size: 14px;
+        }
+    .thirdh1_font{
+        font-size: 36px;
+    }
+    .thirdh2_font{
+        font-size: 30px;
+    }
+    .thirdh3_font{
+      font-size: 20px;
+    }
+    .thirdh4_font{
+      font-size: 16px;
+    }
+}
+@media (min-width: 740px){
+  .font-step{
+    font-size: 30px;
+  }
+}
+      @media (max-width: 740px) {
+        html,
+        body,
+        header,
+        .carousel {
+          height: 100vh;
+        }
+        .third_font{
+          font-size: 16px;
+        }
+        .font-step{
+         font-size: 16px;
+        }
+      }
+      @media (max-width: 1000px) {
+        .third_font{
+          font-size: 16px;
+        }
+        .third_captionfont{
+          font-size: 10px;
+        }
+        .thirdh1_font{
+          font-size: 24px;
+        }
+        .thirdh2_font{
+        font-size: 20px;
+        }
+        .thirdh3_font{
+        font-size: 16px;
+        }
+        .thirdh4_font{
+          font-size: 12px;
+        }
+      }
+      @media(max-width: 850px) {
+        
+        body{
+          
+        }
+        .third_captionfont{
+          font-size: 10px;
+        }
+        
+        .carousel {
+          height: 100vh;
+        }
+        .third_font{
+          font-size: 12px;
+        }
+      }
+      @media (min-width: 800px) and (max-width: 850px) {
+        html,
+        body,
+        header,
+        .carousel {
+          height: 100vh;
+        }
+        .third_font{
+          font-size: 16px;
+        }
+        .third_captionfont{
+          font-size: 10px;
+        }
+      }
+      
+
+@media all and (min-width: 992px) {
+	.navbar .nav-item .dropdown-menu{ display: none;}
+	.navbar .nav-item:hover .nav-link{ color: #fff;  }
+	.navbar .nav-item:hover .dropdown-menu{ display: block; }
+	.navbar .nav-item .dropdown-menu{ margin-top:0; }
+  
+}
+@media  screen and (min-width: 992px) {
+  .dropdown:hover>.dropdown-menu {
+    display: block;
+    
+  }
+  
+}
+  </style>
+  
+    <script>
+  $(document).ready(function() {  
+    function toggleNavbarMethod() {  
+        if ($(window).width() > 768) {  
+            $('.navbar .dropdown').on('mouseover', function(){  
+                $('.dropdown-toggle', this).trigger('click');   
+            }).on('mouseout', function(){  
+                $('.dropdown-toggle', this).trigger('click').blur();  
+            });  
+        }  
+        else {  
+            $('.navbar .dropdown').off('mouseover').off('mouseout');  
+        }  
+    }  
+    toggleNavbarMethod();  
+    $(window).resize(toggleNavbarMethod);  
+}); 
+  
+  </script>
+</head>
+
+
+
+<body >
+    <!-- Navbar -->
+    
+    <nav class="navbar fixed-top bg-white navbar-expand-lg navbar-light white scrolling-navbar">
+      <div class="container">
+        <a class="navbar-brand mr-5" href="#" target="_blank">
+          <img
+          src="img\shift\shift_logo.png"
+          height="30"
+          alt=""
+          loading="lazy"
+          width="50vw"
+        />
+        </a>
+      
+       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main_nav">
+         <span class="navbar-toggler-icon"></span>
+       </button>
+       <div class="collapse navbar-collapse" id="main_nav">
+     
+     <ul class="navbar-nav mr-auto">
+       <li class="nav-item dropdown"> <a class="nav-link font-weight-bold" data-toggle="dropdown" role="button" aria-expanded="false" href="#">쉬프트란</a>
+        <ul class="dropdown-menu" style="">
+          <li><a class="dropdown-item" style="font-size: 14px;" href="instruct_user.html"> 서비스 소개</a></li>
+          
+        </ul> <!-- 이거 border 왼쪽 오른쪽 중에 뭐가 더 나은지....-->
+       </li>
+       <li class="nav-item dropdown"><a class="nav-link font-weight-bold" data-toggle="dropdown" role="button" aria-expanded="false" href="#">옥션</a>
+        <ul class="dropdown-menu">
+          <li><a class="dropdown-item" href="#"> 진행중 옥션</a></li>
+          <li><a class="dropdown-item" href="#"> 대기중 옥션 </a></li>
+          <div></div>
+        </ul>
+      </li>
+      
+       
+     </ul>
+     <div class="navbar-nav" role="button" style="font-size: small;">
+        <li class="nav-item dropdown"> <a class="nav-link font-weight-bold" data-toggle="dropdown" role="button" aria-expanded="false" href="#">회원</a>
+            <ul class="dropdown-menu" style="">
+              <li><a class="dropdown-item" style="font-size: 14px;" href="#"> 마이 페이지</a></li>
+              <li><a class="dropdown-item" style="font-size: 14px;" href="#"> 마이 포트폴리오 </a></li>
+              <li><a class="dropdown-item" style="font-size: 14px;" href="#"> 쉬프팅 머니 충전 </a></li>
+              <li><a class="dropdown-item" style="font-size: 14px;" href="#"> 개인정보 관리 </a></li>
+              <li><a class="dropdown-item" style="font-size: 14px;" href="#"> 로그아웃 </a></li>
+              <div></div>
+            </ul> <!-- 이거 border 왼쪽 오른쪽 중에 뭐가 더 나은지....-->
+           </li>
+       <a type="" class="nav-item nav-link mr-1" style="padding-left: 6px;" href="#">고객센터</a>
+       <a class="btn-lg" style="color: #B1B1B1; padding: 2px; padding-left: 6px;" role="button" href="#"><i class="far fa-bell"></i></a>
+     </div>
+       </div> <!-- navbar-collapse.// -->
+      </div>
+      
+     </nav>
+  <!-- Navbar -->   
+
+  <!--Main layout-->
+  <main class="mt-4 pt-4">
+    <div class="container mt-4" style="position: relative; min-height: 100vh; background-color: #fff;">
+        <div class="row">
+            <div class="sidebar">
+                <ul class="nav nav-sidebar">
+                    <li class="font-weight-bold" style="font-size: 24px;color: #222222;margin-bottom: 80px;">마이페이지</li>
+                    <li class="active font-weight-bold mb-2"><a href="mypagemain.html" style="color: #17375E;">마이페이지 홈</a></li>
+                    <li class="pb-1"><a>마이 포트폴리오</a></li>
+                  
+                </ul>
+                <hr class="my-1">
+                <ul class="nav nav-sidebar mt-3" style="font-size: 14px;">
+                  <li class=""><div class="font-weight-bold mb-1" style="color: #454545;">마이 포트폴리오</div></li>
+                  <li class="" style="line-height: 1.7rem;"><a style="color: #666666;">머니 현황</a><br>
+                    <a href="" style="color: #666666;">납부 예정 내역</a><br>
+                    <a href="" style="color: #666666;">세금 조회</a><br>
+                    <a href="" style="color: #666666;">머니 충전 및 출금</a><br>
+                    <a href="" style="color: #666666;">유저 마켓 신청 현황</a><br>
+                    
+                  </li>
+                  
+                </ul>
+                <ul class="nav nav-sidebar mt-3" style="font-size: 14px;">
+                  <li class=""><div class="font-weight-bold mb-1" style="color: #454545;">개인정보</div></li>
+                  <li class="pb-1" style="line-height: 1.7rem;"><a style="color: #666666;">개인정보 관리</a><br>
+                    <a href="" style="color: #666666;">로그아웃</a><br>  
+                  </li> 
+                </ul>
+                <hr class="my-1">  
+            </div>
+            <!--여기까지 마이페이지 왼쪽 사이드바-->
+            <div class="col-sm-12 main mt-4">
+                <h1 class="page-header mt-5 third_font mb-5"><strong>{User}</strong>님</h1>
+                
+                  <div class="row align-items-stretch" style="padding: 30px; border: 1px solid #E5E5E5; border-radius: 1rem; padding-bottom: 15px;">
+                    <div class="col-md-4">
+                      <div class="row">
+                        <div class="col-md-12 col-xs-6 col-sm-6" style="color: #999999;">
+                          <p class="thirdh4_font" style="margin-bottom: 0px;">보유머니</p>
+                          <p style="font-size: 10px;">사용가능+대기금</p>
+                        </div>
+                        <div class="col-md-12 col-xs-6 col-sm-6 font-weight-bold" style="color: #17375E; font-size: 18px;">0</div>
+                      </div>
+                    </div>
+                    <div class="col-md-4">
+                      <div class="row" style="color: #999999;">
+                        <div class="col-md-12 col-xs-6 col-sm-6" style="">
+                          <p class="thirdh4_font" style="margin-bottom: 0;">사용 가능 머니</p>
+                          <p style="height: 15px;"></p>
+                        </div>
+                        <div class="col-md-12 col-xs-6 col-sm-6 font-weight-bold" style="color: #17375E; font-size: 18px;">0</div>
+                      </div>
+                    </div>
+                    <div class="col-md-4">
+                      <div class="row">
+                        <div class="col-md-12 col-xs-6 col-sm-6" style="color: #999999;">
+                          <p class="thirdh4_font" style="margin-bottom: 0px;">대기금</p>
+                          <p style="font-size: 10px;">출금, 구매, 입찰중인 머니</p>
+                        </div>
+                        <div class="col-md-12 col-xs-6 col-sm-6 font-weight-bold" style="color: #17375E; font-size: 18px;">0</div>
+                        </div>
+                      </div>
+                      <div class="col">
+                        <a type="button" href="" class="btn btn-block mt-3 third_captionfont" style="background-color: #E5E5E5; box-shadow: none; width:100%;border-radius: 1rem;">마이 포트폴리오 보러가기 ></a>  
+                      </div>
+                      
+                    </div>
+                  <div class="thirdh4_font mt-5">
+                    <p class="font-weight-bold mb-5">쉬프팅 머니</p>
+                    <div class="row">
+                      <div class="col-sm-6" style="padding: 0; border-top: 1px solid #E5E5E5;">
+                        <a class="btn btn-block" style="color: #222222; box-shadow: none;">
+                          <div class="d-flex align-items-center justify-content-between">
+                            <div class="d-flex align-items-center">
+                              <img src="img\mypage\dollar.png" alt="" style="height: 10%; width: 10%;" class="mr-3">
+                              <p style="margin-bottom: 0; font-size: 16px;">머니현황</p>
+                            </div>
+                            <div class="d-flex">
+                              <span class="carousel-control-next-icon" style="height: 30px; width:30px;color: #C4C4C4;" aria-hidden="true"></span>
+                            </div>
+                          </div>
+                          
+                        </a>
+                      </div>
+                      <div class="col-sm-6" style="padding: 0; border-top: 1px solid #E5E5E5;">
+                        <a class="btn btn-block" style="color: #222222;  box-shadow: none;">
+                          <div class="d-flex align-items-center justify-content-between">
+                            <div class="d-flex align-items-center">
+                              <img src="img\mypage\hand.png" alt="" style="height: 10%; width: 10%;" class="mr-3">
+                              <p style="margin-bottom: 0; font-size: 16px;">납부 예정 내역</p>
+                            </div>
+                            <div class="d-flex">
+                              <span class="carousel-control-next-icon" style="height: 30px; width:30px;color: #C4C4C4;" aria-hidden="true"></span>
+                            </div>
+                          </div>
+                          
+                        </a>
+                      </div>
+                      <div class="col-sm-6" style="padding: 0; border-top: 1px solid #E5E5E5; border-bottom: 1px solid #E5E5E5;">
+                        <a class="btn btn-block" style="color: #222222; box-shadow: none;">
+                          <div class="d-flex align-items-center justify-content-between">
+                            <div class="d-flex align-items-center">
+                              <img src="img\mypage\bill.png" alt="" style="height: 10%; width: 10%;" class="mr-3">
+                              <p style="margin-bottom: 0; font-size: 16px;">세금 조회</p>
+                            </div>
+                            <div class="d-flex">
+                              <span class="carousel-control-next-icon" style="height: 30px; width:30px;color: #E5E5E5;" aria-hidden="true"></span>
+                            </div>
+                          </div>
+                          
+                        </a>
+                      </div>
+                      <div class="col-sm-6" style="padding: 0; border-top: 1px solid #E5E5E5; border-bottom: 1px solid #E5E5E5;">
+                        <a class="btn btn-block" style="color: #222222;  box-shadow: none;">
+                          <div class="d-flex align-items-center justify-content-between">
+                            <div class="d-flex align-items-center">
+                              <img src="img\mypage\withdrawal.png" alt="" style="height: 10%; width: 10%;" class="mr-3">
+                              <p style="margin-bottom: 0; font-size: 16px;">머니 충전 및 환급</p>
+                            </div>
+                            <div class="d-flex">
+                              <span class="carousel-control-next-icon" style="height: 30px; width:30px;color: #E5E5E5;" aria-hidden="true"></span>
+                            </div>
+                          </div>
+                          
+                        </a>
+                      </div>
+                      <div class="col-sm-6" style="padding: 0; border-bottom: 1px solid #E5E5E5">
+                        <a class="btn btn-block" style="color: #222222;  box-shadow: none;">
+                          <div class="d-flex align-items-center justify-content-between">
+                            <div class="d-flex align-items-center">
+                              <img src="img\mypage\shopping-cart.png" alt="" style="height: 10%; width: 10%;" class="mr-3">
+                              <p style="margin-bottom: 0; font-size: 16px;">유저 마켓 신청 현황</p>
+                            </div>
+                            <div class="d-flex">
+                              <span class="carousel-control-next-icon" style="height: 30px; width:30px;color: #C4C4C4;" aria-hidden="true"></span>
+                            </div>
+                          </div>
+                          
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="thirdh4_font mt-5">
+                    <p class="font-weight-bold">개인정보</p>
+                    <div class="row">
+                      <div class="col-sm-6" style="padding: 0; border-top: 1px solid #E5E5E5; border-bottom: 1px solid #E5E5E5;">
+                        <a class="btn btn-block" style="color: #222222; box-shadow: none;">
+                          <div class="d-flex align-items-center justify-content-between">
+                            <div class="d-flex align-items-center">
+                              <img src="img\mypage\user.png" alt="" style="height: 10%; width: 10%;" class="mr-3">
+                              <p style="margin-bottom: 0; font-size: 16px;">개인정보 관리</p>
+                            </div>
+                            <div class="d-flex">
+                              <span class="carousel-control-next-icon" style="height: 30px; width:30px;color: #C4C4C4;" aria-hidden="true"></span>
+                            </div>
+                          </div>
+                          
+                        </a>
+                      </div>
+                      <div class="col-sm-6" style="padding: 0; border-top: 1px solid #E5E5E5; border-bottom: 1px solid #E5E5E5;">
+                        <a class="btn btn-block" style="color: #222222; box-shadow: none;">
+                          <div class="d-flex align-items-center justify-content-between">
+                            <div class="d-flex align-items-center">
+                              <img src="img\mypage\exit.png" alt="" style="height: 10%; width: 10%;" class="mr-3">
+                              <p style="margin-bottom: 0; font-size: 16px;">로그아웃</p>
+                            </div>
+                            <div class="d-flex">
+                              <span class="carousel-control-next-icon" style="height: 30px; width:30px;color: #C4C4C4;" aria-hidden="true"></span>
+                            </div>
+                          </div>
+                          
+                        </a>
+                      </div>
+                    </div>
+                  </div>  
+                  
+                  
+                </div>
+
+            </div>
+        </div>
+      </div>
+    <div style="height: 100px;"></div>
+  </main>
+  <!--Main layout-->
+
+  <!--Footer-->
+  <footer class="page-footer text-center font-small" style="background-color: white; border-top: 1px solid grey;">
+    <div style="height: 10px;"></div>
+    <p class="mb-3" style="color: #333333;">Copyright © 2021 Shift</p>
+    <p style="color: #333333;">상호: Shift | 대표: 김용운 | 개인정보관리책임자: 미입력 | 전화: 미입력 | 이메일: karlxyz99@korea.ac.kr</p>
+    <div style="height: 3px;"></div>
+  </footer>
+  <!--/.Footer-->
+
+  <!-- SCRIPTS -->
+  <!-- JQuery -->
+  <script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
+  <!-- Bootstrap tooltips -->
+  <script type="text/javascript" src="js/popper.min.js"></script>
+  <!-- Bootstrap core JavaScript -->
+  <script type="text/javascript" src="js/bootstrap.min.js"></script>
+  <!-- MDB core JavaScript -->
+  <script type="text/javascript" src="js/mdb.min.js"></script>
+  <!-- Initializations -->
+  <script type="text/javascript">
+  
+    // Animations initialization
+    new WOW().init();
+
+  </script>
+
+  <!-- The core Firebase JS SDK is always required and must be listed first -->
+<script src="https://www.gstatic.com/firebasejs/8.2.2/firebase-app.js"></script>
+
+<!-- TODO: Add SDKs for Firebase products that you want to use https://firebase.google.com/docs/web/setup#available-libraries -->
+<script src="https://www.gstatic.com/firebasejs/8.2.2/firebase-analytics.js"></script>
+
+<script src="https://www.gstatic.com/firebasejs/8.2.2/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.2.2/firebase-firestore.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.2.2/firebase-database.js"></script>
+
+<script>
+var firebaseConfig = {
+    apiKey: "AIzaSyCXRTprV0yWYk8YrVpopvkFM4Cv_Nmhb2g",
+    authDomain: "shift-f80bc.firebaseapp.com",
+    databaseURL: "https://shift-f80bc-default-rtdb.firebaseio.com",
+    projectId: "shift-f80bc",
+    storageBucket: "shift-f80bc.appspot.com",
+    messagingSenderId: "111516463886",
+    appId: "1:111516463886:web:f7ae7d49add43d4cc0dd5f",
+    measurementId: "G-QXHD4RJNKQ"
+};
+
+// Initialize Firebase
+firebase.initializeApp(firebaseConfig);
+
+</script>
+</body>
+
+</html>

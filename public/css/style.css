@@ -168,3 +168,28 @@ body,
   }
   
 }
+.sidebar {
+  position: absolute;
+  top: 51px;
+  bottom: 0;
+  left: 0;
+  z-index: -1;
+  display: block;
+  padding: 20px;
+  overflow-x: hidden;
+  overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
+  background-color: #FFFFFF;
+  
+  width: 180px;
+  }
+  
+  @media (min-width: 768px) {
+  .main {
+  padding-right: 40px;
+  padding-left: 220px; /* 180 + 40 */
+  }
+  .sidebar{
+    z-index: 1000;
+  }
+  }
+  
