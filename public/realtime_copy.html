@@ -276,10 +276,10 @@ function buyGame() {
     messageRef.on('child_added', function(snapshot) {
         var data = snapshot.val();
         total3 += data;
-        var updates = {};
+       // var updates = {};
         //updates['user/'+ userId +'/game/'+ gameName.value +'/'+snapshot.key] = null;
-        updates['user/'+ userId +'/game/'+ gameName.value +'/num'] = total3;
-        firebase.database().ref().update(updates);
+        //updates['user/'+ userId +'/game/'+ gameName.value +'/num'] = total3;
+        //firebase.database().ref().update(updates);
         document.getElementById('user_gameName').textContent = gameName.value+" ";
         document.getElementById('gameNum').textContent = total3;
     });
@@ -289,10 +289,10 @@ function buyGame() {
     messageRef.on('child_added', function(snapshot) {
         var data = snapshot.val();
         total4 += data;
-        var updates = {};
-        updates['user/'+ userId +'/game/'+ gameName.value +'/'+snapshot.key] = null;
-        updates['user/'+ userId +'/waiting_game/'+ gameName.value +'/num'] = total4;
-        firebase.database().ref().update(updates);
+        //var updates = {};
+        //updates['user/'+ userId +'/game/'+ gameName.value +'/'+snapshot.key] = null;
+        //updates['user/'+ userId +'/waiting_game/'+ gameName.value +'/num'] = total4;
+        //firebase.database().ref().update(updates);
         document.getElementById('w_user_gameName').textContent = gameName.value+" ";
         document.getElementById('w_gameNum').textContent = total4;
     });
