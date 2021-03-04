@@ -266,7 +266,7 @@ crossorigin="anonymous"></script>
             </div>
             <!--여기까지 마이페이지 왼쪽 사이드바-->
             <div class="col-sm-12 main mt-4">
-                <h1 class="page-header mt-5 third_font mb-5"><strong>{User}</strong>님</h1>
+                <h1 class="page-header mt-5 third_font mb-5"><span id="userName" style="font-weight: bold;">{User}</span>님</h1>
                 
                   <div class="row align-items-stretch" style="padding: 30px; border: 1px solid #E5E5E5; border-radius: 1rem; padding-bottom: 15px;">
                     <div class="col-md-4">
@@ -275,7 +275,7 @@ crossorigin="anonymous"></script>
                           <p class="thirdh4_font" style="margin-bottom: 0px;">보유머니</p>
                           <p style="font-size: 10px;">사용가능+대기금</p>
                         </div>
-                        <div class="col-md-12 col-xs-6 col-sm-6 font-weight-bold" style="color: #17375E; font-size: 18px;">0</div>
+                        <div class="col-md-12 col-xs-6 col-sm-6 font-weight-bold" style="color: #17375E; font-size: 18px;" id="addCash">0</div>
                       </div>
                     </div>
                     <div class="col-md-4">
@@ -284,7 +284,7 @@ crossorigin="anonymous"></script>
                           <p class="thirdh4_font" style="margin-bottom: 0;">사용 가능 머니</p>
                           <p style="height: 15px;"></p>
                         </div>
-                        <div class="col-md-12 col-xs-6 col-sm-6 font-weight-bold" style="color: #17375E; font-size: 18px;">0</div>
+                        <div class="col-md-12 col-xs-6 col-sm-6 font-weight-bold" style="color: #17375E; font-size: 18px;" id="cash">0</div>
                       </div>
                     </div>
                     <div class="col-md-4">
@@ -293,7 +293,7 @@ crossorigin="anonymous"></script>
                           <p class="thirdh4_font" style="margin-bottom: 0px;">대기금</p>
                           <p style="font-size: 10px;">출금, 구매, 입찰중인 머니</p>
                         </div>
-                        <div class="col-md-12 col-xs-6 col-sm-6 font-weight-bold" style="color: #17375E; font-size: 18px;">0</div>
+                        <div class="col-md-12 col-xs-6 col-sm-6 font-weight-bold" style="color: #17375E; font-size: 18px;" id="waitingCash">0</div>
                         </div>
                       </div>
                       <div class="col">
@@ -308,70 +308,65 @@ crossorigin="anonymous"></script>
                         <a class="btn btn-block" style="color: #222222; box-shadow: none;">
                           <div class="d-flex align-items-center justify-content-between">
                             <div class="d-flex align-items-center">
-                              <img src="img\mypage\dollar.png" alt="" style="height: 10%; width: 10%;" class="mr-3">
+                              <img src="img\mypage\dollar.png" alt="" style="height: 10%; width: 9.5%;" class="mr-3">
                               <p style="margin-bottom: 0; font-size: 16px;">머니현황</p>
                             </div>
-                            <div class="d-flex">
-                              <span class="carousel-control-next-icon" style="height: 30px; width:30px;color: #C4C4C4;" aria-hidden="true"></span>
-                            </div>
                           </div>
-                          
+                          <a class="carousel-control-next" data-slide="next" style="margin-right: 20px;">
+                            <span class="carousel-control-next-icon" style="height: 30px; width:30px; font-size:80px;" aria-hidden="true"></span>
+                          </a>
                         </a>
                       </div>
                       <div class="col-sm-6" style="padding: 0; border-top: 1px solid #E5E5E5;">
                         <a class="btn btn-block" style="color: #222222;  box-shadow: none;">
                           <div class="d-flex align-items-center justify-content-between">
                             <div class="d-flex align-items-center">
-                              <img src="img\mypage\hand.png" alt="" style="height: 10%; width: 10%;" class="mr-3">
+                              <img src="img\mypage\hand.png" alt="" style="height: 10%; width: 9.5%;" class="mr-3">
                               <p style="margin-bottom: 0; font-size: 16px;">납부 예정 내역</p>
                             </div>
-                            <div class="d-flex">
-                              <span class="carousel-control-next-icon" style="height: 30px; width:30px;color: #C4C4C4;" aria-hidden="true"></span>
-                            </div>
                           </div>
-                          
+                          <a class="carousel-control-next" data-slide="next" style="margin-right: 20px;">
+                            <span class="carousel-control-next-icon" style="height: 30px; width:30px; font-size:80px;" aria-hidden="true"></span>
+                          </a>
                         </a>
                       </div>
                       <div class="col-sm-6" style="padding: 0; border-top: 1px solid #E5E5E5; border-bottom: 1px solid #E5E5E5;">
                         <a class="btn btn-block" style="color: #222222; box-shadow: none;">
                           <div class="d-flex align-items-center justify-content-between">
                             <div class="d-flex align-items-center">
-                              <img src="img\mypage\bill.png" alt="" style="height: 10%; width: 10%;" class="mr-3">
+                              <img src="img\mypage\bill.png" alt="" style="height: 10%; width: 9.5%;" class="mr-3">
                               <p style="margin-bottom: 0; font-size: 16px;">세금 조회</p>
                             </div>
-                            <div class="d-flex">
-                              <span class="carousel-control-next-icon" style="height: 30px; width:30px;color: #E5E5E5;" aria-hidden="true"></span>
-                            </div>
                           </div>
-                          
+                          <a class="carousel-control-next" data-slide="next" style="margin-right: 20px;">
+                            <span class="carousel-control-next-icon" style="height: 30px; width:30px; font-size:80px;" aria-hidden="true"></span>
+                          </a>
                         </a>
                       </div>
                       <div class="col-sm-6" style="padding: 0; border-top: 1px solid #E5E5E5; border-bottom: 1px solid #E5E5E5;">
                         <a class="btn btn-block" style="color: #222222;  box-shadow: none;">
                           <div class="d-flex align-items-center justify-content-between">
                             <div class="d-flex align-items-center">
-                              <img src="img\mypage\withdrawal.png" alt="" style="height: 10%; width: 10%;" class="mr-3">
+                              <img src="img\mypage\withdrawal.png" alt="" style="height: 10%; width: 9.5%;" class="mr-3">
                               <p style="margin-bottom: 0; font-size: 16px;">머니 충전 및 환급</p>
                             </div>
-                            <div class="d-flex">
-                              <span class="carousel-control-next-icon" style="height: 30px; width:30px;color: #E5E5E5;" aria-hidden="true"></span>
-                            </div>
                           </div>
-                          
+                          <a class="carousel-control-next" data-slide="next" style="margin-right: 20px;">
+                            <span class="carousel-control-next-icon" style="height: 30px; width:30px; font-size:80px;" aria-hidden="true"></span>
+                          </a>
                         </a>
                       </div>
                       <div class="col-sm-6" style="padding: 0; border-bottom: 1px solid #E5E5E5">
                         <a class="btn btn-block" style="color: #222222;  box-shadow: none;">
                           <div class="d-flex align-items-center justify-content-between">
                             <div class="d-flex align-items-center">
-                              <img src="img\mypage\shopping-cart.png" alt="" style="height: 10%; width: 10%;" class="mr-3">
+                              <img src="img\mypage\shopping-cart.png" alt="" style="height: 10%; width: 9.5%;" class="mr-3">
                               <p style="margin-bottom: 0; font-size: 16px;">유저 마켓 신청 현황</p>
                             </div>
-                            <div class="d-flex">
-                              <span class="carousel-control-next-icon" style="height: 30px; width:30px;color: #C4C4C4;" aria-hidden="true"></span>
-                            </div>
                           </div>
-                          
+                          <a class="carousel-control-next" data-slide="next" style="margin-right: 20px;">
+                            <span class="carousel-control-next-icon" style="height: 30px; width:30px; font-size:80px;" aria-hidden="true"></span>
+                          </a>
                         </a>
                       </div>
                     </div>
@@ -383,28 +378,26 @@ crossorigin="anonymous"></script>
                         <a class="btn btn-block" style="color: #222222; box-shadow: none;">
                           <div class="d-flex align-items-center justify-content-between">
                             <div class="d-flex align-items-center">
-                              <img src="img\mypage\user.png" alt="" style="height: 10%; width: 10%;" class="mr-3">
+                              <img src="img\mypage\user.png" alt="" style="height: 10%; width: 9.5%;" class="mr-3">
                               <p style="margin-bottom: 0; font-size: 16px;">개인정보 관리</p>
                             </div>
-                            <div class="d-flex">
-                              <span class="carousel-control-next-icon" style="height: 30px; width:30px;color: #C4C4C4;" aria-hidden="true"></span>
-                            </div>
                           </div>
-                          
+                          <a class="carousel-control-next" data-slide="next" style="margin-right: 20px;">
+                            <span class="carousel-control-next-icon" style="height: 30px; width:30px; font-size:80px;" aria-hidden="true"></span>
+                          </a>
                         </a>
                       </div>
                       <div class="col-sm-6" style="padding: 0; border-top: 1px solid #E5E5E5; border-bottom: 1px solid #E5E5E5;">
                         <a class="btn btn-block" style="color: #222222; box-shadow: none;">
                           <div class="d-flex align-items-center justify-content-between">
                             <div class="d-flex align-items-center">
-                              <img src="img\mypage\exit.png" alt="" style="height: 10%; width: 10%;" class="mr-3">
-                              <p style="margin-bottom: 0; font-size: 16px;">로그아웃</p>
-                            </div>
-                            <div class="d-flex">
-                              <span class="carousel-control-next-icon" style="height: 30px; width:30px;color: #C4C4C4;" aria-hidden="true"></span>
+                              <img src="img\mypage\exit.png" alt="" style="height: 10%; width:9.5%;" class="mr-3">
+                              <p style="margin-bottom: 0; font-size: 16px;" onclick="logout();">로그아웃</p>
                             </div>
                           </div>
-                          
+                          <a class="carousel-control-next" data-slide="next" style="margin-right: 20px;">
+                            <span class="carousel-control-next-icon" style="height: 30px; width:30px; font-size:80px;" aria-hidden="true"></span>
+                          </a>
                         </a>
                       </div>
                     </div>
@@ -471,6 +464,90 @@ var firebaseConfig = {
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
 
+// Get a reference to the database service
+var database = firebase.database();
+
+firebase.auth().onAuthStateChanged(function(user) {
+    if (user) {
+      // User is signed in.
+      //alert(user.displayName+"님 로그인");
+      //document.getElementById("loginNav").textContent = "로그아웃";
+      document.getElementById('userName').textContent = user.displayName;
+      var userId = user.uid;
+
+      var messageRef = database.ref('user/'+userId+'/cash');
+      var total1 = 0;
+      messageRef.on('child_added', function(snapshot) {
+          var data = snapshot.val();
+          total1 += data;
+          var updates = {};
+          updates['user/'+userId+'/total_cash'] = total1;
+          firebase.database().ref().update(updates);    
+          document.getElementById('cash').textContent = total1;
+          document.getElementById('addCash').textContent
+           = document.getElementById('waitingCash').textContent*1 + total1;
+      });
+
+      var messageRef = database.ref('user/'+userId+'/waiting_cash');
+      var total2 = 0;
+      messageRef.on('child_added', function(snapshot) {
+          var data = snapshot.val();
+          total2 += data;
+          var updates = {};
+          updates['user/'+userId+'/total_waiting_cash'] = total2;
+          firebase.database().ref().update(updates);    
+          document.getElementById('waitingCash').textContent = total2;
+          document.getElementById('addCash').textContent
+          = document.getElementById('cash').textContent*1 + total2;
+      });
+
+      //document.getElementById('email').value = user.email;
+      //console.log(user)		// 인증 후 어떤 데이터를 받아오는지 확인해보기 위함.
+      var db = firebase.firestore();
+      var flag = true;
+      var docRef = db.collection("user").doc(user.uid);
+      docRef.get().then(function(doc) {
+        if (doc.exists) {
+            console.log("Document data:", doc.data()); 
+            //window.location.href = "register_complete.html";
+        } 
+        else {
+            db.collection("user").doc(user.uid).set({
+                name: user.displayName,
+                email: user.email,
+                photoUrl: user.photoURL,
+                emailVerified: user.emailVerified,
+                account:"",
+                uid: user.uid
+            })
+            .then(function() {
+                console.log("Document successfully written!");
+                alert(user.displayName+"님 회원가입 완료");
+            })
+            .catch(function(error) {
+                console.error("Error writing document: ", error);
+            });
+        }
+      }).catch(function(error) {
+          console.log("Error getting document:", error);
+      });
+    } else {
+      // No user is signed in.
+      //alert("로그인 X");
+      //console.log(user)		// 인증 후 어떤 데이터를 받아오는지 확인해보기 위함.
+    }
+});
+
+function logout() {
+  firebase.auth().signOut().then(function() {
+    alert("로그아웃 성공");
+    window.location.href = "loginpage.html";
+  // Sign-out successful.
+  }).catch(function(error) {
+    alert("에러");
+  // An error happened.
+  });
+}
 </script>
 </body>
 

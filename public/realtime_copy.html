@@ -169,12 +169,15 @@ function writeGameData() {
             database.ref('user/' + 'shift').once('value').then((snapshot3) => {
                 updates['user/' + 'shift' + '/waiting_cash/' + uuid] = sellNum*gPrice; // 미체결금액 
                 updates['user/' + 'shift' + '/waiting_sell/'+ uuid] = addUserSell; // 미체결  
+                updates['user/' + 'shift' + '/waiting_game/'+ addGame.value +'/'+uuid] = sellNum; // 미체결게임  
 
                 updates['user/' + 'shift' + '/waiting_cash/'+ uuid1] = 1*gPrice; // 미체결금액
                 updates['user/' + 'shift' + '/waiting_sell/'+ uuid1] = addUserSell1; // 미체결
+                updates['user/' + 'shift' + '/waiting_game/'+ addGame.value +'/'+uuid1] = 1; // 미체결게임 
 
                 updates['user/' + 'shift2' + '/waiting_cash/' + uuid2] = 1*gPrice; // 미체결금액   
                 updates['user/' + 'shift2' + '/waiting_sell/'+ uuid2] = addUserSell2; // 미체결
+                updates['user/' + 'shift2' + '/waiting_game/'+ addGame.value +'/'+uuid2] = 1; // 미체결게임 
                 firebase.database().ref().update(updates);
                 alert("update 완료");
             });
@@ -273,15 +276,23 @@ function buyGame() {
     messageRef.on('child_added', function(snapshot) {
         var data = snapshot.val();
         total3 += data;
+       // var updates = {};
+        //updates['user/'+ userId +'/game/'+ gameName.value +'/'+snapshot.key] = null;
+        //updates['user/'+ userId +'/game/'+ gameName.value +'/num'] = total3;
+        //firebase.database().ref().update(updates);
         document.getElementById('user_gameName').textContent = gameName.value+" ";
         document.getElementById('gameNum').textContent = total3;
     });
 
-    var messageRef = database.ref('user/'+ userId + '/waiting_game/'+ gameName.value);
+    var messageRef = database.ref('user/'+ userId +'/waiting_game/'+ gameName.value);
     var total4 = 0;
     messageRef.on('child_added', function(snapshot) {
         var data = snapshot.val();
         total4 += data;
+        //var updates = {};
+        //updates['user/'+ userId +'/game/'+ gameName.value +'/'+snapshot.key] = null;
+        //updates['user/'+ userId +'/waiting_game/'+ gameName.value +'/num'] = total4;
+        //firebase.database().ref().update(updates);
         document.getElementById('w_user_gameName').textContent = gameName.value+" ";
         document.getElementById('w_gameNum').textContent = total4;
     });
