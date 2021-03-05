@@ -1,11 +1,11 @@
-$(document).ready(function() {
+/*$(document).ready(function() {
     var ctx = $("#chart-line");
     var myLineChart = new Chart(ctx, {
         type: 'doughnut',
         data: {
-            labels: ["주식", "예수금", "거래대기금"],
+            labels: ["주식1", "예수금", "거래대기금"],
             datasets: [{
-                data: [5000000, 170000, 540000],
+                data: [1000000, 170000, 540000],
                 backgroundColor: ["#17375E", "#367DD3", "#D4E8FF"]
             }]
         },
@@ -25,5 +25,5 @@ $(document).ready(function() {
     }
     document.getElementById('getStock').innerHTML = `주식 ${percentage(myLineChart.data.datasets.data[0])}%`;
     
-});
+});*/
 
