@@ -113,14 +113,14 @@ crossorigin="anonymous"></script>
                 <ul class="nav nav-sidebar">
                     <li class="font-weight-bold" style="font-size: 24px;color: #454545;margin-bottom: 80px;">마이페이지</li>
                     <li class="mb-2"><a href="mypagemain.html" style="color: #222222;">마이페이지 홈</a></li>
-                    <li class="pb-1 active font-weight-bold"><a href="myportfolio.html" style="color: #17375E;">마이 포트폴리오</a></li>
+                    <li class="pb-1" style=""><a href="myportfolio.html" style="color: #454545;">마이 포트폴리오</a></li>
                   
                 </ul>
                 <hr class="my-1">
                 <ul class="nav nav-sidebar mt-3" style="font-size: 14px;">
                   <li class=""><div class="font-weight-bold mb-1" style="color: #454545;">마이 포트폴리오</div></li>
                   <li class="" style="line-height: 1.7rem;">
-                    <a href="shiftmoney_status.html" style="color: #666666;">머니 현황</a><br>
+                    <a class="font-weight-bold" style="color: #17375E;" href="shiftmoney_status.html">머니 현황</a><br>
                     <a href="" style="color: #666666;">납부 예정 내역</a><br>
                     <a href="" style="color: #666666;">세금 조회</a><br>
                     <a href="" style="color: #666666;">머니 충전 및 출금</a><br>
@@ -139,94 +139,24 @@ crossorigin="anonymous"></script>
 
             </div>
             <div class="col-sm-12 main mt-4">
-                <h1 class="page-header mt-5 third_font mb-5">마이 포트폴리오</h1>
-                <div class="container-fluid" style="padding: 0;">
-                  <div class="row  d-flex align-items-center">
-                    <div class="col-sm-8 col-md-6">
-                      <div class="card" style="box-shadow: none;">
-                          
-                          <div class="card-body" style="height: auto">
-                              <div class="chartjs-size-monitor" style="
-                                  position: absolute;
-                                  left: 0px; top: 0px; right: 0px; bottom: 0px;
-                                  overflow: hidden;
-                                  pointer-events: none;
-                                  visibility: hidden;
-                                  z-index: -1;">
-                                  <div class="chartjs-size-monitor-expand" style="
-                                      position:absolute;
-                                      left:0;top:0;right:0;bottom:0;
-                                      overflow:hidden;
-                                      pointer-events:none;
-                                      visibility:hidden;
-                                      z-index:-1;">
-                                      <div style="position:absolute;width:1000000px;height:1000000px;left:0;top:0"></div>
-                                  </div>
-                                  <div class="chartjs-size-monitor-shrink" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;">
-                                      <div style="position:absolute;width:200%;height:200%;left:0; top:0"></div>
-                                  </div>
-                              </div> <canvas id="chart-line" width="299" height="200" class="chartjs-render-monitor" style="display: block; width: 299px; height: 200px;"></canvas>
-                              
-                              <div id="getStock"></div>
-                              <div id="test"></div>
-                          </div>
-                      </div>
+                <h1 class="page-header mt-5 thirdh3_font mb-5 font-weight-bold">쉬프팅 머니</h1>
+                <div class="thirdh4_font font-weight-bold" style="color: #454545;">머니 현황</div>
+                <div class="row align-items-stretch mt-3 m-1" style="padding: 30px; border: 1px solid #E5E5E5; border-radius: 1rem;">
+                  <div class="col-md-7 d-flex align-items-center">
+                      <span style="color: #222222; font-size: 24px;">199,000</span>
+                      <span class="thirdh4_font" style="color: #999999;">(사용가능 + 대기금 + 이벤트 머니)</span>
                   </div>
-                  <div class="col-md-6 col-sm-6" style="font-weight: 500;">
-                    <div class="row">
-                      <div class="col-12 thirdh4_font d-flex" style="margin-bottom: 8px;">
-                        <div class="mr-3" style="width: 20px; height: 20px; background-color: #17375E;border-radius: 1rem;"></div>
-                        <span class="mr-1">주식</span>
-                        <span>92.25%</span>
-                      </div>
-                      <div class="col-12 thirdh4_font d-flex" style="margin-bottom: 8px;">
-                        <div class="mr-3" style="width: 20px; height: 20px; background-color: #367DD3;border-radius: 1rem;"></div>
-                        <span class="mr-1">예수금</span>
-                        <span>1.75%</span>
-                      </div>
-                      <div class="col-12 thirdh4_font d-flex" style="margin-bottom: 8px;">
-                        <div class="mr-3" style="width: 20px; height: 20px; background-color: #D4E8FF;border-radius: 1rem;"></div>
-                        <span class="mr-1">거래대기금</span>
-                        <span>6.00%</span>
+                  <div class="col-md-5">
+                      <div class="row d-flex justify-content-flex-start">
+                            <a href="" class="btn btn-rounded text-white" style="background-color: #FF5959; border-radius: 0.5rem;">머니 충전</a>  
+                            <a href="" class="btn text-white" style="background-color: #3449BA; border-radius: 0.5rem;">머니 출금</a>
+     
                       </div>
                     </div>
-                  </div>
-                  </div>
-                    
-                    
                 </div>
-                <div class="row align-items-stretch mt-3" style="padding: 30px; border: 1px solid #E5E5E5; border-radius: 1rem;">
-                  <div class="col-md-4">
-                    <div class="row" style="color: #757575;">
-                      <div class="col-md-12 col-xs-6 col-sm-6" style="">
-                        <p class="thirdh4_font font-weight-bold" style="margin-bottom: 0px;">출금 불가능 머니</p>
-                        <p style="font-size: 10px;">이벤트 머니 + 거래대기금</p>
-                      </div>
-                      <div class="col-md-12 col-xs-6 col-sm-6 font-weight-bold" style="color: #17375E; font-size: 18px;">550,000 원</div>
-                    </div>
-                  </div>
-                  <div class="col-md-4">
-                    <div class="row" style="">
-                      <div class="col-md-12 col-xs-6 col-sm-6" style="color: #757575;">
-                        <p class="thirdh4_font font-weight-bold" style="margin-bottom: 0;">이벤트 머니</p>
-                        <p style="height: 15px;"></p>
-                      </div>
-                      <div class="col-md-12 col-xs-6 col-sm-6 font-weight-bold" style="color: #17375E; font-size: 18px;">10,000 원</div>
-                    </div>
-                  </div>
-                  <div class="col-md-4">
-                    <div class="row">
-                      <div class="col-md-12 col-xs-6 col-sm-6" style="color: #757575;">
-                        <p class="thirdh4_font font-weight-bold" style="margin-bottom: 0px;">거래대기금</p>
-                        <p style="height: 15px;"></p>
-                      </div>
-                      <div class="col-md-12 col-xs-6 col-sm-6 font-weight-bold" style="color: #17375E; font-size: 18px;">540,000 원</div>
-                      </div>
-                    </div> 
-                  </div>
-                  <div class="row align-items-stretch mt-3" style="padding: 30px; border: 1px solid #E5E5E5; border-radius: 1rem;">
-                    <div class="col-md-4">
-                      <div class="row" style="color: #757575;">
+                <div class="row align-items-stretch mt-3">
+                    <div class="col-md-4" >
+                      <div class="row m-1" style="padding: 30px; border: 1px solid #E5E5E5; border-radius: 1rem; color: #757575;">
                         <div class="col-md-12 col-xs-6 col-sm-6 mb-2" style="">
                           <p class="thirdh4_font font-weight-bold" style="margin-bottom: 0px;">현재 주식 가격</p>
                           
@@ -235,7 +165,7 @@ crossorigin="anonymous"></script>
                       </div>
                     </div>
                     <div class="col-md-4">
-                      <div class="row" style="">
+                      <div class="row m-1"style="padding: 30px; border: 1px solid #E5E5E5; border-radius: 1rem;">
                         <div class="col-md-12 col-xs-6 col-sm-6 mb-2" style="color: #757575;">
                           <p class="thirdh4_font font-weight-bold" style="margin-bottom: 0;">총 충전 가격</p>
                           
@@ -244,7 +174,7 @@ crossorigin="anonymous"></script>
                       </div>
                     </div>
                     <div class="col-md-4">
-                      <div class="row">
+                      <div class="row m-1" style="padding: 30px; border: 1px solid #E5E5E5; border-radius: 1rem;">
                         <div class="col-md-12 col-xs-6 col-sm-6 mb-2" style="color: #757575;">
                           <p class="thirdh4_font font-weight-bold" style="margin-bottom: 0px;">손익</p>
                           
