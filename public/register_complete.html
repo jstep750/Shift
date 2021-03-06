@@ -210,7 +210,7 @@ crossorigin="anonymous"></script>
               <li><a class="dropdown-item" style="font-size: 14px;" href="myportfolio.html"> 마이 포트폴리오 </a></li>
               <li><a class="dropdown-item" style="font-size: 14px;" href="#"> 쉬프팅 머니 충전 </a></li>
               <li><a class="dropdown-item" style="font-size: 14px;" href="#"> 개인정보 관리 </a></li>
-              <li><a class="dropdown-item" style="font-size: 14px;" href="#"> 로그아웃 </a></li>
+              <li><a class="dropdown-item" style="font-size: 14px;" onclick="logout();"> 로그아웃 </a></li>
               <div></div>
             </ul> <!-- 이거 border 왼쪽 오른쪽 중에 뭐가 더 나은지....-->
            </li>
@@ -438,9 +438,7 @@ firebase.auth().onAuthStateChanged(function(user) {
 });
 
 function logout() {
-  alert(document.getElementById("loginNav").textContent);
-  if(document.getElementById("loginNav").textContent == "로그아웃"){
-    firebase.auth().signOut().then(function() {
+  firebase.auth().signOut().then(function() {
       alert("로그아웃 성공");
       window.location.href = "loginpage.html";
     // Sign-out successful.
@@ -448,10 +446,6 @@ function logout() {
       alert("에러");
     // An error happened.
     });
-  }
-  else{
-    window.location.href = "loginpage.html";
-  }
 }
 </script>
 </body>
