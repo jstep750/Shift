@@ -153,15 +153,6 @@ function writeGameData() {
                 price : gPrice,
                 number : 1
             }
-            var addUserSell = {  game: addGame.value,
-                                 price: gPrice,
-                                 number: sellNum };
-            var addUserSell1 = {  game: addGame.value,
-                                 price: gPrice,
-                                 number: 1 };
-            var addUserSell2 = {  game: addGame.value,
-                                 price: gPrice,
-                                 number: 1 };
 
             var addUserGame = {  price: gPrice,
                                  number: sellNum };
@@ -187,6 +178,7 @@ function writeGameData() {
                 updates['user/' + 'shift2' + '/waiting_game/'+ addGame.value +'/'+uuid2] = addUserGame2; // 미체결게임 
                 firebase.database().ref().update(updates);
                 alert("update 완료");
+                gameName.value = "";
             });
             return;
         } else {
@@ -505,8 +497,6 @@ function buyGame() {
 
                     firebase.database().ref().update(updates);
                     alert("update 완료");
-                    gameName.value = "";
-                    price.value = "";
                     number.value = "";
                 }
                 });   
@@ -778,7 +768,6 @@ function sellGame() {
                     updates['message/' + uuid] = addMessage;
 
                     firebase.database().ref().update(updates);
-                    alert("update 완료");
                     gameName.value = "";
                     price.value = "";
                     number.value = "";
