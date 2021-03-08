@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>마이페이지-Shift</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
+  <!-- Bootstrap core CSS -->
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+  <!-- Material Design Bootstrap -->
+  <link href="css/mdb.min.css" rel="stylesheet">
+
+  <!-- Your custom styles (optional) -->
+  <link href="css/style.min.css" rel="stylesheet">
+  <link href="css/style.css" rel="stylesheet">
+  <link rel="stylesheet" href="app.css">
+  <link href="css/bootstrap-datepicker3.css" rel="stylesheet">
+  <script type="text/javascript" src="js\jquery-3.4.1.min.js"></script>
+  <style>
+ 
+       
+  </style>
+  
+    <script>
+  $(document).ready(function() {  
+    function toggleNavbarMethod() {  
+        if ($(window).width() > 768) {  
+            $('.navbar .dropdown').on('mouseover', function(){  
+                $('.dropdown-toggle', this).trigger('click');   
+            }).on('mouseout', function(){  
+                $('.dropdown-toggle', this).trigger('click').blur();  
+            });  
+        }  
+        else {  
+            $('.navbar .dropdown').off('mouseover').off('mouseout');  
+        }  
+    }  
+    toggleNavbarMethod();  
+    $(window).resize(toggleNavbarMethod);  
+}); 
+
+  </script>
+
+</head>
+
+
+
+<body >
+    <!-- Navbar -->
+    
+    <nav class="navbar fixed-top bg-white navbar-expand-lg navbar-light white scrolling-navbar">
+      <div class="container">
+        <a class="navbar-brand mr-5" href="#" target="_blank">
+          <img
+          src="img\shift\shift_logo.png"
+          height="30"
+          alt=""
+          loading="lazy"
+          width="50vw"
+        />
+        </a>
+      
+       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main_nav">
+         <span class="navbar-toggler-icon"></span>
+       </button>
+       <div class="collapse navbar-collapse" id="main_nav">
+     
+     <ul class="navbar-nav mr-auto">
+       <li class="nav-item dropdown"> <a class="nav-link font-weight-bold" data-toggle="dropdown" role="button" aria-expanded="false" href="#">쉬프트란</a>
+        <ul class="dropdown-menu" style="">
+          <li><a class="dropdown-item" style="font-size: 14px;" href="instruct_user.html"> 서비스 소개</a></li>
+          
+        </ul> <!-- 이거 border 왼쪽 오른쪽 중에 뭐가 더 나은지....-->
+       </li>
+       <li class="nav-item dropdown"><a class="nav-link font-weight-bold" data-toggle="dropdown" role="button" aria-expanded="false" href="#">옥션</a>
+        <ul class="dropdown-menu">
+          <li><a class="dropdown-item" href="#"> 진행중 옥션</a></li>
+          <li><a class="dropdown-item" href="#"> 대기중 옥션 </a></li>
+          <div></div>
+        </ul>
+      </li>
+      
+       
+     </ul>
+     <div class="navbar-nav" role="button" style="font-size: small;">
+        <li class="nav-item dropdown"> <a class="nav-link font-weight-bold" data-toggle="dropdown" role="button" aria-expanded="false" href="#">회원</a>
+            <ul class="dropdown-menu" style="">
+              <li><a class="dropdown-item" style="font-size: 14px;" href="#"> 마이 페이지</a></li>
+              <li><a class="dropdown-item" style="font-size: 14px;" href="#"> 마이 포트폴리오 </a></li>
+              <li><a class="dropdown-item" style="font-size: 14px;" href="#"> 쉬프팅 머니 충전 </a></li>
+              <li><a class="dropdown-item" style="font-size: 14px;" href="#"> 개인정보 관리 </a></li>
+              <li><a class="dropdown-item" style="font-size: 14px;" href="#"> 로그아웃 </a></li>
+              <div></div>
+            </ul> <!-- 이거 border 왼쪽 오른쪽 중에 뭐가 더 나은지....-->
+           </li>
+       <a type="" class="nav-item nav-link mr-1" style="padding-left: 6px;" href="#">고객센터</a>
+       <a class="btn-lg" style="color: #B1B1B1; padding: 2px; padding-left: 6px;" role="button" href="#"><i class="far fa-bell"></i></a>
+     </div>
+       </div> <!-- navbar-collapse.// -->
+      </div>
+      
+     </nav>
+  <!-- Navbar -->   
+
+  <!--Main layout-->
+  <main class="mt-4 pt-4">
+    <div class="container mt-4" style="position: relative; min-height: 100vh; background-color: #fff;">
+        <div class="row">
+            <div class="sidebar">
+                <ul class="nav nav-sidebar">
+                    <li class="font-weight-bold" style="font-size: 24px;color: #454545;margin-bottom: 80px;">마이페이지</li>
+                    <li class="mb-2"><a href="mypagemain.html" style="color: #222222;">마이페이지 홈</a></li>
+                    <li class="pb-1" style=""><a href="myportfolio.html" style="color: #454545;">마이 포트폴리오</a></li>
+                  
+                </ul>
+                <hr class="my-1">
+                <ul class="nav nav-sidebar mt-3" style="font-size: 14px;">
+                  <li class=""><div class="font-weight-bold mb-1" style="color: #454545;">마이 포트폴리오</div></li>
+                  <li class="" style="line-height: 1.7rem;">
+                    <a class="font-weight-bold" style="color: #17375E;" href="shiftmoney_status.html">머니 현황</a><br>
+                    <a href="" style="color: #666666;">납부 예정 내역</a><br>
+                    <a href="" style="color: #666666;">세금 조회</a><br>
+                    <a href="" style="color: #666666;">머니 충전 및 출금</a><br>
+                    <a href="" style="color: #666666;">유저 마켓 신청 현황</a><br>
+                    
+                  </li>
+                  
+                </ul>
+                <ul class="nav nav-sidebar mt-3" style="font-size: 14px;">
+                  <li class=""><div class="font-weight-bold mb-1" style="color: #454545;">개인정보</div></li>
+                  <li class="pb-1" style="line-height: 1.7rem;"><a style="color: #666666;">개인정보 관리</a><br>
+                    <a href="" style="color: #666666;">로그아웃</a><br>  
+                  </li> 
+                </ul>
+                <hr class="my-1">
+
+            </div>
+            <div class="col-sm-12 main mt-4">
+                <h1 class="page-header mt-5 thirdh3_font mb-5 font-weight-bold">쉬프팅 머니</h1>
+                <div class="thirdh4_font font-weight-bold" style="color: #454545;">머니 현황</div>
+                <div class="row align-items-stretch mt-3 m-1" style="padding: 30px; border: 1px solid #E5E5E5; border-radius: 1rem;">
+                  <div class="col-md-7 d-flex align-items-center">
+                      <span style="color: #222222; font-size: 24px;">199,000</span>
+                      <span class="thirdh4_font" style="color: #999999;">(사용가능 + 대기금 + 이벤트 머니)</span>
+                  </div>
+                  <div class="col-md-5">
+                      <div class="row d-flex justify-content-flex-start">
+                            <a href="" class="btn btn-rounded text-white" style="background-color: #FF5959; border-radius: 0.5rem;">머니 충전</a>  
+                            <a href="" class="btn text-white" style="background-color: #3449BA; border-radius: 0.5rem;">머니 출금</a>
+     
+                      </div>
+                    </div>
+                </div>
+                <div class="row align-items-stretch mt-3">
+                    <div class="col-md-4" >
+                      <div class="row m-1" style="padding: 30px; border: 1px solid #E5E5E5; border-radius: 1rem; color: #757575;">
+                        <div class="col-md-12 col-xs-6 col-sm-6 mb-2" style="">
+                          <p class="thirdh4_font font-weight-bold" style="margin-bottom: 0px;">사용가능머니</p>
+                          
+                        </div>
+                        <div class="col-md-12 col-xs-6 col-sm-6 font-weight-bold" style="color: #17375E; font-size: 18px;">0</div>
+                      </div>
+                    </div>
+                    <div class="col-md-4">
+                      <div class="row m-1"style="padding: 30px; border: 1px solid #E5E5E5; border-radius: 1rem;">
+                        <div class="col-md-12 col-xs-6 col-sm-6 mb-2" style="color: #757575;">
+                          <p class="thirdh4_font font-weight-bold" style="margin-bottom: 0;">대기금</p>
+                          
+                        </div>
+                        <div class="col-md-12 col-xs-6 col-sm-6 font-weight-bold" style="color: #17375E; font-size: 18px;">0</div>
+                      </div>
+                    </div>
+                    <div class="col-md-4">
+                      <div class="row m-1" style="padding: 30px; border: 1px solid #E5E5E5; border-radius: 1rem;">
+                        <div class="col-md-12 col-xs-6 col-sm-6 mb-2" style="color: #757575;">
+                          <p class="thirdh4_font font-weight-bold" style="margin-bottom: 0px;">이벤트 머니</p>
+                          
+                        </div>
+                        <div class="col-md-12 col-xs-6 col-sm-6 font-weight-bold" style="color: #17375E; font-size: 18px;">0</div>
+                        </div>
+                      </div> 
+                    </div>
+                    <div class="mt-5 third_h4font" style="color: #454545;">
+                      <p class="font-weight-bold">입출금거래내역</p>
+                      <div class="input-group mb-3 d-flex align-items-top justify-content-between"  style="">
+                       
+                          <select name="" id="" class="custom-select mr-1">
+                            <option selected>오늘</option>
+                            <option>어제</option>
+                            <option>일주일 전</option>
+                            <option>1개월 전</option>
+                            <option>2개월 전</option>
+                            <option>3개월 전</option>
+                            <option>6개월 전</option>
+                          </select>
+                        
+                        <label class="form-label mr-1" id="뭐늘까" for="dateselect" style="border: 1px solid #ced4da;padding: 5px; border-radius: 0.1rem; height: 37.9861px;">2000년 12월 20일 ~ 2021년 10월 18일</label>
+                        
+                          <select name="moneyoption" class="custom-select mb-3 mr-1">
+                            <option selected>전체거래</option>
+                            <option>충전</option>
+                            <option>충전취소</option>
+                            <option>출금</option>
+                            <option>충전(이벤트)</option>
+                            <option>판매</option>
+                            <option>판매취소</option>
+                            <option>구매</option>
+                            <option>구매취소</option>
+                          </select>
+                        
+                          <select name="" id="" class="custom-select">
+                            <option selected>최근거래순</option>
+                            <option>과거거래순</option>
+                            <option>금액많은순</option>
+                            <option>금액적은순</option>
+                          </select>
+                        <button class="btn btn-sm text-white" style="margin-top: 0px; margin-bottom: 15px; font-size: 14px; background-color: #17375E;">조회하기</button>
+                      </div>
+                      <!--여기 이런 식으로 각 컴포넌트당 하나씩 데이터 추가해주면 될듯 list-content넣고-->
+                      <div class="row" style="font-size: 14px;">
+                        <div class="col-2 list-setting">
+                          <div class="text-center list-title">날짜</div>
+                          <div class="list-content">20.01.28</div>
+                          <div class="list-content">20.01.29</div>
+                        </div>
+                        <div class="col-2 list-setting">
+                          <div class="text-center list-title">내역</div>
+                          <div class="list-content">구매</div>
+                          <div class="list-content">충전</div>
+                        </div>
+                        <div class="col-4 list-setting">
+                          <div class="text-center list-title">상세</div>
+                          <div class="list-content">무슨무슨게임 5% 매수</div>
+                          <div class="list-content">쉬프트 머니 충전</div>
+                        </div>
+                        <div class="col-2 list-setting">
+                          <div class="text-center list-title">거래 금액</div>
+                          <div class="list-content">130,000</div>
+                          <div class="list-content">100,000</div>
+                        </div>
+                        <div class="col-2 list-setting">
+                          <div class="text-center list-title">머니 잔액</div>
+                          <div class="list-content">5,000</div>
+                          <div class="list-content">105,000</div>
+                        </div>
+                      </div>
+                    </div>
+
+        </div>
+    <div style="height: 100px;"></div>
+  </main>
+  <!--Main layout-->
+
+  <!--Footer-->
+  <footer class="page-footer text-center font-small" style="background-color: white; border-top: 1px solid grey;">
+    <div style="height: 10px;"></div>
+    <p class="mb-3" style="color: #333333;">Copyright © 2021 Shift</p>
+    <p style="color: #333333;">상호: Shift | 대표: 김용운 | 개인정보관리책임자: 미입력 | 전화: 미입력 | 이메일: karlxyz99@korea.ac.kr</p>
+    <div style="height: 3px;"></div>
+  </footer>
+  <!--/.Footer-->
+
+  <!-- SCRIPTS -->
+  <!-- JQuery -->
+  
+  <script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
+  <!-- Bootstrap tooltips -->
+  <script type="text/javascript" src="js/popper.min.js"></script>
+  <!-- Bootstrap core JavaScript -->
+  <script type="text/javascript" src="js/bootstrap.min.js"></script>
+  <!-- MDB core JavaScript -->
+  <script type="text/javascript" src="js/mdb.min.js"></script>
+  
+  <!--Bootstrap datepicker-->
+  <script type="text/javascript" src="js/bootstrap-datepicker.js"></script>
+  <!-- Initializations -->
+  <script type="text/javascript">
+  
+  
+    // Animations initialization
+    new WOW().init();
+
+  </script>
+
+  <!-- The core Firebase JS SDK is always required and must be listed first -->
+<script src="https://www.gstatic.com/firebasejs/8.2.2/firebase-app.js"></script>
+
+<!-- TODO: Add SDKs for Firebase products that you want to use https://firebase.google.com/docs/web/setup#available-libraries -->
+<script src="https://www.gstatic.com/firebasejs/8.2.2/firebase-analytics.js"></script>
+
+<script src="https://www.gstatic.com/firebasejs/8.2.2/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.2.2/firebase-firestore.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.2.2/firebase-database.js"></script>
+
+<script>
+var firebaseConfig = {
+    apiKey: "AIzaSyCXRTprV0yWYk8YrVpopvkFM4Cv_Nmhb2g",
+    authDomain: "shift-f80bc.firebaseapp.com",
+    databaseURL: "https://shift-f80bc-default-rtdb.firebaseio.com",
+    projectId: "shift-f80bc",
+    storageBucket: "shift-f80bc.appspot.com",
+    messagingSenderId: "111516463886",
+    appId: "1:111516463886:web:f7ae7d49add43d4cc0dd5f",
+    measurementId: "G-QXHD4RJNKQ"
+};
+
+// Initialize Firebase
+firebase.initializeApp(firebaseConfig);
+
+</script>
+</body>
+
+</html>

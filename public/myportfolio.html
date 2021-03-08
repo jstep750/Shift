@@ -113,13 +113,15 @@ crossorigin="anonymous"></script>
                 <ul class="nav nav-sidebar">
                     <li class="font-weight-bold" style="font-size: 24px;color: #454545;margin-bottom: 80px;">마이페이지</li>
                     <li class="mb-2"><a href="mypagemain.html" style="color: #222222;">마이페이지 홈</a></li>
-                    <li class="pb-1 active font-weight-bold"><a href="myportfolio.html"  style="color: #17375E;">마이 포트폴리오</a></li>
-                  
+
+                    <li class="pb-1 active font-weight-bold"><a href="myportfolio.html" style="color: #17375E;">마이 포트폴리오</a></li>
+
                 </ul>
                 <hr class="my-1">
                 <ul class="nav nav-sidebar mt-3" style="font-size: 14px;">
                   <li class=""><div class="font-weight-bold mb-1" style="color: #454545;">마이 포트폴리오</div></li>
-                  <li class="" style="line-height: 1.7rem;"><a style="color: #666666;">머니 현황</a><br>
+                  <li class="" style="line-height: 1.7rem;">
+                    <a href="shiftmoney_status.html" style="color: #666666;">머니 현황</a><br>
                     <a href="" style="color: #666666;">납부 예정 내역</a><br>
                     <a href="" style="color: #666666;">세금 조회</a><br>
                     <a href="" style="color: #666666;">머니 충전 및 출금</a><br>
@@ -206,16 +208,6 @@ crossorigin="anonymous"></script>
                     </div>
                   </div>
                   <div class="col-md-4">
-                    <div class="row" style="">
-                      <div class="col-md-12 col-xs-6 col-sm-6" style="color: #757575;">
-                        <p class="thirdh4_font font-weight-bold" style="margin-bottom: 0;">예수금</p>
-                        <p style="height: 15px;"></p>
-                      </div>
-                      <div class="col-md-12 col-xs-6 col-sm-6 font-weight-bold" style="color: #17375E; font-size: 18px;">
-                        <span id="userCash">0</span>,000 원</div>
-                    </div>
-                  </div>
-                  <div class="col-md-4">
                     <div class="row">
                       <div class="col-md-12 col-xs-6 col-sm-6" style="color: #757575;">
                         <p class="thirdh4_font font-weight-bold" style="margin-bottom: 0px;">거래대기금</p>
@@ -225,7 +217,18 @@ crossorigin="anonymous"></script>
                         <span id="waitingCash">0</span>,000 원</div>
                       </div>
                     </div> 
+                    <div class="col-md-4">
+                      <div class="row" style="">
+                        <div class="col-md-12 col-xs-6 col-sm-6" style="color: #757575;">
+                          <p class="thirdh4_font font-weight-bold" style="margin-bottom: 0;">예수금</p>
+                          <p style="height: 15px;"></p>
+                        </div>
+                        <div class="col-md-12 col-xs-6 col-sm-6 font-weight-bold" style="color: #17375E; font-size: 18px;">
+                          <span id="userCash">0</span>,000 원</div>
+                      </div>
+                    </div>
                   </div>
+                  
                   <div class="row align-items-stretch mt-3" style="padding: 30px; border: 1px solid #E5E5E5; border-radius: 1rem;">
                     <div class="col-md-4">
                       <div class="row" style="color: #757575;">
@@ -257,9 +260,14 @@ crossorigin="anonymous"></script>
                         </div>
                       </div> 
                     </div>
-                    <div class="mt-5 third_captionfont" style="color: #454545;">
+                    <div class="mt-5 third_h4font" style="color: #454545;">
                       <p class="font-weight-bold">머니 이용안내</p>
-                      <p class="mt-3"></p>
+                      <p class="mt-3 third_captionfont" style="color: #999999;">
+                        다음 두 조건이 만족한 경우 출금 불가능한 머니의 총량이 줄어든다.<br>
+                        1. 손해를 볼 경우<br>
+                        2.손해를 볼 당시의 총 자산의 양이 이벤트 머니의 2배 이상일 경우<br><br>
+                        해당 손해의 퍼센티지만큼 출금 불가능한 머니중 이벤트 머니가 줄어든다.
+                      </p>
                     </div>
             </div>  
         </div>

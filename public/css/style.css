@@ -303,7 +303,7 @@ body,
 }
 .sidebar {
   position: absolute;
-  top: 51px;
+  top: 48px;
   bottom: 0;
   left: 0;
   z-index: -1;
@@ -339,4 +339,21 @@ body,
 }
 .invisible {
   display: none;
+}
+.list-setting{
+  padding: 0px;
+   border-top: 1px solid #999999;
+}
+.list-title{
+  background-color: #F4F4F4;
+  color: #999999;
+  padding: 10px;
+  border-bottom: 1px solid #999999;
+}
+.list-content{
+  text-align: center!important;
+  padding: 10px;
+  color: #454545;
+  font-weight: 500;
+  border-bottom: 1px solid #ced4da;
 }
