@@ -16,10 +16,8 @@
   <link href="css/style.min.css" rel="stylesheet">
   <link href="css/style.css" rel="stylesheet">
   <link rel="stylesheet" href="app.css">
-  <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
-crossorigin="anonymous"></script>
-<script src='https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.1.4/Chart.bundle.min.js'></script>
-
+  <link href="css/bootstrap-datepicker3.css" rel="stylesheet">
+  <script type="text/javascript" src="js\jquery-3.4.1.min.js"></script>
   <style>
  
        
@@ -42,8 +40,9 @@ crossorigin="anonymous"></script>
     toggleNavbarMethod();  
     $(window).resize(toggleNavbarMethod);  
 }); 
-  
+
   </script>
+
 </head>
 
 
@@ -158,41 +157,55 @@ crossorigin="anonymous"></script>
                     <div class="col-md-4" >
                       <div class="row m-1" style="padding: 30px; border: 1px solid #E5E5E5; border-radius: 1rem; color: #757575;">
                         <div class="col-md-12 col-xs-6 col-sm-6 mb-2" style="">
-                          <p class="thirdh4_font font-weight-bold" style="margin-bottom: 0px;">현재 주식 가격</p>
+                          <p class="thirdh4_font font-weight-bold" style="margin-bottom: 0px;">사용가능머니</p>
                           
                         </div>
-                        <div class="col-md-12 col-xs-6 col-sm-6 font-weight-bold" style="color: #17375E; font-size: 18px;">5,000,000 원</div>
+                        <div class="col-md-12 col-xs-6 col-sm-6 font-weight-bold" style="color: #17375E; font-size: 18px;">0</div>
                       </div>
                     </div>
                     <div class="col-md-4">
                       <div class="row m-1"style="padding: 30px; border: 1px solid #E5E5E5; border-radius: 1rem;">
                         <div class="col-md-12 col-xs-6 col-sm-6 mb-2" style="color: #757575;">
-                          <p class="thirdh4_font font-weight-bold" style="margin-bottom: 0;">총 충전 가격</p>
+                          <p class="thirdh4_font font-weight-bold" style="margin-bottom: 0;">대기금</p>
                           
                         </div>
-                        <div class="col-md-12 col-xs-6 col-sm-6 font-weight-bold" style="color: #17375E; font-size: 18px;">4,000,000 원</div>
+                        <div class="col-md-12 col-xs-6 col-sm-6 font-weight-bold" style="color: #17375E; font-size: 18px;">0</div>
                       </div>
                     </div>
                     <div class="col-md-4">
                       <div class="row m-1" style="padding: 30px; border: 1px solid #E5E5E5; border-radius: 1rem;">
                         <div class="col-md-12 col-xs-6 col-sm-6 mb-2" style="color: #757575;">
-                          <p class="thirdh4_font font-weight-bold" style="margin-bottom: 0px;">손익</p>
+                          <p class="thirdh4_font font-weight-bold" style="margin-bottom: 0px;">이벤트 머니</p>
                           
                         </div>
-                        <div class="col-md-12 col-xs-6 col-sm-6 font-weight-bold" style="color: #17375E; font-size: 18px;">+25%</div>
+                        <div class="col-md-12 col-xs-6 col-sm-6 font-weight-bold" style="color: #17375E; font-size: 18px;">0</div>
                         </div>
                       </div> 
                     </div>
                     <div class="mt-5 third_h4font" style="color: #454545;">
-                      <p class="font-weight-bold">머니 이용안내</p>
-                      <p class="mt-3 third_captionfont" style="color: #999999;">
-                        다음 두 조건이 만족한 경우 출금 불가능한 머니의 총량이 줄어든다.<br>
-                        1. 손해를 볼 경우<br>
-                        2.손해를 볼 당시의 총 자산의 양이 이벤트 머니의 2배 이상일 경우<br><br>
-                        해당 손해의 퍼센티지만큼 출금 불가능한 머니중 이벤트 머니가 줄어든다.
-                      </p>
-                    </div>
-            </div>  
+                      <p class="font-weight-bold">입출금거래내역</p>
+                      <div class="row">
+                        <div class="col-md-1">
+                          <div class="form-group">
+                            <select name="" id="inputState">
+                              <option selected>오늘</option>
+                              <option>어제</option>
+                              <option>일주일 전</option>
+                              <option>1개월 전</option>
+                              <option>2개월 전</option>
+                              <option>3개월 전</option>
+                              <option>6개월 전</option>
+                            </select>
+                          </div>
+                        </div>
+                        <div class="col-md-5">
+                          <label id="whatshouldweput" for="">2020년</label>
+                        </div>
+                        <div class="col-md-2"></div>
+                        <div class="col-md-2"></div>
+                        <div class="col-md-2"></div>
+                      </div>
+                    </div>  
         </div>
     <div style="height: 100px;"></div>
   </main>
@@ -209,7 +222,7 @@ crossorigin="anonymous"></script>
 
   <!-- SCRIPTS -->
   <!-- JQuery -->
-
+  
   <script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
   <!-- Bootstrap tooltips -->
   <script type="text/javascript" src="js/popper.min.js"></script>
@@ -217,8 +230,9 @@ crossorigin="anonymous"></script>
   <script type="text/javascript" src="js/bootstrap.min.js"></script>
   <!-- MDB core JavaScript -->
   <script type="text/javascript" src="js/mdb.min.js"></script>
-  <!--내가 추가한거 될지는 모르겠음-->
-  <script type="text/javascript" src="js\userchartdata.js"></script>
+  
+  <!--Bootstrap datepicker-->
+  <script type="text/javascript" src="js/bootstrap-datepicker.js"></script>
   <!-- Initializations -->
   <script type="text/javascript">
   
