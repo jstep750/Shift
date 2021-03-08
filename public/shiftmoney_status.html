@@ -12,6 +12,7 @@
   <link href="css/bootstrap.min.css" rel="stylesheet">
   <!-- Material Design Bootstrap -->
   <link href="css/mdb.min.css" rel="stylesheet">
+
   <!-- Your custom styles (optional) -->
   <link href="css/style.min.css" rel="stylesheet">
   <link href="css/style.css" rel="stylesheet">
@@ -184,28 +185,70 @@
                     </div>
                     <div class="mt-5 third_h4font" style="color: #454545;">
                       <p class="font-weight-bold">입출금거래내역</p>
-                      <div class="row">
-                        <div class="col-md-1">
-                          <div class="form-group">
-                            <select name="" id="inputState">
-                              <option selected>오늘</option>
-                              <option>어제</option>
-                              <option>일주일 전</option>
-                              <option>1개월 전</option>
-                              <option>2개월 전</option>
-                              <option>3개월 전</option>
-                              <option>6개월 전</option>
-                            </select>
-                          </div>
-                        </div>
-                        <div class="col-md-5">
-                          <label id="whatshouldweput" for="">2020년</label>
-                        </div>
-                        <div class="col-md-2"></div>
-                        <div class="col-md-2"></div>
-                        <div class="col-md-2"></div>
+                      <div class="input-group mb-3 d-flex align-items-top justify-content-between"  style="">
+                       
+                          <select name="" id="" class="custom-select mr-1">
+                            <option selected>오늘</option>
+                            <option>어제</option>
+                            <option>일주일 전</option>
+                            <option>1개월 전</option>
+                            <option>2개월 전</option>
+                            <option>3개월 전</option>
+                            <option>6개월 전</option>
+                          </select>
+                        
+                        <label class="form-label mr-1" id="뭐늘까" for="dateselect" style="border: 1px solid #ced4da;padding: 5px; border-radius: 0.1rem; height: 37.9861px;">2000년 12월 20일 ~ 2021년 10월 18일</label>
+                        
+                          <select name="moneyoption" class="custom-select mb-3 mr-1">
+                            <option selected>전체거래</option>
+                            <option>충전</option>
+                            <option>충전취소</option>
+                            <option>출금</option>
+                            <option>충전(이벤트)</option>
+                            <option>판매</option>
+                            <option>판매취소</option>
+                            <option>구매</option>
+                            <option>구매취소</option>
+                          </select>
+                        
+                          <select name="" id="" class="custom-select">
+                            <option selected>최근거래순</option>
+                            <option>과거거래순</option>
+                            <option>금액많은순</option>
+                            <option>금액적은순</option>
+                          </select>
+                        <button class="btn btn-sm text-white" style="margin-top: 0px; margin-bottom: 15px; font-size: 14px; background-color: #17375E;">조회하기</button>
                       </div>
-                    </div>  
+                      <!--여기 이런 식으로 각 컴포넌트당 하나씩 데이터 추가해주면 될듯 list-content넣고-->
+                      <div class="row" style="font-size: 14px;">
+                        <div class="col-2 list-setting">
+                          <div class="text-center list-title">날짜</div>
+                          <div class="list-content">20.01.28</div>
+                          <div class="list-content">20.01.29</div>
+                        </div>
+                        <div class="col-2 list-setting">
+                          <div class="text-center list-title">내역</div>
+                          <div class="list-content">구매</div>
+                          <div class="list-content">충전</div>
+                        </div>
+                        <div class="col-4 list-setting">
+                          <div class="text-center list-title">상세</div>
+                          <div class="list-content">무슨무슨게임 5% 매수</div>
+                          <div class="list-content">쉬프트 머니 충전</div>
+                        </div>
+                        <div class="col-2 list-setting">
+                          <div class="text-center list-title">거래 금액</div>
+                          <div class="list-content">130,000</div>
+                          <div class="list-content">100,000</div>
+                        </div>
+                        <div class="col-2 list-setting">
+                          <div class="text-center list-title">머니 잔액</div>
+                          <div class="list-content">5,000</div>
+                          <div class="list-content">105,000</div>
+                        </div>
+                      </div>
+                    </div>
+
         </div>
     <div style="height: 100px;"></div>
   </main>
