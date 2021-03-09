@@ -1,0 +1,170 @@
+/* Required height of parents of the Half Page Carousel for proper displaying carousel itself */
+html,
+body,
+.view {
+  height: 100%; }
+
+@media (max-width: 740px) {
+  .full-page-intro {
+    height: 1000px; } }
+
+/* Half Page Carousel itself*/
+.carousel {
+  height: 50%; }
+  .carousel .carousel-inner {
+    height: 100%; }
+    .carousel .carousel-inner .carousel-item,
+    .carousel .carousel-inner .active {
+      height: 100%; }
+
+/* Adjustment for mobile devices*/
+@media (max-width: 776px) {
+  .carousel {
+    height: 100%; } }
+
+/* Navbar animation */
+.navbar {
+  background-color: rgba(0, 0, 0, 0.3); }
+
+.top-nav-collapse {
+  background-color: #1C2331; }
+
+/* Adding color to the Navbar on mobile */
+@media only screen and (max-width: 768px) {
+  .navbar {
+    background-color: #1C2331; } }
+
+/* Footer color for sake of consistency with Navbar */
+.page-footer {
+  background-color: #1C2331; }
+  .container_footer {
+    width: 100%;
+    
+    margin-right: 0;
+    margin-left: 0;
+  }
+  .container_main {
+    width: 100%;
+    padding-right: 0px;
+    padding-left: 0px;
+    margin-right: auto;
+    margin-left: auto;
+  }
+  .carousel-indicators_op {
+    position: absolute;
+    top: 10px;
+    z-index: 15;
+    display: -ms-flexbox;
+    display: flex;
+    justify-content: flex-start;
+    -ms-flex-pack: center;
+    margin-right: 15%;
+    margin-left: 15%;
+    list-style: none;
+  }
+  .carousel-indicators{
+
+  }
+  .carousel-control-prev-icon,
+.carousel-control-next-icon {
+  filter: invert(1);
+  font-size: 100px;
+  height: 100px; width: 100px; outline: black; background-size: 100%, 100%; 
+  
+}
+.carousel-control .icon-prev, 
+.carousel-control .icon-next {
+    font-size: 100px;
+}
+.carousel-control-prev,
+  .carousel-control-next {
+    width: 5vw;
+    font-size: 100px;
+    
+  }
+  
+  .grid_op{
+    display: grid;
+    height: 6px;
+    width: 80%;
+    gap: 5px;
+    grid-template-columns: repeat(6, 1fr); /*fraction의 기준은 그리드의 크기*/
+  }
+  .grid_op_4{
+    display: grid;
+    height: 6px;
+    width: 80%;
+    gap: 5px;
+    grid-template-columns: repeat(4, 1fr); /*fraction의 기준은 그리드의 크기*/
+  }
+  .st1op {
+    background-color:#598091;
+    
+  }
+  .st2op {
+    background-color:#659058;
+    
+  }
+  .st3op {
+    background-color: #B4B333;
+    
+  }
+  .st4op {
+    background-color:#EDCE37;
+    
+  }
+  .st5op {
+    background-color:#E97424;
+    
+  }
+  .st6op {
+    background-color:#CD1D27;
+    
+  }
+  .st0op{
+    background-color: #C4C4C4;
+    
+  }
+  .fill {object-fit: fill;}
+  .contain {object-fit: contain;}
+  .cover {object-fit: cover;}
+  .scale-down {object-fit: scale-down;}
+  .none {object-fit: none;}
+  .btn_height{
+    max-height: 30px;
+  }
+  .lnd_font_size{
+    font-size: 20px;
+  }
+  .text-default_op{
+    color: #333333;
+  }
+  .btn {
+    text-transform: unset !important;
+  }
+  .carousel-inner>.item {
+    -webkit-transition: 0s !important;
+    -o-transition: 0s !important;
+    transition: 0s !important;
+}
+.bgchart{
+    background-image: url("..\..\img\shift\Group 406.png");
+  }
+ @font-face{
+   font-family: 'LobsterTwo';
+   src: url("../font/Lobstertwo/LobsterTwo-Regular.ttf");
+ }
+ @media all and (min-width: 992px) {
+	.navbar .nav-item .dropdown-menu{ display: none;}
+	.navbar .nav-item:hover .nav-link{ color: #fff;  }
+	.navbar .nav-item:hover .dropdown-menu{ display: block; }
+	.navbar .nav-item .dropdown-menu{ margin-top:0; }
+  
+}
+@media  screen and (min-width: 992px) {
+  .dropdown:hover>.dropdown-menu {
+    display: block;
+    
+  }
+  
+}

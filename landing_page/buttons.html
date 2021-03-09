@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
+  <!-- Bootstrap core CSS -->
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+  <!-- Material Design Bootstrap -->
+  <link href="css/mdb.min.css" rel="stylesheet">
+  <!-- Your custom styles (optional) -->
+  <link href="css/style.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="app.css">
+  <style>
+       @media (min-width: 1500px) {
+  .container {
+    max-width: 1440px;
+  }
+}
+
+@media all and (min-width: 992px) {
+	.navbar .nav-item .dropdown-menu{ display: none; }
+	.navbar .nav-item:hover .nav-link{ color: #fff;  }
+	.navbar .nav-item:hover .dropdown-menu{ display: block; }
+	.navbar .nav-item .dropdown-menu{ margin-top:0; }
+}
+@media  screen and (min-width: 992px) {
+  .dropdown:hover>.dropdown-menu {
+    display: block;
+    
+  }
+  
+}
+  </style>
+  
+    <script>
+  $(document).ready(function() {  
+    function toggleNavbarMethod() {  
+        if ($(window).width() > 768) {  
+            $('.navbar .dropdown').on('mouseover', function(){  
+                $('.dropdown-toggle', this).trigger('click');   
+            }).on('mouseout', function(){  
+                $('.dropdown-toggle', this).trigger('click').blur();  
+            });  
+        }  
+        else {  
+            $('.navbar .dropdown').off('mouseover').off('mouseout');  
+        }  
+    }  
+    toggleNavbarMethod();  
+    $(window).resize(toggleNavbarMethod);  
+}); 
+  
+  </script>
+</head>
+
+
+
+<body >
+    <!-- Navbar -->
+    
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+      <a class="navbar-brand" href="#">Navbar</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main_nav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="main_nav">
+    <ul class="navbar-nav">
+      <li class="nav-item active"> <a class="nav-link" href="#">Home </a> </li>
+      <li class="nav-item"><a class="nav-link" href="#"> About </a></li>
+      <li class="nav-item"><a class="nav-link" href="#"> Services </a></li>
+      <li class="nav-item dropdown">
+         <a class="nav-link  dropdown-toggle" href="#" data-toggle="dropdown">  More items  </a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="#"> Submenu item 1</a></li>
+            <li><a class="dropdown-item" href="#"> Submenu item 2 </a></li>
+          </ul>
+      </li>
+    </ul>
+      </div> <!-- navbar-collapse.// -->
+    </nav>
+  <!-- Navbar -->   
+
+  <!--Main layout-->
+  <main class="mt-4 pt-4">
+    <div class="container">
+
+      <!--Section: Post-->
+      <section class="mt-0">
+
+        <!--Grid row-->
+        <div class="row justify-content-center">
+            
+          <!--Grid column-->
+          <div class="col-md-6 col-xs-12 mb-4">
+            
+            <!--Card : Dynamic content wrapper-->
+            <div class="card mb-4 text-center wow fadeIn">
+
+                <!--Card image-->
+                <div class="view overlay">
+                  <img src="https://mdbootstrap.com/img/Marketing/mdb-press-pack/mdb-angular.jpg" class="card-img-top"
+                    alt="">
+                  <a href="https://mdbootstrap.com/angular/" target="_blank">
+                    <div class="mask rgba-white-slight"></div>
+                  </a>
+                </div>
+  
+                <!--Card content-->
+                <div class="card-body">
+                  <!--Title-->
+                  <h4 class="card-title">MDB with Angular</h4>
+                  <!--Text-->
+                  <p class="card-text">Built with Angular 5, Bootstrap 4 and TypeScript. CLI version available. </p>
+                  <a href="https://mdbootstrap.com/angular/" target="_blank" class="btn btn-primary btn-md">Free download
+                    <i class="fas fa-download ml-2"></i>
+                  </a>
+                </div>
+  
+            </div>
+            <!--/.Card : Dynamic content wrapper-->
+
+            <!--Card : Dynamic content wrapper-->
+            <div class="card mb-4 text-center wow fadeIn">
+
+                <!--Card image-->
+                <div class="view overlay">
+                    <img src="https://mdbootstrap.com/img/Marketing/mdb-press-pack/mdb-vue.jpg" class="card-img-top" alt="">
+                    <a href="https://mdbootstrap.com/vue/" target="_blank">
+                    <div class="mask rgba-white-slight"></div>
+                    </a>
+                </div>
+
+                <!--Card content-->
+                <div class="card-body">
+                    <!--Title-->
+                    <h4 class="card-title">MDB with Vue</h4>
+                    <!--Text-->
+                    <p class="card-text">Based on the latest Bootstrap 4 and Vue 2.5.7. </p>
+                    <a href="https://mdbootstrap.com/vue/" target="_blank" class="btn btn-primary btn-md">Free download
+                    <i class="fas fa-download ml-2"></i>
+                    </a>
+                </div>
+  
+            </div>
+            <!--/.Card : Dynamic content wrapper-->
+
+            <!--Card : Dynamic content wrapper-->
+            <div class="card mb-4 text-center wow fadeIn">
+
+                <!--Card image-->
+                <div class="view overlay">
+                    <img src="https://mdbootstrap.com/img/Marketing/mdb-press-pack/mdb-react.jpg" class="card-img-top" alt="">
+                    <a href="https://mdbootstrap.com/react/" target="_blank">
+                    <div class="mask rgba-white-slight"></div>
+                    </a>
+                </div>
+
+                <!--Card content-->
+                <div class="card-body">
+                    <!--Title-->
+                    <h4 class="card-title">MDB with React</h4>
+                    <!--Text-->
+                    <p class="card-text">Based on the latest Bootstrap 4 and React 16. </p>
+                    <a href="https://mdbootstrap.com/react/" target="_blank" class="btn btn-primary btn-md">Free download
+                    <i class="fas fa-download ml-2"></i>
+                    </a>
+                </div>
+  
+            </div>
+            <!--/.Card : Dynamic content wrapper-->
+
+          </div>
+          <!--Grid column-->
+
+        </div>
+        <!--Grid row-->
+
+      </section>
+      <!--Section: Post-->
+
+    </div>
+  </main>
+  <!--Main layout-->
+
+  <!--Footer-->
+  <footer class="page-footer text-center font-small" style="background-color: white;">
+    <div style="height: 10px;"></div>
+    <p class="mb-3" style="color: #333333;">Copyright © 2021 Shift</p>
+    <p style="color: #333333;">상호: Shift | 대표: 김용운 | 개인정보관리책임자: 미입력 | 전화: 미입력 | 이메일: karlxyz99@korea.ac.kr</p>
+    <div style="height: 3px;"></div>
+  </footer>
+  <!--/.Footer-->
+
+  <!-- SCRIPTS -->
+  <!-- JQuery -->
+  <script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
+  <!-- Bootstrap tooltips -->
+  <script type="text/javascript" src="js/popper.min.js"></script>
+  <!-- Bootstrap core JavaScript -->
+  <script type="text/javascript" src="js/bootstrap.min.js"></script>
+  <!-- MDB core JavaScript -->
+  <script type="text/javascript" src="js/mdb.min.js"></script>
+  <!-- Initializations -->
+  <script type="text/javascript">
+  
+    // Animations initialization
+    new WOW().init();
+
+  </script>
+
+  <!-- The core Firebase JS SDK is always required and must be listed first -->
+<script src="https://www.gstatic.com/firebasejs/8.2.2/firebase-app.js"></script>
+
+<!-- TODO: Add SDKs for Firebase products that you want to use https://firebase.google.com/docs/web/setup#available-libraries -->
+<script src="https://www.gstatic.com/firebasejs/8.2.2/firebase-analytics.js"></script>
+
+<script src="https://www.gstatic.com/firebasejs/8.2.2/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.2.2/firebase-firestore.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.2.2/firebase-database.js"></script>
+
+<script>
+var firebaseConfig = {
+    apiKey: "AIzaSyCXRTprV0yWYk8YrVpopvkFM4Cv_Nmhb2g",
+    authDomain: "shift-f80bc.firebaseapp.com",
+    databaseURL: "https://shift-f80bc-default-rtdb.firebaseio.com",
+    projectId: "shift-f80bc",
+    storageBucket: "shift-f80bc.appspot.com",
+    messagingSenderId: "111516463886",
+    appId: "1:111516463886:web:f7ae7d49add43d4cc0dd5f",
+    measurementId: "G-QXHD4RJNKQ"
+};
+
+// Initialize Firebase
+firebase.initializeApp(firebaseConfig);
+
+</script>
+</body>
+
+</html>
