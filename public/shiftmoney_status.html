@@ -88,11 +88,11 @@
      <div class="navbar-nav" role="button" style="font-size: small;">
         <li class="nav-item dropdown"> <a class="nav-link font-weight-bold" data-toggle="dropdown" role="button" aria-expanded="false" href="#">회원</a>
             <ul class="dropdown-menu" style="">
-              <li><a class="dropdown-item" style="font-size: 14px;" href="#"> 마이 페이지</a></li>
-              <li><a class="dropdown-item" style="font-size: 14px;" href="#"> 마이 포트폴리오 </a></li>
+              <li><a class="dropdown-item" style="font-size: 14px;" href="mypagemain.html"> 마이 페이지</a></li>
+              <li><a class="dropdown-item" style="font-size: 14px;" href="myportfolio.html"> 마이 포트폴리오 </a></li>
               <li><a class="dropdown-item" style="font-size: 14px;" href="#"> 쉬프팅 머니 충전 </a></li>
               <li><a class="dropdown-item" style="font-size: 14px;" href="#"> 개인정보 관리 </a></li>
-              <li><a class="dropdown-item" style="font-size: 14px;" href="#"> 로그아웃 </a></li>
+              <li><a class="dropdown-item" style="font-size: 14px;" onclick="logout();"> 로그아웃 </a></li>
               <div></div>
             </ul> <!-- 이거 border 왼쪽 오른쪽 중에 뭐가 더 나은지....-->
            </li>
@@ -132,7 +132,7 @@
                 <ul class="nav nav-sidebar mt-3" style="font-size: 14px;">
                   <li class=""><div class="font-weight-bold mb-1" style="color: #454545;">개인정보</div></li>
                   <li class="pb-1" style="line-height: 1.7rem;"><a style="color: #666666;">개인정보 관리</a><br>
-                    <a href="" style="color: #666666;">로그아웃</a><br>  
+                    <a onclick="logout();" style="color: #666666;">로그아웃</a><br>  
                   </li> 
                 </ul>
                 <hr class="my-1">
@@ -143,7 +143,7 @@
                 <div class="thirdh4_font font-weight-bold" style="color: #454545;">머니 현황</div>
                 <div class="row align-items-stretch mt-3 m-1" style="padding: 30px; border: 1px solid #E5E5E5; border-radius: 1rem;">
                   <div class="col-md-7 d-flex align-items-center">
-                      <span style="color: #222222; font-size: 24px;">199,000</span>
+                      <span style="color: #222222; font-size: 24px;"><span id="addAllCash"> 0</span> 원</span>
                       <span class="thirdh4_font" style="color: #999999;">(사용가능 + 대기금 + 이벤트 머니)</span>
                   </div>
                   <div class="col-md-5">
@@ -159,27 +159,27 @@
                       <div class="row m-1" style="padding: 30px; border: 1px solid #E5E5E5; border-radius: 1rem; color: #757575;">
                         <div class="col-md-12 col-xs-6 col-sm-6 mb-2" style="">
                           <p class="thirdh4_font font-weight-bold" style="margin-bottom: 0px;">사용가능머니</p>
-                          
                         </div>
-                        <div class="col-md-12 col-xs-6 col-sm-6 font-weight-bold" style="color: #17375E; font-size: 18px;">0</div>
+                        <div class="col-md-12 col-xs-6 col-sm-6 font-weight-bold" style="color: #17375E; font-size: 18px;">
+                          <span id = userCash>0</span> 원</div>
                       </div>
                     </div>
                     <div class="col-md-4">
                       <div class="row m-1"style="padding: 30px; border: 1px solid #E5E5E5; border-radius: 1rem;">
                         <div class="col-md-12 col-xs-6 col-sm-6 mb-2" style="color: #757575;">
                           <p class="thirdh4_font font-weight-bold" style="margin-bottom: 0;">대기금</p>
-                          
                         </div>
-                        <div class="col-md-12 col-xs-6 col-sm-6 font-weight-bold" style="color: #17375E; font-size: 18px;">0</div>
+                        <div class="col-md-12 col-xs-6 col-sm-6 font-weight-bold" style="color: #17375E; font-size: 18px;">
+                          <span id = waitingCash>0</span> 원</div>
                       </div>
                     </div>
                     <div class="col-md-4">
                       <div class="row m-1" style="padding: 30px; border: 1px solid #E5E5E5; border-radius: 1rem;">
                         <div class="col-md-12 col-xs-6 col-sm-6 mb-2" style="color: #757575;">
                           <p class="thirdh4_font font-weight-bold" style="margin-bottom: 0px;">이벤트 머니</p>
-                          
                         </div>
-                        <div class="col-md-12 col-xs-6 col-sm-6 font-weight-bold" style="color: #17375E; font-size: 18px;">0</div>
+                        <div class="col-md-12 col-xs-6 col-sm-6 font-weight-bold" style="color: #17375E; font-size: 18px;">
+                          <span id = eventCash>0</span> 원</div>
                         </div>
                       </div> 
                     </div>
@@ -219,35 +219,48 @@
                           </select>
                         <button class="btn btn-sm text-white" style="margin-top: 0px; margin-bottom: 15px; font-size: 14px; background-color: #17375E;">조회하기</button>
                       </div>
-                      <!--여기 이런 식으로 각 컴포넌트당 하나씩 데이터 추가해주면 될듯 list-content넣고-->
-                      <div class="row" style="font-size: 14px;">
-                        <div class="col-2 list-setting">
+                    </div>
+
+                    <!--여기 이런 식으로 각 컴포넌트당 하나씩 데이터 추가해주면 될듯 list-content넣고-->
+                    <div class="row" style="font-size: 14px;">
+                      <div class="col-2 list-setting">
                           <div class="text-center list-title">날짜</div>
-                          <div class="list-content">20.01.28</div>
-                          <div class="list-content">20.01.29</div>
                         </div>
                         <div class="col-2 list-setting">
                           <div class="text-center list-title">내역</div>
-                          <div class="list-content">구매</div>
-                          <div class="list-content">충전</div>
                         </div>
                         <div class="col-4 list-setting">
                           <div class="text-center list-title">상세</div>
-                          <div class="list-content">무슨무슨게임 5% 매수</div>
-                          <div class="list-content">쉬프트 머니 충전</div>
                         </div>
                         <div class="col-2 list-setting">
                           <div class="text-center list-title">거래 금액</div>
-                          <div class="list-content">130,000</div>
-                          <div class="list-content">100,000</div>
                         </div>
                         <div class="col-2 list-setting">
                           <div class="text-center list-title">머니 잔액</div>
-                          <div class="list-content">5,000</div>
-                          <div class="list-content">105,000</div>
                         </div>
-                      </div>
                     </div>
+
+                    <div class="row" style="font-size: 14px;">
+                        <div class="col-2 list-setting">
+                          <div class="text-center list-content">20.01.28</div>
+                        </div>
+                        <div class="col-2 list-setting">
+                          <div class="text-center list-content">구매</div>
+                        </div>
+                        <div class="col-4 list-setting">
+                          <div class="text-center list-content">무슨무슨게임 5% 매수</div>
+                        </div>
+                        <div class="col-2 list-setting">
+                          <div class="text-center list-content">130,000</div>
+                        </div>
+                        <div class="col-2 list-setting">
+                          <div class="text-center list-content">5,000</div>
+                        </div>
+                    </div>
+
+                    <!--Content start-->
+                    <div id="content-placeholder" class="mb-5"></div>
+                    <!--Content end-->
 
         </div>
     <div style="height: 100px;"></div>
@@ -285,6 +298,30 @@
 
   </script>
 
+
+<script id="some-template" type="text/x-handlebars-template">
+  {{#contents}}
+  <div class="row" style="font-size: 14px;">
+      <div class="col-2 list-setting">
+        <div class="text-center list-content">{{date}}</div>
+      </div>
+      <div class="col-2 list-setting">
+        <div class="text-center list-content">{{type}}</div>
+      </div>
+      <div class="col-4 list-setting">
+        <div class="text-center list-content">{{message}}</div>
+      </div>
+      <div class="col-2 list-setting">
+        <div class="text-center list-content">{{price}}</div>
+      </div>
+      <div class="col-2 list-setting">
+        <div class="text-center list-content">{{left}}</div>
+      </div>
+  </div>
+  {{/contents}}
+</script>
+
+
   <!-- The core Firebase JS SDK is always required and must be listed first -->
 <script src="https://www.gstatic.com/firebasejs/8.2.2/firebase-app.js"></script>
 
@@ -294,6 +331,7 @@
 <script src="https://www.gstatic.com/firebasejs/8.2.2/firebase-auth.js"></script>
 <script src="https://www.gstatic.com/firebasejs/8.2.2/firebase-firestore.js"></script>
 <script src="https://www.gstatic.com/firebasejs/8.2.2/firebase-database.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.7.6/handlebars.min.js" integrity="sha512-zT3zHcFYbQwjHdKjCu6OMmETx8fJA9S7E6W7kBeFxultf75OPTYUJigEKX58qgyQMi1m1EgenfjMXlRZG8BXaw==" crossorigin="anonymous"></script>
 
 <script>
 var firebaseConfig = {
@@ -310,6 +348,130 @@ var firebaseConfig = {
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
 
+// 템플릿 해석
+var source   = $("#some-template").html();
+var template = Handlebars.compile(source);
+
+var db = firebase.firestore();
+var data = new Object();
+var dataArray = new Array();
+
+var temp = new Object();
+temp.date = "00.02.14";
+temp.type = "판매";
+temp.message = "안녕하세요";
+temp.price = "hello";
+temp.left = 100;
+dataArray.push(temp);
+
+/*var temp = new Object();
+temp.date = "01.12.11";
+temp.type = "출금";
+temp.message = "hello world";
+temp.price = "1,110,000";
+temp.left = "1,000";
+dataArray.push(temp);*/
+
+
+
+// Get a reference to the database service
+var database = firebase.database();
+
+firebase.auth().onAuthStateChanged(function(user) {
+    if (user) {
+      // User is signed in.
+      //alert(user.displayName+"님 로그인");
+
+      var userId = user.uid;
+
+      var messageRef = database.ref('user/'+userId+'/cash');
+      var total1 = 0;
+      messageRef.on('child_added', function(snapshot) {
+          var data = snapshot.val();
+          total1 += data;
+          var updates = {};
+          updates['user/'+userId+'/total_cash'] = total1;
+          firebase.database().ref().update(updates);    
+          document.getElementById('userCash').textContent = total1;
+          document.getElementById('addAllCash').textContent
+           = document.getElementById('waitingCash').textContent*1 + total1;
+      });
+
+      var messageRef = database.ref('user/'+userId+'/waiting_cash');
+      var total2 = 0;
+      messageRef.on('child_added', function(snapshot) {
+          var data = snapshot.val();
+          total2 += data;
+          var updates = {};
+          updates['user/'+userId+'/total_waiting_cash'] = total2;
+          firebase.database().ref().update(updates);    
+          document.getElementById('waitingCash').textContent = total2;
+          document.getElementById('addAllCash').textContent
+          = document.getElementById('userCash').textContent*1 + total2;
+      });
+
+      var messageRef = database.ref('user/'+ userId +'/deal');
+      messageRef.on('child_added', function(snapshot) {
+          var temp = new Object();
+          temp.date = snapshot.val().date;
+          temp.type = snapshot.val().type;
+          temp.message = snapshot.val().text;
+          temp.price = snapshot.val().price*snapshot.val().number;
+          temp.left = snapshot.val().left;
+          dataArray.push(temp);
+
+          data.contents = dataArray;
+          // div id=content-placeholder 에 결과 내역을 렌더링한다 
+          $("#content-placeholder").html(template(data));
+      });
+
+      //document.getElementById('email').value = user.email;
+      //console.log(user)		// 인증 후 어떤 데이터를 받아오는지 확인해보기 위함.
+      var db = firebase.firestore();
+      var flag = true;
+      var docRef = db.collection("user").doc(user.uid);
+      docRef.get().then(function(doc) {
+        if (doc.exists) {
+            console.log("Document data:", doc.data()); 
+            //window.location.href = "register_complete.html";
+        } 
+        else {
+            db.collection("user").doc(user.uid).set({
+                name: user.displayName,
+                email: user.email,
+                photoUrl: user.photoURL,
+                emailVerified: user.emailVerified,
+                account:"",
+                uid: user.uid
+            })
+            .then(function() {
+                console.log("Document successfully written!");
+                alert(user.displayName+"님 회원가입 완료");
+            })
+            .catch(function(error) {
+                console.error("Error writing document: ", error);
+            });
+        }
+      }).catch(function(error) {
+          console.log("Error getting document:", error);
+      });
+    } else {
+      // No user is signed in.
+      //alert("로그인 X");
+      //console.log(user)		// 인증 후 어떤 데이터를 받아오는지 확인해보기 위함.
+    }
+});
+
+function logout() {
+  firebase.auth().signOut().then(function() {
+    alert("로그아웃 성공");
+    window.location.href = "loginpage.html";
+  // Sign-out successful.
+  }).catch(function(error) {
+    alert("에러");
+  // An error happened.
+  });
+}
 </script>
 </body>
 
