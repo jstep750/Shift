@@ -143,7 +143,7 @@
                 <div class="thirdh4_font font-weight-bold" style="color: #454545;">머니 현황</div>
                 <div class="row align-items-stretch mt-3 m-1" style="padding: 30px; border: 1px solid #E5E5E5; border-radius: 1rem;">
                   <div class="col-md-7 d-flex align-items-center">
-                      <span style="color: #222222; font-size: 24px;">199,000</span>
+                      <span style="color: #222222; font-size: 24px;"><span id="addAllCash"> 0</span> 원</span>
                       <span class="thirdh4_font" style="color: #999999;">(사용가능 + 대기금 + 이벤트 머니)</span>
                   </div>
                   <div class="col-md-5">
@@ -393,8 +393,8 @@ firebase.auth().onAuthStateChanged(function(user) {
           updates['user/'+userId+'/total_cash'] = total1;
           firebase.database().ref().update(updates);    
           document.getElementById('userCash').textContent = total1;
-          //document.getElementById('addCash').textContent
-          // = document.getElementById('waitingCash').textContent*1 + total1;
+          document.getElementById('addAllCash').textContent
+           = document.getElementById('waitingCash').textContent*1 + total1;
       });
 
       var messageRef = database.ref('user/'+userId+'/waiting_cash');
@@ -406,9 +406,8 @@ firebase.auth().onAuthStateChanged(function(user) {
           updates['user/'+userId+'/total_waiting_cash'] = total2;
           firebase.database().ref().update(updates);    
           document.getElementById('waitingCash').textContent = total2;
-          //document.getElementById('impossibleCash').textContent = 10 + total2;
-          //document.getElementById('addCash').textContent
-          //= document.getElementById('cash').textContent*1 + total2;
+          document.getElementById('addAllCash').textContent
+          = document.getElementById('userCash').textContent*1 + total2;
       });
 
       var messageRef = database.ref('user/'+ userId +'/deal');
