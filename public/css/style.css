@@ -357,3 +357,10 @@ body,
   font-weight: 500;
   border-bottom: 1px solid #ced4da;
 }
+.mypage-active{
+  color: #17375E;
+  font-weight: 700;
+}
+.font-12{
+  font-size: 12px!important;
+}

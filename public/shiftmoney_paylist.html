@@ -88,8 +88,8 @@
      <div class="navbar-nav" role="button" style="font-size: small;">
         <li class="nav-item dropdown"> <a class="nav-link font-weight-bold" data-toggle="dropdown" role="button" aria-expanded="false" href="#">회원</a>
             <ul class="dropdown-menu" style="">
-              <li><a class="dropdown-item" style="font-size: 14px;" href="#"> 마이 페이지</a></li>
-              <li><a class="dropdown-item" style="font-size: 14px;" href="#"> 마이 포트폴리오 </a></li>
+              <li><a class="dropdown-item" style="font-size: 14px;" href="mypagemain.html"> 마이 페이지</a></li>
+              <li><a class="dropdown-item" style="font-size: 14px;" href="myportfolio.html"> 마이 포트폴리오 </a></li>
               <li><a class="dropdown-item" style="font-size: 14px;" href="#"> 쉬프팅 머니 충전 </a></li>
               <li><a class="dropdown-item" style="font-size: 14px;" href="#"> 개인정보 관리 </a></li>
               <li><a class="dropdown-item" style="font-size: 14px;" href="#"> 로그아웃 </a></li>
@@ -122,16 +122,16 @@
                   <li class="" style="line-height: 1.7rem;">
                     <a class="" style="color: #666666;" href="shiftmoney_status.html">머니 현황</a><br>
                     <a class="font-weight-bold" href="shiftmoney_paylist.html" style="color: #17375E;">납부 예정 내역</a><br>
-                    <a href="" style="color: #666666;">세금 조회</a><br>
-                    <a href="" style="color: #666666;">머니 충전 및 출금</a><br>
-                    <a href="" style="color: #666666;">유저 마켓 신청 현황</a><br>
+                    <a href="shiftmoney_tax.html" style="color: #666666;">세금 조회</a><br>
+                    <a href="shiftmoney_depowith.html" style="color: #666666;">머니 충전 및 출금</a><br>
+                    <a href="shiftmoney_usermarket.html" style="color: #666666;">유저 마켓 신청 현황</a><br>
                     
                   </li>
                   
                 </ul>
                 <ul class="nav nav-sidebar mt-3" style="font-size: 14px;">
                   <li class=""><div class="font-weight-bold mb-1" style="color: #454545;">개인정보</div></li>
-                  <li class="pb-1" style="line-height: 1.7rem;"><a style="color: #666666;">개인정보 관리</a><br>
+                  <li class="pb-1" style="line-height: 1.7rem;"><a style="color: #666666;" href="private_admin.html">개인정보 관리</a><br>
                     <a href="" style="color: #666666;">로그아웃</a><br>  
                   </li> 
                 </ul>
@@ -140,109 +140,31 @@
             </div>
             <div class="col-sm-12 main mt-4">
                 <h1 class="page-header mt-5 thirdh3_font mb-5 font-weight-bold">납부 예정 내역</h1>
-                <div class="thirdh4_font font-weight-bold" style="color: #454545;">머니 현황</div>
-                <div class="row align-items-stretch mt-3 m-1" style="padding: 30px; border: 1px solid #E5E5E5; border-radius: 1rem;">
-                  <div class="col-md-7 d-flex align-items-center">
-                      <span style="color: #222222; font-size: 24px;">199,000</span>
-                      <span class="thirdh4_font" style="color: #999999;">(사용가능 + 대기금 + 이벤트 머니)</span>
-                  </div>
-                  <div class="col-md-5">
-                      <div class="row d-flex justify-content-flex-start">
-                            <a href="" class="btn btn-rounded text-white" style="background-color: #FF5959; border-radius: 0.5rem;">머니 충전</a>  
-                            <a href="" class="btn text-white" style="background-color: #3449BA; border-radius: 0.5rem;">머니 출금</a>
-     
-                      </div>
-                    </div>
-                </div>
-                <div class="row align-items-stretch mt-3">
-                    <div class="col-md-4" >
-                      <div class="row m-1" style="padding: 30px; border: 1px solid #E5E5E5; border-radius: 1rem; color: #757575;">
-                        <div class="col-md-12 col-xs-6 col-sm-6 mb-2" style="">
-                          <p class="thirdh4_font font-weight-bold" style="margin-bottom: 0px;">사용가능머니</p>
-                          
-                        </div>
-                        <div class="col-md-12 col-xs-6 col-sm-6 font-weight-bold" style="color: #17375E; font-size: 18px;">0</div>
-                      </div>
-                    </div>
-                    <div class="col-md-4">
-                      <div class="row m-1"style="padding: 30px; border: 1px solid #E5E5E5; border-radius: 1rem;">
-                        <div class="col-md-12 col-xs-6 col-sm-6 mb-2" style="color: #757575;">
-                          <p class="thirdh4_font font-weight-bold" style="margin-bottom: 0;">대기금</p>
-                          
-                        </div>
-                        <div class="col-md-12 col-xs-6 col-sm-6 font-weight-bold" style="color: #17375E; font-size: 18px;">0</div>
-                      </div>
-                    </div>
-                    <div class="col-md-4">
-                      <div class="row m-1" style="padding: 30px; border: 1px solid #E5E5E5; border-radius: 1rem;">
-                        <div class="col-md-12 col-xs-6 col-sm-6 mb-2" style="color: #757575;">
-                          <p class="thirdh4_font font-weight-bold" style="margin-bottom: 0px;">이벤트 머니</p>
-                          
-                        </div>
-                        <div class="col-md-12 col-xs-6 col-sm-6 font-weight-bold" style="color: #17375E; font-size: 18px;">0</div>
-                        </div>
-                      </div> 
-                    </div>
-                    <div class="mt-5 third_h4font" style="color: #454545;">
-                      <p class="font-weight-bold">입출금거래내역</p>
-                      <div class="input-group mb-3 d-flex align-items-top justify-content-between"  style="">
-                       
-                          <select name="" id="" class="custom-select mr-1">
-                            <option selected>오늘</option>
-                            <option>어제</option>
-                            <option>일주일 전</option>
-                            <option>1개월 전</option>
-                            <option>2개월 전</option>
-                            <option>3개월 전</option>
-                            <option>6개월 전</option>
-                          </select>
-                        
-                        <label class="form-label mr-1" id="뭐늘까" for="dateselect" style="border: 1px solid #ced4da;padding: 5px; border-radius: 0.1rem; height: 37.9861px;">2000년 12월 20일 ~ 2021년 10월 18일</label>
-                        
-                          <select name="moneyoption" class="custom-select mb-3 mr-1">
-                            <option selected>전체거래</option>
-                            <option>충전</option>
-                            <option>충전취소</option>
-                            <option>출금</option>
-                            <option>충전(이벤트)</option>
-                            <option>판매</option>
-                            <option>판매취소</option>
-                            <option>구매</option>
-                            <option>구매취소</option>
-                          </select>
-                        
-                          <select name="" id="" class="custom-select">
-                            <option selected>최근거래순</option>
-                            <option>과거거래순</option>
-                            <option>금액많은순</option>
-                            <option>금액적은순</option>
-                          </select>
-                        <button class="btn btn-sm text-white" style="margin-top: 0px; margin-bottom: 15px; font-size: 14px; background-color: #17375E;">조회하기</button>
-                      </div>
-                      <!--여기 이런 식으로 각 컴포넌트당 하나씩 데이터 추가해주면 될듯 list-content넣고-->
+                
+                      
                       <div class="row" style="font-size: 14px;">
                         <div class="col-2 list-setting">
-                          <div class="text-center list-title">날짜</div>
+                          <div class="text-center list-title">일자</div>
                           <div class="list-content">20.01.28</div>
                           <div class="list-content">20.01.29</div>
                         </div>
                         <div class="col-2 list-setting">
-                          <div class="text-center list-title">내역</div>
+                          <div class="text-center list-title">구분</div>
                           <div class="list-content">구매</div>
                           <div class="list-content">충전</div>
                         </div>
                         <div class="col-4 list-setting">
-                          <div class="text-center list-title">상세</div>
+                          <div class="text-center list-title">내역</div>
                           <div class="list-content">무슨무슨게임 5% 매수</div>
                           <div class="list-content">쉬프트 머니 충전</div>
                         </div>
                         <div class="col-2 list-setting">
-                          <div class="text-center list-title">거래 금액</div>
+                          <div class="text-center list-title">금액</div>
                           <div class="list-content">130,000</div>
                           <div class="list-content">100,000</div>
                         </div>
                         <div class="col-2 list-setting">
-                          <div class="text-center list-title">머니 잔액</div>
+                          <div class="text-center list-title">취소</div>
                           <div class="list-content">5,000</div>
                           <div class="list-content">105,000</div>
                         </div>
