@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>마이페이지-Shift</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
+  <!-- Bootstrap core CSS -->
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+  <!-- Material Design Bootstrap -->
+  <link href="css/mdb.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="css\mdb.min_5.css">
+  <!-- Your custom styles (optional) -->
+  <link href="css/style.min.css" rel="stylesheet">
+  <link href="css/style.css" rel="stylesheet">
+  <link rel="stylesheet" href="app.css">
+  <link href="css/bootstrap-datepicker3.css" rel="stylesheet">
+  <script type="text/javascript" src="js\jquery-3.4.1.min.js"></script>
+  <style>
+ 
+    a.active.nav-link{color: #17375E!important;border-bottom: 1px solid #17375E!important;}
+    table th{
+      font-size: 12px;
+    } 
+    table td{
+      font-size: 12px;
+    } 
+    .form-check-input[type=checkbox]:checked {
+    background-image: none;
+    background-color: #17375E!important;
+    }
+    .form-check-input:checked {
+    border-color: #17375E!important;
+    
+    }
+    .form-check-input[type=radio]:checked:after {
+        background-color: #17375E;
+    }
+  </style>
+  
+    <script>
+  $(document).ready(function() {  
+    function toggleNavbarMethod() {  
+        if ($(window).width() > 768) {  
+            $('.navbar .dropdown').on('mouseover', function(){  
+                $('.dropdown-toggle', this).trigger('click');   
+            }).on('mouseout', function(){  
+                $('.dropdown-toggle', this).trigger('click').blur();  
+            });  
+        }  
+        else {  
+            $('.navbar .dropdown').off('mouseover').off('mouseout');  
+        }  
+    }  
+    toggleNavbarMethod();  
+    $(window).resize(toggleNavbarMethod);  
+}); 
+
+  </script>
+
+</head>
+
+
+
+<body >
+    <!-- Navbar -->
+    
+    <nav class="navbar fixed-top bg-white navbar-expand-lg navbar-light white scrolling-navbar">
+      <div class="container">
+        <a class="navbar-brand mr-5" href="#" target="_blank">
+          <img
+          src="img\shift\shift_logo.png"
+          height="30"
+          alt=""
+          loading="lazy"
+          width="50vw"
+        />
+        </a>
+      
+       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main_nav">
+         <span class="navbar-toggler-icon"></span>
+       </button>
+       <div class="collapse navbar-collapse" id="main_nav">
+     
+     <ul class="navbar-nav mr-auto">
+       <li class="nav-item dropdown"> <a class="nav-link font-weight-bold" data-toggle="dropdown" role="button" aria-expanded="false" href="#">쉬프트란</a>
+        <ul class="dropdown-menu" style="">
+          <li><a class="dropdown-item" style="font-size: 14px;" href="instruct_user.html"> 서비스 소개</a></li>
+          
+        </ul> <!-- 이거 border 왼쪽 오른쪽 중에 뭐가 더 나은지....-->
+       </li>
+       <li class="nav-item dropdown"><a class="nav-link font-weight-bold" data-toggle="dropdown" role="button" aria-expanded="false" href="#">옥션</a>
+        <ul class="dropdown-menu">
+          <li><a class="dropdown-item" href="#"> 진행중 옥션</a></li>
+          <li><a class="dropdown-item" href="#"> 대기중 옥션 </a></li>
+          <div></div>
+        </ul>
+      </li>
+      
+       
+     </ul>
+     <div class="navbar-nav" role="button" style="font-size: small;">
+        <li class="nav-item dropdown"> <a class="nav-link font-weight-bold" data-toggle="dropdown" role="button" aria-expanded="false" href="#">회원</a>
+            <ul class="dropdown-menu" style="">
+              <li><a class="dropdown-item" style="font-size: 14px;" href="mypagemain.html"> 마이 페이지</a></li>
+              <li><a class="dropdown-item" style="font-size: 14px;" href="myportfolio.html"> 마이 포트폴리오 </a></li>
+              <li><a class="dropdown-item" style="font-size: 14px;" href="#"> 쉬프팅 머니 충전 </a></li>
+              <li><a class="dropdown-item" style="font-size: 14px;" href="#"> 개인정보 관리 </a></li>
+              <li><a class="dropdown-item" style="font-size: 14px;" href="#"> 로그아웃 </a></li>
+              <div></div>
+            </ul> <!-- 이거 border 왼쪽 오른쪽 중에 뭐가 더 나은지....-->
+           </li>
+       <a type="" class="nav-item nav-link mr-1" style="padding-left: 6px;" href="#">고객센터</a>
+       <a class="btn-lg" style="color: #B1B1B1; padding: 2px; padding-left: 6px;" role="button" href="#"><i class="far fa-bell"></i></a>
+     </div>
+       </div> <!-- navbar-collapse.// -->
+      </div>
+      
+     </nav>
+  <!-- Navbar -->   
+
+  <!--Main layout-->
+  <main class="mt-4 pt-4">
+    <div class="container mt-4" style="position: relative; min-height: 100vh; background-color: #fff;">
+        <div class="row">
+            <div class="sidebar">
+                <ul class="nav nav-sidebar">
+                    <li class="font-weight-bold" style="font-size: 24px;color: #454545;margin-bottom: 80px;">마이페이지</li>
+                    <li class="mb-2"><a href="mypagemain.html" style="color: #222222;">마이페이지 홈</a></li>
+                    <li class="pb-1" style=""><a href="myportfolio.html" style="color: #454545;">마이 포트폴리오</a></li>
+                  
+                </ul>
+                <hr class="my-1">
+                <ul class="nav nav-sidebar mt-3" style="font-size: 14px;">
+                  <li class=""><div class="font-weight-bold mb-1" style="color: #454545;">마이 포트폴리오</div></li>
+                  <li class="" style="line-height: 1.7rem;">
+                    <a class="" style="color: #666666;" href="shiftmoney_status.html">머니 현황</a><br>
+                    <a class="" href="shiftmoney_paylist.html" style="color: #666666;">납부 예정 내역</a><br>
+                    <a href="shiftmoney_tax.html" style="color: #666666;">세금 조회</a><br>
+                    <a class="mypage-active" href="shiftmoney_depowith.html" >머니 충전 및 출금</a><br>
+                    <a href="shiftmoney_usermarket.html" style="color: #666666;">유저 마켓 신청 현황</a><br>
+                    
+                  </li>
+                  
+                </ul>
+                <ul class="nav nav-sidebar mt-3" style="font-size: 14px;">
+                  <li class=""><div class="font-weight-bold mb-1" style="color: #454545;">개인정보</div></li>
+                  <li class="pb-1" style="line-height: 1.7rem;"><a style="color: #666666;" href="private_admin.html">개인정보 관리</a><br>
+                    <a onclick="logout();" href="" style="color: #666666;">로그아웃</a><br>  
+                  </li> 
+                </ul>
+                <hr class="my-1">
+
+            </div>
+            <div class="col-sm-12 main mt-4">
+                <h1 class="page-header mt-5 thirdh3_font mb-5 font-weight-bold">머니 충전 및 출금</h1>
+                
+                   
+                    <ul class="nav nav-tabs mb-3 d-flex justify-content-center" id="ex1" role="tablist" style="border-bottom: 1px solid #B1B1B1;">
+                        <li class="nav-item" role="presentation" style="max-width: 33%;">
+                          <a
+                            class="nav-link active text-center"
+                            id="ex1-tab-1"
+                            data-toggle="tab"
+                            data-mdb-toggle="tab"
+                            href="#ex1-tabs-1"
+                            role="tab"
+                            aria-controls="ex1-tabs-1"
+                            aria-selected="true"
+                            style="font-size: 16px; font-weight: 900;"
+                            >머니충전</a
+                          >
+                        </li>
+                        <li class="nav-item" role="presentation" style="max-width: 33%;">
+                          <a
+                            class="nav-link text-center"
+                            id="ex1-tab-2"
+                            data-mdb-toggle="tab"
+                            data-toggle="tab"
+                            href="#ex1-tabs-2"
+                            role="tab"
+                            aria-controls="ex1-tabs-2"
+                            aria-selected="false"
+                            style="font-size: 16px; font-weight: 900;"
+                            >머니 출금</a
+                          >
+                          
+                        </li>
+                        <li class="nav-item" role="presentation" style="max-width: 33%;">
+                            <a
+                              class="nav-link text-center"
+                              id="ex1-tab-1"
+                              data-toggle="tab"
+                              data-mdb-toggle="tab"
+                              href="#ex1-tabs-3"
+                              role="tab"
+                              aria-controls="ex1-tabs-3"
+                              aria-selected="false"
+                              style="font-size: 16px; font-weight: 900;"
+                              >머니상품권</a
+                            >
+                          </li>
+                      </ul>
+                
+                
+                  <!-- Tabs navs -->
+                  
+                  <!-- Tabs content -->
+                  <div class="tab-content" id="ex1-content">
+                    <div
+                      class="tab-pane fade show active"
+                      id="ex1-tabs-1"
+                      role="tabpanel"
+                      aria-labelledby="ex1-tab-1"
+                    >
+                    <div class="container">
+                        <div class="row d-flex justify-content-center">
+                            <div class="col-md-5 mt-5">
+                                <p>현재 잔액: <span class="font-weight-bold" style="color: #17375E;">
+                                    <!--여기에 현재 잔액--><span id="">{0}</span>머니</span></p>
+                                <p class="mt-5 font-weight-bold" style="color: #454545;">충전 금액</p>
+                                <div class="form-group text-left font-weight-bold">
+                                    <input type="price" class="form-control" id="" 
+                                    style="border:none; border-bottom: 1px solid grey; border-radius: 0;" placeholder="금액을 입력해주세요(1만원 이상)">
+                                </div>
+                                <div class="row mt-4" style="padding: 0px 12px 0px 12px;">
+                                    <div class="col-md-3 col-6" style="padding: 0;">
+                                        <div class="btn btn-block" style="border: 1px solid grey;font-size: 14px;padding-left: 0px;padding-right: 0px;">+1만원</div>
+                                    </div>
+                                    <div class="col-md-3 col-6" style="padding: 0;">
+                                        <div class="btn btn-block" style="border: 1px solid grey;font-size: 14px;padding-left: 0px;padding-right: 0px;">+10만원</div>
+                                    </div>
+                                    <div class="col-md-3 col-6" style="padding: 0;">
+                                        <div class="btn btn-block" style="border: 1px solid grey;font-size: 14px;padding-left: 0px;padding-right: 0px;">+100만원</div>
+                                    </div>
+                                    <div class="col-md-3 col-6" style="padding: 0;">
+                                        <div class="btn btn-block" style="border: 1px solid grey;font-size: 14px;padding-left: 0px;padding-right: 0px;">+1000만원</div>
+                                    </div>
+                                </div>
+                                <div class="d-flex justify-content-between mt-4" style="border-radius: 0.25rem;border:1px solid #999999;padding: 12px;">
+                                    <span class="ml-2" style="color: #454545;">충전 후 잔액</span>
+                                    <span class="font-weight-bold mr-2" style="color: #17375E; font-size: 18px;">
+                                        <span id="">{0}</span>머니
+                                    </span>
+                                </div>
+                                <p class="font-weight-bold mt-5" style="color: #454545;">충전 수단</p>
+                                <div class="" style="border: 1px solid #999999;padding: 12px;border-radius: 0.25rem;">
+                                    <div class="ml-4 text-left">
+                                    <input type="radio" name="TK" class="form-check-input mr-2" id="" value="option1" checked>
+                                    <label style="font-weight: 700;color: #17375E;margin: 2px 0px 2px 0px;">TOSS</label>
+                                </div></div>
+                                <div class="mt-3" style="border: 1px solid #999999;padding: 12px;border-radius: 0.25rem;">
+                                    <div class="ml-4 text-left">
+                                    <input type="radio" name="TK" class="form-check-input mr-2" id="" value="option2">
+                                    <label style="font-weight: 700;color: #17375E;margin: 2px 0px 2px 0px;">Kakao Pay</label>
+                                </div></div>
+                                <div class="btn btn-block text-white font-weight-bold pt-3 pb-3" style="background-color: #17375E;font-size: 16px;border-radius: 0.5rem;">
+                                    캐쉬 충전
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    </div>
+                    <!--tab1 content-->
+                    <div class="tab-pane fade" id="ex1-tabs-2" role="tabpanel" aria-labelledby="ex1-tab-2">
+                      <div class="container">
+                        <div class="row d-flex justify-content-center">
+                            <div class="col-md-5 mt-5">
+                                <p>출금 가능: <span class="font-weight-bold" style="color: #17375E;">
+                                    <!--여기에 현재 잔액--><span id="">{0}</span>머니</span>
+                                    <span style="font-size: 12px;color: #999999;">(대기금 제외)</span></p>
+                                    <div class="d-flex mt-4" style="border-radius: 0.25rem;border:1px solid #999999;padding: 12px;justify-content: space-between;">
+                                        <span class="ml-2" style="font-size: 12px; color: #17375E;">충전계좌</span>
+                                        <span class="font-weight-bold" style="color: #999999; font-size: 12px;">
+                                            <span id="">{하나은행}</span><span id="">{427190********}</span>
+                                        </span>
+                                        
+                                    </div>
+                                    <div class="row mt-3" style="
+                                    border: 1px solid #999999;
+                                    margin: 0px;
+                                    border-top-left-radius: 0.25rem;
+                                    border-top-right-radius: 0.25rem;
+                                    padding: 12px;">
+                                        <div class="col-6" style="font-size: 12px;color: #999999;">
+                                            출금액
+                                        </div>
+                                        <div class="col-6 text-right" style="font-size: 12px;color: #999999;">
+                                            + 수수료 {0}원
+                                        </div>
+                                        <div class="col-6 mt-2" style="font-size: 20px;color: #999999;">
+                                            금액을 입력해주세요
+                                        </div>
+                                        <div class="col-6 mt-2 text-right font-weight-bold" style="color: #17375E;font-size: 18px;">
+                                            원
+                                        </div>
+                                        
+                                    </div>
+                                    <div class="row" style="
+                                    border: 1px solid #999999;
+                                    margin: 0px;
+                                    border-bottom-right-radius: 0.25rem;
+                                    border-bottom-left-radius: 0.25rem;
+                                    padding: 12px;
+                                    background-color: #F7F7F7;">
+                                        <div class="col-6 mt-2 font-weight-bold" style="color: #17375E;font-size: 18px;">
+                                            <div style="font-size: 12px;color: #454545;">출금 후 잔액</div>
+                                            <div style="font-size: 10px;color: #999999;">출금액+수수료</div>
+                                        </div>
+                                        <div class="col-6 mt-2 text-right font-weight-bold" style="color: #17375E;font-size: 18px;">
+                                            <span>{0}</span>머니
+                                        </div>
+                                    </div>
+                                  <p class="mt-4 font-weight-bold">출금 시 주의사항</p> 
+                                  <p class="mt-3" style="color: #17375E;font-size: 14px;">
+                                    -출금 신청 금액은 사용불가하며, 신청 후 다음 영업일 15시부터 순차적으로 처리됩니다.
+                                  </p>
+                                  <p style="font-size: 14px;line-height: 2rem;">-10,000원 미만 출금 시 500원 수수료 발생 (월 2회 무료)<br>
+                                    </p>
+                                    <p style="font-size: 14px;">
+                                      -해외송금에서 발생하는 수수료에는 송금은행의 송금수수료, 전신료, 결재은행수수료, 입금은행 취급수수료
+                                      등이 있습니다.</p>
+                                      <div class="btn btn-block text-white font-weight-bold pt-3 pb-3" style="background-color: #17375E;font-size: 16px;border-radius: 0.5rem;">
+                                        캐쉬 출금
+                                    </div>
+                                  
+                            </div>
+                        </div>
+                      </div>
+                    </div>
+                    <!--tab2 content-->
+                    <div
+                      class="tab-pane fade show"
+                      id="ex1-tabs-3"
+                      role="tabpanel"
+                      aria-labelledby="ex1-tab-3"
+                    >
+                    <div class="container">
+                      <div class="row d-flex justify-content-center">
+                        <div class="col-md-5 mt-5">
+                          
+                          <div class="form-group text-left font-weight-bold">
+                            <label for="coupon">쿠폰 번호</label>
+                            <form autocomplete="off">
+                              <div class="input-group mb-3 mt-3">
+                                <input type="text" class="form-control" id="userID" placeholder="머니상품권 번호를 입력해주세요">
+                                  <div class="input-group-append">
+                                      <a type="button" class="btn btn-sm text-white font-weight-bold" 
+                                      style="
+                                      align-content: center;
+                                      margin: 0px;
+                                      background-color: #17375E;
+                                      font-size: 13px;
+                                      border-top-right-radius: 0.5rem;
+                                      border-bottom-right-radius: 0.5rem;
+                                      " id="" onclick="">쿠폰인증</a><!--쿠폰 인증하면 밑에 쿠폰 금액에 금액 써지는듯?-->
+                                  </div>
+                              </div>
+                            </form>
+                                                                    
+                          </div>
+                          <div class="mt-5">
+                            <p>쿠폰 금액</p>
+                            <div class="text-right font-weight-bold" style="border-bottom: 1px solid #B1B1B1;color: #17375E;"><span>{0}</span>원</div>
+                          </div>
+                          <div class="btn btn-block text-white font-weight-bold pt-3 pb-3" style="background-color: #17375E;font-size: 16px;border-radius: 0.5rem;">
+                            머니 충전
+                        </div>
+                        <p class="mt-5 font-weight-bold" style="color: #454545;">머니상품권 이용 안내</p>
+                        <p style="font-size: 14px;color: #666666;line-height: 1.5rem;">
+                          -발행된 머니상품권 번호는 1회만 등록 가능합니다.<br>
+                          -가입 후 본인인증한 회원만 머니상품권 등록이 가능합니다.<br>
+                          -본 머니상품권은 쉬프트 홈페이지 내에서만 사용 가능합니다.
+                        </p>
+                        </div>
+                          </div>
+
+                    </div>
+                </div>
+                   
+                  </div>
+                  <!-- Tabs content -->
+                      
+        </div>
+   
+  </main>
+  <!--Main layout-->
+
+  <!--Footer-->
+  <footer class="page-footer text-center font-small" style="background-color: white; border-top: 1px solid grey;">
+    <div style="height: 10px;"></div>
+    <p class="mb-3" style="color: #333333;">Copyright © 2021 Shift</p>
+    <p style="color: #333333;">상호: Shift | 대표: 김용운 | 개인정보관리책임자: 미입력 | 전화: 미입력 | 이메일: karlxyz99@korea.ac.kr</p>
+    <div style="height: 3px;"></div>
+  </footer>
+  <!--/.Footer-->
+
+  <!-- SCRIPTS -->
+  <!-- JQuery -->
+  
+  <script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
+  <!-- Bootstrap tooltips -->
+  <script type="text/javascript" src="js/popper.min.js"></script>
+  <!-- Bootstrap core JavaScript -->
+  <script type="text/javascript" src="js/bootstrap.min.js"></script>
+  <!-- MDB core JavaScript -->
+  <script type="text/javascript" src="js/mdb.min.js"></script>
+  
+  <!--Bootstrap datepicker-->
+  <script type="text/javascript" src="js/bootstrap-datepicker.js"></script>
+  <!-- Initializations -->
+  <script type="text/javascript">
+  
+  
+    // Animations initialization
+    new WOW().init();
+
+  </script>
+
+  <!-- The core Firebase JS SDK is always required and must be listed first -->
+<script src="https://www.gstatic.com/firebasejs/8.2.2/firebase-app.js"></script>
+
+<!-- TODO: Add SDKs for Firebase products that you want to use https://firebase.google.com/docs/web/setup#available-libraries -->
+<script src="https://www.gstatic.com/firebasejs/8.2.2/firebase-analytics.js"></script>
+
+<script src="https://www.gstatic.com/firebasejs/8.2.2/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.2.2/firebase-firestore.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.2.2/firebase-database.js"></script>
+
+<script>
+var firebaseConfig = {
+    apiKey: "AIzaSyCXRTprV0yWYk8YrVpopvkFM4Cv_Nmhb2g",
+    authDomain: "shift-f80bc.firebaseapp.com",
+    databaseURL: "https://shift-f80bc-default-rtdb.firebaseio.com",
+    projectId: "shift-f80bc",
+    storageBucket: "shift-f80bc.appspot.com",
+    messagingSenderId: "111516463886",
+    appId: "1:111516463886:web:f7ae7d49add43d4cc0dd5f",
+    measurementId: "G-QXHD4RJNKQ"
+};
+
+// Initialize Firebase
+firebase.initializeApp(firebaseConfig);
+
+</script>
+</body>
+
+</html>
