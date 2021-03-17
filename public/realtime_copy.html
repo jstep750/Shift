@@ -328,7 +328,7 @@ function buyGame() {
                 var sellNum = 0;
                 var dealNum = 0;
                 var gNum = number.value*1; // 신청 개수
-                var buyNum = gNum;   //미채결개수
+                var buyNum = gNum;   //미체결개수
                 var updates = {};
                 var message = "게임 "+gName+" / 가격 "+gPrice+" / 개수 +"+(gNum-buyNum)+" / 대기금 "+buyNum*gPrice;
                 console.log(message);
@@ -347,19 +347,19 @@ function buyGame() {
                             console.log("sellNum:"+sellNum);
                             console.log("seller:"+snapshot2.val().user);
                            
-                            if(sellNum > gNum){ // sell이 더 많아서 미채결(buy)x (gNum 모두 deal)
+                            if(sellNum > gNum){ // sell이 더 많아서 미체결(buy)x (gNum 모두 deal)
                                 buyNum = 0; 
                                 dealNum = gNum;
                                 sellNum = sellNum - gNum;
                                 updates['game/' + gName + '/sell/' + snapshot2.key +'/number'] = sellNum;  //sellnum 업데이트
                             }
-                            else if(sellNum < gNum){ // sell만큼 deal, 나머지 미채결 O (buy)
-                                buyNum = gNum - sellNum;    //미채결 수 = 신청 개수 - 파는 수
+                            else if(sellNum < gNum){ // sell만큼 deal, 나머지 미체결 O (buy)
+                                buyNum = gNum - sellNum;    //미체결 수 = 신청 개수 - 파는 수
                                 dealNum = sellNum;
                                 sellNum = 0;
                                 updates['game/' + gName + '/sell/' + snapshot2.key] = null;  //sellnum 업데이트
                             }
-                            else{   //sell만큼 deal, 미채결(buy)x
+                            else{   //sell만큼 deal, 미체결(buy)x
                                 buyNum = 0;
                                 dealNum = sellNum;
                                 sellNum = 0;
@@ -374,10 +374,11 @@ function buyGame() {
                             alert(message);
                             console.log(message);
 
-                            var addDeal = { user: userId, 
-                                price: gPrice,
-                                number : dealNum,
-                                text: message };
+                            var addDeal = { buyer: userId,
+                                            seller: snapshot2.val().user, 
+                                            price: gPrice,
+                                            number : dealNum,
+                                            text: message };
 
                             var addUserDeal = { game: gName, 
                                                 price: gPrice,
@@ -400,9 +401,6 @@ function buyGame() {
                             var addMessage = { 
                                 text: message };
                             updates['message/' + uuid] = addMessage;
-                            //game_buy(add)0, game_deal(add)0, game_sell(update)0
-                            //user_cash(update)0, user_deal(add)0, user_waiting_cash(update)0, user_waiting_buy(add)0
-                            //seller_cash(update)0, seller_deal(add)0, seller_waiting_cash(update)0, seller_waiting_sell(update)0
 
                             seller.push({uid: uuid, game: gName, seller: snapshot2.val().user, key: snapshot2.key, number: dealNum, price: gPrice});
                             for(i in seller){
@@ -466,13 +464,13 @@ function buyGame() {
                             }
                             number.value = "";
                             alert("update 완료!");
-                            gNum = buyNum;  //신청수 <= 미채결수
+                            gNum = buyNum;  //신청수 <= 미체결수
                         }
                     });
                 }
                 if(gNum > 0){ //미체결(sellx->dealx / buy만)
                     var uuid = guid();
-                    buyNum = gNum;    //미채결 수 = 신청 개수 - 파는 수
+                    buyNum = gNum;    //미체결 수 = 신청 개수 - 파는 수
                     dealNum = 0;
                     sellNum = 0;
                     message = "게임 "+gName+" / 가격 "+gPrice+" / 대기 +"+buyNum +" / 캐쉬 "+ (-buyNum*gPrice);
@@ -502,7 +500,7 @@ function buyGame() {
 
                     var addMessage = {
                                 text: message };
-                    updates['message/' + uuid] = addMessage;
+                    updates['message/' + uuid] = addMessage; 
 
                     firebase.database().ref().update(updates);
                     alert("update 완료");
@@ -593,7 +591,7 @@ function sellGame() {
                 var buyNum = 0;
                 var dealNum = 0;
                 var gNum = number.value*1; // 신청 개수
-                var sellNum = gNum;   //미채결개수
+                var sellNum = gNum;   //미체결개수
                 var updates = {};
                 var message = "게임 "+gName +" / 가격 "+gPrice+" / 개수 +"+(gNum-sellNum)+" / 대기 캐쉬 +"+sellNum*gPrice;
                 console.log(message);
@@ -613,19 +611,19 @@ function sellGame() {
                             console.log("buyNum:"+buyNum);
                             console.log("buyer:"+snapshot2.val().user);
 
-                            if(buyNum > gNum){ // buy이 더 많아서 미채결(sell)x (gNum 모두 deal)
+                            if(buyNum > gNum){ // buy이 더 많아서 미체결(sell)x (gNum 모두 deal)
                                 sellNum = 0; 
                                 dealNum = gNum;
                                 buyNum = buyNum - gNum;
                                 updates['game/' + gName + '/buy/' + snapshot2.key +'/number'] = buyNum;  //buynum 업데이트
                             }
-                            else if(buyNum < gNum){ // buy만큼 deal, 나머지 미채결 O (sell)
-                                sellNum = gNum - buyNum;    //미채결 수 = 신청 개수 - 파는 수
+                            else if(buyNum < gNum){ // buy만큼 deal, 나머지 미체결 O (sell)
+                                sellNum = gNum - buyNum;    //미체결 수 = 신청 개수 - 파는 수
                                 dealNum = buyNum;
                                 buyNum = 0;
                                 updates['game/' + gName + '/buy/' + snapshot2.key] = null;  //buynum 업데이트
                             }
-                            else{   //buy만큼 deal, 미채결(sell)x
+                            else{   //buy만큼 deal, 미체결(sell)x
                                 sellNum = 0;
                                 dealNum = buyNum;
                                 buyNum = 0;
@@ -643,10 +641,11 @@ function sellGame() {
                             alert(message);
                             console.log(message);
 
-                            var addDeal = { user: userId, 
-                                price: gPrice,
-                                number : dealNum,
-                                text: message };
+                            var addDeal = { seller: userId,
+                                            buyer: snapshot2.val().user, 
+                                            price: gPrice,
+                                            number : dealNum,
+                                            text: message };
 
                             var addUserDeal = { game: gName, 
                                                 price: gPrice,
@@ -733,13 +732,13 @@ function sellGame() {
                             }
                             alert("update 완료!");
                             number.value = "";
-                            gNum = sellNum;  //신청수 <= 미채결수
+                            gNum = sellNum;  //신청수 <= 미체결수
                         }
                     });
                 }
                 if(gNum > 0){ //미체결(buyx->dealx / sell만)
                     var uuid = guid();
-                    sellNum = gNum;    //미채결 수 = 신청 개수 - 파는 수
+                    sellNum = gNum;    //미체결 수 = 신청 개수 - 파는 수
                     dealNum = 0;
                     buyNum = 0;
                     message = "게임 "+gName+" / 가격 "+gPrice+" / 대기 +"+sellNum+" / 대기 캐쉬 +" + sellNum*gPrice;
