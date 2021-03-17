@@ -1,17 +1,11 @@
 {
-    "hosting": {
-      "public": "build",
-      "ignore": [
-        "firebase.json",
-        "**/.*",
-        "**/node_modules/**"
-      ],
-      "rewrites": [
-        {
-          "source": "**",
-          "destination": "/auth.html"
-        }
-      ]
+  "hosting": [ {
+      "target": "english", 
+      "public": "public/index"
+    },
+    {
+      "target": "french", 
+      "public": "public/hello_reservation"
     }
-  }
-  
+  ]
+}
