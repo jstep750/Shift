@@ -21,6 +21,33 @@
 crossorigin="anonymous"></script>
 
   <style>
+    .btnred{
+      background-color: #c4c4c4;
+    }
+    .btnblue{
+      background-color: #c4c4c4;
+    }
+    .btngreen{
+      background-color: #c4c4c4;
+    }
+    .btnblack{
+      background-color: #c4c4c4;
+    }
+    .btnred.active{
+      background-color: #fd4141!important;
+    }
+    .btnblue.active{
+      background-color: #3449BA!important;
+    }
+    .btngreen.active{
+      background-color: #18b216!important;
+    }
+    .btnblack.active{
+      background-color: #000000!important;
+    }
+    #ex2-content{
+      border: 1px solid #17375E;
+    }
       .list-content{
           background-color: #fff;
       }
@@ -34,13 +61,27 @@ crossorigin="anonymous"></script>
       .nav-tabs .nav-item.show .nav-link, .nav-tabs .nav-link.active {
           background-color: transparent;
       }
-       a.active.nav-link{color: #17375E!important;border-bottom: 1px solid #17375E!important;}
+       a.active.tabcolor{color: #17375E!important;border-bottom: 1px solid #17375E!important;}
        @media (min-width: 1500px) {
   .container {
     max-width: 1440px;
   }
 }
-
+@media (max-width: 960px){
+  .modal-body{
+    padding: 0px;
+  }
+  .change-padding{
+    padding: 20px 5px 5px 5px!important;
+  }
+  .change-margin{
+    margin-left: 5vw!important;
+    margin-right: 5vw!important;
+  }
+  .change-width{
+    width: 90vw!important;
+  }
+}
 @media all and (min-width: 992px) {
 	.navbar .nav-item .dropdown-menu{ display: none;}
 	.navbar .nav-item:hover .nav-link{ color: #fff;  }
@@ -54,6 +95,11 @@ crossorigin="anonymous"></script>
     
   }
   
+}
+.list-content{
+  height: 3rem;
+  overflow: hidden;
+  border: none;
 }
   </style>
   
@@ -75,6 +121,7 @@ crossorigin="anonymous"></script>
     $(window).resize(toggleNavbarMethod);
     defaultColor();  //시작하자마자 발동
     $("#orderTable").load("table.html");
+    $("#orderTable_2").load("table.html");
     $("#chartCandlestick").load("chart.html");
 });
 let gwansim = false;
@@ -207,10 +254,240 @@ let gwansim = false;
                         <a class="btn btn-block text-white font-weight-bold mt-3" data-toggle="modal" data-target="#tradePage" 
                         style="height: 32px;background-color: #17375E;padding: 8px 34px 8px 34px;border-radius: 0.5rem;">거래하기</a>
                         <div id="tradePage" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="tradePageLabel" aria-hidden="true">
-                            <div class="modal-dialog" style="margin-left: 20vw; margin-right: 20vw;">
-                              <div class="modal-content" style="width: 60vw;">
+                            <div class="modal-dialog change-margin" style="margin-left: 10vw; margin-right: 10vw; margin-top: 10vh;">
+                              <div class="modal-content change-width overflow-auto" style="width: 80vw;">
                                   <div class="modal-body">
-                                      <img src="../img\shift\ongoingstock.png" class="" style="width: 100%;">
+                                      <div class="container change-padding" style="padding: 30px;">
+                                        <div class="row">
+                                          <div class="col-md-8 mobile-invisible">
+                                            <div id="orderTable_2"></div>
+                                          </div>
+                                          <div class="col-md-4">
+                                            <ul class="nav nav-tabs" id="ex2" role="tablist" style="">
+                                              <li class="nav-item" role="presentation" style="width: 25%;">
+                                                <a
+                                                  class="nav-link active text-center tab-button btnred"
+                                                  id="ex2-tab-1"
+                                                  data-toggle="tab"
+                                                  data-mdb-toggle="tab"
+                                                  href="#ex2-tabs-1"
+                                                  role="tab"
+                                                  aria-controls="ex2-tabs-1"
+                                                  aria-selected="true"
+                                                  style="font-size: 16px; font-weight: 900;padding-left:0px;padding-right: 0px;"
+                                                  
+                                                  >구매</a
+                                                >
+                                              </li>
+                                              <li class="nav-item" role="presentation" style="width: 25%;">
+                                                <a
+                                                  class="nav-link text-center tab-button btnblue"
+                                                  id="ex2-tab-2"
+                                                  data-mdb-toggle="tab"
+                                                  data-toggle="tab"
+                                                  href="#ex2-tabs-2"
+                                                  role="tab"
+                                                  aria-controls="ex2-tabs-2"
+                                                  aria-selected="false"
+                                                  style="font-size: 16px; font-weight: 900;padding-left:0px;padding-right: 0px;"
+                                                  >판매</a
+                                                >
+                                              </li>
+                                              <li class="nav-item" role="presentation" style="width: 25%;">
+                                                <a
+                                                  class="nav-link text-center tab-button btngreen"
+                                                  id="ex2-tab-3"
+                                                  data-mdb-toggle="tab"
+                                                  data-toggle="tab"
+                                                  href="#ex2-tabs-3"
+                                                  role="tab"
+                                                  aria-controls="ex2-tabs-3"
+                                                  aria-selected="false"
+                                                  style="font-size: 16px; font-weight: 900;padding-left:0px;padding-right: 0px;"
+                                                  >정정</a
+                                                >
+                                              </li>
+                                              <li class="nav-item" role="presentation" style="width: 25%;">
+                                                <a
+                                                  class="nav-link text-center tab-button btnblack"
+                                                  id="ex2-tab-4"
+                                                  data-mdb-toggle="tab"
+                                                  data-toggle="tab"
+                                                  href="#ex2-tabs-4"
+                                                  role="tab"
+                                                  aria-controls="ex2-tabs-4"
+                                                  aria-selected="false"
+                                                  style="font-size: 16px; font-weight: 900;padding-left:0px;padding-right: 0px;"
+                                                  >체결</a
+                                                >
+                                              </li>
+                                            </ul>
+                                            <div class="tab-content overflow-auto" id="ex2-content" style="height: 45%;width: 100%;margin-top: 1px;">
+                                              <div class="tab-pane fade show active"
+                                                id="ex2-tabs-1"
+                                                role="tabpanel"
+                                                aria-labelledby="ex2-tab-1">
+                                                <div class="container change-padding" style="padding: 20px; font-size: 16px;font-weight: 500;">
+                                                  <div class="d-flex justify-content-between">
+                                                    <div style="color: #757575;">사용 가능 캐쉬</div>
+                                                    <div style="color: #fd4141;">{27,000}</div>
+                                                  </div>
+                                                  <div class="d-flex justify-content-between mt-3" style="background-color: #eff1f4;padding: 10px;">
+                                                    <div class="d-flex" style="color: #454545; align-items: center;">입찰가격(0.1%)</div>
+                                                    <div>
+                                                      <span class="mr-1 font-weight-bold" style="color: #222222;">{25,500}</span>
+                                                      <span>
+                                                        <div class="btn btn-normal">-</div>
+                                                        <div class="btn btn-normal" style="">+</div>
+                                                      </span>
+                                                    </div>
+                                                  </div>
+                                                  <div class="d-flex justify-content-between mt-3">
+                                                    <div style="color: #757575;">과거 저작권료 수익률</div>
+                                                    <div style="color: #fd4141;">{7.8%}</div>
+                                                  </div>
+                                                  <div class="d-flex justify-content-between mt-3" style="background-color: #eff1f4;padding: 10px;">
+                                                    <div class="d-flex" style="color: #454545; align-items: center;">수량(%)</div>
+                                                    <div>
+                                                      <span class="mr-3 font-weight-bold" style="color: #222222;">{0.5}</span>
+                                                      <span>
+                                                        <div class="btn btn-normal">-</div>
+                                                        <div class="btn btn-normal" style="">+</div>
+                                                      </span>
+                                                    </div>
+                                                  </div>
+                                                  <div class="d-flex mt-1" style="justify-content: stretch;color: #757575;">
+                                                    <a class="text-center" style="width: 20%;border: 1px solid #c4c4c4">0.5%</a>
+                                                    <a class="text-center" style="width: 20%;border: 1px solid #c4c4c4">1.0%</a>
+                                                    <a class="text-center" style="width: 20%;border: 1px solid #c4c4c4">2.0%</a>
+                                                    <a class="text-center" style="width: 20%;border: 1px solid #c4c4c4">3.0%</a>
+                                                    <a class="text-center" style="width: 20%;border: 1px solid #c4c4c4">10.0%</a>
+                                                  </div>
+                                                  <div class="d-flex justify-content-between mt-3" style="font-size: 18px;">
+                                                    <div style="color: #222222;">주문 금액</div>
+                                                    <div style="color: #fd4141;"><span>{242,500}</span><span> 캐쉬</span></div>
+                                                  </div>
+                                                  <a class="btn btn-block text-white font-weight-bold mt-3"
+                                                      style="background-color: #17375E;
+                                                      font-size: 16px;
+                                                      padding: 12px 34px 12px 34px;
+                                                      border-radius: 0.5rem;">구매 주문</a>
+                                                  
+                                                </div>
+                                            </div>
+                                            <div class="tab-pane fade show"
+                                                id="ex2-tabs-2"
+                                                role="tabpanel"
+                                                aria-labelledby="ex2-tab-2">
+                                                <div class="container change-padding" style="padding: 20px; font-size: 16px;font-weight: 500;">
+                                                  <div class="d-flex justify-content-between">
+                                                    <div style="color: #757575;">보유 수량</div>
+                                                    <div style="color: #3449BA;"><span>{1}</span><span>{(0.1%)}</span></div>
+                                                  </div>
+                                                  <div class="d-flex justify-content-between mt-3" style="background-color: #eff1f4;padding: 10px;">
+                                                    <div class="d-flex" style="color: #454545; align-items: center;">입찰가격(0.1%)</div>
+                                                    <div>
+                                                      <span class="mr-1 font-weight-bold" style="color: #222222;">{25,500}</span>
+                                                      <span>
+                                                        <div class="btn btn-normal">-</div>
+                                                        <div class="btn btn-normal" style="">+</div>
+                                                      </span>
+                                                    </div>
+                                                  </div>
+                                                  <div class="d-flex justify-content-between mt-3">
+                                                    <div style="color: #757575;">과거 저작권료 수익률</div>
+                                                    <div style="color: #3449BA;">{7.8%}</div>
+                                                  </div>
+                                                  <div class="d-flex justify-content-between mt-3" style="background-color: #eff1f4;padding: 10px;">
+                                                    <div class="d-flex" style="color: #454545; align-items: center;">수량(%)</div>
+                                                    <div>
+                                                      <span class="mr-3 font-weight-bold" style="color: #222222;">{0.5}</span>
+                                                      <span>
+                                                        <div class="btn btn-normal">-</div>
+                                                        <div class="btn btn-normal" style="">+</div>
+                                                      </span>
+                                                    </div>
+                                                  </div>
+                                                  <div class="d-flex mt-1" style="justify-content: stretch;color: #757575;">
+                                                    <a class="text-center" style="width: 20%;border: 1px solid #c4c4c4">0.5%</a>
+                                                    <a class="text-center" style="width: 20%;border: 1px solid #c4c4c4">1.0%</a>
+                                                    <a class="text-center" style="width: 20%;border: 1px solid #c4c4c4">2.0%</a>
+                                                    <a class="text-center" style="width: 20%;border: 1px solid #c4c4c4">3.0%</a>
+                                                    <a class="text-center" style="width: 20%;border: 1px solid #c4c4c4">10.0%</a>
+                                                  </div>
+                                                  <div class="d-flex justify-content-between mt-3" style="font-size: 18px;">
+                                                    <div style="color: #222222;">수익 금액</div>
+                                                    <div style="color: #3449BA;"><span>{242,500}</span><span> 캐쉬</span></div>
+                                                  </div>
+                                                  <a class="btn btn-block text-white font-weight-bold mt-3"
+                                                      style="background-color: #17375E;
+                                                      font-size: 16px;
+                                                      padding: 12px 34px 12px 34px;
+                                                      border-radius: 0.5rem;">판매 주문</a>
+                                                  
+                                                </div>
+                                            </div>
+                                            <div class="tab-pane fade show"
+                                                id="ex2-tabs-3"
+                                                role="tabpanel"
+                                                aria-labelledby="ex2-tab-3">
+                                                <div>
+                                                  <div class="row">
+                                                    <div class="col-3"></div>
+                                                    <div class="col-4"></div>
+                                                    <div class="col-2"></div>
+                                                    <div class="col-3"></div>
+                                                  </div>
+                                                </div>
+                                            </div>
+                                            <div class="tab-pane fade show"
+                                                id="ex2-tabs-4"
+                                                role="tabpanel"
+                                                aria-labelledby="ex2-tab-4">
+                                                test4
+                                            </div>
+                                            </div>
+                                            <!--tab content-->
+                                            <div class="container mt-3" style="padding: 20px; color: #000000; border: 1px solid #222222;box-shadow: 2px 5px 3px #999999;">
+                                              <div class="d-flex justify-content-between">
+                                                <div class="font-weight-bold">평균 구매 가격 (보유 수량)</div>
+                                                <div style="color: #fd4141;">
+                                                  <span>0</span>
+                                                  <span>(0%)</span></div>
+                                              </div>
+                                              <div class="d-flex justify-content-between">
+                                                <div class="font-weight-bold">미체결</div>
+                                                <div class="d-flex">
+                                                  <div class="mr-2" style="color: #fd4141;">
+                                                    <span>0%</span>
+                                                    <span>(구매)</span>
+                                                  </div>
+                                                  <div style="color: #3449BA;">
+                                                    <span>0%</span>
+                                                    <span>(판매)</span>
+                                                  </div>
+                                                </div>
+                                                
+                                            </div>
+                                          </div>
+                                          <!--참여규정-->
+                                          <div class="mt-3" style="font-size: 12px;">
+                                            <div class="text-center font-weight-bold" style="padding: 5px; width: 50%;color: #17375E;border-bottom: 2px solid #17375E;">
+                                            참여 규정</div>
+                                            <div class="mt-3" style="color: #666666;">
+                                            거래 수수료는 구매 및 판매금액의 1 주당 0.1%(소수점 이하 절사)입니다.<br>
+                                            구매 주문 시, 구매하신 가격 대비 최근 12개월 수익률을 반드시 확인 바랍니다.<br>
+                                            구매체결 시 수수료를 포함한 결제 금액이 '쉬프트 머니'에서 자동 결제됩니다.<br>
+                                            판매체결 시 수수료를 제외한 판매 금액이 '내 지갑'에 합산됩니다.<br>
+                                            구매주문금액 전체가 대기금으로 설정되며, 주문취소시 해제됩니다.<br>
+                                            거래단위 당 판매 차익이 5만원 이하일 경우, 원천징수세액이 없습니다(분리과세). 상세내용은
+                                            '자주 묻는 질문'참고 바랍니다.<br>
+                                            구매결정은 온전히 회원님의 판단으로 이뤄졌으며, 쉬프트는 어떠한 경우에도 미래의 수익, 혹은 판매 성사여부를
+                                            보장하거나 책임지지 않습니다.
+                                            </div>
+                                          </div>
+                                        </div>
+                                      </div>
                                   </div>
                               </div>
                             </div>
@@ -224,7 +501,7 @@ let gwansim = false;
         <ul class="nav nav-tabs mb-5 d-flex justify-content-center" id="ex1" role="tablist" style="border-bottom: 1px solid #B1B1B1;">
             <li class="nav-item" role="presentation" style="max-width: 50%;width: 150px">
               <a
-                class="nav-link active text-center"
+                class="nav-link active text-center tabcolor"
                 id="ex1-tab-1"
                 data-toggle="tab"
                 data-mdb-toggle="tab"
@@ -238,7 +515,7 @@ let gwansim = false;
             </li>
             <li class="nav-item" role="presentation" style="max-width: 50%;width: 150px">
               <a
-                class="nav-link text-center"
+                class="nav-link text-center tabcolor"
                 id="ex1-tab-2"
                 data-mdb-toggle="tab"
                 data-toggle="tab"
@@ -253,7 +530,7 @@ let gwansim = false;
             </li>
             <li class="nav-item" role="presentation" style="max-width: 50%;width: 150px;">
                 <a
-                  class="nav-link text-center"
+                  class="nav-link text-center tabcolor"
                   id="ex1-tab-1"
                   data-toggle="tab"
                   data-mdb-toggle="tab"
@@ -266,7 +543,7 @@ let gwansim = false;
             </li>
             <li class="nav-item" role="presentation" style="max-width: 50%;width: 150px;">
                 <a
-                  class="nav-link text-center"
+                  class="nav-link text-center tabcolor"
                   id="ex1-tab-1"
                   data-toggle="tab"
                   data-mdb-toggle="tab"
@@ -298,8 +575,70 @@ let gwansim = false;
               role="tabpanel"
               aria-labelledby="ex1-tab-2"
             ><!--database는 js/userchartdata.js에 있음-->
-                <div id="chartdiv" style="height: 500px;background-color: #fff;"></div>
-
+            <div class="container" style="min-height: 90vh;">
+              <div id="chartdiv" style="height: 500px;background-color: #fff;"></div>
+              <div class="mobile-invisible">
+                <div class="row mt-5" style="font-size: 14px;">
+                  <div class="col-5 stock-setting" style="border-left: 1px solid #C4C4C4;">
+                    <div class="text-center stock-title">거래시간</div>
+                  </div>
+                  <div class="col-2 stock-setting">
+                    <div class="text-center stock-title">가격(캐쉬)</div>
+                  </div>
+                  <div class="col-5 stock-setting" style="border-right: 1px solid #C4C4C4;">
+                    <div class="text-center stock-title">수량(%)</div>
+                  </div>
+                </div>
+                <div class="row overflow-auto hide-scrollbar" style="height: 600px;background-color: #fff;">
+                  <div class="col-5" style="border-left: 1px solid #C4C4C4;">
+                    <div class="list-content">21-01-24 08:19:32</div>
+                    <div class="list-content">21-01-24 08:19:32</div>
+                    <div class="list-content">21-01-24 08:19:32</div>
+                    <div class="list-content">21-01-24 08:19:32</div>
+                    <div class="list-content">21-01-24 08:19:32</div>
+                    <div class="list-content">21-01-24 08:19:32</div>
+                    <div class="list-content">21-01-24 08:19:32</div>
+                    <div class="list-content">21-01-24 08:19:32</div>
+                    <div class="list-content">21-01-24 08:19:32</div>
+                    <div class="list-content"></div>
+                    <div class="list-content"></div>
+                    <div class="list-content"></div>
+                    <div class="list-content"></div>
+                    <div class="list-content"></div>
+  
+                  </div>
+                  <div class="col-2">
+                    <div class="list-content">47,700</div>
+                    <div class="list-content">47,700</div>
+                    <div class="list-content">47,700</div>
+                    <div class="list-content">47,700</div>
+                    <div class="list-content">47,700</div>
+                    <div class="list-content">47,700</div>
+                    <div class="list-content">47,700</div>
+                    <div class="list-content">47,700</div>
+                    <div class="list-content">47,700</div>
+                  </div>
+                  <div class="col-5" style="border-right: 1px solid #C4C4C4;">
+                    <div class="list-content">0.1</div>
+                    <div class="list-content">0.1</div>
+                    <div class="list-content">0.1</div>
+                    <div class="list-content">0.1</div>
+                    <div class="list-content">0.1</div>
+                    <div class="list-content">0.1</div>
+                    <div class="list-content">0.1</div>
+                    <div class="list-content">0.1</div>
+                    <div class="list-content">0.1</div>
+                  </div>
+                </div>
+                <div class="row" style="">
+                  <div class="col-12 d-flex justify-content-end" style="background-color: #fff;padding: 10px;border: 1px solid #C4C4C4">
+                    <div class="btn text-white font-weight-bold" style="background-color: #17375E; padding: 5px 34px 5px 34px;">새로고침</div>
+                  </div>
+                </div>
+              </div>
+              </div>
+              
+                
             
         </div>
         <div
