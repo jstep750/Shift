@@ -1,0 +1,94 @@
+<style>
+    @media (min-width: 1500px) {
+.container {
+ max-width: 1440px;
+}
+}
+
+@media all and (min-width: 992px) {
+ .navbar .nav-item .dropdown-menu{ display: none;}
+ .navbar .nav-item:hover .nav-link{ color: #fff;  }
+ .navbar .nav-item:hover .dropdown-menu{ display: block; }
+ .navbar .nav-item .dropdown-menu{ margin-top:0; }
+
+}
+@media  screen and (min-width: 992px) {
+.dropdown:hover>.dropdown-menu {
+ display: block;
+ 
+}
+
+}
+</style>
+
+ <script>
+$(document).ready(function() {  
+ function toggleNavbarMethod() {  
+     if ($(window).width() > 768) {  
+         $('.navbar .dropdown').on('mouseover', function(){  
+             $('.dropdown-toggle', this).trigger('click');   
+         }).on('mouseout', function(){  
+             $('.dropdown-toggle', this).trigger('click').blur();  
+         });  
+     }  
+     else {  
+         $('.navbar .dropdown').off('mouseover').off('mouseout');  
+     }  
+ }  
+ toggleNavbarMethod();  
+ $(window).resize(toggleNavbarMethod);  
+}); 
+
+</script>
+<nav class="navbar fixed-top bg-white navbar-expand-lg navbar-light white scrolling-navbar">
+    <div class="container">
+      <a class="navbar-brand mr-5" href="#" target="_blank">
+        <img
+        src="../img\shift\shift_logo.png"
+        height="30"
+        alt=""
+        loading="lazy"
+        width="50vw"
+      />
+      </a>
+    
+     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main_nav">
+       <span class="navbar-toggler-icon"></span>
+     </button>
+     <div class="collapse navbar-collapse" id="main_nav">
+   
+   <ul class="navbar-nav mr-auto">
+     <li class="nav-item dropdown"> <a class="nav-link font-weight-bold" data-toggle="dropdown" role="button" aria-expanded="false" href="#">쉬프트란</a>
+      <ul class="dropdown-menu" style="">
+        <li><a class="dropdown-item" style="font-size: 14px;" href="instruct_user.html"> 서비스 소개</a></li>
+        
+      </ul> <!-- 이거 border 왼쪽 오른쪽 중에 뭐가 더 나은지....-->
+     </li>
+     <li class="nav-item dropdown"><a class="nav-link font-weight-bold" data-toggle="dropdown" role="button" aria-expanded="false" href="#">옥션</a>
+      <ul class="dropdown-menu">
+        <li><a class="dropdown-item" href="#"> 1차 옥션</a></li>
+        <li><a class="dropdown-item" href="#"> 2차 옥션</a></li>
+        <li><a class="dropdown-item" href="#"> 심사중 옥션</a></li>
+        <li><a class="dropdown-item" href="#"> 마켓</a></li>
+        <div></div>
+      </ul>
+    </li>
+    <li class="nav-item dropdown"><a class="nav-link font-weight-bold" data-toggle="dropdown" role="button" aria-expanded="false" href="#">증권거래</a>
+      <ul class="dropdown-menu">
+        <li><a class="dropdown-item" href="#"> 증권형</a></li>
+        <li><a class="dropdown-item" href="#"> 채권형</a></li>
+      </ul>
+    </li>
+    
+     
+   </ul>
+   <div class="navbar-nav" role="button" style="font-size: small; padding-left: 6px;">
+    <a type="button" class="nav-item nav-link" href="loginpage.html">로그인</a>
+    <a type="button" class="nav-item nav-link" href="make_account.html">회원가입</a>
+    <a type="button" class="nav-item nav-link" href="#">고객센터</a>
+    <a class="btn-lg" style="color: #B1B1B1; padding: 2px; padding-left: 6px;" role="button" href="#"><i class="far fa-bell"></i></a>
+  </div>
+     </div> <!-- navbar-collapse.// -->
+    </div>
+    
+   </nav>

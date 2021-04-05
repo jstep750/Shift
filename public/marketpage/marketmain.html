@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Shift 메인페이지</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
+  <!-- Bootstrap core CSS -->
+  <link href="../css/bootstrap.min.css" rel="stylesheet">
+  <!-- Material Design Bootstrap -->
+  <link href="../css/mdb.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="../css\mdb.min_5.css">
+  <!-- Your custom styles (optional) -->
+  <link href="../css/style.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/lightslider.css">
+  <link rel="stylesheet" href="../app.css">
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script src="../js/lightslider.js"></script>
+<style>
+    ul{
+			list-style: none outside none;
+		    padding-left: 0;
+            margin: 0;
+		}
+        .demo .item{
+            margin-bottom: 60px;
+        }
+		.content-slider li{
+		    background-color: #fff;
+		    height: 600px;
+		    color: #000;
+		}
+		.content-slider h3 {
+		    margin: 0;
+		    padding: 70px 0;
+		}
+		.demo{
+			width: 100%;
+		}
+</style>
+<script>
+    $(document).ready(function() { 
+    $("#navbar-beforelogin").load("../navbar/navbar-beforelogin.html");
+    $("#navbar-afterlogin").load("../navbar/navbar-afterlogin.html");
+    
+    });
+    $(document).ready(function() {
+			$("#content-slider").lightSlider({
+                item: 4,
+                loop:true,
+                keyPress:true,
+                auto: true,
+                pause: 4000,
+                controls: true,
+                responsive: [
+                {
+                        breakpoint: 1000,
+                    settings : {
+                        item: 2,
+                        slideMove: 1
+                    }
+                },
+                {
+                    breakpoint: 480,
+                    settings: {
+                        item: 1,
+                        slideMove: 1
+                    }
+                }
+                ]
+             });
+        });
+</script>
+</head>
+<body>
+    <!--navbar-->
+    <div id="navbar-afterlogin"></div><!--여기서 로그인 여부에 따라 둘 중 하나 선택하면 될듯해욤-->
+    <!--<div id="navbar-beforelogin"></div>-->
+    <main class="mt-5 pt-4" style="min-height: 100vh;">
+    <div class="container-fluid" style="background-color: #f7f7f7;">
+        <div class="container">
+            <p class="font-weight-bold" style="font-size: 20px;">마감임박 프로젝트</p>
+            <div class="demo">
+                <div class="item">
+                    <ul id="content-slider" class="content-slider">
+                        <li>
+                            <div class="card" style="height: 100%;">
+                                <img src="..\img\shift\gamer.png" alt="..." class="card-img-top" style="height: 50%; object-fit: cover;overflow: hidden;">
+                                <div class="card-body">
+                                    <div class="card-title">
+                                        <div>프로젝트명</div>
+                                        <div style="font-size: 14px;color: #666666;">이름(회사)</div>
+                                    </div>
+                                    <p class="card-text" style="font-size: 14px;">
+                                        <div class="d-flex justify-content-between">
+                                            <span style="color: #666666;">최고가</span>
+                                            <span style="color: #454545;">25,000</span>
+                                        </div>
+                                        <div class="d-flex justify-content-between">
+                                            <span style="color: #666666;">시작가</span>
+                                            <span style="color: #454545;">10,000</span>
+                                        </div>
+                                        <div class="d-flex justify-content-between">
+                                            <span style="color: #666666;">수익률(최근 12개월)</span>
+                                            <span style="color: #17375e;font-weight: 700;">9%</span>
+                                        </div>
+                                        <div class="progress">
+                                            <!--dynamic bar는 https://stackoverflow.com/questions/21182058/dynamically-change-bootstrap-progress-bar-value-when-checkboxes-checked 참고하면 될듯-->
+                                            <div class="progress-bar progress-bar-striped" style="width: 40%" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" role="progressbar"></div>
+                                        </div>
+                                    </p>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <h3>2</h3>
+                        </li>
+                        <li>
+                            <h3>3</h3>
+                        </li>
+                        <li>
+                            <h3>4</h3>
+                        </li>
+                        <li>
+                            <h3>5</h3>
+                        </li>
+                        <li>
+                            <h3>6</h3>
+                        </li>
+                    </ul>
+                </div>
+        
+            </div>	
+            </div>
+        </div>
+    </main>
+
+
+     <!--Footer-->
+ <footer class="page-footer text-center font-small" style="background-color: white;border-top: 1px solid grey;">
+    <div style="height: 10px;"></div>
+    <p class="mb-3" style="color: #333333;">Copyright © 2021 Shift</p>
+    <p style="color: #333333;">상호: Shift | 대표: 김용운 | 개인정보관리책임자: 미입력 | 전화: 미입력 | 이메일: karlxyz99@korea.ac.kr</p>
+    <div style="height: 3px;"></div>
+  </footer>
+  <!--/.Footer-->
+  <!-- SCRIPTS -->
+  <!-- JQuery -->
+  <script type="text/javascript" src="js/popper.min.js"></script>
+  <!-- Bootstrap core JavaScript -->
+  <script type="text/javascript" src="js/bootstrap.min.js"></script>
+  <!-- MDB core JavaScript -->
+  <script type="text/javascript" src="js/mdb.min.js"></script>
+ 
+  <script type="text/javascript">
+      // Animations initialization
+      new WOW().init();
+</script>
+
+  </script>
+  <script src="https://cdn.amcharts.com/lib/4/core.js"></script>
+  <script src="https://cdn.amcharts.com/lib/4/charts.js"></script>
+  <script src="https://cdn.amcharts.com/lib/4/themes/animated.js"></script>
+  <script type="text/javascript" src="..\js\userchartdata.js"></script>
+
+  <!-- The core Firebase JS SDK is always required and must be listed first -->
+<script src="https://www.gstatic.com/firebasejs/8.2.2/firebase-app.js"></script>
+
+<!-- TODO: Add SDKs for Firebase products that you want to use https://firebase.google.com/docs/web/setup#available-libraries -->
+<script src="https://www.gstatic.com/firebasejs/8.2.2/firebase-analytics.js"></script>
+
+<script src="https://www.gstatic.com/firebasejs/8.2.2/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.2.2/firebase-firestore.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.2.2/firebase-database.js"></script>
+    </body>
+</html>

@@ -9,13 +9,14 @@
   <!-- Font Awesome -->
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
   <!-- Bootstrap core CSS -->
-  <link href="css/bootstrap.min.css" rel="stylesheet">
+  <link href="../css/bootstrap.min.css" rel="stylesheet">
   <!-- Material Design Bootstrap -->
-  <link href="css/mdb.min.css" rel="stylesheet">
+  <link href="../css/mdb.min.css" rel="stylesheet">
   <!-- Your custom styles (optional) -->
-  <link href="css/style.min.css" rel="stylesheet">
-  <link href="css/style.css" rel="stylesheet">
-  <link rel="stylesheet" href="app.css">
+  <link href="../css/style.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="../css\mdb.min_5.css">
+  <link href="../css/style.css" rel="stylesheet">
+  <link rel="../stylesheet" href="app.css">
   <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
 crossorigin="anonymous"></script>
 
@@ -154,23 +155,11 @@ crossorigin="anonymous"></script>
   </style>
   
     <script>
-  $(document).ready(function() {  
-    function toggleNavbarMethod() {  
-        if ($(window).width() > 768) {  
-            $('.navbar .dropdown').on('mouseover', function(){  
-                $('.dropdown-toggle', this).trigger('click');   
-            }).on('mouseout', function(){  
-                $('.dropdown-toggle', this).trigger('click').blur();  
-            });  
-        }  
-        else {  
-            $('.navbar .dropdown').off('mouseover').off('mouseout');  
-        }  
-    }  
-    toggleNavbarMethod();  
-    $(window).resize(toggleNavbarMethod);  
-}); 
-  
+      $(document).ready(function() {
+        $("#navbar-afterlogin").load("../navbar/navbar-afterlogin.html");
+        $("#navbar-beforelogin").load("../navbar/navbar-beforelogin.html");
+      });  
+      
   </script>
 </head>
 
@@ -178,59 +167,8 @@ crossorigin="anonymous"></script>
 
 <body >
     <!-- Navbar -->
-    
-    <nav class="navbar fixed-top bg-white navbar-expand-lg navbar-light white scrolling-navbar">
-      <div class="container">
-        <a class="navbar-brand mr-5" href="#" target="_blank">
-          <img
-          src="img\shift\shift_logo.png"
-          height="30"
-          alt=""
-          loading="lazy"
-          width="50vw"
-        />
-        </a>
-      
-       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main_nav">
-         <span class="navbar-toggler-icon"></span>
-       </button>
-       <div class="collapse navbar-collapse" id="main_nav">
-     
-     <ul class="navbar-nav mr-auto">
-       <li class="nav-item dropdown"> <a class="nav-link font-weight-bold" data-toggle="dropdown" role="button" aria-expanded="false" href="#">쉬프트란</a>
-        <ul class="dropdown-menu" style="">
-          <li><a class="dropdown-item" style="font-size: 14px;" href="instruct_user.html"> 서비스 소개</a></li>
-          
-        </ul> <!-- 이거 border 왼쪽 오른쪽 중에 뭐가 더 나은지....-->
-       </li>
-       <li class="nav-item dropdown"><a class="nav-link font-weight-bold" data-toggle="dropdown" role="button" aria-expanded="false" href="#">옥션</a>
-        <ul class="dropdown-menu">
-          <li><a class="dropdown-item" href="#"> 진행중 옥션</a></li>
-          <li><a class="dropdown-item" href="#"> 대기중 옥션 </a></li>
-          <div></div>
-        </ul>
-      </li>
-      
-       
-     </ul>
-     <div class="navbar-nav" role="button" style="font-size: small;">
-        <li class="nav-item dropdown"> <a class="nav-link font-weight-bold" data-toggle="dropdown" role="button" aria-expanded="false" href="#">회원</a>
-            <ul class="dropdown-menu" style="">
-              <li><a class="dropdown-item" style="font-size: 14px;" href="mypagemain.html"> 마이 페이지</a></li>
-              <li><a class="dropdown-item" style="font-size: 14px;" href="myportfolio.html"> 마이 포트폴리오 </a></li>
-              <li><a class="dropdown-item" style="font-size: 14px;" href="#"> 쉬프팅 머니 충전 </a></li>
-              <li><a class="dropdown-item" style="font-size: 14px;" href="#"> 개인정보 관리 </a></li>
-              <li><a class="dropdown-item" style="font-size: 14px;" onclick="logout();"> 로그아웃 </a></li>
-              <div></div>
-            </ul> <!-- 이거 border 왼쪽 오른쪽 중에 뭐가 더 나은지....-->
-           </li>
-       <a type="" class="nav-item nav-link mr-1" style="padding-left: 6px;" href="#">고객센터</a>
-       <a class="btn-lg" style="color: #B1B1B1; padding: 2px; padding-left: 6px;" role="button" href="#"><i class="far fa-bell"></i></a>
-     </div>
-       </div> <!-- navbar-collapse.// -->
-      </div>
-      
-     </nav>
+    <div id="navbar-afterlogin"></div>
+    <!--<div id="navbar-beforelogin"></div>-->
   <!-- Navbar -->   
 
   <!--Main layout-->
@@ -311,7 +249,7 @@ crossorigin="anonymous"></script>
                         <a class="btn btn-block" style="color: #222222; box-shadow: none;">
                           <div class="d-flex align-items-center justify-content-between">
                             <div class="d-flex align-items-center">
-                              <img src="img\mypage\dollar.png" alt="" style="height: 10%; width: 9.5%;" class="mr-3">
+                              <img src="../img\mypage\dollar.png" alt="" style="height: 10%; width: 9.5%;" class="mr-3">
                               <p style="margin-bottom: 0; font-size: 16px;">머니현황</p>
                             </div>
                           </div>
@@ -324,7 +262,7 @@ crossorigin="anonymous"></script>
                         <a class="btn btn-block" style="color: #222222;  box-shadow: none;">
                           <div class="d-flex align-items-center justify-content-between">
                             <div class="d-flex align-items-center">
-                              <img src="img\mypage\hand.png" alt="" style="height: 10%; width: 9.5%;" class="mr-3">
+                              <img src="../img\mypage\hand.png" alt="" style="height: 10%; width: 9.5%;" class="mr-3">
                               <p style="margin-bottom: 0; font-size: 16px;">납부 예정 내역</p>
                             </div>
                           </div>
@@ -337,7 +275,7 @@ crossorigin="anonymous"></script>
                         <a class="btn btn-block" style="color: #222222; box-shadow: none;">
                           <div class="d-flex align-items-center justify-content-between">
                             <div class="d-flex align-items-center">
-                              <img src="img\mypage\bill.png" alt="" style="height: 10%; width: 9.5%;" class="mr-3">
+                              <img src="../img\mypage\bill.png" alt="" style="height: 10%; width: 9.5%;" class="mr-3">
                               <p style="margin-bottom: 0; font-size: 16px;">세금 조회</p>
                             </div>
                           </div>
@@ -350,7 +288,7 @@ crossorigin="anonymous"></script>
                         <a class="btn btn-block" style="color: #222222;  box-shadow: none;">
                           <div class="d-flex align-items-center justify-content-between">
                             <div class="d-flex align-items-center">
-                              <img src="img\mypage\withdrawal.png" alt="" style="height: 10%; width: 9.5%;" class="mr-3">
+                              <img src="../img\mypage\withdrawal.png" alt="" style="height: 10%; width: 9.5%;" class="mr-3">
                               <p style="margin-bottom: 0; font-size: 16px;">머니 충전 및 환급</p>
                             </div>
                           </div>
@@ -363,7 +301,7 @@ crossorigin="anonymous"></script>
                         <a class="btn btn-block" style="color: #222222;  box-shadow: none;">
                           <div class="d-flex align-items-center justify-content-between">
                             <div class="d-flex align-items-center">
-                              <img src="img\mypage\shopping-cart.png" alt="" style="height: 10%; width: 9.5%;" class="mr-3">
+                              <img src="../img\mypage\shopping-cart.png" alt="" style="height: 10%; width: 9.5%;" class="mr-3">
                               <p style="margin-bottom: 0; font-size: 16px;">유저 마켓 신청 현황</p>
                             </div>
                           </div>
@@ -381,7 +319,7 @@ crossorigin="anonymous"></script>
                         <a class="btn btn-block" style="color: #222222; box-shadow: none;">
                           <div class="d-flex align-items-center justify-content-between">
                             <div class="d-flex align-items-center">
-                              <img src="img\mypage\user.png" alt="" style="height: 10%; width: 9.5%;" class="mr-3">
+                              <img src="../img\mypage\user.png" alt="" style="height: 10%; width: 9.5%;" class="mr-3">
                               <p style="margin-bottom: 0; font-size: 16px;">개인정보 관리</p>
                             </div>
                           </div>
@@ -394,7 +332,7 @@ crossorigin="anonymous"></script>
                         <a class="btn btn-block" style="color: #222222; box-shadow: none;">
                           <div class="d-flex align-items-center justify-content-between">
                             <div class="d-flex align-items-center">
-                              <img src="img\mypage\exit.png" alt="" style="height: 10%; width:9.5%;" class="mr-3">
+                              <img src="../img\mypage\exit.png" alt="" style="height: 10%; width:9.5%;" class="mr-3">
                               <p style="margin-bottom: 0; font-size: 16px;" onclick="logout();">로그아웃</p>
                             </div>
                           </div>
@@ -427,13 +365,13 @@ crossorigin="anonymous"></script>
 
   <!-- SCRIPTS -->
   <!-- JQuery -->
-  <script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
+  <script type="text/javascript" src="../js/jquery-3.4.1.min.js"></script>
   <!-- Bootstrap tooltips -->
-  <script type="text/javascript" src="js/popper.min.js"></script>
+  <script type="text/javascript" src="../js/popper.min.js"></script>
   <!-- Bootstrap core JavaScript -->
-  <script type="text/javascript" src="js/bootstrap.min.js"></script>
+  <script type="text/javascript" src="../js/bootstrap.min.js"></script>
   <!-- MDB core JavaScript -->
-  <script type="text/javascript" src="js/mdb.min.js"></script>
+  <script type="text/javascript" src="../js/mdb.min.js"></script>
   <!-- Initializations -->
   <script type="text/javascript">
   
