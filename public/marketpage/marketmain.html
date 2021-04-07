@@ -46,16 +46,40 @@
     $(document).ready(function() { 
     $("#navbar-beforelogin").load("../navbar/navbar-beforelogin.html");
     $("#navbar-afterlogin").load("../navbar/navbar-afterlogin.html");
-    
+    defaultColor();
     });
+    let gwansim = false;
+    function defaultColor(){
+        if(gwansim === false){
+            document.getElementById("icon").style.color="#999999";
+        }
+        else{
+            document.getElementById("icon").style.color="#fad89b";
+        }
+    }
+    function changeColor(){
+        if(gwansim === false){
+            document.getElementById("icon").style.color="#fad89b";
+            gwansim = true;
+            alert("관심목록에 추가되었습니다")
+        }
+        else{
+            document.getElementById("icon").style.color="#999999";
+            gwansim = false;
+            alert("관심목록에서 해제되었습니다")
+        }
+        
+    }
     $(document).ready(function() {
 			$("#content-slider").lightSlider({
+                mode: 'slide',
                 item: 4,
-                loop:true,
+                loop:false,
                 keyPress:true,
                 auto: true,
                 pause: 4000,
-                controls: true,
+                controls: false,
+                pauseOnHover: true,
                 responsive: [
                 {
                         breakpoint: 1000,
@@ -74,6 +98,7 @@
                 ]
              });
         });
+
 </script>
 </head>
 <body>
@@ -88,8 +113,14 @@
                 <div class="item">
                     <ul id="content-slider" class="content-slider">
                         <li>
-                            <div class="card" style="height: 100%;">
+                            <div class="card" style="height: 100%; position: relative;">
+                                
                                 <img src="..\img\shift\gamer.png" alt="..." class="card-img-top" style="height: 50%; object-fit: cover;overflow: hidden;">
+                                <div class="text-white font-weight-bold d-flex align-items-center justify-content-center" style="position: absolute; bottom: 50%;right: 0%; width: 25%; height: 10%;background-color: #367dd3;font-size: 24px;">50%</div>
+                                <a style="color: #999999;position: absolute; top: 3%; left: 3%;" onclick="changeColor();">
+                                    <i class="fas fa-star" id="icon"></i>
+                                    <!--위에다가 대충 구현해놨음-->
+                                </a>
                                 <div class="card-body">
                                     <div class="card-title">
                                         <div>프로젝트명</div>
@@ -104,32 +135,186 @@
                                             <span style="color: #666666;">시작가</span>
                                             <span style="color: #454545;">10,000</span>
                                         </div>
-                                        <div class="d-flex justify-content-between">
-                                            <span style="color: #666666;">수익률(최근 12개월)</span>
-                                            <span style="color: #17375e;font-weight: 700;">9%</span>
-                                        </div>
-                                        <div class="progress">
-                                            <!--dynamic bar는 https://stackoverflow.com/questions/21182058/dynamically-change-bootstrap-progress-bar-value-when-checkboxes-checked 참고하면 될듯-->
-                                            <div class="progress-bar progress-bar-striped" style="width: 40%" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" role="progressbar"></div>
-                                        </div>
+                                        <p>
+                                            <div class="row">
+                                                <div class="col"><div style="height: 50%; border-bottom: 2px solid #17375e;"></div></div>
+                                                <div class="col font-weight-bold" style="color: #17375e;"><i class="far fa-clock"></i> 남은 시간</div>
+                                                <div class="col"><div style="height: 50%; border-bottom: 2px solid #17375e;"></div></div>
+                                            </div>
+                                            <div class="text-center" style="color: #17375e; font-weight: 700;">
+                                                <span id="days"></span>
+                                                <span> : </span>
+                                                <span id="hours"></span>
+                                                <span> : </span>
+                                                <span id="minutes"></span>
+                                                <span> : </span>
+                                                <span id="seconds"></span>
+                                            </div>
+                                            
+                                        </p>
+                                        
                                     </p>
                                 </div>
                             </div>
                         </li>
                         <li>
-                            <h3>2</h3>
+                            <div class="card" style="height: 100%; position: relative;">
+                                
+                                <img src="..\img\shift\gamer.png" alt="..." class="card-img-top" style="height: 50%; object-fit: cover;overflow: hidden;">
+                                <div class="text-white font-weight-bold d-flex align-items-center justify-content-center" style="position: absolute; bottom: 50%;right: 0%; width: 25%; height: 10%;background-color: #367dd3;font-size: 24px;">50%</div>
+                                <a style="color: #999999;position: absolute; top: 3%; left: 3%;" onclick="changeColor();">
+                                    <i class="fas fa-star" ></i>
+                                    <!--위에다가 대충 구현해놨음-->
+                                </a>
+                                <div class="card-body">
+                                    <div class="card-title">
+                                        <div>프로젝트명</div>
+                                        <div style="font-size: 14px;color: #666666;">이름(회사)</div>
+                                    </div>
+                                    <p class="card-text" style="font-size: 14px;">
+                                        <div class="d-flex justify-content-between">
+                                            <span style="color: #666666;">최고가</span>
+                                            <span style="color: #454545;">25,000</span>
+                                        </div>
+                                        <div class="d-flex justify-content-between">
+                                            <span style="color: #666666;">시작가</span>
+                                            <span style="color: #454545;">10,000</span>
+                                        </div>
+                                        <p>
+                                            <a href="../mypage/mypagemain.html">바로가기</a>
+                                            <span id="days_2"></span>
+                                            <span id="hours_2"></span>
+                                            <span id="minutes_2"></span>
+                                            <span id="seconds_2"></span>
+                                        </p>
+                                        
+                                    </p>
+                                </div>
+                            </div>
                         </li>
                         <li>
-                            <h3>3</h3>
+                            <div class="card" style="height: 100%; position: relative;">
+                                
+                                <img src="..\img\shift\gamer.png" alt="..." class="card-img-top" style="height: 50%; object-fit: cover;overflow: hidden;">
+                                <div class="text-white font-weight-bold d-flex align-items-center justify-content-center" style="position: absolute; bottom: 50%;right: 0%; width: 25%; height: 10%;background-color: #367dd3;font-size: 24px;">50%</div>
+                                <a style="color: #999999;position: absolute; top: 3%; left: 3%;" onclick="changeColor();">
+                                    <i class="fas fa-star"></i>
+                                    <!--위에다가 대충 구현해놨음-->
+                                </a>
+                                <div class="card-body">
+                                    <div class="card-title">
+                                        <div>프로젝트명</div>
+                                        <div style="font-size: 14px;color: #666666;">이름(회사)</div>
+                                    </div>
+                                    <p class="card-text" style="font-size: 14px;">
+                                        <div class="d-flex justify-content-between">
+                                            <span style="color: #666666;">최고가</span>
+                                            <span style="color: #454545;">25,000</span>
+                                        </div>
+                                        <div class="d-flex justify-content-between">
+                                            <span style="color: #666666;">시작가</span>
+                                            <span style="color: #454545;">10,000</span>
+                                        </div>
+                                        <p>
+                                            
+                                        </p>
+                                        
+                                    </p>
+                                </div>
+                            </div>
                         </li>
                         <li>
-                            <h3>4</h3>
+                            <div class="card" style="height: 100%; position: relative;">
+                                
+                                <img src="..\img\shift\gamer.png" alt="..." class="card-img-top" style="height: 50%; object-fit: cover;overflow: hidden;">
+                                <div class="text-white font-weight-bold d-flex align-items-center justify-content-center" style="position: absolute; bottom: 50%;right: 0%; width: 25%; height: 10%;background-color: #367dd3;font-size: 24px;">50%</div>
+                                <a style="color: #999999;position: absolute; top: 3%; left: 3%;" onclick="changeColor();">
+                                    <i class="fas fa-star" ></i>
+                                    <!--위에다가 대충 구현해놨음-->
+                                </a>
+                                <div class="card-body">
+                                    <div class="card-title">
+                                        <div>프로젝트명</div>
+                                        <div style="font-size: 14px;color: #666666;">이름(회사)</div>
+                                    </div>
+                                    <p class="card-text" style="font-size: 14px;">
+                                        <div class="d-flex justify-content-between">
+                                            <span style="color: #666666;">최고가</span>
+                                            <span style="color: #454545;">25,000</span>
+                                        </div>
+                                        <div class="d-flex justify-content-between">
+                                            <span style="color: #666666;">시작가</span>
+                                            <span style="color: #454545;">10,000</span>
+                                        </div>
+                                        <p>
+                                            
+                                        </p>
+                                        
+                                    </p>
+                                </div>
+                            </div>
                         </li>
                         <li>
-                            <h3>5</h3>
+                            <div class="card" style="height: 100%; position: relative;">
+                                
+                                <img src="..\img\shift\gamer.png" alt="..." class="card-img-top" style="height: 50%; object-fit: cover;overflow: hidden;">
+                                <div class="text-white font-weight-bold d-flex align-items-center justify-content-center" style="position: absolute; bottom: 50%;right: 0%; width: 25%; height: 10%;background-color: #367dd3;font-size: 24px;">50%</div>
+                                <a style="color: #999999;position: absolute; top: 3%; left: 3%;" onclick="changeColor();">
+                                    <i class="fas fa-star" ></i>
+                                    <!--위에다가 대충 구현해놨음-->
+                                </a>
+                                <div class="card-body">
+                                    <div class="card-title">
+                                        <div>프로젝트명</div>
+                                        <div style="font-size: 14px;color: #666666;">이름(회사)</div>
+                                    </div>
+                                    <p class="card-text" style="font-size: 14px;">
+                                        <div class="d-flex justify-content-between">
+                                            <span style="color: #666666;">최고가</span>
+                                            <span style="color: #454545;">25,000</span>
+                                        </div>
+                                        <div class="d-flex justify-content-between">
+                                            <span style="color: #666666;">시작가</span>
+                                            <span style="color: #454545;">10,000</span>
+                                        </div>
+                                        <p>
+                                            
+                                        </p>
+                                        
+                                    </p>
+                                </div>
+                            </div>
                         </li>
                         <li>
-                            <h3>6</h3>
+                            <div class="card" style="height: 100%; position: relative;">
+                                
+                                <img src="..\img\shift\gamer.png" alt="..." class="card-img-top" style="height: 50%; object-fit: cover;overflow: hidden;">
+                                <div class="text-white font-weight-bold d-flex align-items-center justify-content-center" style="position: absolute; bottom: 50%;right: 0%; width: 25%; height: 10%;background-color: #367dd3;font-size: 24px;">50%</div>
+                                <a style="color: #999999;position: absolute; top: 3%; left: 3%;" onclick="changeColor();">
+                                    <i class="fas fa-star"></i>
+                                    <!--위에다가 대충 구현해놨음-->
+                                </a>
+                                <div class="card-body">
+                                    <div class="card-title">
+                                        <div>프로젝트명</div>
+                                        <div style="font-size: 14px;color: #666666;">이름(회사)</div>
+                                    </div>
+                                    <p class="card-text" style="font-size: 14px;">
+                                        <div class="d-flex justify-content-between">
+                                            <span style="color: #666666;">최고가</span>
+                                            <span style="color: #454545;">25,000</span>
+                                        </div>
+                                        <div class="d-flex justify-content-between">
+                                            <span style="color: #666666;">시작가</span>
+                                            <span style="color: #454545;">10,000</span>
+                                        </div>
+                                        <p>
+                                            
+                                        </p>
+                                        
+                                    </p>
+                                </div>
+                            </div>>
                         </li>
                     </ul>
                 </div>
@@ -155,7 +340,7 @@
   <script type="text/javascript" src="js/bootstrap.min.js"></script>
   <!-- MDB core JavaScript -->
   <script type="text/javascript" src="js/mdb.min.js"></script>
- 
+  <script src="..\js\timer.js"></script>
   <script type="text/javascript">
       // Animations initialization
       new WOW().init();
