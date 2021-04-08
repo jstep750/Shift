@@ -31,8 +31,9 @@
         }
 		.content-slider li{
 		    background-color: #fff;
-		    height: 600px;
+		    height: 500px;
 		    color: #000;
+            min-width: 330px;
 		}
 		.content-slider h3 {
 		    margin: 0;
@@ -41,6 +42,12 @@
 		.demo{
 			width: 100%;
 		}
+        a.active.tabcolor{color: #17375E!important;border-bottom: 1px solid #17375E!important;}
+        @media(max-width: 994px){
+            .ft-change{
+                font-size: 16px;
+            }
+        }
 </style>
 <script>
     $(document).ready(function() { 
@@ -82,6 +89,13 @@
                 pauseOnHover: true,
                 responsive: [
                 {
+                        breakpoint: 1500,
+                    settings : {
+                        item: 3,
+                        slideMove: 1
+                    }
+                },
+                {
                         breakpoint: 1000,
                     settings : {
                         item: 2,
@@ -106,9 +120,9 @@
     <div id="navbar-afterlogin"></div><!--여기서 로그인 여부에 따라 둘 중 하나 선택하면 될듯해욤-->
     <!--<div id="navbar-beforelogin"></div>-->
     <main class="mt-5 pt-4" style="min-height: 100vh;">
-    <div class="container-fluid" style="background-color: #f7f7f7;">
+    <div class="container-fluid pb-5" style="background-color: #f7f7f7;">
         <div class="container">
-            <p class="font-weight-bold" style="font-size: 20px;">마감임박 프로젝트</p>
+            <p class=" pt-5 font-weight-bold" style="font-size: 20px;">마감임박 프로젝트</p>
             <div class="demo">
                 <div class="item">
                     <ul id="content-slider" class="content-slider">
@@ -127,18 +141,18 @@
                                         <div style="font-size: 14px;color: #666666;">이름(회사)</div>
                                     </div>
                                     <p class="card-text" style="font-size: 14px;">
-                                        <div class="d-flex justify-content-between">
-                                            <span style="color: #666666;">최고가</span>
-                                            <span style="color: #454545;">25,000</span>
+                                        <div style="font-size: 11px; color: #367dd3;">
+                                            <span>#상품</span>
+                                            <span>#게임</span>
                                         </div>
-                                        <div class="d-flex justify-content-between">
-                                            <span style="color: #666666;">시작가</span>
-                                            <span style="color: #454545;">10,000</span>
+                                        <div class="d-flex justify-content-start">
+                                            <span class="mr-2" style="font-size: 24px;">10,000원</span>
+                                            <span style="color: #999999;text-decoration: line-through;font-size: 14px;">20,000원</span>
                                         </div>
                                         <p>
                                             <div class="row">
                                                 <div class="col"><div style="height: 50%; border-bottom: 2px solid #17375e;"></div></div>
-                                                <div class="col font-weight-bold" style="color: #17375e;"><i class="far fa-clock"></i> 남은 시간</div>
+                                                <div class="col font-weight-bold text-center" style="color: #17375e;padding: 0;"><i class="far fa-clock"></i> 남은 시간</div>
                                                 <div class="col"><div style="height: 50%; border-bottom: 2px solid #17375e;"></div></div>
                                             </div>
                                             <div class="text-center" style="color: #17375e; font-weight: 700;">
@@ -322,6 +336,70 @@
             </div>	
             </div>
         </div>
+        <!--여기까지 위에 카드 포함 컨테이너-->
+        <div class="container mt-5">
+            <p style="font-size: 20px;font-weight: 700;">최근거래 프로젝트</p>
+            <ul class="nav nav-tabs mb-5" id="ex1" role="tablist" style="border-bottom: 1px solid #B1B1B1;">
+            <li class="nav-item" role="presentation" style="max-width: 50%;width: 150px">
+              <a
+                class="nav-link active text-center tabcolor"
+                id="ex1-tab-1"
+                data-toggle="tab"
+                data-mdb-toggle="tab"
+                href="#ex1-tabs-1"
+                role="tab"
+                aria-controls="ex1-tabs-1"
+                aria-selected="true"
+                style="font-size: 16px; font-weight: 900;"
+                >판매량</a
+              >
+            </li>
+            <li class="nav-item" role="presentation" style="max-width: 50%;width: 150px">
+              <a
+                class="nav-link text-center tabcolor"
+                id="ex1-tab-2"
+                data-mdb-toggle="tab"
+                data-toggle="tab"
+                href="#ex1-tabs-2"
+                role="tab"
+                aria-controls="ex1-tabs-2"
+                aria-selected="false"
+                style="font-size: 16px; font-weight: 900;"
+                >할인율</a
+              >
+              
+            </li>
+            
+          </ul>
+            <!--tab content-->
+            <div class="tab-content" id="ex1-content">
+                <div class="tab-pane fade show active"
+                    id="ex1-tabs-1"
+                    role="tabpanel"
+                    aria-labelledby="ex1-tab-1">
+                    <div class="container">
+                        <div><!--컴포넌트 하나-->
+                            <div class="row">
+                                <div class="col-md-4" style="position: relative;">
+                                    <img src="..\img\sample.jpg" alt="" style="width: 100%; object-fit: cover;">
+                                    <div class="d-flex align-items-center justify-content-center text-white font-weight-bold" style="position: absolute;top:0%;left:12px;width: 10%; height: 16%;background-color: #17375e;">1</div>
+                                    <div class="d-flex align-items-center justify-content-center text-white font-weight-bold ft-change" style="position: absolute;bottom:0%;right:12px;width: 15%; height: 16%;background-color: #367dd3;font-size: 20px;">50%</div>
+                                </div>
+                                <div class="col-md-8"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-pane fade show"
+                    id="ex1-tabs-2"
+                    role="tabpanel"
+                    aria-labelledby="ex1-tab-2">
+                    <div class="container">
+                        test2
+                    </div>
+                </div>
+            </div>
+        </div>
     </main>
 
 
@@ -335,11 +413,11 @@
   <!--/.Footer-->
   <!-- SCRIPTS -->
   <!-- JQuery -->
-  <script type="text/javascript" src="js/popper.min.js"></script>
+  <script type="text/javascript" src="../js/popper.min.js"></script>
   <!-- Bootstrap core JavaScript -->
-  <script type="text/javascript" src="js/bootstrap.min.js"></script>
+  <script type="text/javascript" src="../js/bootstrap.min.js"></script>
   <!-- MDB core JavaScript -->
-  <script type="text/javascript" src="js/mdb.min.js"></script>
+  <script type="text/javascript" src="../js/mdb.min.js"></script>
   <script src="..\js\timer.js"></script>
   <script type="text/javascript">
       // Animations initialization
