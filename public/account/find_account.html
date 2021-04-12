@@ -2,20 +2,23 @@
 <html lang="en">
 
 <head>
-    <title>Shift-아이디</title>
+    <title>회원정보찾기-Shift</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   <!-- Font Awesome -->
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
   <!-- Bootstrap core CSS -->
-  <link href="css/bootstrap.min.css" rel="stylesheet">
+  <link href="../css/bootstrap.min.css" rel="stylesheet">
   <!-- Material Design Bootstrap -->
-  <link href="css/mdb.min.css" rel="stylesheet">
+  <link href="../css/mdb.min.css" rel="stylesheet">
   <!-- Your custom styles (optional) -->
-  <link href="css/style.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="app.css">
+  <link href="../css/style.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="../app.css">
+  <link rel="stylesheet" href="../css/mdb.min_5.css">
   <script src="https://kit.fontawesome.com/22de0a02bc.js" crossorigin="anonymous"></script>
+  <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
+crossorigin="anonymous"></script>
   <style>
        @media (min-width: 1500px) {
   .container {
@@ -53,64 +56,20 @@
       }  
       toggleNavbarMethod();  
       $(window).resize(toggleNavbarMethod);  
+      $("#navbar-beforelogin").load("../navbar/navbar-beforelogin.html");
+      $("#navbar-afterlogin").load("../navbar/navbar-afterlogin.html");
   }); 
     
     </script>
 </head>
 
-<header class="text-center">
-    <img src="img/Group 1.svg" class="mt-4">
-</header>
 
-<body">
-     <!-- Navbar -->
-    
-     <nav class="navbar fixed-top bg-white navbar-expand-lg navbar-light white scrolling-navbar">
-      <div class="container">
-        <a class="navbar-brand mr-5" href="#" target="_blank">
-          <img
-          src="img\shift\shift_logo.png"
-          height="30"
-          alt=""
-          loading="lazy"
-          width="50vw"
-        />
-        </a>
-      
-       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main_nav">
-         <span class="navbar-toggler-icon"></span>
-       </button>
-       <div class="collapse navbar-collapse" id="main_nav">
-     
-     <ul class="navbar-nav mr-auto">
-       <li class="nav-item dropdown"> <a class="nav-link font-weight-bold" data-toggle="dropdown" role="button" aria-expanded="false" href="#">쉬프트란</a>
-        <ul class="dropdown-menu" style="">
-          <li><a class="dropdown-item" href="instruct_user.html"> 서비스 소개</a></li>
-          
-          <div></div>
-        </ul> <!-- 이거 border 왼쪽 오른쪽 중에 뭐가 더 나은지....-->
-       </li>
-       <li class="nav-item dropdown"><a class="nav-link font-weight-bold" data-toggle="dropdown" role="button" aria-expanded="false" href="#"> 옥션 </a>
-        <ul class="dropdown-menu">
-          <li><a class="dropdown-item" href="#"> 진행중 옥션</a></li>
-          <li><a class="dropdown-item" href="#"> 대기중 옥션 </a></li>
-          <div></div>
-        </ul>
-      </li>
-      
-       
-     </ul>
-     <div class="navbar-nav" role="button" style="font-size: small; padding-left: 6px;">
-       <a type="button" class="nav-item nav-link" href="loginpage.html">로그인</a>
-       <a type="button" class="nav-item nav-link" href="make_account.html">회원가입</a>
-       <a type="button" class="nav-item nav-link" href="#">고객센터</a>
-       <a class="btn-lg" style="color: #B1B1B1; padding: 2px; padding-left: 6px;" role="button" href="#"><i class="far fa-bell"></i></a>
-     </div>
-       </div> <!-- navbar-collapse.// -->
-      </div>
-      
-     </nav>
-  <!-- Navbar -->   
+<body>
+    <!-- Navbar -->
+  <!--<div id="navbar-afterlogin"></div>--> 
+  <div id="navbar-beforelogin"></div>
+  
+  <!-- Navbar -->  
 
   <!--Main layout-->
   <main class="mt-4 pt-4" style="min-height: 100%; align-items: center;">
@@ -125,26 +84,34 @@
           <!--Grid column-->
           <div class=" col-xl-4 col-lg-6 col-md-10 col-sm-12 col-xs-12 mb-4">
               <div  class="text-center" style="border: solid 1px #C4C4C4; color: #333333;">
-                <p class="font-weight-bold mb-5 mt-5 h4">아이디 찾기(요거 필요한가?)</p>
+                <p class="font-weight-bold mb-5 mt-5 h4">회원정보 찾기</p>
                 <div style="padding: 20px 20px;">
-                  <p class="font-weight-bold text-left">본인확인을 진행해주세요</p> 
-                  <div class="form-group text-left font-weight-bold">
-                    <label for="usr">이메일(본인인증용)</label>
-                    <input type="email" class="form-control" id="userEmail" placeholder="ENTER YOUR EMAIL">
-                  </div>
-
+                    
                 
-                <div style="height: 15px;"></div>
+                <div style="height: 30px;"></div>
                     <a type="button" class="btn btn-block text-white font-weight-bold" 
                     style="
                     background-color: #17375E;
                     border-radius: 1rem;
                     font-size: 20px;
-                    text-transform: capitalize;
-                    " href="">아이디 찾기</a>
+                    " href="find_account_id.html">아이디 찾기</a>
                     <div class="" style="height: 20px;"></div>
-                    
+                    <a type="button" class="btn btn-block font-weight-bold" 
+                    style="
+                    border: 2px solid #17375E;
+                    color: #17375E;
+                    border-radius: 1rem;
+                    font-size: 20px;
+                    " href="">비밀번호 찾기</a>
                 </div>
+                <div style="padding:20px 20px;">
+                    <p>
+                        계정이 있으신가요?
+                        <a class="font-weight-bold" href="loginpage.html" style="
+                    color: #17375E;
+                    font-size: 15px;
+                    ">로그인</a>
+                    </p>
                     
                     <div style="height: 30px;"></div>
                 </div>
@@ -175,13 +142,13 @@
 
   <!-- SCRIPTS -->
   <!-- JQuery -->
-  <script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
+  <script type="text/javascript" src="../js/jquery-3.4.1.min.js"></script>
   <!-- Bootstrap tooltips -->
-  <script type="text/javascript" src="js/popper.min.js"></script>
+  <script type="text/javascript" src="../js/popper.min.js"></script>
   <!-- Bootstrap core JavaScript -->
-  <script type="text/javascript" src="js/bootstrap.min.js"></script>
+  <script type="text/javascript" src="../js/bootstrap.min.js"></script>
   <!-- MDB core JavaScript -->
-  <script type="text/javascript" src="js/mdb.min.js"></script>
+  <script type="text/javascript" src="../js/mdb.min.js"></script>
   <!-- Initializations -->
   <script type="text/javascript">
   

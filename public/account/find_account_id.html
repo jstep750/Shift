@@ -9,13 +9,16 @@
   <!-- Font Awesome -->
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
   <!-- Bootstrap core CSS -->
-  <link href="css/bootstrap.min.css" rel="stylesheet">
+  <link href="../css/bootstrap.min.css" rel="stylesheet">
   <!-- Material Design Bootstrap -->
-  <link href="css/mdb.min.css" rel="stylesheet">
+  <link href="../css/mdb.min.css" rel="stylesheet">
   <!-- Your custom styles (optional) -->
-  <link href="css/style.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="app.css">
+  <link href="../css/style.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="../app.css">
+  <link rel="stylesheet" href="../css/mdb.min_5.css">
   <script src="https://kit.fontawesome.com/22de0a02bc.js" crossorigin="anonymous"></script>
+  <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
+crossorigin="anonymous"></script>
   <style>
        @media (min-width: 1500px) {
   .container {
@@ -53,6 +56,8 @@
       }  
       toggleNavbarMethod();  
       $(window).resize(toggleNavbarMethod);  
+      $("#navbar-beforelogin").load("../navbar/navbar-beforelogin.html");
+      $("#navbar-afterlogin").load("../navbar/navbar-afterlogin.html");
   }); 
     
     </script>
@@ -62,54 +67,12 @@
     <img src="img/Group 1.svg" class="mt-4">
 </header>
 
-<body">
+<body>
     <!-- Navbar -->
-    
-    <nav class="navbar fixed-top bg-white navbar-expand-lg navbar-light white scrolling-navbar">
-      <div class="container">
-        <a class="navbar-brand mr-5" href="#" target="_blank">
-          <img
-          src="img\shift\shift_logo.png"
-          height="30"
-          alt=""
-          loading="lazy"
-          width="50vw"
-        />
-        </a>
-      
-       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main_nav">
-         <span class="navbar-toggler-icon"></span>
-       </button>
-       <div class="collapse navbar-collapse" id="main_nav">
-     
-     <ul class="navbar-nav mr-auto">
-       <li class="nav-item dropdown"> <a class="nav-link font-weight-bold" data-toggle="dropdown" role="button" aria-expanded="false" href="#">쉬프트란</a>
-        <ul class="dropdown-menu" style="">
-          <li><a class="dropdown-item" href="instruct_user.html"> 서비스 소개</a></li>
-          
-          <div></div>
-        </ul> <!-- 이거 border 왼쪽 오른쪽 중에 뭐가 더 나은지....-->
-       </li>
-       <li class="nav-item dropdown"><a class="nav-link font-weight-bold" data-toggle="dropdown" role="button" aria-expanded="false" href="#"> 옥션 </a>
-        <ul class="dropdown-menu">
-          <li><a class="dropdown-item" href="#"> 진행중 옥션</a></li>
-          <li><a class="dropdown-item" href="#"> 대기중 옥션 </a></li>
-          <div></div>
-        </ul>
-      </li>
-      
-       
-     </ul>
-     <div class="navbar-nav" role="button" style="font-size: small; padding-left: 6px;">
-       <a type="button" class="nav-item nav-link" href="loginpage.html">로그인</a>
-       <a type="button" class="nav-item nav-link" href="make_account.html">회원가입</a>
-       <a type="button" class="nav-item nav-link" href="#">고객센터</a>
-     </div>
-       </div> <!-- navbar-collapse.// -->
-      </div>
-      
-     </nav>
-  <!-- Navbar -->   
+  <!--<div id="navbar-afterlogin"></div>--> 
+  <div id="navbar-beforelogin"></div>
+  
+  <!-- Navbar -->
 
   <!--Main layout-->
   <main class="mt-4 pt-4" style="min-height: 100%; align-items: center;">
@@ -174,13 +137,13 @@
 
   <!-- SCRIPTS -->
   <!-- JQuery -->
-  <script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
+  <script type="text/javascript" src="../js/jquery-3.4.1.min.js"></script>
   <!-- Bootstrap tooltips -->
-  <script type="text/javascript" src="js/popper.min.js"></script>
+  <script type="text/javascript" src="../js/popper.min.js"></script>
   <!-- Bootstrap core JavaScript -->
-  <script type="text/javascript" src="js/bootstrap.min.js"></script>
+  <script type="text/javascript" src="../js/bootstrap.min.js"></script>
   <!-- MDB core JavaScript -->
-  <script type="text/javascript" src="js/mdb.min.js"></script>
+  <script type="text/javascript" src="../js/mdb.min.js"></script>
   <!-- Initializations -->
   <script type="text/javascript">
   
