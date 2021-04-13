@@ -66,10 +66,10 @@ $(document).ready(function() {
      </li>
      <li class="nav-item dropdown mr-5"><a class="nav-link font-weight-bold" data-toggle="dropdown" role="button" aria-expanded="false" href="#">옥션</a>
       <ul class="dropdown-menu"> <!--요부분에다가 죄다 onclick="active-market()이런거 만들어서 각각 엑티브 다른걸로 발동하도록"-->
-        <li><a class="dropdown-item" href="..\auction\auction.html"> 1차 옥션</a></li>
-        <li><a class="dropdown-item" href="..\auction\auction.html"> 2차 옥션</a></li>
-        <li><a class="dropdown-item" href="..\auction\auction.html"> 심사중 옥션</a></li>
-        <li><a class="dropdown-item" href="..\auction\auction.html"> 마켓</a></li>
+        <li><a class="dropdown-item" href="..\auction\auction.html?page=2"> 1차 옥션</a></li>
+        <li><a class="dropdown-item" href="..\auction\auction.html?page=3"> 2차 옥션</a></li>
+        <li><a class="dropdown-item" href="..\auction\auction.html?page=4"> 심사중 옥션</a></li>
+        <li><a class="dropdown-item" href="..\auction\auction.html?page=1"> 마켓</a></li>
         <div></div>
       </ul>
     </li>
@@ -101,3 +101,4 @@ $(document).ready(function() {
     </div>
     
    </nav>
+<script src="navForAuction.js"></script>
