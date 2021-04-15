@@ -64,8 +64,6 @@ crossorigin="anonymous"></script>
     </script>
 </head>
 
-
-
 <body>
    <!-- Navbar -->
   <!--<div id="navbar-afterlogin"></div>--> 
@@ -80,7 +78,7 @@ crossorigin="anonymous"></script>
             <li class="nav-item" role="presentation" style="max-width: 50%;width: 150px">
                                     <!--여기 아래에 class 부분에다가 추가해야할듯! id는 새로 하나 추가해서 만들고-->
                 <a
-                class="nav-link active text-center tabcolor"
+                class="nav-link text-center tabcolor"
                 id="ex1-tab-1"
                 data-toggle="tab"
                 data-mdb-toggle="tab"
@@ -110,7 +108,7 @@ crossorigin="anonymous"></script>
             <li class="nav-item" role="presentation" style="max-width: 50%;width: 150px;">
                 <a
                   class="nav-link text-center tabcolor"
-                  id="ex1-tab-1"
+                  id="ex1-tab-3" 
                   data-toggle="tab"
                   data-mdb-toggle="tab"
                   href="#ex1-tabs-3"
@@ -123,7 +121,7 @@ crossorigin="anonymous"></script>
             <li class="nav-item" role="presentation" style="max-width: 50%;width: 150px;">
                 <a
                   class="nav-link text-center tabcolor"
-                  id="ex1-tab-1"
+                  id="ex1-tab-4" 
                   data-toggle="tab"
                   data-mdb-toggle="tab"
                   href="#ex1-tabs-4"
@@ -137,7 +135,7 @@ crossorigin="anonymous"></script>
           <!-- Tabs navs -->
           <div class="tab-content" id="ex1-content">
             <div
-              class="tab-pane fade show active"
+              class="tab-pane fade show"
               id="ex1-tabs-1"
               role="tabpanel"
               aria-labelledby="ex1-tab-1"
@@ -148,7 +146,7 @@ crossorigin="anonymous"></script>
             </div>
         </div>
         <div
-              class="tab-pane fade show active"
+              class="tab-pane fade show"
               id="ex1-tabs-2"
               role="tabpanel"
               aria-labelledby="ex1-tab-2"
@@ -159,7 +157,7 @@ crossorigin="anonymous"></script>
             </div>
         </div>
         <div
-              class="tab-pane fade show active"
+              class="tab-pane fade show"
               id="ex1-tabs-3"
               role="tabpanel"
               aria-labelledby="ex1-tab-3"
@@ -170,7 +168,7 @@ crossorigin="anonymous"></script>
             </div>
         </div>
         <div
-              class="tab-pane fade show active"
+              class="tab-pane fade show"
               id="ex1-tabs-4"
               role="tabpanel"
               aria-labelledby="ex1-tab-4"
@@ -240,6 +238,8 @@ var firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 
 </script>
+<script src="activeAuc.js"></script>
+
 </body>
 
 </html>
