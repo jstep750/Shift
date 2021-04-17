@@ -4,6 +4,14 @@
  max-width: 1440px;
 }
 }
+@media(max-width: 1200px){
+  .navcon{
+    margin-left: 15px;
+    margin-right: 15px;
+    min-width: 100%;
+  }
+}
+
 
 @media all and (min-width: 992px) {
  .navbar .nav-item .dropdown-menu{ display: none;}
@@ -41,7 +49,7 @@ $(document).ready(function() {
 
 </script>
 <nav class="navbar fixed-top bg-white navbar-expand-lg navbar-light white scrolling-navbar">
-  <div class="container">
+  <div class="container navcon">
     <a class="navbar-brand mr-5" href="..\marketpage\marketmain.html" target="_blank">
       <img
       src="../img\shift\shift_logo.png"
