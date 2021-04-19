@@ -13,3 +13,9 @@
   }
   
 }
+.img-square:after{
+	position: relative;
+	content: "";
+	display: block;
+	padding-bottom: 100%;
+}
