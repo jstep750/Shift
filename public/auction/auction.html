@@ -16,9 +16,11 @@
   <link href="../css/style.min.css" rel="stylesheet">
   <link rel="stylesheet" href="../app.css">
   <link rel="stylesheet" href="../css/mdb.min_5.css">
+  <link rel="stylesheet" href="marketPg/marketPg.css">
   <script src="https://kit.fontawesome.com/22de0a02bc.js" crossorigin="anonymous"></script>
   <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
 crossorigin="anonymous"></script>
+  
   <style>
       a.active.tabcolor{color: #17375E!important;border-bottom: 1px solid #17375E!important;}
        @media (min-width: 1500px) {
@@ -147,12 +149,12 @@ crossorigin="anonymous"></script>
             <div class="container" style="min-height: 90vh;">
               <div class="d-flex justify-content-center">
                 <div class="input-group d-flex align-items-top justify-content-between" style="width: 80%;">
-                  <select name="" id="" class="custom-select mr-1">
+                  <select name="" id="" class="custom-select mr-1 js-lSelector">
                     <option value="">--프로젝트 대분류--</option>
                     <option value="">상품</option>
                     <option value="">서비스</option>
                   </select>
-                  <select name="" id="" class="custom-select mr-1">
+                  <select name="" id="" class="custom-select mr-1 js-sSelector">
                     <option value="">--프로젝트 상세분류--</option>
                     <option value="">보드게임</option>
                     <option value="">공연</option>
@@ -167,15 +169,13 @@ crossorigin="anonymous"></script>
                     <option value="">기술</option>
                     <option value="">기타</option>
                   </select>
-                  <select name="" id="" class="custom-select mr-1">
+                  <select name="" id="" class="custom-select mr-1 js-sortSelector">
                     <option value="" selected>--정렬기준--</option>
                     <option value="">최신순</option>
-                    <option value="">상승률</option>
-                    <option value="">하락률</option>
                     <option value="">거래량</option>
                     <option value="">마감임박순</option>
                   </select>
-                  <select name="" id="" class="custom-select mr-1">
+                  <select name="" id="" class="custom-select mr-1 js-saleSelector">
                     <option value="" selected>--할인율--</option>
                     <option value="">0% ~ 10%</option>
                     <option value="">10% ~ 20%</option>
@@ -184,7 +184,7 @@ crossorigin="anonymous"></script>
                     <option value="">40% ~ 50%</option>
                     <option value="">50% 이상</option>
                   </select>
-                  <select name="" id="" class="custom-select mr-1">
+                  <select name="" id="" class="custom-select mr-1 js-priceSelector">
                     <option value="" selected>--가격범위--</option>
                     <option value="">1만원 이하</option>
                     <option value="">1만원 ~ 3만원</option>
@@ -195,221 +195,18 @@ crossorigin="anonymous"></script>
                  
                 </div>
               </div>
-                
-                <div class="d-flex justify-content-center mt-3">
-                  <div class="btn font-weight-bold" style="
-                  min-width: 180px;
-                  width: 15%; font-size: 16px; 
-                  border: 2px solid #17375e; 
-                  color: #17375e;border-radius: 1rem;">분류하기</div>
-                </div>
-                <div class="row mt-3"><!--이거 전부 다 첫번쨰 카드 형식으로 만들면 될듯 나머지는 그냥 구색으로 맞춰놓은거입니당.-->
-                  <div class="col-lg-4 col-md-6 d-flex justify-content-center">
-                    <div class="card" style="max-width: 400px; height: 100%;">
-                      <div style="height: 60%;position: relative;">
-                        <img src="..\img\shift\gamer.png" alt="..." class="card-img-top" style="height: 100%; object-fit: cover;overflow: hidden;">
-                        <div class="text-white font-weight-bold d-flex align-items-center justify-content-center" style="position: absolute; bottom: 0%;right: 0%; width: 25%; height: 15%;background-color: #367dd3;font-size: 24px;">50%</div>
-                      </div>       
-                     
-                      
-                      
-                      <div class="card-body">
-                          <div class="card-title">
-                              <a class="font-weight-bold" style="font-size: 24px;height: 76px;color: #454545;" href="#">[Speed9] 번호 입력 순발력 게임!</a><!--여기서 이거 누르면 상품 설명 페이지로-->
-                              <div style="font-size: 14px;color: #666666;">21.04.13 ~ 21.05.12</div>
-                          </div>
-                          <p class="card-text" style="">
-                              <div class="font-weight-bold" style="font-size: 18px; color: #666666;">회사(개인)</div>
-                              <div style="color: #367dd3;font-size: 14px;">
-                                <span>#상품</span>
-                                <span>#게임</span>
-                              </div>
-                              <div class="d-flex justify-content-between mt-1">
-                                  <div class="d-flex justify-content-start">
-                                    <span class="font-weight-bold mr-1" style="font-size: 24px;">10,000원</span>
-                                    <span style="color: #999999;text-decoration: line-through;font-size: 14px;">20,000원</span>
-                                  </div>
-                                  <div>
-                                    <a style="color: #999999">
-                                      <i class="fas fa-heart" style="font-size: 36px;"></i>
-                                    </a> 
-                                  </div>
-                              </div>
-                              
-                          </p>
-                      </div>
-                  </div>
-                  </div>
-                  <div class="col-lg-4 col-md-6 d-flex justify-content-center">
-                    <div class="card" style="max-width: 400px; height: 100%; position: relative;">
-                                
-                      <img src="..\img\shift\gamer.png" alt="..." class="card-img-top" style="height: 60%; object-fit: cover;overflow: hidden;">
-                      <div class="text-white font-weight-bold d-flex align-items-center justify-content-center" style="position: absolute; bottom: 40%;right: 0%; width: 25%; height: 10%;background-color: #367dd3;font-size: 24px;">50%</div>
-                      
-                      <div class="card-body">
-                          <div class="card-title">
-                            <a class="font-weight-bold" style="font-size: 24px;height: 76px;color: #454545;" href="#">[Speed9] 번호 입력 순발력 게임!</a><!--여기서 이거 누르면 상품 설명 페이지로-->
-                              <div style="font-size: 14px;color: #666666;">21.04.13 ~ 21.05.12</div>
-                          </div>
-                          <p class="card-text" style="">
-                              <div class="font-weight-bold" style="font-size: 18px; color: #666666;">회사(개인)</div>
-                              <div style="color: #367dd3;font-size: 14px;">
-                                <span>#상품</span>
-                                <span>#게임</span>
-                              </div>
-                              <div class="d-flex justify-content-between mt-1">
-                                  <div class="d-flex justify-content-start">
-                                    <span class="font-weight-bold mr-1" style="font-size: 24px;">10,000원</span>
-                                    <span style="color: #999999;text-decoration: line-through;font-size: 14px;">20,000원</span>
-                                  </div>
-                                  <div>
-                                    <a style="color: #999999">
-                                      <i class="fas fa-heart" style="font-size: 36px;"></i>
-                                    </a> 
-                                  </div>
-                              </div>
-                              
-                          </p>
-                      </div>
-                  </div>
-                  </div>
-                  <div class="col-lg-4 col-md-6 d-flex justify-content-center">
-                    <div class="card" style="max-width: 400px; height: 100%; position: relative;">
-                                
-                      <img src="..\img\shift\gamer.png" alt="..." class="card-img-top" style="height: 60%; object-fit: cover;overflow: hidden;">
-                      <div class="text-white font-weight-bold d-flex align-items-center justify-content-center" style="position: absolute; bottom: 40%;right: 0%; width: 25%; height: 10%;background-color: #367dd3;font-size: 24px;">50%</div>
-                      
-                      <div class="card-body">
-                          <div class="card-title">
-                            <a class="font-weight-bold" style="font-size: 24px;height: 76px;color: #454545;" href="#">[Speed9] 번호 입력 순발력 게임!</a><!--여기서 이거 누르면 상품 설명 페이지로-->
-                              <div style="font-size: 14px;color: #666666;">21.04.13 ~ 21.05.12</div>
-                          </div>
-                          <p class="card-text" style="">
-                              <div class="font-weight-bold" style="font-size: 18px; color: #666666;">회사(개인)</div>
-                              <div style="color: #367dd3;font-size: 14px;">
-                                <span>#상품</span>
-                                <span>#게임</span>
-                              </div>
-                              <div class="d-flex justify-content-between mt-1">
-                                  <div class="d-flex justify-content-start">
-                                    <span class="font-weight-bold mr-1" style="font-size: 24px;">10,000원</span>
-                                    <span style="color: #999999;text-decoration: line-through;font-size: 14px;">20,000원</span>
-                                  </div>
-                                  <div>
-                                    <a style="color: #999999">
-                                      <i class="fas fa-heart" style="font-size: 36px;"></i>
-                                    </a> 
-                                  </div>
-                              </div>
-                              
-                          </p>
-                      </div>
-                  </div>
-                  </div>
-                  <div class="col-lg-4 col-md-6 d-flex justify-content-center">
-                    <div class="card" style="max-width: 400px; height: 100%; position: relative;">
-                                
-                      <img src="..\img\shift\gamer.png" alt="..." class="card-img-top" style="height: 60%; object-fit: cover;overflow: hidden;">
-                      <div class="text-white font-weight-bold d-flex align-items-center justify-content-center" style="position: absolute; bottom: 40%;right: 0%; width: 25%; height: 10%;background-color: #367dd3;font-size: 24px;">50%</div>
-                      
-                      <div class="card-body">
-                          <div class="card-title">
-                            <a class="font-weight-bold" style="font-size: 24px;height: 76px;color: #454545;" href="#">[Speed9] 번호 입력 순발력 게임!</a><!--여기서 이거 누르면 상품 설명 페이지로-->
-                              <div style="font-size: 14px;color: #666666;">21.04.13 ~ 21.05.12</div>
-                          </div>
-                          <p class="card-text" style="">
-                              <div class="font-weight-bold" style="font-size: 18px; color: #666666;">회사(개인)</div>
-                              <div style="color: #367dd3;font-size: 14px;">
-                                <span>#상품</span>
-                                <span>#게임</span>
-                              </div>
-                              <div class="d-flex justify-content-between mt-1">
-                                  <div class="d-flex justify-content-start">
-                                    <span class="font-weight-bold mr-1" style="font-size: 24px;">10,000원</span>
-                                    <span style="color: #999999;text-decoration: line-through;font-size: 14px;">20,000원</span>
-                                  </div>
-                                  <div>
-                                    <a style="color: #999999">
-                                      <i class="fas fa-heart" style="font-size: 36px;"></i>
-                                    </a> 
-                                  </div>
-                              </div>
-                              
-                          </p>
-                      </div>
-                  </div>
-                  </div>
-                  <div class="col-lg-4 col-md-6 d-flex justify-content-center">
-                    <div class="card" style="max-width: 400px; height: 100%; position: relative;">
-                                
-                      <img src="..\img\shift\gamer.png" alt="..." class="card-img-top" style="height: 60%; object-fit: cover;overflow: hidden;">
-                      <div class="text-white font-weight-bold d-flex align-items-center justify-content-center" style="position: absolute; bottom: 40%;right: 0%; width: 25%; height: 10%;background-color: #367dd3;font-size: 24px;">50%</div>
-                      
-                      <div class="card-body">
-                          <div class="card-title">
-                            <a class="font-weight-bold" style="font-size: 24px;height: 76px;color: #454545;" href="#">[Speed9] 번호 입력 순발력 게임!</a><!--여기서 이거 누르면 상품 설명 페이지로-->
-                              <div style="font-size: 14px;color: #666666;">21.04.13 ~ 21.05.12</div>
-                          </div>
-                          <p class="card-text" style="">
-                              <div class="font-weight-bold" style="font-size: 18px; color: #666666;">회사(개인)</div>
-                              <div style="color: #367dd3;font-size: 14px;">
-                                <span>#상품</span>
-                                <span>#게임</span>
-                              </div>
-                              <div class="d-flex justify-content-between mt-1">
-                                  <div class="d-flex justify-content-start">
-                                    <span class="font-weight-bold mr-1" style="font-size: 24px;">10,000원</span>
-                                    <span style="color: #999999;text-decoration: line-through;font-size: 14px;">20,000원</span>
-                                  </div>
-                                  <div>
-                                    <a style="color: #999999">
-                                      <i class="fas fa-heart" style="font-size: 36px;"></i>
-                                    </a> 
-                                  </div>
-                              </div>
-                              
-                          </p>
-                      </div>
-                  </div>
-                  </div>
-                  <div class="col-lg-4 col-md-6 d-flex justify-content-center">
-                    <div class="card" style="max-width: 400px; height: 100%; position: relative;">
-                                
-                      <img src="..\img\shift\gamer.png" alt="..." class="card-img-top" style="height: 60%; object-fit: cover;overflow: hidden;">
-                      <div class="text-white font-weight-bold d-flex align-items-center justify-content-center" style="position: absolute; bottom: 40%;right: 0%; width: 25%; height: 10%;background-color: #367dd3;font-size: 24px;">50%</div>
-                      
-                      <div class="card-body">
-                          <div class="card-title">
-                            <a class="font-weight-bold" style="font-size: 24px;height: 76px;color: #454545;" href="#">[Speed9] 번호 입력 순발력 게임!</a><!--여기서 이거 누르면 상품 설명 페이지로-->
-                              <div style="font-size: 14px;color: #666666;">21.04.13 ~ 21.05.12</div>
-                          </div>
-                          <p class="card-text" style="">
-                              <div class="font-weight-bold" style="font-size: 18px; color: #666666;">회사(개인)</div>
-                              <div style="color: #367dd3;font-size: 14px;">
-                                <span>#상품</span>
-                                <span>#게임</span>
-                              </div>
-                              <div class="d-flex justify-content-between mt-1">
-                                  <div class="d-flex justify-content-start">
-                                    <span class="font-weight-bold mr-1" style="font-size: 24px;">10,000원</span>
-                                    <span style="color: #999999;text-decoration: line-through;font-size: 14px;">20,000원</span>
-                                  </div>
-                                  <div>
-                                    <a style="color: #999999">
-                                      <i class="fas fa-heart" style="font-size: 36px;"></i>
-                                    </a> 
-                                  </div>
-                              </div>
-                              
-                          </p>
-                      </div>
-                  </div>
-                  </div>
-                </div>
-                
-
+              <div class="d-flex justify-content-center mt-3">
+                <div class="btn font-weight-bold js-searchBtn" style="
+                min-width: 180px;
+                width: 15%; font-size: 16px; 
+                border: 2px solid #17375e; 
+                color: #17375e;border-radius: 1rem;">분류하기</div>
+              </div>
+              <div class="row mt-3 js-cardsContainer"><!--이거 전부 다 첫번쨰 카드 형식으로 만들면 될듯 나머지는 그냥 구색으로 맞춰놓은거입니당.-->
+                <!-- 여기에 innerHTML로 코드 삽입됨 -->
+              </div>
             </div>
-        </div>
+          </div>
         <div
               class="tab-pane fade show"
               id="ex1-tabs-2"
@@ -478,34 +275,17 @@ crossorigin="anonymous"></script>
 
   </script>
 
-  <!-- The core Firebase JS SDK is always required and must be listed first -->
+<!-- The core Firebase JS SDK is always required and must be listed first -->
 <script src="https://www.gstatic.com/firebasejs/8.2.2/firebase-app.js"></script>
-
 <!-- TODO: Add SDKs for Firebase products that you want to use https://firebase.google.com/docs/web/setup#available-libraries -->
 <script src="https://www.gstatic.com/firebasejs/8.2.2/firebase-analytics.js"></script>
-
 <script src="https://www.gstatic.com/firebasejs/8.2.2/firebase-auth.js"></script>
 <script src="https://www.gstatic.com/firebasejs/8.2.2/firebase-firestore.js"></script>
 <script src="https://www.gstatic.com/firebasejs/8.2.2/firebase-database.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.2.2/firebase-storage.js"></script>
 
-<script>
-var firebaseConfig = {
-    apiKey: "AIzaSyCXRTprV0yWYk8YrVpopvkFM4Cv_Nmhb2g",
-    authDomain: "shift-f80bc.firebaseapp.com",
-    databaseURL: "https://shift-f80bc-default-rtdb.firebaseio.com",
-    projectId: "shift-f80bc",
-    storageBucket: "shift-f80bc.appspot.com",
-    messagingSenderId: "111516463886",
-    appId: "1:111516463886:web:f7ae7d49add43d4cc0dd5f",
-    measurementId: "G-QXHD4RJNKQ"
-};
-
-// Initialize Firebase
-firebase.initializeApp(firebaseConfig);
-
-</script>
 <script src="activeAuc.js"></script>
+<script src="marketPg/mkMarketPg.js"></script>
 
 </body>
-
 </html>

@@ -1,0 +1,191 @@
+<!-- 편리한 마켓 상품 정보 업로드를 위한 페이지 -->
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>마켓 정보 쉽게 저장</title>
+</head>
+<body>
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/8.2.2/firebase-app.js"></script>
+    <!-- TODO: Add SDKs for Firebase products that you want to use https://firebase.google.com/docs/web/setup#available-libraries -->
+    <script src="https://www.gstatic.com/firebasejs/8.2.2/firebase-analytics.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.2/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.2/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.2/firebase-database.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.2/firebase-storage.js"></script>
+
+    <h1>저장할 마켓 상품/서비스 정보를 입력하세요~</h1>
+    <form >
+        <label>상품/서비스 이름:</label>
+        <input class="name" type="text" /><br>
+        <label>제작사 이름:</label>
+        <input class="company" type="text" /><br>
+        <label>대분류:</label><br>
+        <span class="l-category">
+            <label for="l0">서비스</label>
+            <input id="l0" name="l-category" type="radio" value="0" /><br>
+            <label for="l1">상품</label>
+            <input id="l1" name="l-category" type="radio" value="1" /><br>
+        </span><br>   
+        <label>소분류:</label><br>
+        <span class="s-category">
+            <label for="s0">보드게임</label>
+            <input id="s0" name="s-category" type="radio" value="0" /><br>
+            <label for="s1">공연</label>
+            <input id="s1" name="s-category" type="radio" value="1" /><br>
+            <label for="s2">음식</label>
+            <input id="s2" name="s-category" type="radio" value="2" /><br>
+            <label for="s3">패션</label>
+            <input id="s3" name="s-category" type="radio" value="3" /><br>
+            <label for="s4">디자인</label>
+            <input id="s4" name="s-category" type="radio" value="4" /><br>
+            <label for="s5">스포츠</label>
+            <input id="s5" name="s-category" type="radio" value="5" /><br>
+            <label for="s6">미술</label>
+            <input id="s6" name="s-category" type="radio" value="6" /><br>
+            <label for="s7">만화</label>
+            <input id="s7" name="s-category" type="radio" value="7" /><br>
+            <label for="s8">음악</label>
+            <input id="s8" name="s-category" type="radio" value="8" /><br>
+            <label for="s9">문화</label>
+            <input id="s9" name="s-category" type="radio" value="9" /><br>
+            <label for="s10">기술</label>
+            <input id="s10" name="s-category" type="radio" value="10" /><br>
+            <label for="s11">기타</label>
+            <input id="s11" name="s-category" type="radio" value="11" /><br>
+        </span><br>  
+        <label>시작날짜:</label>
+        <input class="startDate" type="date" /><br>
+        <label>종료날짜:</label>
+        <input class="endDate" type="date" /><br>
+        <label>원가:</label>
+        <input class="originalPrice" type="number" /><br>
+        <label>할인가:</label>
+        <input class="salePrice" type="number" /><br>
+        <label>사진:</label>
+        <input class="img" type="file" accept=".jpg,.jpeg,.png,.gif" /><br>
+        <input class="submit" type="button" value="submit" /><br>
+        <input type="reset" value="reset" />
+    </form>
+</body>
+
+<script>
+    const formDOM = document.querySelector("form"),
+        nameDOM = formDOM.querySelector(".name"),
+        companyDOM = formDOM.querySelector(".company"),
+        l_categoryDOM = formDOM.getElementsByName("l-category"),
+        s_categoryDOM = formDOM.getElementsByName("s-category"),
+        startDateDOM = formDOM.querySelector(".startDate"),
+        endDateDOM = formDOM.querySelector(".endDate"),
+        origialPriceDOM = formDOM.querySelector(".originalPrice"),
+        salePriceDOM = formDOM.querySelector(".salePrice"),
+        imgDOM = formDOM.querySelector(".img"),
+        submitDOM = formDOM.querySelector(".submit");
+
+    const firebaseConfig = {
+        apiKey: "AIzaSyCXRTprV0yWYk8YrVpopvkFM4Cv_Nmhb2g",
+        authDomain: "shift-f80bc.firebaseapp.com",
+        databaseURL: "https://shift-f80bc-default-rtdb.firebaseio.com",
+        projectId: "shift-f80bc",
+        storageBucket: "shift-f80bc.appspot.com",
+        messagingSenderId: "111516463886",
+        appId: "1:111516463886:web:f7ae7d49add43d4cc0dd5f",
+        measurementId: "G-QXHD4RJNKQ"
+    };
+
+    function init() {
+        submitDOM.addEventListener("click", handleSubmit);
+    }
+
+    init();
+
+    function handleSubmit(event) {
+        const id = new Date().getTime(),
+            l_categoryNum = 2,
+            s_categoryNum = 11;
+
+        let marketInfo = {
+            l_category : null,
+            s_category : null,
+            originalPrice : null,
+            salePrice : null,
+            startDate : null,
+            endDate : null,
+            name : null,
+            company : null,
+            img : null
+        };
+
+        // l_category
+        for (let i = 0; i < l_categoryNum; i++) {
+            if (l_categoryDOM[i].checked === true) {
+                marketInfo.l_category = i;
+                break;
+            }   
+        }
+
+        // s_category
+        for (let i = 0; i < s_categoryNum; i++) {
+            if (s_categoryDOM[i].checked === true) {
+                marketInfo.s_category = i;
+                break;
+            }   
+        }
+
+        marketInfo.originalPrice = parseInt(origialPriceDOM.value);
+        marketInfo.salePrice = parseInt(salePriceDOM.value);
+
+        // startDate
+        let parsedStr = startDateDOM.value.split("-");
+        marketInfo.startDate = new Date(parseInt(parsedStr[0]), parseInt(parsedStr[1]) - 1, parseInt(parsedStr[2]));
+        
+        // endDate
+        parsedStr = endDateDOM.value.split("-");
+        marketInfo.endDate = new Date(parseInt(parsedStr[0]), parseInt(parsedStr[1]) - 1, parseInt(parsedStr[2]));
+        
+        marketInfo.name = nameDOM.value;
+        marketInfo.company = companyDOM.value;
+
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        const firestoreDB = firebase.firestore(),
+            storageDB = firebase.storage();
+
+        // img
+        const fileObj = imgDOM.files[0];
+        const refForImg = storageDB.ref().child(`imgForMarket/${id}/${fileObj.name}`).put(fileObj);
+
+        // storage에 이미지 업로드
+        refForImg.on('state_changed', function(snapshot){
+            // Observe state change events such as progress, pause, and resume
+            // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
+            var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+            console.log('Upload is ' + progress + '% done');
+            switch (snapshot.state) {
+              case firebase.storage.TaskState.PAUSED: // or 'paused'
+                console.log('Upload is paused');
+                break;
+              case firebase.storage.TaskState.RUNNING: // or 'running'
+                console.log('Upload is running');
+                break;
+            }
+        }, function(error) {
+            console.log(error);
+            // Handle unsuccessful uploads
+        }, function() {
+            // Handle successful uploads on complete
+            // For instance, get the download URL: https://firebasestorage.googleapis.com/...
+            refForImg.snapshot.ref.getDownloadURL().then(function(downloadURL) {
+                console.log('File available at', downloadURL);
+                marketInfo.img = downloadURL;
+                // firestore에 나머지 정보 업로드
+                firestoreDB.collection("market").doc(`${id}`).set(marketInfo);
+            });
+        });
+    } 
+ 
+</script>
+</html>
