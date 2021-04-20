@@ -179,21 +179,21 @@ body,
     font-size: 16px;
   }
   .thirdh4_font {
-    font-size: 12px;
+    font-size: 16px;
   }
 }
 @media (max-width: 850px) {
   body {
   }
   .third_captionfont {
-    font-size: 10px;
+    font-size: 12px;
   }
 
   .carousel {
     height: 100vh;
   }
   .third_font {
-    font-size: 12px;
+    font-size: 16px;
   }
 }
 @media (min-width: 800px) and (max-width: 850px) {

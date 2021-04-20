@@ -21,122 +21,7 @@
 crossorigin="anonymous"></script>
 
   <style>
- 
-         @media (min-width: 1501px) {
-  .container {
-    max-width: 1440px;
-  }
-  .third_font{
-    font-size: 24px;
-  }
-  .third_captionfont{
-          font-size: 14px;
-        }
-    .thirdh1_font{
-        font-size: 36px;
-    }
-    .thirdh2_font{
-        font-size: 30px;
-    }
-      
-    .thirdh3_font{
-      font-size: 20px;
-    }
-    .thirdh4_font{
-      font-size: 16px;
-    }
-         }
-  @media (max-width: 1501px) {
-  .third_font{
-    font-size: 24px;
-  }
   
-  .third_captionfont{
-          font-size: 14px;
-        }
-    .thirdh1_font{
-        font-size: 36px;
-    }
-    .thirdh2_font{
-        font-size: 30px;
-    }
-    .thirdh3_font{
-      font-size: 20px;
-    }
-    .thirdh4_font{
-      font-size: 16px;
-    }
-}
-@media (min-width: 740px){
-  .font-step{
-    font-size: 30px;
-  }
-}
-      @media (max-width: 740px) {
-        html,
-        body,
-        header,
-        .carousel {
-          height: 100vh;
-        }
-        .third_font{
-          font-size: 16px;
-        }
-        .font-step{
-         font-size: 16px;
-        }
-      }
-      @media (max-width: 1000px) {
-        .third_font{
-          font-size: 16px;
-        }
-        .third_captionfont{
-          font-size: 10px;
-        }
-        .thirdh1_font{
-          font-size: 24px;
-        }
-        .thirdh2_font{
-        font-size: 20px;
-        }
-        .thirdh3_font{
-        font-size: 16px;
-        }
-        .thirdh4_font{
-          font-size: 12px;
-        }
-      }
-      @media(max-width: 850px) {
-        
-        body{
-          
-        }
-        .third_captionfont{
-          font-size: 10px;
-        }
-        
-        .carousel {
-          height: 100vh;
-        }
-        .third_font{
-          font-size: 12px;
-        }
-      }
-      @media (min-width: 800px) and (max-width: 850px) {
-        html,
-        body,
-        header,
-        .carousel {
-          height: 100vh;
-        }
-        .third_font{
-          font-size: 16px;
-        }
-        .third_captionfont{
-          font-size: 10px;
-        }
-      }
-      
 
 @media all and (min-width: 992px) {
 	.navbar .nav-item .dropdown-menu{ display: none;}
@@ -151,6 +36,11 @@ crossorigin="anonymous"></script>
     
   }
   
+}
+@media (max-width: 766px){
+  .cash-right{
+    text-align: right!important;
+  }
 }
   </style>
   
@@ -196,6 +86,15 @@ crossorigin="anonymous"></script>
               
             </ul>
             <ul class="nav nav-sidebar mt-3" style="font-size: 14px;">
+              <li class=""><div class="font-weight-bold mb-1" style="color: #454545;">쉬프팅 목록</div></li>
+              <li class="" style="line-height: 1.7rem;">
+                <a class="" style="color: #666666;" href="shiftinglist_project.html">관심 프로젝트</a><br>
+                <a class="" href="shiftinglist_kart.html" style="color: #666666;">장바구니</a><br>
+                
+              </li>
+              
+            </ul>
+            <ul class="nav nav-sidebar mt-3" style="font-size: 14px;">
               <li class=""><div class="font-weight-bold mb-1" style="color: #454545;">개인정보</div></li>
               <li class="pb-1" style="line-height: 1.7rem;"><a style="color: #666666;" href="private_admin.html">개인정보 관리</a><br>
                 <a href="" style="color: #666666;">로그아웃</a><br>  
@@ -211,29 +110,28 @@ crossorigin="anonymous"></script>
                   <div class="row align-items-stretch m-1" style="padding: 30px; border: 1px solid #E5E5E5; border-radius: 1rem; padding-bottom: 15px;">
                     <div class="col-md-4">
                       <div class="row">
-                        <div class="col-md-12 col-xs-6 col-sm-6" style="color: #999999;">
+                        <div class="col-md-12 col-6 col-sm-6" style="color: #999999; height: 4rem;">
                           <p class="thirdh4_font" style="margin-bottom: 0px;">보유머니</p>
                           <p style="font-size: 10px;">사용가능+대기금</p>
                         </div>
-                        <div class="col-md-12 col-xs-6 col-sm-6 font-weight-bold" style="color: #17375E; font-size: 18px;" id="addCash">0</div>
+                        <div class="col-md-12 col-6 col-sm-6 font-weight-bold cash-right" style="color: #17375E; font-size: 18px;" id="addCash">0</div>
                       </div>
                     </div>
                     <div class="col-md-4">
                       <div class="row" style="color: #999999;">
-                        <div class="col-md-12 col-xs-6 col-sm-6" style="">
+                        <div class="col-md-12 col-6 col-sm-6" style="height: 4rem;">
                           <p class="thirdh4_font" style="margin-bottom: 0;">사용 가능 머니</p>
-                          <p style="height: 15px;"></p>
                         </div>
-                        <div class="col-md-12 col-xs-6 col-sm-6 font-weight-bold" style="color: #17375E; font-size: 18px;" id="cash">0</div>
+                        <div class="col-md-12 col-6 col-sm-6 font-weight-bold cash-right" style="color: #17375E; font-size: 18px;" id="cash">0</div>
                       </div>
                     </div>
                     <div class="col-md-4">
                       <div class="row">
-                        <div class="col-md-12 col-xs-6 col-sm-6" style="color: #999999;">
+                        <div class="col-md-12 col-6 col-sm-6" style="color: #999999;height: 4rem;">
                           <p class="thirdh4_font" style="margin-bottom: 0px;">대기금</p>
                           <p style="font-size: 10px;">출금, 구매, 입찰중인 머니</p>
                         </div>
-                        <div class="col-md-12 col-xs-6 col-sm-6 font-weight-bold" style="color: #17375E; font-size: 18px;" id="waitingCash">0</div>
+                        <div class="col-md-12 col-6 col-sm-6 font-weight-bold cash-right" style="color: #17375E; font-size: 18px;" id="waitingCash">0</div>
                         </div>
                       </div>
                       <div class="col">
@@ -246,7 +144,7 @@ crossorigin="anonymous"></script>
                     <p class="font-weight-bold mb-5">쉬프팅 머니</p>
                     <div class="row">
                       <div class="col-sm-6" style="padding: 0; border-top: 1px solid #E5E5E5;">
-                        <a class="btn btn-block" style="color: #222222; box-shadow: none;">
+                        <a class="btn btn-block" style="color: #222222; box-shadow: none;" href="shiftmoney_status.html">
                           <div class="d-flex align-items-center justify-content-between">
                             <div class="d-flex align-items-center">
                               <img src="../img\mypage\dollar.png" alt="" style="height: 10%; width: 9.5%;" class="mr-3">
@@ -259,7 +157,7 @@ crossorigin="anonymous"></script>
                         </a>
                       </div>
                       <div class="col-sm-6" style="padding: 0; border-top: 1px solid #E5E5E5;">
-                        <a class="btn btn-block" style="color: #222222;  box-shadow: none;">
+                        <a class="btn btn-block" style="color: #222222;  box-shadow: none;" href="shiftmoney_paylist.html">
                           <div class="d-flex align-items-center justify-content-between">
                             <div class="d-flex align-items-center">
                               <img src="../img\mypage\hand.png" alt="" style="height: 10%; width: 9.5%;" class="mr-3">
@@ -272,7 +170,7 @@ crossorigin="anonymous"></script>
                         </a>
                       </div>
                       <div class="col-sm-6" style="padding: 0; border-top: 1px solid #E5E5E5; border-bottom: 1px solid #E5E5E5;">
-                        <a class="btn btn-block" style="color: #222222; box-shadow: none;">
+                        <a class="btn btn-block" style="color: #222222; box-shadow: none;" href="shiftmoney_tax.html">
                           <div class="d-flex align-items-center justify-content-between">
                             <div class="d-flex align-items-center">
                               <img src="../img\mypage\bill.png" alt="" style="height: 10%; width: 9.5%;" class="mr-3">
@@ -285,7 +183,7 @@ crossorigin="anonymous"></script>
                         </a>
                       </div>
                       <div class="col-sm-6" style="padding: 0; border-top: 1px solid #E5E5E5; border-bottom: 1px solid #E5E5E5;">
-                        <a class="btn btn-block" style="color: #222222;  box-shadow: none;">
+                        <a class="btn btn-block" style="color: #222222;  box-shadow: none;" href="shiftmoney_depowith.html">
                           <div class="d-flex align-items-center justify-content-between">
                             <div class="d-flex align-items-center">
                               <img src="../img\mypage\withdrawal.png" alt="" style="height: 10%; width: 9.5%;" class="mr-3">
@@ -298,7 +196,7 @@ crossorigin="anonymous"></script>
                         </a>
                       </div>
                       <div class="col-sm-6" style="padding: 0; border-bottom: 1px solid #E5E5E5">
-                        <a class="btn btn-block" style="color: #222222;  box-shadow: none;">
+                        <a class="btn btn-block" style="color: #222222;  box-shadow: none;" href="shiftmoney_usermarket.html">
                           <div class="d-flex align-items-center justify-content-between">
                             <div class="d-flex align-items-center">
                               <img src="../img\mypage\shopping-cart.png" alt="" style="height: 10%; width: 9.5%;" class="mr-3">
@@ -313,10 +211,41 @@ crossorigin="anonymous"></script>
                     </div>
                   </div>
                   <div class="thirdh4_font mt-5">
+                    <p class="font-weight-bold">쉬프팅 목록</p>
+                    <div class="row">
+                      <div class="col-sm-6" style="padding: 0; border-top: 1px solid #E5E5E5; border-bottom: 1px solid #E5E5E5;">
+                        <a class="btn btn-block" style="color: #222222; box-shadow: none;" href="shiftinglist_project.html">
+                          <div class="d-flex align-items-center justify-content-between">
+                            <div class="d-flex align-items-center">
+                              <img src="..\img\mypage\heart.png" alt="" style="height: 10%; width: 9.5%;" class="mr-3">
+                              <p style="margin-bottom: 0; font-size: 16px;">관심 프로젝트</p>
+                            </div>
+                          </div>
+                          <a class="carousel-control-next" data-slide="next" style="margin-right: 20px;">
+                            <span class="carousel-control-next-icon" style="height: 30px; width:30px; font-size:80px;" aria-hidden="true"></span>
+                          </a>
+                        </a>
+                      </div>
+                      <div class="col-sm-6" style="padding: 0; border-top: 1px solid #E5E5E5; border-bottom: 1px solid #E5E5E5;">
+                        <a class="btn btn-block" style="color: #222222; box-shadow: none;" href="shiftinglist_kart.html">
+                          <div class="d-flex align-items-center justify-content-between">
+                            <div class="d-flex align-items-center">
+                              <img src="..\img\mypage\shoppingbag.png" alt="" style="height: 10%; width:9.5%;" class="mr-3">
+                              <p style="margin-bottom: 0; font-size: 16px;" >장바구니</p>
+                            </div>
+                          </div>
+                          <a class="carousel-control-next" data-slide="next" style="margin-right: 20px;">
+                            <span class="carousel-control-next-icon" style="height: 30px; width:30px; font-size:80px;" aria-hidden="true"></span>
+                          </a>
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="thirdh4_font mt-5">
                     <p class="font-weight-bold">개인정보</p>
                     <div class="row">
                       <div class="col-sm-6" style="padding: 0; border-top: 1px solid #E5E5E5; border-bottom: 1px solid #E5E5E5;">
-                        <a class="btn btn-block" style="color: #222222; box-shadow: none;">
+                        <a class="btn btn-block" style="color: #222222; box-shadow: none;" href="private_admin.html">
                           <div class="d-flex align-items-center justify-content-between">
                             <div class="d-flex align-items-center">
                               <img src="../img\mypage\user.png" alt="" style="height: 10%; width: 9.5%;" class="mr-3">
@@ -329,11 +258,11 @@ crossorigin="anonymous"></script>
                         </a>
                       </div>
                       <div class="col-sm-6" style="padding: 0; border-top: 1px solid #E5E5E5; border-bottom: 1px solid #E5E5E5;">
-                        <a class="btn btn-block" style="color: #222222; box-shadow: none;">
+                        <a class="btn btn-block" style="color: #222222; box-shadow: none;" onclick="logout();">
                           <div class="d-flex align-items-center justify-content-between">
                             <div class="d-flex align-items-center">
                               <img src="../img\mypage\exit.png" alt="" style="height: 10%; width:9.5%;" class="mr-3">
-                              <p style="margin-bottom: 0; font-size: 16px;" onclick="logout();">로그아웃</p>
+                              <p style="margin-bottom: 0; font-size: 16px;" >로그아웃</p>
                             </div>
                           </div>
                           <a class="carousel-control-next" data-slide="next" style="margin-right: 20px;">

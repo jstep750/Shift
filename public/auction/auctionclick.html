@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>마켓-클릭(여기도 자바로 건드려야됨)</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
+  <!-- Bootstrap core CSS -->
+  <link href="../css/bootstrap.min.css" rel="stylesheet">
+  <!-- Material Design Bootstrap -->
+  <link href="../css/mdb.min.css" rel="stylesheet">
+  <!-- Your custom styles (optional) -->
+  <link href="../css/style.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="../app.css">
+  <link rel="stylesheet" href="../css/mdb.min_5.css">
+  <script src="https://kit.fontawesome.com/22de0a02bc.js" crossorigin="anonymous"></script>
+  <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
+crossorigin="anonymous"></script>
+  <style>
+      
+  </style>
+  <script>
+    $(document).ready(function() {  
+      function toggleNavbarMethod() {  
+          if ($(window).width() > 768) {  
+              $('.navbar .dropdown').on('mouseover', function(){  
+                  $('.dropdown-toggle', this).trigger('click');   
+              }).on('mouseout', function(){  
+                  $('.dropdown-toggle', this).trigger('click').blur();  
+              });  
+          }  
+          else {  
+              $('.navbar .dropdown').off('mouseover').off('mouseout');  
+          }  
+      }  
+      toggleNavbarMethod();  
+      $(window).resize(toggleNavbarMethod);  
+      $("#navbar-beforelogin").load("../navbar/navbar-beforelogin.html");
+      $("#navbar-afterlogin").load("../navbar/navbar-afterlogin.html");
+  }); 
+    
+    </script>
+</head>
+
+<body>
+   <!-- Navbar -->
+  <!--<div id="navbar-afterlogin"></div>--> 
+  <div id="navbar-beforelogin"></div>
+  
+<!-- Navbar -->    
+<main class="mt-5 pt-4" style="min-height: 100vh;">
+    <div class="container pt-5">
+        <div style="font-size: 14px;"><!--해시태그 및 회사에 대한 설명이 데이터베이스로 추가되어야할듯-->
+            <span class="mr-3" style="color: #367dd3;">#상품#게임</span><span style="color: #666666;">회사(개인)</span>
+        </div>
+        <div class="row">
+            <div class="col-lg-6">
+            <div class="img-square">
+                <img class="img-square" src="..\img\shift\warlord_gandhi.jpg" alt="" style="position: absolute; width: 90%;height: 90%; object-fit: cover;"> 
+            </div>
+                        
+            </div>
+            <div class="col-lg-6">
+                <div style="font-size: 30px;font-weight: 700;" id="">[Sid Meier's Civilization VI] 전쟁광을 피해 살아남아라</div>
+                <div style="color: #454545;" id="">21.04.21~21.06.21</div>
+                <div style="height: 300px;max-height: 40%; padding-top: 2rem;">
+                    살려주세요 전 암것도 안했어요 옆에 있단 죄밖에 없는데 왜 공개비난 하세요 안돼요 싫어요 상인보내지 마세요
+                </div>
+                <!--
+                    <div class="row mt-3">
+                    <div class="col-lg-6">
+                        <div class="d-flex justify-content-between">
+                            <span style="font-size: 36px;color: #367dd3;">50%</span>
+                            <span class="d-flex align-items-center" style="color: #999999;text-decoration: line-through;">20,000원</span>
+                        </div>
+                        <div class="text-right font-weight-bold" style="font-size: 36px;">
+                            10,000원
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <a class="btn btn-block text-white font-weight-bold" style="background-color: #666666;font-size: 16px;padding-top: 12px;padding-bottom: 12px;">장바구니</a>
+                        <a class="btn btn-block text-white font-weight-bold" style="background-color: #666666;font-size: 16px;padding-top: 12px;padding-bottom: 12px;">관심추가<i class="fas fa-heart ml-1" style="color: black;"></i></a>
+                        <a class="btn btn-block text-white font-weight-bold" style="background-color: #17375e;font-size: 16px;padding-top: 12px;padding-bottom: 12px;">구매하기</a>
+                    </div>
+                </div>
+                -->
+                <div class="d-flex justify-content-between">
+                    <div style="color: #367dd3;font-size: 36px;">50%</div>
+                    <div>
+                        <span style="text-decoration: line-through;">20,000원</span>
+                        <span class="font-weight-bold" style="font-size: 36px;">10,000원</span>
+                    </div>
+                </div>
+                <div class="row" style="padding: 7px;">
+                    <div class="col" style="padding: 5px;">
+                        <a class="btn btn-block text-white font-weight-bold" style="background-color: #666666;font-size: 16px;padding-top: 12px;padding-bottom: 12px;">장바구니</a>
+                    </div>
+                    <div class="col" style="padding: 5px;">
+                        <a class="btn btn-block text-white font-weight-bold" style="background-color: #666666;font-size: 16px;padding-top: 12px;padding-bottom: 12px;">관심추가<i class="fas fa-heart ml-1" style="color: black;"></i></a>
+                    </div>
+                </div>
+                    <a class="btn btn-block text-white font-weight-bold" style="background-color: #17375e;font-size: 16px;padding-top: 12px;padding-bottom: 12px;">구매하기</a>
+            </div>
+        </div><!--여기까지 상단-->
+        <div class="mt-3 font-weight-bold" style="font-size: 24px;">
+            제작자 소개
+        </div>
+    </div>
+</main>
+ 
+
+  <!--Footer-->
+  <footer class="page-footer text-center font-small" style="
+  text-align: center;
+  background-color: white;
+  border-top: 1px solid grey;
+  ">
+    <div style="height: 10px;"></div>
+    <p class="mb-3" style="color: #333333;">Copyright © 2021 Shift</p>
+    <p style="color: #333333;">상호: Shift | 대표: 김용운 | 개인정보관리책임자: 미입력 | 전화: 미입력 | 이메일: karlxyz99@korea.ac.kr</p>
+    <div style="height: 3px;"></div>
+  </footer>
+  <!--/.Footer-->
+
+  <!-- SCRIPTS -->
+  <!-- JQuery -->
+  <script type="text/javascript" src="../js/jquery-3.4.1.min.js"></script>
+  <!-- Bootstrap tooltips -->
+  <script type="text/javascript" src="../js/popper.min.js"></script>
+  <!-- Bootstrap core JavaScript -->
+  <script type="text/javascript" src="../js/bootstrap.min.js"></script>
+  <!-- MDB core JavaScript -->
+  <script type="text/javascript" src="../js/mdb.min.js"></script>
+  <!-- Initializations -->
+  <script type="text/javascript">
+  
+    // Animations initialization
+    new WOW().init();
+
+  </script>
+
+  <!-- The core Firebase JS SDK is always required and must be listed first -->
+<script src="https://www.gstatic.com/firebasejs/8.2.2/firebase-app.js"></script>
+
+<!-- TODO: Add SDKs for Firebase products that you want to use https://firebase.google.com/docs/web/setup#available-libraries -->
+<script src="https://www.gstatic.com/firebasejs/8.2.2/firebase-analytics.js"></script>
+
+<script src="https://www.gstatic.com/firebasejs/8.2.2/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.2.2/firebase-firestore.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.2.2/firebase-database.js"></script>
+
+<script>
+var firebaseConfig = {
+    apiKey: "AIzaSyCXRTprV0yWYk8YrVpopvkFM4Cv_Nmhb2g",
+    authDomain: "shift-f80bc.firebaseapp.com",
+    databaseURL: "https://shift-f80bc-default-rtdb.firebaseio.com",
+    projectId: "shift-f80bc",
+    storageBucket: "shift-f80bc.appspot.com",
+    messagingSenderId: "111516463886",
+    appId: "1:111516463886:web:f7ae7d49add43d4cc0dd5f",
+    measurementId: "G-QXHD4RJNKQ"
+};
+
+// Initialize Firebase
+firebase.initializeApp(firebaseConfig);
+
+</script>
+<script src="activeAuc.js"></script>
+
+</body>
+
+</html>
