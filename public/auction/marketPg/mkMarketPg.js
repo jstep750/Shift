@@ -294,11 +294,13 @@ function updateHideClass(selectedIdsArr) {
         // 선택된 애가 감춰져 있는 경우, 해당 card에 js-hide 클래스 제거
         if (selectedIdsArr.includes(goodsIdsArr[i]) && cardsDOMArr[i].children[0].classList.contains("js-hide")) {
             console.log(`remove js-hide to ${goodsIdsArr[i]}`);
+            cardsDOMArr[i].classList.add("col-lg-4", "col-md-6");
             cardsDOMArr[i].children[0].classList.remove("js-hide");
         }
         // 선택되지 않은 애가 보이는 경우, 해당 card에 js-hide 클래스 추가
         else if (!(selectedIdsArr.includes(goodsIdsArr[i])) && !(cardsDOMArr[i].children[0].classList.contains("js-hide"))) {
             console.log(`add js-hide to ${goodsIdsArr[i]}`);
+            cardsDOMArr[i].classList.remove("col-lg-4", "col-md-6");
             cardsDOMArr[i].children[0].classList.add("js-hide");
         }
     }
