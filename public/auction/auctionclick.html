@@ -20,7 +20,12 @@
   <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
 crossorigin="anonymous"></script>
   <style>
-      
+      a.active.nav-link{color: #17375E!important;border-bottom: 1px solid #17375E!important;}
+      @media (max-width: 892px){
+          .mobile-invisible{
+              display: none;
+          }
+      }
   </style>
   <script>
     $(document).ready(function() {  
@@ -40,7 +45,35 @@ crossorigin="anonymous"></script>
       $(window).resize(toggleNavbarMethod);  
       $("#navbar-beforelogin").load("../navbar/navbar-beforelogin.html");
       $("#navbar-afterlogin").load("../navbar/navbar-afterlogin.html");
+      var optionNum = 0;
+    var addiOptionNum = 0;
+    
+    document.querySelector("#optionGaesu").innerHTML=optionNum;
+    document.querySelector("addiOptionGaesu").innerHTML=addiOptionNum;
   }); 
+  function addOptionNum(){
+        optionNum++;
+        document.querySelector("#optionGaesu").innerHTML=optionNum;
+    }
+    function subOptionNum(){
+        if(optionNum>0){
+            optionNum--;
+        }
+        else{
+            alert("옵션 수량이 0개입니다!");
+        }
+    }
+    function addAddiOptionNum(){
+        addiOptionNum++;
+    }
+    function subAddiOptionNum(){
+        if(addiOptionNum>0){
+            addiOptionNum--;
+        }
+        else{
+            alert("옵션 수량이 0개입니다!");
+        }   //해볼라는데 안되넹..일단 넘어갈게요
+    }
     
     </script>
 </head>
@@ -52,21 +85,21 @@ crossorigin="anonymous"></script>
   
 <!-- Navbar -->    
 <main class="mt-5 pt-4" style="min-height: 100vh;">
-    <div class="container pt-5">
+    <div class="container pt-5" style="padding: 0px;">
         <div style="font-size: 14px;"><!--해시태그 및 회사에 대한 설명이 데이터베이스로 추가되어야할듯-->
             <span class="mr-3" style="color: #367dd3;">#상품#게임</span><span style="color: #666666;">회사(개인)</span>
         </div>
-        <div class="row">
-            <div class="col-lg-6">
-            <div class="img-square">
-                <img class="img-square" src="..\img\shift\warlord_gandhi.jpg" alt="" style="position: absolute; width: 90%;height: 90%; object-fit: cover;"> 
+        <div class="row" style="border: 1px solid #d3d3d3;margin-left: 0px; margin-right: 0px;">
+            <div class="col-lg-6" style="border-right: 1px solid #d3d3d3;">
+            <div class="img-square-container" style="margin-left: -12px;margin-right: -12px;">
+                <img class="img-square" src="..\img\shift\warlord_gandhi.jpg"> 
             </div>
                         
             </div>
-            <div class="col-lg-6">
+            <div class="col-lg-6" style="padding: 24px;">
                 <div style="font-size: 30px;font-weight: 700;" id="">[Sid Meier's Civilization VI] 전쟁광을 피해 살아남아라</div>
                 <div style="color: #454545;" id="">21.04.21~21.06.21</div>
-                <div style="height: 300px;max-height: 40%; padding-top: 2rem;">
+                <div class="mt-2" style="border: 1px solid #d3d3d3; height: 300px;max-height: 40%; padding:1rem;">
                     살려주세요 전 암것도 안했어요 옆에 있단 죄밖에 없는데 왜 공개비난 하세요 안돼요 싫어요 상인보내지 마세요
                 </div>
                 <!--
@@ -87,11 +120,68 @@ crossorigin="anonymous"></script>
                     </div>
                 </div>
                 -->
-                <div class="d-flex justify-content-between">
+                <div class="d-flex justify-content-between mt-2">
                     <div style="color: #367dd3;font-size: 36px;">50%</div>
                     <div>
                         <span style="text-decoration: line-through;">20,000원</span>
                         <span class="font-weight-bold" style="font-size: 36px;">10,000원</span>
+                    </div>
+                </div>
+                <hr>
+                <p>
+                    <div style="color: #222222;">택배배송: 무료배송</div>
+                    <div style="color: #999999;">제주 추가: 3,000원, 제주 외 도서지역 추가 5,000원</div>
+                </p>
+                <hr>
+                <p style="color: #222222;">옵션 선택</p>
+                <select name="" id="" class="custom-select">
+                    <option value="">옵션 선택</option>
+                    <option value="">뭐가</option>
+                    <option value="">좋을까요</option>
+                  </select>
+                  <select name="" id="" class="custom-select mt-3">
+                    <option value="">추가옵션 선택(추옵 아님ㅎ)</option>
+                    <option value="">뭐가</option>
+                    <option value="">좋을까요</option>
+                  </select>
+                  <hr style="height: 2px;">
+                  <div style="padding-top: 24px;"><!--여기서부터 옵션 및 추가옵션 선택시 나오는 부분(옵션 파트)-->
+                    <div class="d-flex justify-content-between">
+                        <div style="color: #222222;">[Sid Meier's Civilization VI]게임 파일</div>
+                        <a href="" style="font-size: 30px;color: #666666;" onclick=""><i class="fas fa-times"></i></a><!--함수 삽입-->
+                    </div>
+                    <div class="d-flex justify-content-between mt-3">
+                        <div class="d-flex" style="color: #222222;">
+                            <a class="plusminus-btn" href="" onclick="subOptionNum();"><i class="fas fa-minus"></i></a>
+                            <div class="plusminus-btn" id="optionGaesu" style="background-color: #fff;width: 2.5rem"></div>
+                            <a href="" class="plusminus-btn" onclick="addOptionNum();"><i class="fas fa-plus"></i></a>
+                        </div>
+                        <div class="font-weight-bold" style="font-size: 24px;" id="">28,000원</div>
+                    </div>
+                  </div><!--옵션 파트 끝-->
+                  <hr>
+                  <div style="padding-top: 24px;"><!--추가옵션 시작-->
+                    <div class="d-flex justify-content-between">
+                        <div style="color: #222222;">[Sid Meier's Civilization VI]DLC: Gathering Storm</div>
+                        <a href="" style="font-size: 30px;color: #666666;" onclick=""><i class="fas fa-times"></i></a><!--함수 삽입-->
+                    </div>
+                    <div class="d-flex justify-content-between mt-3">
+                        <div class="d-flex" style="color: #222222;">
+                            <a class="plusminus-btn" href="" onclick="subOptionNum();"><i class="fas fa-minus"></i></a>
+                            <div class="plusminus-btn" id="optionGaesu" style="background-color: #fff;width: 2.5rem"></div>
+                            <a href="" class="plusminus-btn" onclick="addOptionNum();"><i class="fas fa-plus"></i></a>
+                        </div>
+                        <div class="font-weight-bold" style="font-size: 24px;" id="">20,000원</div>
+                    </div>
+                  </div><!--추가옵션 파트 끝-->
+                  <hr style="height: 2px;">
+                  <div class="d-flex justify-content-between" style="color: #222222;">
+                    <div class="d-flex align-items-center font-weight-bold">
+                        총 상품 금액
+                    </div>
+                    <div class="d-flex align-items-center">
+                        <span class="mr-3" style="color: #999999;">총 수량 <span id="">2</span>개</span>
+                        <span class="font-weight-bold" style="font-size: 28px;color: #367dd3;">48,000원</span>
                     </div>
                 </div>
                 <div class="row" style="padding: 7px;">
@@ -106,8 +196,69 @@ crossorigin="anonymous"></script>
             </div>
         </div><!--여기까지 상단-->
         <div class="mt-3 font-weight-bold" style="font-size: 24px;">
-            제작자 소개
+           <p>제작자 소개</p> 
+           <div class="d-flex align-items-center" style="height: 300px;border: 1px solid #d3d3d3;padding: 12px;">
+                   <img class="mobile-invisible" src="..\img\shift\gamer.png" alt="" style="width: 250px;height: 250px;object-fit: cover;border: 1px solid #d3d3d3">
+                   <div style="height: 100%; margin-left: 1rem;">
+                       <p style="font-size: 20px;">회사(개인) 이름</p>
+                       <p style="font-size: 16px;font-weight: 500;">
+                           히히히히ㅣ
+                       </p>
+                   </div>
+           </div>
         </div>
+        <ul class="nav nav-tabs mb-3 mt-5" id="ex1" role="tablist" style="border-bottom: 1px solid #B1B1B1;">
+            <li class="nav-item" role="presentation">
+              <a
+                class="nav-link active text-center"
+                id="ex1-tab-1"
+                data-toggle="tab"
+                data-mdb-toggle="tab"
+                href="#ex1-tabs-1"
+                role="tab"
+                aria-controls="ex1-tabs-1"
+                aria-selected="true"
+                style="font-size: 20px; font-weight: 900;"
+                >상세정보</a
+              >
+            </li>
+            <li class="nav-item" role="presentation">
+              <a
+                class="nav-link text-center"
+                id="ex1-tab-2"
+                data-mdb-toggle="tab"
+                data-toggle="tab"
+                href="#ex1-tabs-2"
+                role="tab"
+                aria-controls="ex1-tabs-2"
+                aria-selected="false"
+                style="font-size: 20px; font-weight: 900;"
+                >QnA</a
+              >
+            </li>
+          </ul>
+          <!-- Tabs navs -->
+          <!--tabs content-->
+          <div class="tab-content" id="ex1-content">
+              <div
+              class="tab-pane fade show active"
+              id="ex1-tabs-1"
+              role="tabpanel"
+              aria-labelledby="ex1-tab-1"
+            >
+            test1
+            <div style="height: 40vh;"></div>
+            </div>
+            <div
+            class="tab-pane fade show"
+            id="ex1-tabs-2"
+            role="tabpanel"
+            aria-labelledby="ex1-tab-2"
+          >
+          test2
+          <div style="height: 40vh;"></div>
+          </div>
+          </div>
     </div>
 </main>
  
