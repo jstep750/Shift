@@ -5,12 +5,13 @@ const containerDOM = document.querySelector("#ex1-content"),
 const lSelectorDOM = containerDOM.querySelector(".js-lSelector"),
     sSelectorDOM = containerDOM.querySelector(".js-sSelector"),
     sortSelectorDOM = containerDOM.querySelector(".js-sortSelector"),
-    saleSelectorDOM = containerDOM.querySelector(".js-saleSelector"),
     priceSelectorDOM = containerDOM.querySelector(".js-priceSelector"),
     searchBtnDOM = containerDOM.querySelector(".js-searchBtn");
 
-const cardsDOMArr = [ ], heartsDOMArr = [ ], goodsIdsArr = [ ];
-let likesInfoArr = [ ], goodsInfoArr = [ ], userID;
+// 넷은 같은 인덱스를 공유 (합쳐서 객체 배열로 만들어도 좋을 듯)
+const cardsDOMArr = [ ], heartsDOMArr = [ ], goodsIdsArr = [ ], goodsInfoArr = [ ]; 
+
+let firestoreDB, userId, likesInfoArr = [ ]; 
 
 function init() {
     const firebaseConfig = {
@@ -26,38 +27,39 @@ function init() {
 
     // Initialize Firebase
     firebase.initializeApp(firebaseConfig);
-    const firestoreDB = firebase.firestore();
+    firestoreDB = firebase.firestore();
 
     const user = firebase.auth().currentUser;
-    if (user !== null) userID = user.uid; 
-    else userID = "xaPkyYa95hSXEcoqcH1CD99QWLU2"; // 현재는 로그인 기능과 연결 안 되어 있으므로 테스트를 위해 추가
+    if (user !== null) userId = user.uid; 
+    else userId = null;
+    // else userId = "xaPkyYa95hSXEcoqcH1CD99QWLU2"; // 현재는 로그인 기능과 연결 안 되어 있으므로 테스트를 위해 추가
 
     // 카드 정보 불러와 업데이트
-    initCards(getData(firestoreDB, isMarketData = true));
+    initCards(getData(isMarketData = true));
 
-    // 하트에 핸들러 추가, 유저 정보에 따라 색 업데이트
-    initHearts(getData(firestoreDB, isMarketData = false));
+    // 로그인 된 경우, 유저 정보에 따라 하트 색 업데이트 
+    if (userId !== null) initHearts(getData(isMarketData = false));
 
     // 정렬 버튼에 핸들러 추가
     searchBtnDOM.addEventListener("click", handleSearchBtn);
-}
+}   
 
 init();
 
-function getData(firestoreDB, isMarketData) {
-    let ref, snapshot;
+function getData(isMarketData) {
+    let ref, snapshot; 
 
     // 데이터 불러오기
-    if (isMarketData === true) ref = firestoreDB.collection("market");
-    else ref = firestoreDB.collection("user").doc(userID); // false, userLike data
+    if (isMarketData) ref = firestoreDB.collection("market").where("endDate", ">=", new Date()); 
+    else ref = firestoreDB.collection("user").doc(userId); // false, userLike data
 
     snapshot = ref.get();
     if (snapshot.empty) { // 검색된 데이터가 없는 경우
-        console.log(`Fail to load ${isMarketData === true ? "market" : "userLike"} data.`);
+        console.log(`Fail to load ${isMarketData ? "market" : "userLike"} data.`);
         return;
     }
 
-    console.log(`Success to load ${isMarketData === true ? "market" : "userLike"} data.`);
+    console.log(`Success to load ${isMarketData ? "market" : "userLike"} data.`);
     return snapshot;
 }
 
@@ -66,15 +68,38 @@ function initCards(promisedSnapshots) {
         snapshot.forEach((doc) => {
             goodsIdsArr.push(doc.id);
             goodsInfoArr.push(doc.data());
+        });
 
-            changeEachCard(doc.data());
+        defaultSortAfterGetMarket();
+
+        goodsInfoArr.forEach((goodsInfo) => {
+            cardContainer = mkCardDOM(goodsInfo);
+            cardsContDOM.appendChild(cardContainer); // DOM 객체 html에 추가
         });
     });
 }
 
-function changeEachCard(goodsData) { // 상품 페이지로 이동 시 id를 쿼리 스트링으로 넘겨주면 될 듯 (idArr와 index 이용)
+function defaultSortAfterGetMarket() {
+    // 데이터는... 쿼리 추가하니 아무래도 endDate를 기준으로 정렬한 뒤 끊어오는듯 
+    // 먼저 최신순 정렬 실행
+
+    // console.log("before sort - endDate", goodsIdsArr, goodsInfoArr);
+    goodsInfoArr.sort(compLatestFuncForInfo); // 정렬은 id 정보로 해야 하므로, id 순서 바뀌기 전에 꼭 먼저 정렬하기
+    goodsIdsArr.sort(compLatestFunc);
+    // console.log("after sort - latest", goodsIdsArr, goodsInfoArr);
+}
+
+function compLatestFunc(aId, bId) { // id가 큰(나중에 추가된) 순서대로
+    return bId - aId; 
+}
+
+function compLatestFuncForInfo(aInfo, bInfo) {
+    return goodsIdsArr[goodsInfoArr.indexOf(bInfo)] - goodsIdsArr[goodsInfoArr.indexOf(aInfo)];
+}
+
+function mkCardDOM(goodsData) { // 상품 페이지로 이동 시 id를 쿼리 스트링으로 넘겨주면 될 듯 (idArr와 index 이용)
     // 0. 카테고리 배열 생성 
-    const lCategoryStr = ["서비스", "상품"],
+    const lCategoryStr = ["상품", "서비스"],
         sCategoryStr = ["보드게임", "공연", "음식", "패션", "디자인", "스포츠",
             "미술", "만화", "음악", "문학", "기술", "기타"];
 
@@ -86,7 +111,7 @@ function changeEachCard(goodsData) { // 상품 페이지로 이동 시 id를 쿼
     const startDateStr = mkDateStr(goodsData.startDate);
     const endDateStr = mkDateStr(goodsData.endDate);
 
-    // 2. html 파일 추가
+    // 2. 카드 DOM 객체 구성
     cardContainer.innerHTML = `
         <div class="card" style="max-width: 400px; height: 100%;">
         <div style="height: 60%;position: relative;">
@@ -119,13 +144,24 @@ function changeEachCard(goodsData) { // 상품 페이지로 이동 시 id를 쿼
         </div>
         </div>`;
     
-    // 2. 생성한 카드를 배열에 추가 후 append
+    // 2. 생성한 카드를 배열에 추가
     cardsDOMArr.push(cardContainer);
-    cardsContDOM.appendChild(cardContainer);
 
-    // 3. 하트 아이콘 배열에 넣기
+    // 3. 하트 아이콘 핸들러 연결
     const heart = cardContainer.querySelector(".fa-heart");
+    heart.addEventListener("click", handleHeart);
+    // 마우스 가까이 가면 커서 모양 변경
+    heart.addEventListener("mouseenter", function(event) {
+        event.target.classList.add("js-mouse");
+    });
+    heart.addEventListener("mouseleave", function(event) {
+        event.target.classList.remove("js-mouse");
+    });
+
+    // 4. 하트 배열에 추가
     heartsDOMArr.push(heart);
+
+    return cardContainer;
 }
 
 function mkDateStr(date) {
@@ -147,161 +183,220 @@ function initHearts(promisedSnapshots) {
 
         // 모든 상품 카드 개수만큼
         for (let i = 0; i < goodsIdsArr.length; i++) { 
-            // 1. 사용자의 좋아요에 포함되는지 확인 후 색 변경
-            if (userID !== null && likesInfoArr.includes(goodsIdsArr[i])) {
+            // 사용자의 좋아요에 포함되는지 확인 후 색 변경
+            if (userId !== null && likesInfoArr.includes(goodsIdsArr[i])) {
                 // console.log(`User likes goods ${goodsIdsArr[i]}.`);
                 heartsDOMArr[i].classList.add("js-like");
             }
-            // 2. 하트 아이콘에 eventListener 추가
-            // 마우스 가까이 가면 커서 모양 변경
-            heartsDOMArr[i].addEventListener("mouseenter", function(event) {
-                event.target.classList.add("js-mouse");
-            });
-            heartsDOMArr[i].addEventListener("mouseleave", function(event) {
-                event.target.classList.remove("js-mouse");
-            })
-
-            // 클릭할 때 작업
-            heartsDOMArr[i].addEventListener("click", handleHeart);
         }   
     });
 }
 
 function handleHeart(event) {
-    if (userID !== null) {
-        const firestoreDB = firebase.firestore();
-        const ref = firestoreDB.collection("user").doc(userID);
-        
-        // 해당 heart가 몇 번째 배열에 있던 것인지 불러옴
+    if (userId !== null) {        
+        // 해당 heart의 인덱스 확인
         const index = heartsDOMArr.indexOf(event.target);
 
         // 로그인한 경우 - toggle
         if (event.target.classList.contains("js-like")) { // 좋아요 제거
-            // 1. db에 제거
-            ref.update({
-                like: firebase.firestore.FieldValue.arrayRemove(goodsIdsArr[index])
-            }).then(console.log(`Success to remove ${goodsIdsArr[index]} from firestore.`));
+            // 1. db 업데이트
+            if (!heartDBUpdate(goodsIdsArr[index], isPlus = false)) return;
 
-            // 2. likeArr에서 제거
+            // 업데이트 성공한 경우에만 뒤쪽 내용 변경시킴
+            // 2. goodsInfoArr 배열 업데이트
+            goodsInfoArr[index].likeNum--;
+
+            // 3. likeArr에서 제거
             likesInfoArr.slice(likesInfoArr.indexOf(goodsIdsArr[index]), 1);
 
-            // 3. 색 변경
+            // 4. 색 변경
             event.target.classList.remove("js-like"); 
         } else { // 좋아요 추가
-            // 1. db에 추가
-            ref.update({
-                like: firebase.firestore.FieldValue.arrayUnion(goodsIdsArr[index])
-            }).then(console.log(`Success to add ${goodsIdsArr[index]} from firestore.`));
+            // 1. db 업데이트
+            if (!heartDBUpdate(goodsIdsArr[index], isPlus = true)) return;
 
-            // 2. likeArr에서 추가
+            // 2. goodsInfoArr 배열 업데이트
+            if (goodsInfoArr[index].likeNum === undefined) goodsInfoArr[index].likeNum = 0;
+            goodsInfoArr[index].likeNum++;
+
+            // 3. likeArr에서 추가
             likesInfoArr.push(goodsIdsArr[index]);
 
-            // 3. 색 변경
+            // 4. 색 변경
             event.target.classList.add("js-like");
         }
+    } else { // 로그인하지 않은 경우
+        // 1. alert
+        alert("로그인이 필요합니다.");
+        // 2. 페이지 이동
+        location.href = "../../account/loginpage.html";
     }
-
-    // 로그인하지 않은 경우 - ?
 }
 
-function handleSearchBtn() { // 분류하기 기능 이용, 걸러진 것들에는 js-hide class 추가
-    console.log("click");
+function heartDBUpdate (goodsId, isPlus) {
+    const userRef = firestoreDB.collection("user").doc(userId),
+        goodsRef = firestoreDB.collection("market").doc(goodsId);
 
+    // transaction
+    return firestoreDB.runTransaction((transaction) => {
+        // This code may get re-run multiple times if there are conflicts.
+        return transaction.get(goodsRef).then((goods) => {
+            if (goods.empty) {
+                console.log("Fail to load goods data for transaction.");
+                return;
+            }
+
+            // 1. 사용자 db like에서 추가/제거
+            let newUserLike;
+            if (isPlus) newUserLike = firebase.firestore.FieldValue.arrayUnion(goodsId); // *** 이거 그거...그거도보기 그 정수와문자열 맞게저장하는지
+            else newUserLike = firebase.firestore.FieldValue.arrayRemove(goodsId);
+
+            transaction.update(userRef, { like: newUserLike });
+            
+            // 2. 상품 likeNum +- 1     
+            let updatedLikeNum;
+            if (isPlus) {
+                if (goods.data().likeNum === undefined) updatedLikeNum = 1; // likeNum 항목이 없는 경우
+                else updatedLikeNum = goods.data().likeNum + 1;
+            } else updatedLikeNum = goods.data().likeNum - 1; // minus
+            
+            transaction.update(goodsRef, { likeNum: updatedLikeNum });
+        });
+    }).then(() => {
+        console.log(`Success to ${isPlus ? "add" : "remove"} ${goodsId} from like.`);
+        return true;
+    }).catch((err) => {
+        console.log(`Fail to ${isPlus ? "add" : "remove"} ${goodsId} from like.`, err);
+        return false;
+    });
+}
+
+function handleSearchBtn() { 
     const NO_SELECT = -1, 
         NO_UPPER_LIMIT = "noUpperLimit", 
-        SORT_LATEST = "latest", 
-        SORT_DEAL_AMOUNT = "dealAmount", // 많이 팔린 순?
+        SORT_DEFAULT = "latest", 
+        SORT_LIKE = "like", 
         SORT_END_DATE = "endDate"; 
 
-    const saleUpperLimit = [NO_SELECT, 10, 20, 30, 40, 50, NO_UPPER_LIMIT], 
-        priceUpperLimit = [NO_SELECT, 10000, 30000, 50000, 10000, NO_UPPER_LIMIT],
-        sortKind = [NO_SELECT, SORT_LATEST, SORT_DEAL_AMOUNT, SORT_END_DATE];
+    const priceUpperLimit = [NO_SELECT, 10000, 30000, 50000, 100000, NO_UPPER_LIMIT],
+        sortKind = [NO_SELECT, SORT_DEFAULT, SORT_LIKE, SORT_END_DATE];
 
-    let selectedGoodsIdsArr = goodsIdsArr; // 처음에는 다 선택, 선택 결과에 따라 맞지 않는 것 제거
+    // 그 사이에 추가된 데이터/눌린 좋아요 업데이트 위해 마켓 데이터 불러오기
+    getData(isMarketData = true).then((snapshot) => {
+        let index;
+        snapshot.forEach((doc) => {
+            index = goodsIdsArr.indexOf(doc.id);
+            if (index === -1) { // 새로 추가된 데이터, 카드 만들기 (append는 일단 X)
+                goodsIdsArr.push(doc.id);
+                goodsInfoArr.push(doc.data());
 
-    // l/s catehory의 경우, db에 0부터 시작하는 숫자로 저장됨, but selector의 경우 0번째 것은 선택 안 된 경우
-    // 이 두 수를 맞추려면 selectedIndex를 구해 -1 해주어야 함, 따라서 [인덱스 - 1]이 -1(NO_SELECT)인 경우가 카테고리 선택 안 된 경우
-    const lSelectorResult = lSelectorDOM.selectedIndex - 1;
-    if (lSelectorResult !== NO_SELECT) {
-        console.log("l");
-        selectedGoodsIdsArr = selectedGoodsIdsArr.filter(function(goodsId) {
-            return goodsInfoArr[goodsIdsArr.indexOf(goodsId)].l_category === lSelectorResult;
+                cardContainer = mkCardDOM(doc.data());
+                // *** heart handler 추가해야 함
+            } else { // 원래 있던 데이터, 좋아요가 변했을 수도 있으므로 업데이트 실행
+                goodsInfoArr[index].likeNum = doc.data().likeNum;
+            }
         });
-        console.log(selectedGoodsIdsArr);
-    }
-    const sSelectorResult = sSelectorDOM.selectedIndex - 1;
-    if (sSelectorResult !== NO_SELECT) {
-        console.log("s");
-        selectedGoodsIdsArr = selectedGoodsIdsArr.filter(function(goodsId) {
-            return goodsInfoArr[goodsIdsArr.indexOf(goodsId)].s_category === sSelectorResult;
-        });
-        console.log(selectedGoodsIdsArr);
-    }
 
-    const saleSelectorInd = saleSelectorDOM.selectedIndex;
-    if (saleUpperLimit[saleSelectorInd] !== NO_SELECT) {
-        console.log("sale");
-        selectedGoodsIdsArr = selectedGoodsIdsArr.filter(function(goodsId) {
-            const salePercent = calcSale(goodsInfoArr[goodsIdsArr.indexOf(goodsId)]);
+        let selectedGoodsIdsArr = goodsIdsArr.slice(); // 처음에는 다 선택, 선택 결과에 따라 맞지 않는 것 제거
 
-            if (saleSelectorInd === 1) 
-                return salePercent < saleUpperLimit[1];
-            else if (saleSelectorInd === saleUpperLimit.length - 1) 
-                return salePercent >= saleUpperLimit[saleUpperLimit.length - 2];
-            else   
-                return salePercent < saleUpperLimit[saleSelectorInd] && salePercent >= saleUpperLimit[saleSelectorInd - 1];
-        });
-        console.log(selectedGoodsIdsArr);
-    }
-    const priceSelectorInd = priceSelectorDOM.selectedIndex;
-    if (priceUpperLimit[priceSelectorInd] !== NO_SELECT) {
-        console.log("price");
-        selectedGoodsIdsArr = selectedGoodsIdsArr.filter(function(goodsId) {
-            const price = goodsInfoArr[goodsIdsArr.indexOf(goodsId)].salePrice;
+        // l/s catehory의 경우, db에 0부터 시작하는 숫자로 저장됨, but selector의 경우 0번째 것은 선택 안 된 경우
+        // 이 두 수를 맞추려면 selectedIndex를 구해 -1 해주어야 함, 따라서 [인덱스 - 1]이 -1(NO_SELECT)인 경우가 카테고리 선택 안 된 경우
+        const lSelectorResult = lSelectorDOM.selectedIndex - 1;
+        if (lSelectorResult !== NO_SELECT) {
+            selectedGoodsIdsArr = selectedGoodsIdsArr.filter(function(goodsId) {
+                return goodsInfoArr[goodsIdsArr.indexOf(goodsId)].l_category === lSelectorResult;
+            });
 
-            if (priceSelectorInd === 1) 
-                return price < priceUpperLimit[1];
-            else if (priceSelectorInd === priceUpperLimit.length - 1) 
-                return price >= priceUpperLimit[priceUpperLimit.length - 2];
-            else 
-                return price < priceUpperLimit[priceSelectorInd] 
-                    && price >= priceUpperLimit[priceSelectorInd - 1];
-        });
-        console.log(selectedGoodsIdsArr);
-    }
+            console.log("l", selectedGoodsIdsArr);
+        }
+        const sSelectorResult = sSelectorDOM.selectedIndex - 1;
+        if (sSelectorResult !== NO_SELECT) {
+            selectedGoodsIdsArr = selectedGoodsIdsArr.filter(function(goodsId) {
+                return goodsInfoArr[goodsIdsArr.indexOf(goodsId)].s_category === sSelectorResult;
+            });
 
-    // 정렬은 가장 마지막에 하는 것이 효과적, 모든 정렬에서 2차 정렬은 항상 데이터가 나중에 입력된 것부터 (최신순?)
-    // const sortSelectorResult = sortKind[sortSelectorDOM.selectedIndex];
-    // if (sortSelectorResult === SORT_LATEST) {
+            console.log("s", selectedGoodsIdsArr);
+        }
 
-    // } else if (sortSelectorResult === SORT_DEAL_AMOUNT) {
+        const priceSelectorInd = priceSelectorDOM.selectedIndex;
+        if (priceUpperLimit[priceSelectorInd] !== NO_SELECT) {
+            selectedGoodsIdsArr = selectedGoodsIdsArr.filter(function(goodsId) {
+                const price = goodsInfoArr[goodsIdsArr.indexOf(goodsId)].salePrice;
 
-    // } else if (sortSelectorResult === SORT_END_DATE) {
-        
-    // }
+                if (priceSelectorInd === 1) 
+                    return price < priceUpperLimit[1];
+                else if (priceSelectorInd === priceUpperLimit.length - 1) 
+                    return price >= priceUpperLimit[priceUpperLimit.length - 2];
+                else 
+                    return price < priceUpperLimit[priceSelectorInd] 
+                        && price >= priceUpperLimit[priceSelectorInd - 1];
+            });
 
-    // cardsDOMArr.forEach((card) => {  
-    // }); 
+            console.log("price", selectedGoodsIdsArr);
+        }
 
-    // 결과 적용 - 근데 정렬 있으면... 다른 함수도 추가적으로 불러야 함 ㄱ- 
-    updateHideClass(selectedGoodsIdsArr);
+        // 정렬은 가장 마지막에 하는 것이 효과적, 모든 정렬에서 2차 정렬은 항상 데이터가 나중에 입력된 것부터 (최신순)
+        const sortSelectorResult = sortKind[sortSelectorDOM.selectedIndex];
+        console.log(sortSelectorResult);
+        if (sortSelectorResult === SORT_LIKE) { // 좋아요가 많은 순으로 정렬
+            selectedGoodsIdsArr.sort(compLikeFunc);
+            
+            console.log("sort - like", selectedGoodsIdsArr);
+        } else if (sortSelectorResult === SORT_END_DATE) { // 마감 임박 순
+            selectedGoodsIdsArr.sort(compEndDateFunc);
+            
+            console.log("sort - end date", selectedGoodsIdsArr);
+        } else { // default 혹은 latest 선택한 경우
+            selectedGoodsIdsArr.sort(compLatestFunc);
+            
+            console.log("sort - latest", selectedGoodsIdsArr);
+        }
+
+        // HTML에 적용 
+        updateCardHTML(selectedGoodsIdsArr);
+    }).catch((err) => {
+        console.log(err);
+    });
 }
 
-function updateHideClass(selectedIdsArr) {
-    console.log("update hide");
+function compLikeFunc(aId, bId) { // 좋아요가 더 많은 순서대로
+    let aLikeNum = goodsInfoArr[goodsIdsArr.indexOf(aId)].likeNum, 
+        bLikeNum = goodsInfoArr[goodsIdsArr.indexOf(bId)].likeNum;
+        
+    // likeNum 요소가 없는 경우(좋아요 0개)는 불러와진 데이터 없을 것
+    if (aLikeNum === undefined) aLikeNum = 0;
+    if (bLikeNum === undefined) bLikeNum = 0; 
+    
+    return bLikeNum - aLikeNum; 
+}
 
-    for (let i = 0; i < goodsIdsArr.length; i++) {
-        // 선택된 애가 감춰져 있는 경우, 해당 card에 js-hide 클래스 제거
-        if (selectedIdsArr.includes(goodsIdsArr[i]) && cardsDOMArr[i].children[0].classList.contains("js-hide")) {
-            console.log(`remove js-hide to ${goodsIdsArr[i]}`);
-            cardsDOMArr[i].classList.add("col-lg-4", "col-md-6");
-            cardsDOMArr[i].children[0].classList.remove("js-hide");
-        }
-        // 선택되지 않은 애가 보이는 경우, 해당 card에 js-hide 클래스 추가
-        else if (!(selectedIdsArr.includes(goodsIdsArr[i])) && !(cardsDOMArr[i].children[0].classList.contains("js-hide"))) {
-            console.log(`add js-hide to ${goodsIdsArr[i]}`);
-            cardsDOMArr[i].classList.remove("col-lg-4", "col-md-6");
-            cardsDOMArr[i].children[0].classList.add("js-hide");
-        }
-    }
+function compEndDateFunc(aId, bId) { // 마감기한이 더 이른 순서대로
+    return goodsInfoArr[goodsIdsArr.indexOf(aId)].endDate - goodsInfoArr[goodsIdsArr.indexOf(bId)].endDate;
+}
+
+// function updateHideClass(selectedIdsArr) {
+//     for (let i = 0; i < goodsIdsArr.length; i++) {
+//         // 선택된 애가 감춰져 있는 경우, 해당 card에 js-hide 클래스 제거
+//         if (selectedIdsArr.includes(goodsIdsArr[i]) && cardsDOMArr[i].children[0].classList.contains("js-hide")) {
+//             console.log(`remove js-hide to ${goodsIdsArr[i]}`);
+//             cardsDOMArr[i].classList.add("col-lg-4", "col-md-6");
+//             cardsDOMArr[i].children[0].classList.remove("js-hide");
+//         }
+//         // 선택되지 않은 애가 보이는 경우, 해당 card에 js-hide 클래스 추가
+//         else if (!(selectedIdsArr.includes(goodsIdsArr[i])) && !(cardsDOMArr[i].children[0].classList.contains("js-hide"))) {
+//             console.log(`add js-hide to ${goodsIdsArr[i]}`);
+//             cardsDOMArr[i].classList.remove("col-lg-4", "col-md-6");
+//             cardsDOMArr[i].children[0].classList.add("js-hide");
+//         }
+//     }
+// }
+
+function updateCardHTML(sortedIdsArr) {
+    // 1. html에서 모든 카드 삭제
+    cardsContDOM.innerHTML = "";
+    
+    // 2. 정렬한 순서대로 요소 추가
+    sortedIdsArr.forEach((id) => {
+        cardsContDOM.appendChild(cardsDOMArr[goodsIdsArr.indexOf(id)]);
+    });
 }

@@ -150,6 +150,7 @@ crossorigin="anonymous"></script>
               <div class="d-flex justify-content-center">
                 <div class="input-group d-flex align-items-top justify-content-between" style="width: 80%;">
                   <select name="" id="" class="custom-select mr-1 js-lSelector">
+                    <!-- 분류 바꾸고 싶으면 mkMarketPg.js의 mkCardDOM() 및 addMarketInfo의 selector 수정 필요-->
                     <option value="">--프로젝트 대분류--</option>
                     <option value="">상품</option>
                     <option value="">서비스</option>
@@ -172,17 +173,8 @@ crossorigin="anonymous"></script>
                   <select name="" id="" class="custom-select mr-1 js-sortSelector">
                     <option value="" selected>--정렬기준--</option>
                     <option value="">최신순</option>
-                    <option value="">거래량</option>
+                    <option value="">관심순</option>
                     <option value="">마감임박순</option>
-                  </select>
-                  <select name="" id="" class="custom-select mr-1 js-saleSelector">
-                    <option value="" selected>--할인율--</option>
-                    <option value="">0% ~ 10%</option>
-                    <option value="">10% ~ 20%</option>
-                    <option value="">20% ~ 30%</option>
-                    <option value="">30% ~ 40%</option>
-                    <option value="">40% ~ 50%</option>
-                    <option value="">50% 이상</option>
                   </select>
                   <select name="" id="" class="custom-select mr-1 js-priceSelector">
                     <option value="" selected>--가격범위--</option>

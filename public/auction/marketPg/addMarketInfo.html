@@ -18,16 +18,16 @@
     <script src="https://www.gstatic.com/firebasejs/8.2.2/firebase-storage.js"></script>
 
     <h1>저장할 마켓 상품/서비스 정보를 입력하세요~</h1>
-    <form >
+    <form>
         <label>상품/서비스 이름:</label>
         <input class="name" type="text" /><br>
         <label>제작사 이름:</label>
         <input class="company" type="text" /><br>
         <label>대분류:</label><br>
         <span class="l-category">
-            <label for="l0">서비스</label>
+            <label for="l0">상품</label>
             <input id="l0" name="l-category" type="radio" value="0" /><br>
-            <label for="l1">상품</label>
+            <label for="l1">서비스</label>
             <input id="l1" name="l-category" type="radio" value="1" /><br>
         </span><br>   
         <label>소분류:</label><br>
@@ -66,7 +66,7 @@
         <label>할인가:</label>
         <input class="salePrice" type="number" /><br>
         <label>사진:</label>
-        <input class="img" type="file" accept=".jpg,.jpeg,.png,.gif" /><br>
+        <input class="img" type="file" /><br>
         <input class="submit" type="button" value="submit" /><br>
         <input type="reset" value="reset" />
     </form>
@@ -76,8 +76,8 @@
     const formDOM = document.querySelector("form"),
         nameDOM = formDOM.querySelector(".name"),
         companyDOM = formDOM.querySelector(".company"),
-        l_categoryDOM = formDOM.getElementsByName("l-category"),
-        s_categoryDOM = formDOM.getElementsByName("s-category"),
+        l_categoryDOM = document.getElementsByName("l-category"),
+        s_categoryDOM = document.getElementsByName("s-category"),
         startDateDOM = formDOM.querySelector(".startDate"),
         endDateDOM = formDOM.querySelector(".endDate"),
         origialPriceDOM = formDOM.querySelector(".originalPrice"),
@@ -96,7 +96,14 @@
         measurementId: "G-QXHD4RJNKQ"
     };
 
+    let firestoreDB, storageDB;
+
     function init() {
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        firestoreDB = firebase.firestore();
+        storageDB = firebase.storage();
+                    
         submitDOM.addEventListener("click", handleSubmit);
     }
 
@@ -105,7 +112,7 @@
     function handleSubmit(event) {
         const id = new Date().getTime(),
             l_categoryNum = 2,
-            s_categoryNum = 11;
+            s_categoryNum = 12;
 
         let marketInfo = {
             l_category : null,
@@ -148,11 +155,6 @@
         
         marketInfo.name = nameDOM.value;
         marketInfo.company = companyDOM.value;
-
-        // Initialize Firebase
-        firebase.initializeApp(firebaseConfig);
-        const firestoreDB = firebase.firestore(),
-            storageDB = firebase.storage();
 
         // img
         const fileObj = imgDOM.files[0];
