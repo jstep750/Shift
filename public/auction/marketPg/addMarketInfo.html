@@ -85,20 +85,20 @@
         imgDOM = formDOM.querySelector(".img"),
         submitDOM = formDOM.querySelector(".submit");
 
-    const firebaseConfig = {
-        apiKey: "AIzaSyCXRTprV0yWYk8YrVpopvkFM4Cv_Nmhb2g",
-        authDomain: "shift-f80bc.firebaseapp.com",
-        databaseURL: "https://shift-f80bc-default-rtdb.firebaseio.com",
-        projectId: "shift-f80bc",
-        storageBucket: "shift-f80bc.appspot.com",
-        messagingSenderId: "111516463886",
-        appId: "1:111516463886:web:f7ae7d49add43d4cc0dd5f",
-        measurementId: "G-QXHD4RJNKQ"
-    };
-
     let firestoreDB, storageDB;
 
-    function init() {
+    function init() {    
+        const firebaseConfig = {
+            apiKey: "AIzaSyCXRTprV0yWYk8YrVpopvkFM4Cv_Nmhb2g",
+            authDomain: "shift-f80bc.firebaseapp.com",
+            databaseURL: "https://shift-f80bc-default-rtdb.firebaseio.com",
+            projectId: "shift-f80bc",
+            storageBucket: "shift-f80bc.appspot.com",
+            messagingSenderId: "111516463886",
+            appId: "1:111516463886:web:f7ae7d49add43d4cc0dd5f",
+            measurementId: "G-QXHD4RJNKQ"
+        };
+    
         // Initialize Firebase
         firebase.initializeApp(firebaseConfig);
         firestoreDB = firebase.firestore();

@@ -10,10 +10,9 @@ const lSelectorDOM = containerDOM.querySelector(".js-lSelector"),
 
 // 넷은 같은 인덱스를 공유 (합쳐서 객체 배열로 만들어도 좋을 듯)
 const cardsDOMArr = [ ], heartsDOMArr = [ ], goodsIdsArr = [ ], goodsInfoArr = [ ]; 
-
 let firestoreDB, userId, likesInfoArr = [ ]; 
 
-function init() {
+function init() { // 해당 함수만 실행됨, 나머지 함수는 
     const firebaseConfig = {
         apiKey: "AIzaSyCXRTprV0yWYk8YrVpopvkFM4Cv_Nmhb2g",
         authDomain: "shift-f80bc.firebaseapp.com",
@@ -29,16 +28,19 @@ function init() {
     firebase.initializeApp(firebaseConfig);
     firestoreDB = firebase.firestore();
 
-    const user = firebase.auth().currentUser;
-    if (user !== null) userId = user.uid; 
-    else userId = null;
-    // else userId = "xaPkyYa95hSXEcoqcH1CD99QWLU2"; // 현재는 로그인 기능과 연결 안 되어 있으므로 테스트를 위해 추가
+    // userId 연결부분 (로그인 페이지와 연결 후 이 부분 주석 해제해보기, 테스트 못했으니 될지는 모르겠음)
+    // 로그인 상태면 userId, 아니면 null로 설정하기
+    // const user = firebase.auth().currentUser;
+    // if (user !== null) userId = user.uid; 
+    // else userId = null;
+    
+    userId = "xaPkyYa95hSXEcoqcH1CD99QWLU2"; // 테스트를 위해 추가 (firestore의 kimgostring 유저정보 이용)
 
     // 카드 정보 불러와 업데이트
     initCards(getData(isMarketData = true));
 
     // 로그인 된 경우, 유저 정보에 따라 하트 색 업데이트 
-    if (userId !== null) initHearts(getData(isMarketData = false));
+    if (userId !== null) changeHeartsColor(getData(isMarketData = false));
 
     // 정렬 버튼에 핸들러 추가
     searchBtnDOM.addEventListener("click", handleSearchBtn);
@@ -81,7 +83,7 @@ function initCards(promisedSnapshots) {
 
 function defaultSortAfterGetMarket() {
     // 데이터는... 쿼리 추가하니 아무래도 endDate를 기준으로 정렬한 뒤 끊어오는듯 
-    // 먼저 최신순 정렬 실행
+    // 먼저 최신순 정렬 실행 (최신순 = 데이터 입력이 가장 나중에 된 순서대로)
 
     // console.log("before sort - endDate", goodsIdsArr, goodsInfoArr);
     goodsInfoArr.sort(compLatestFuncForInfo); // 정렬은 id 정보로 해야 하므로, id 순서 바뀌기 전에 꼭 먼저 정렬하기
@@ -177,7 +179,7 @@ function calcSale(goodsData) {
     return 100 - (Math.round(goodsData.salePrice * 100 / goodsData.originalPrice));
 }
 
-function initHearts(promisedSnapshots) {
+function changeHeartsColor(promisedSnapshots) {
     promisedSnapshots.then((snapshot) => {
         likesInfoArr = snapshot.data().like;
 
@@ -200,9 +202,9 @@ function handleHeart(event) {
         // 로그인한 경우 - toggle
         if (event.target.classList.contains("js-like")) { // 좋아요 제거
             // 1. db 업데이트
-            if (!heartDBUpdate(goodsIdsArr[index], isPlus = false)) return;
+            heartDBUpdate(goodsIdsArr[index], isPlus = false);
 
-            // 업데이트 성공한 경우에만 뒤쪽 내용 변경시킴
+            // 업데이트 실패한 경우에도 뒤쪽 내용 변경시킴, 어차피 뒤쪽 내용들은 f5 누르면 초기화됨
             // 2. goodsInfoArr 배열 업데이트
             goodsInfoArr[index].likeNum--;
 
@@ -213,7 +215,7 @@ function handleHeart(event) {
             event.target.classList.remove("js-like"); 
         } else { // 좋아요 추가
             // 1. db 업데이트
-            if (!heartDBUpdate(goodsIdsArr[index], isPlus = true)) return;
+            heartDBUpdate(goodsIdsArr[index], isPlus = true);
 
             // 2. goodsInfoArr 배열 업데이트
             if (goodsInfoArr[index].likeNum === undefined) goodsInfoArr[index].likeNum = 0;
@@ -264,10 +266,8 @@ function heartDBUpdate (goodsId, isPlus) {
         });
     }).then(() => {
         console.log(`Success to ${isPlus ? "add" : "remove"} ${goodsId} from like.`);
-        return true;
     }).catch((err) => {
         console.log(`Fail to ${isPlus ? "add" : "remove"} ${goodsId} from like.`, err);
-        return false;
     });
 }
 
