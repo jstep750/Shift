@@ -28,7 +28,6 @@ function init() { // 해당 함수만 실행됨, 나머지 함수는
     firebase.initializeApp(firebaseConfig);
     firestoreDB = firebase.firestore();
 
-    // userId 연결부분 (로그인 페이지와 연결 후 이 부분 주석 해제해보기, 테스트 못했으니 될지는 모르겠음)
     // 로그인 상태면 userId, 아니면 null로 설정하기
     // const user = firebase.auth().currentUser;
     // if (user !== null) userId = user.uid; 
@@ -115,7 +114,7 @@ function mkCardDOM(goodsData) { // 상품 페이지로 이동 시 id를 쿼리 �
 
     // 2. 카드 DOM 객체 구성
     cardContainer.innerHTML = `
-        <div class="card" style="max-width: 400px; height: 100%;">
+        <div class="card" style="max-width: 400px; height: 600px;">
         <div style="height: 60%;position: relative;">
             <img src="${goodsData.img}" alt="..." class="card-img-top js-img" style="height: 100%; object-fit: cover;overflow: hidden;">
             <div class="text-white font-weight-bold d-flex align-items-center justify-content-center js-percent" style="position: absolute; bottom: 0%;right: 0%; width: 25%; height: 15%;background-color: #367dd3;font-size: 24px;">${calcSale(goodsData)}%</div>
