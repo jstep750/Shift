@@ -28,7 +28,6 @@ function init() { // 해당 함수만 실행됨, 나머지 함수는
     firebase.initializeApp(firebaseConfig);
     firestoreDB = firebase.firestore();
 
-    // userId 연결부분 (로그인 페이지와 연결 후 이 부분 주석 해제해보기, 테스트 못했으니 될지는 모르겠음)
     // 로그인 상태면 userId, 아니면 null로 설정하기
     // const user = firebase.auth().currentUser;
     // if (user !== null) userId = user.uid; 
