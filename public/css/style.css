@@ -460,3 +460,6 @@ body,
   border: 1px solid #c4c4c4;
   box-shadow: none;
 }
+.btn-custom{
+  background-color: #17375E;font-size: 16px;border-radius: 0.5rem;padding: 10px 30px 10px 30px;
+}

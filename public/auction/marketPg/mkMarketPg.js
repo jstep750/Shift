@@ -115,7 +115,7 @@ function mkCardDOM(goodsData) { // 상품 페이지로 이동 시 id를 쿼리 �
 
     // 2. 카드 DOM 객체 구성
     cardContainer.innerHTML = `
-        <div class="card" style="max-width: 400px; height: 100%;">
+        <div class="card" style="max-width: 400px; height: 600px;">
         <div style="height: 60%;position: relative;">
             <img src="${goodsData.img}" alt="..." class="card-img-top js-img" style="height: 100%; object-fit: cover;overflow: hidden;">
             <div class="text-white font-weight-bold d-flex align-items-center justify-content-center js-percent" style="position: absolute; bottom: 0%;right: 0%; width: 25%; height: 15%;background-color: #367dd3;font-size: 24px;">${calcSale(goodsData)}%</div>
