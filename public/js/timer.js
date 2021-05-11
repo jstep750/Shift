@@ -6,10 +6,9 @@
           function pad2(number) {
    
             return (number < 10 ? '0' : '') + number
-          
        }
   
-    let birthday = "April 30, 2021 00:00:00",
+    let birthday = "May 30, 2021 00:00:00",
         countDown = new Date(birthday).getTime(),
         x = setInterval(function() {    
   
@@ -28,5 +27,5 @@
           }
           //seconds
         }, 0)
-    }());
+  }());
     

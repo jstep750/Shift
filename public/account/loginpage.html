@@ -205,7 +205,6 @@ firebase.auth().onAuthStateChanged(function(user) {
     if (user) {
       // User is signed in.
       alert(user.displayName+"님 로그인");
-      document.getElementById("loginNav").textContent = "로그아웃";
       //console.log(user)		// 인증 후 어떤 데이터를 받아오는지 확인해보기 위함.
       var db = firebase.firestore();
       var flag = true;
@@ -238,6 +237,7 @@ firebase.auth().onAuthStateChanged(function(user) {
       }).catch(function(error) {
           console.log("Error getting document:", error);
       });
+      window.history.back();
     } else {
       // No user is signed in.
       alert("로그인 X");
@@ -246,7 +246,7 @@ firebase.auth().onAuthStateChanged(function(user) {
 });
 
 
-function logout() {
+/*function logout() {
   alert(document.getElementById("loginNav").textContent);
   if(document.getElementById("loginNav").textContent == "로그아웃"){
     firebase.auth().signOut().then(function() {
@@ -257,7 +257,7 @@ function logout() {
     // An error happened.
     });
   }
-}
+}*/
 
 
 function pwLogin(){
