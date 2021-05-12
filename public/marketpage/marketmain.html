@@ -877,11 +877,11 @@ function setTimer(i, birthday, cardContainer) {
         return (number < 10 ? '0' : '') + number
     }
 
-    countDown = new Date(birthday).getTime(),
     x = setInterval(function() {    
 
         let now = new Date().getTime(),
-            distance = countDown - now;
+        countDown = new Date(birthday).getTime(),
+        distance = countDown - now;
 
         cardContainer.querySelector("#days"+i).innerText = pad2(Math.floor(distance / (day))),
         cardContainer.querySelector("#hours"+i).innerText = pad2(Math.floor((distance % (day)) / (hour))),
