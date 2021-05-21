@@ -462,4 +462,13 @@ body,
 }
 .btn-custom{
   background-color: #17375E;font-size: 16px;border-radius: 0.5rem;padding: 10px 30px 10px 30px;
+  color: #fff
+}
+@media (min-width: 992px){
+ .mpr{
+   padding-right: 3rem;
+ }
+ .mpl{
+   padding-left: 3rem;
+ }
 }

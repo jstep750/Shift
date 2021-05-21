@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <title>마켓-클릭(여기도 자바로 건드려야됨)</title>
+    <title>옥션주문-거래</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
@@ -11,264 +11,400 @@
   <!-- Bootstrap core CSS -->
   <link href="../css/bootstrap.min.css" rel="stylesheet">
   <!-- Material Design Bootstrap -->
+  <link rel="stylesheet" href="../css/mdb.min_5.css">
   <link href="../css/mdb.min.css" rel="stylesheet">
   <!-- Your custom styles (optional) -->
   <link href="../css/style.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css">
   <link rel="stylesheet" href="../app.css">
-  <link rel="stylesheet" href="../css/mdb.min_5.css">
-  <script src="https://kit.fontawesome.com/22de0a02bc.js" crossorigin="anonymous"></script>
   <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
 crossorigin="anonymous"></script>
+
   <style>
-      a.active.nav-link{color: #17375E!important;border-bottom: 1px solid #17375E!important;}
-      @media (max-width: 892px){
-          .mobile-invisible{
-              display: none;
-          }
+    
+    #ex2-content{
+      border: 1px solid #17375E;
+    }
+      .list-content{
+          background-color: #fff;
+          font-weight: 300;
+          color: #454545;
       }
+      .list-title{
+          background-color: #fff;
+          height: 3rem;
+      }
+      .list-setting{
+          background-color: #fff;
+      }
+      .nav-tabs .nav-item.show .nav-link, .nav-tabs .nav-link.active {
+          background-color: transparent;
+      }
+       a.active.tabcolor{color: #17375E!important;border-bottom: 1px solid #17375E!important;}
+       
+
+.list-content{
+  height: 3rem;
+  overflow: hidden;
+  border: none!important;
+}
   </style>
-  <script>
-    $(document).ready(function() {  
-      function toggleNavbarMethod() {  
-          if ($(window).width() > 768) {  
-              $('.navbar .dropdown').on('mouseover', function(){  
-                  $('.dropdown-toggle', this).trigger('click');   
-              }).on('mouseout', function(){  
-                  $('.dropdown-toggle', this).trigger('click').blur();  
-              });  
-          }  
-          else {  
-              $('.navbar .dropdown').off('mouseover').off('mouseout');  
-          }  
-      }  
-      toggleNavbarMethod();  
-      $(window).resize(toggleNavbarMethod);  
-      $("#navbar-beforelogin").load("../navbar/navbar-beforelogin.html");
-      $("#navbar-afterlogin").load("../navbar/navbar-afterlogin.html");
-      var optionNum = 0;
-    var addiOptionNum = 0;
-    
-    document.querySelector("#optionGaesu").innerHTML=optionNum;
-    document.querySelector("addiOptionGaesu").innerHTML=addiOptionNum;
-  }); 
-  function addOptionNum(){
-        optionNum++;
-        document.querySelector("#optionGaesu").innerHTML=optionNum;
-    }
-    function subOptionNum(){
-        if(optionNum>0){
-            optionNum--;
+  
+    <script>
+  $(document).ready(function() {  
+    function toggleNavbarMethod() {  
+        if ($(window).width() > 768) {  
+            $('.navbar .dropdown').on('mouseover', function(){  
+                $('.dropdown-toggle', this).trigger('click');   
+            }).on('mouseout', function(){  
+                $('.dropdown-toggle', this).trigger('click').blur();  
+            });  
+        }  
+        else {  
+            $('.navbar .dropdown').off('mouseover').off('mouseout');  
+        }  
+    }  
+    toggleNavbarMethod();  
+    $(window).resize(toggleNavbarMethod);
+    defaultColor();  //시작하자마자 발동
+    $("#navbar-beforelogin").load("../navbar/navbar-beforelogin.html");
+    $("#navbar-afterlogin").load("../navbar/navbar-afterlogin.html");
+   
+});
+let gwansim = false;
+    function defaultColor(){
+        if(gwansim === false){
+            document.getElementById("icon").style.color="#999999";
         }
         else{
-            alert("옵션 수량이 0개입니다!");
+            document.getElementById("icon").style.color="red";
         }
     }
-    function addAddiOptionNum(){
-        addiOptionNum++;
-    }
-    function subAddiOptionNum(){
-        if(addiOptionNum>0){
-            addiOptionNum--;
+    function changeColor(){
+        if(gwansim === false){
+            document.getElementById("icon").style.color="red";
+            gwansim = true;
+            alert("관심목록에 추가되었습니다")
         }
         else{
-            alert("옵션 수량이 0개입니다!");
-        }   //해볼라는데 안되넹..일단 넘어갈게요
+            document.getElementById("icon").style.color="#999999";
+            gwansim = false;
+            alert("관심목록에서 해제되었습니다")
+        }
+        
     }
-    
-    </script>
+  
+  </script>
 </head>
 
-<body>
-   <!-- Navbar -->
-  <!--<div id="navbar-afterlogin"></div>--> 
-  <div id="navbar-beforelogin"></div>
-  
-<!-- Navbar -->    
-<main class="mt-5 pt-4" style="min-height: 100vh;">
-    <div class="container pt-5" style="padding: 0px;">
-        <div style="font-size: 14px;"><!--해시태그 및 회사에 대한 설명이 데이터베이스로 추가되어야할듯-->
-            <span class="mr-3" style="color: #367dd3;">#상품#게임</span><span style="color: #666666;">회사(개인)</span>
-        </div>
-        <div class="row" style="border: 1px solid #d3d3d3;margin-left: 0px; margin-right: 0px;">
-            <div class="col-lg-6" style="border-right: 1px solid #d3d3d3;">
-            <div class="img-square-container" style="margin-left: -12px;margin-right: -12px;">
-                <img class="img-square" src="..\img\shift\warlord_gandhi.jpg"> 
+
+
+<body >
+    <!-- Navbar -->
+    <div id="navbar-afterlogin"></div><!--여기서 로그인 여부에 따라 둘 중 하나 선택하면 될듯해욤-->
+    <!--<div id="navbar-beforelogin"></div>-->
+    
+  <!-- Navbar -->   
+
+  <!--Main layout-->
+  <main class="mt-5 pt-4" style="min-height: 100vh;background-color: #F5F9FF;">
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-md-3">
+                <img src="..\img\shift\land_mnc_1.png" alt="" style="overflow:hidden;width: 200px;height:200px;background-color: #C4C4C4;">
             </div>
+            <div class="col-md-9">
+                <div class="row">
+                    <div class="col-md-9">
+                        <span class="thirdh3_font font-weight-bold">제품 이름</span>
+                <span class="ml-3 thirdh4_font font-weight-bold" style="background-color: #FAD89B;padding: 2px;">개발중</span>
+                <div class="mt-1" style="color: #757575;">제작사 이름</div>
+                <a style="color: #999999;" onclick="changeColor();">
+                    <i class="fas fa-heart" id="icon"></i>
+                    <span class="ml-1">관심 추가</span>
+                    <!--위에다가 대충 구현해놨음-->
+                </a>
+                <div class="d-flex justify-content-between mt-3" style="color: #757575; width: 30%; min-width: 200px;">
+                    <span>마감 시간</span>
+                    <span class="font-weight-bold" style="color: #17375E;">1월 21일 21시</span>
+                </div>
+                <div class="d-flex justify-content-between" style="color: #757575; width: 30%; min-width: 200px;">
+                    <span>낙찰 처리</span>
+                    <span class="font-weight-bold" style="color: #17375e;">1월 22일 10시</span>
+                </div>
+                <div class="d-flex justify-content-between" style="color: #757575; width: 30%; min-width: 200px;">
+                    <span>옥션 수량</span>
+                    <!--만약 상승이면 #FD4141 아이콘도 바꿔야할텐디..-->
+                    <span class="font-weight-bold" style="color: #454545;">4,000 주</span>
+                </div>
+                <div class="d-flex justify-content-between" style="color: #757575; width: 30%; min-width: 200px;">
+                    <span>시작 가격</span>
+                    <span class="font-weight-bold" style="color: #454545;">25,500 캐쉬</span>
+                </div>
+                    </div>
+                    
+                
+            </div>
+        </div>
+        <!--여기까지 윗 내용-->
+        <div class="row" style="margin: 0px;">
+            <div class="col-md-7 mpr">
+                <div >
+                    <div class="row mt-5" style="font-size: 14px;">
+                      <div class="col-5 stock-setting" style="border-left: 1px solid #C4C4C4;">
+                        <div class="text-center stock-title">입찰가격(1주)</div>
+                      </div>
+                      <div class="col-2 stock-setting">
+                        <div class="text-center stock-title">수량</div>
+                      </div>
+                      <div class="col-5 stock-setting" style="border-right: 1px solid #C4C4C4;">
+                        <div class="text-center stock-title">예상결과</div>
+                      </div>
+                    </div>
+                    <div class="row overflow-auto hide-scrollbar" style="height: 600px;background-color: #fff;">
+                      <div class="col-5" style="border-left: 1px solid #C4C4C4;">
+                        <div class="list-content">51,000</div>
+                        <div class="list-content">51,000</div>
+                        <div class="list-content">51,000</div>
+                        <div class="list-content">51,000</div>
+                        <div class="list-content">51,000</div>
+                        <div class="list-content">51,000</div>
+                        <div class="list-content">51,000</div>
+                        <div class="list-content">51,000</div>
+                        <div class="list-content">51,000</div>
+                        <div class="list-content"></div>
+                        <div class="list-content"></div>
+                        <div class="list-content"></div>
+                        <div class="list-content"></div>
+                        <div class="list-content"></div>
+      
+                      </div>
+                      <div class="col-2">
+                        <div class="list-content">0.1</div>
+                        <div class="list-content">0.1</div>
+                        <div class="list-content">0.1</div>
+                        <div class="list-content">0.1</div>
+                        <div class="list-content">0.1</div>
+                        <div class="list-content">0.1</div>
+                        <div class="list-content">0.1</div>
+                        <div class="list-content">0.1</div>
+                        <div class="list-content">0.1</div>
+                      </div>
+                      <div class="col-5" style="border-right: 1px solid #C4C4C4;">
+                        <div class="list-content">낙찰</div>
+                        <div class="list-content">낙찰</div>
+                        <div class="list-content">낙찰</div>
+                        <div class="list-content">낙찰</div>
+                        <div class="list-content">낙찰</div>
+                        <div class="list-content">낙찰</div>
+                        <div class="list-content">낙찰</div>
+                        <div class="list-content">낙찰</div>
+                        <div class="list-content">낙찰</div>
+                      </div>
+                    </div>
+                    <div class="row" style="border: 1px solid #c4c4c4">
+                      <div class="col-5 stock-setting">
+                          <div class="list-content">합계</div>
+                      </div>
+                      <div class="col-2 stock-setting">
+                          <div class="list-content">22.2</div>
+                      </div>
+                      <div class="col-5 stock-setting">
+                          <div class="list-content d-flex align-items-center justify-content-center">
+                            <div class="btn text-white font-weight-bold" style="background-color: #17375E; padding: 5px 34px 5px 34px;">새로고침</div>
+                          </div>
+                      </div>
+                    </div>
+                  </div>
+            </div>
+            <div class="col-md-5 mpl">
+                <div class="card mt-5" style="padding: 10px 16px;border: 2px solid #454545">
+                    <div class="font-weight-bold" style="">입찰 주문</div>
+                    <hr>
+                    <div class="btn btn-custom font-weight-bold" data-toggle="modal" data-target="#stockPage">마켓 주문 가능</div>
+                    <div id="stockPage" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="stockPageLabel" aria-hidden="true">
+                        <div class="modal-dialog change-margin" style="margin-left: 10vw; margin-right: 10vw; margin-top: 10vh;">
+                            <div class="modal-content change-width overflow-auto" style="width: 80vw;">
+                                <div class="modal-body">
+                                    <div class="container change-padding" style="padding: 40px;">
+                                    <div class="row">
+                                        <div class="col-md-7 mpr"><!--이건 위에 표랑 완전히 똑같은 표-->
+                                            <div >
+                                                <div class="row" style="font-size: 14px;">
+                                                  <div class="col-5 stock-setting" style="border-left: 1px solid #C4C4C4;">
+                                                    <div class="text-center stock-title">입찰가격(1주)</div>
+                                                  </div>
+                                                  <div class="col-2 stock-setting">
+                                                    <div class="text-center stock-title">수량</div>
+                                                  </div>
+                                                  <div class="col-5 stock-setting" style="border-right: 1px solid #C4C4C4;">
+                                                    <div class="text-center stock-title">예상결과</div>
+                                                  </div>
+                                                </div>
+                                                <div class="row overflow-auto hide-scrollbar" style="height: 600px;background-color: #fff;">
+                                                  <div class="col-5" style="border-left: 1px solid #C4C4C4;">
+                                                    <div class="list-content">51,000</div>
+                                                    <div class="list-content">51,000</div>
+                                                    <div class="list-content">51,000</div>
+                                                    <div class="list-content">51,000</div>
+                                                    <div class="list-content">51,000</div>
+                                                    <div class="list-content">51,000</div>
+                                                    <div class="list-content">51,000</div>
+                                                    <div class="list-content">51,000</div>
+                                                    <div class="list-content">51,000</div>
+                                                    <div class="list-content"></div>
+                                                    <div class="list-content"></div>
+                                                    <div class="list-content"></div>
+                                                    <div class="list-content"></div>
+                                                    <div class="list-content"></div>
+                                  
+                                                  </div>
+                                                  <div class="col-2">
+                                                    <div class="list-content">0.1</div>
+                                                    <div class="list-content">0.1</div>
+                                                    <div class="list-content">0.1</div>
+                                                    <div class="list-content">0.1</div>
+                                                    <div class="list-content">0.1</div>
+                                                    <div class="list-content">0.1</div>
+                                                    <div class="list-content">0.1</div>
+                                                    <div class="list-content">0.1</div>
+                                                    <div class="list-content">0.1</div>
+                                                  </div>
+                                                  <div class="col-5" style="border-right: 1px solid #C4C4C4;">
+                                                    <div class="list-content">낙찰</div>
+                                                    <div class="list-content">낙찰</div>
+                                                    <div class="list-content">낙찰</div>
+                                                    <div class="list-content">낙찰</div>
+                                                    <div class="list-content">낙찰</div>
+                                                    <div class="list-content">낙찰</div>
+                                                    <div class="list-content">낙찰</div>
+                                                    <div class="list-content">낙찰</div>
+                                                    <div class="list-content">낙찰</div>
+                                                  </div>
+                                                </div>
+                                                <div class="row" style="border: 1px solid #c4c4c4">
+                                                  <div class="col-5 stock-setting">
+                                                      <div class="list-content">합계</div>
+                                                  </div>
+                                                  <div class="col-2 stock-setting">
+                                                      <div class="list-content">22.2</div>
+                                                  </div>
+                                                  <div class="col-5 stock-setting">
+                                                      <div class="list-content d-flex align-items-center justify-content-center">
+                                                        <div class="btn text-white font-weight-bold" style="background-color: #17375E; padding: 5px 34px 5px 34px;">새로고침</div>
+                                                      </div>
+                                                  </div>
+                                                </div>
+                                              </div>
+                                        </div>
+                                        <div class="col-md-5 mpl">
+                                            <div class="p-3" style="height: 55%;border: 1px solid #454545">
+                                                <div class="font-weight-bold" style="font-size: 18px;">입찰 주문</div>
+                                                <hr>
+                                                <div class="d-flex justify-content-between" >
+                                                    <span style="color: #757575;">사용 가능 캐쉬</span>
+                                                    <span style="color: #17375e;">{27,000}</span>
+                                                    
+                                                </div>
+                                                <div class="d-flex justify-content-between mt-3" style="background-color: #eff1f4;padding: 10px;">
+                                                    <div class="d-flex" style="color: #454545; align-items: center;">입찰가격(0.1%)</div>
+                                                    <div>
+                                                      <span class="mr-1 font-weight-bold" style="color: #222222;">{25,500}</span>
+                                                      <span>
+                                                        <div class="btn btn-normal">-</div>
+                                                        <div class="btn btn-normal" style="">+</div>
+                                                      </span>
+                                                    </div>
+                                                  </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <ul class="nav nav-tabs mb-3 d-flex justify-content-center" id="ex1" role="tablist" style="border-bottom: 1px solid #B1B1B1;">
+                    <li class="nav-item" role="presentation" style="max-width: 50%;width: 150px">
+                      <a
+                        class="nav-link active text-center tabcolor"
+                        id="ex1-tab-1"
+                        data-toggle="tab"
+                        data-mdb-toggle="tab"
+                        href="#ex1-tabs-1"
+                        role="tab"
+                        aria-controls="ex1-tabs-1"
+                        aria-selected="true"
+                        style="font-size: 16px; font-weight: 900;"
+                        >참여규정</a
+                      >
+                    </li>
+                    <li class="nav-item" role="presentation" style="max-width: 50%;width: 150px">
+                      <a
+                        class="nav-link text-center tabcolor"
+                        id="ex1-tab-2"
+                        data-mdb-toggle="tab"
+                        data-toggle="tab"
+                        href="#ex1-tabs-2"
+                        role="tab"
+                        aria-controls="ex1-tabs-2"
+                        aria-selected="false"
+                        style="font-size: 16px; font-weight: 900;padding-left: 0px;padding-right: 0px;"
+                        >재입찰 및 취소규정</a
+                      >
+                      
+                    </li>  
+                  </ul>
+                  <div class="tab-content" id="ex1-content">
+                    <div
+                      class="tab-pane fade show active"
+                      id="ex1-tabs-1"
+                      role="tabpanel"
+                      aria-labelledby="ex1-tab-1"
+                    >
+                    <div class="container" style="color: #666666;font-size: 14px;">
+                        -입찰 시 자동으로 입찰 보증금이 발생합니다.(재입찰 및 취소 규정 확인)<br>
+                        <span class="font-weight-bold">-입찰 보증금은 입찰 금액의 10%입니다.<br>
+                        -입찰 시 보증금은 즉시 차감됩니다.<br>
+                        -입찰보증금은 잔금 부족의 이유로 미낙찰 될 경우 환급되지 않습니다.<br></span>
+                        -입찰 시, 입찰하신 가격 대비 최근 12개월 수익률을 반드시 확인바랍니다.<br>
+                        -옥션 마감 후 단위 금액이 높은 임찰 순으로 낙찰됩니다.(같을 경우 높은 수량부터)<br>
+                        -낙찰 시, 입찰하신 가격으로 낙찰받게 됩니다.<br>
+                        -낙찰 시, 옥션 마감 후 다음날 오전 10시에 '쉬프팅 머니'에서 대금이 자동으로 출금됩니다.<br>
+                        -구매결정은 온전히 회원님의 판단으로 이뤄졌으며, 쉬프트는 어떠한 경우에도 미래의 배당금 및 배당금 참여청구권의
+                        판매 성사여부를 보장하거나 책임지지 않습니다.
                         
+                    </div>
+                </div>
+                <div
+                      class="tab-pane fade show"
+                      id="ex1-tabs-2"
+                      role="tabpanel"
+                      aria-labelledby="ex1-tab-2"
+                    >
+                    <div class="container" style="color: #666666;font-size: 14px;">
+                      -재입찰 시 원래 입찰 시 부여받은 순위는 초기화됩니다.<br>
+                      <span class="font-weight-bold">-입찰취소 시 입찰보증금(입찰금의 10%)는 환급됩니다.<br></span>
+                      -재입찰 시 입찰 보증금은 이미 차감된 보증금과의 차액만큼 추가 차감 혹은 환급됩니다.<br>
+                      -옥션 마지막 날(매주 목요일)은 취소 시 보증금이 환급되지 않습니다. 또한 재입찰 시 입찰 수량/금액보다 높은 수량/금액만
+                      입찰이 가능합니다.<br>
+                      -전체 옥션 수량 대비 30% 이상 수량으로 입찰하는 경우 입찰취소는 불가합니다.
+                      </div>
+                      
+                        
+                    
+                </div>
             </div>
-            <div class="col-lg-6" style="padding: 24px;">
-                <div style="font-size: 30px;font-weight: 700;" id="">[Sid Meier's Civilization VI] 전쟁광을 피해 살아남아라</div>
-                <div style="color: #454545;" id="">21.04.21~21.06.21</div>
-                <div class="mt-2" style="border: 1px solid #d3d3d3; height: 300px;max-height: 40%; padding:1rem;">
-                    살려주세요 전 암것도 안했어요 옆에 있단 죄밖에 없는데 왜 공개비난 하세요 안돼요 싫어요 상인보내지 마세요
-                </div>
-                <!--
-                    <div class="row mt-3">
-                    <div class="col-lg-6">
-                        <div class="d-flex justify-content-between">
-                            <span style="font-size: 36px;color: #367dd3;">50%</span>
-                            <span class="d-flex align-items-center" style="color: #999999;text-decoration: line-through;">20,000원</span>
-                        </div>
-                        <div class="text-right font-weight-bold" style="font-size: 36px;">
-                            10,000원
-                        </div>
-                    </div>
-                    <div class="col-lg-6">
-                        <a class="btn btn-block text-white font-weight-bold" style="background-color: #666666;font-size: 16px;padding-top: 12px;padding-bottom: 12px;">장바구니</a>
-                        <a class="btn btn-block text-white font-weight-bold" style="background-color: #666666;font-size: 16px;padding-top: 12px;padding-bottom: 12px;">관심추가<i class="fas fa-heart ml-1" style="color: black;"></i></a>
-                        <a class="btn btn-block text-white font-weight-bold" style="background-color: #17375e;font-size: 16px;padding-top: 12px;padding-bottom: 12px;">구매하기</a>
-                    </div>
-                </div>
-                -->
-                <div class="d-flex justify-content-between mt-2">
-                    <div style="color: #367dd3;font-size: 36px;">50%</div>
-                    <div>
-                        <span style="text-decoration: line-through;">20,000원</span>
-                        <span class="font-weight-bold" style="font-size: 36px;">10,000원</span>
-                    </div>
-                </div>
-                <hr>
-                <p>
-                    <div style="color: #222222;">택배배송: 무료배송</div>
-                    <div style="color: #999999;">제주 추가: 3,000원, 제주 외 도서지역 추가 5,000원</div>
-                </p>
-                <hr>
-                <p style="color: #222222;">옵션 선택</p>
-                <select name="" id="" class="custom-select">
-                    <option value="">옵션 선택</option>
-                    <option value="">뭐가</option>
-                    <option value="">좋을까요</option>
-                  </select>
-                  <select name="" id="" class="custom-select mt-3">
-                    <option value="">추가옵션 선택(추옵 아님ㅎ)</option>
-                    <option value="">뭐가</option>
-                    <option value="">좋을까요</option>
-                  </select>
-                  <hr style="height: 2px;">
-                  <div style="padding-top: 24px;"><!--여기서부터 옵션 및 추가옵션 선택시 나오는 부분(옵션 파트)-->
-                    <div class="d-flex justify-content-between">
-                        <div style="color: #222222;">[Sid Meier's Civilization VI]게임 파일</div>
-                        <a href="" style="font-size: 30px;color: #666666;" onclick=""><i class="fas fa-times"></i></a><!--함수 삽입-->
-                    </div>
-                    <div class="d-flex justify-content-between mt-3">
-                        <div class="d-flex" style="color: #222222;">
-                            <a class="plusminus-btn" href="" onclick="subOptionNum();"><i class="fas fa-minus"></i></a>
-                            <div class="plusminus-btn" id="optionGaesu" style="background-color: #fff;width: 2.5rem"></div>
-                            <a href="" class="plusminus-btn" onclick="addOptionNum();"><i class="fas fa-plus"></i></a>
-                        </div>
-                        <div class="font-weight-bold" style="font-size: 24px;" id="">28,000원</div>
-                    </div>
-                  </div><!--옵션 파트 끝-->
-                  <hr>
-                  <div style="padding-top: 24px;"><!--추가옵션 시작-->
-                    <div class="d-flex justify-content-between">
-                        <div style="color: #222222;">[Sid Meier's Civilization VI]DLC: Gathering Storm</div>
-                        <a href="" style="font-size: 30px;color: #666666;" onclick=""><i class="fas fa-times"></i></a><!--함수 삽입-->
-                    </div>
-                    <div class="d-flex justify-content-between mt-3">
-                        <div class="d-flex" style="color: #222222;">
-                            <a class="plusminus-btn" href="" onclick="subOptionNum();"><i class="fas fa-minus"></i></a>
-                            <div class="plusminus-btn" id="optionGaesu" style="background-color: #fff;width: 2.5rem"></div>
-                            <a href="" class="plusminus-btn" onclick="addOptionNum();"><i class="fas fa-plus"></i></a>
-                        </div>
-                        <div class="font-weight-bold" style="font-size: 24px;" id="">20,000원</div>
-                    </div>
-                  </div><!--추가옵션 파트 끝-->
-                  <hr style="height: 2px;">
-                  <div class="d-flex justify-content-between" style="color: #222222;">
-                    <div class="d-flex align-items-center font-weight-bold">
-                        총 상품 금액
-                    </div>
-                    <div class="d-flex align-items-center">
-                        <span class="mr-3" style="color: #999999;">총 수량 <span id="">2</span>개</span>
-                        <span class="font-weight-bold" style="font-size: 28px;color: #367dd3;">48,000원</span>
-                    </div>
-                </div>
-                <div class="row" style="padding: 7px;">
-                    <div class="col" style="padding: 5px;">
-                        <a class="btn btn-block text-white font-weight-bold" style="background-color: #666666;font-size: 16px;padding-top: 12px;padding-bottom: 12px;">장바구니</a>
-                    </div>
-                    <div class="col" style="padding: 5px;">
-                        <a class="btn btn-block text-white font-weight-bold" style="background-color: #666666;font-size: 16px;padding-top: 12px;padding-bottom: 12px;">관심추가<i class="fas fa-heart ml-1" style="color: black;"></i></a>
-                    </div>
-                </div>
-                    <a class="btn btn-block text-white font-weight-bold" style="background-color: #17375e;font-size: 16px;padding-top: 12px;padding-bottom: 12px;">구매하기</a>
             </div>
-        </div><!--여기까지 상단-->
-        <div class="mt-3 font-weight-bold" style="font-size: 24px;">
-           <p>제작자 소개</p> 
-           <div class="d-flex align-items-center" style="height: 300px;border: 1px solid #d3d3d3;padding: 12px;">
-                   <img class="mobile-invisible" src="..\img\shift\gamer.png" alt="" style="width: 250px;height: 250px;object-fit: cover;border: 1px solid #d3d3d3">
-                   <div style="height: 100%; margin-left: 1rem;">
-                       <p style="font-size: 20px;">회사(개인) 이름</p>
-                       <p style="font-size: 16px;font-weight: 500;">
-                           히히히히ㅣ
-                       </p>
-                   </div>
-           </div>
         </div>
-        <ul class="nav nav-tabs mb-3 mt-5" id="ex1" role="tablist" style="border-bottom: 1px solid #B1B1B1;">
-            <li class="nav-item" role="presentation">
-              <a
-                class="nav-link active text-center"
-                id="ex1-tab-1"
-                data-toggle="tab"
-                data-mdb-toggle="tab"
-                href="#ex1-tabs-1"
-                role="tab"
-                aria-controls="ex1-tabs-1"
-                aria-selected="true"
-                style="font-size: 20px; font-weight: 900;"
-                >상세정보</a
-              >
-            </li>
-            <li class="nav-item" role="presentation">
-              <a
-                class="nav-link text-center"
-                id="ex1-tab-2"
-                data-mdb-toggle="tab"
-                data-toggle="tab"
-                href="#ex1-tabs-2"
-                role="tab"
-                aria-controls="ex1-tabs-2"
-                aria-selected="false"
-                style="font-size: 20px; font-weight: 900;"
-                >QnA</a
-              >
-            </li>
-          </ul>
-          <!-- Tabs navs -->
-          <!--tabs content-->
-          <div class="tab-content" id="ex1-content">
-              <div
-              class="tab-pane fade show active"
-              id="ex1-tabs-1"
-              role="tabpanel"
-              aria-labelledby="ex1-tab-1"
-            >
-            test1
-            <div style="height: 40vh;"></div>
-            </div>
-            <div
-            class="tab-pane fade show"
-            id="ex1-tabs-2"
-            role="tabpanel"
-            aria-labelledby="ex1-tab-2"
-          >
-          test2
-          <div style="height: 40vh;"></div>
-          </div>
-          </div>
-    </div>
-</main>
- 
+        
+  </main>
+  <!--Main layout-->
 
   <!--Footer-->
-  <footer class="page-footer text-center font-small" style="
-  text-align: center;
-  background-color: white;
-  border-top: 1px solid grey;
-  ">
+  <footer class="page-footer text-center font-small" style="background-color: white;border-top: 1px solid grey;">
     <div style="height: 10px;"></div>
     <p class="mb-3" style="color: #333333;">Copyright © 2021 Shift</p>
     <p style="color: #333333;">상호: Shift | 대표: 김용운 | 개인정보관리책임자: 미입력 | 전화: 미입력 | 이메일: karlxyz99@korea.ac.kr</p>
@@ -292,6 +428,10 @@ crossorigin="anonymous"></script>
     new WOW().init();
 
   </script>
+  <script src="https://cdn.amcharts.com/lib/4/core.js"></script>
+  <script src="https://cdn.amcharts.com/lib/4/charts.js"></script>
+  <script src="https://cdn.amcharts.com/lib/4/themes/animated.js"></script>
+  <script type="text/javascript" src="..\js\userchartdata.js"></script>
 
   <!-- The core Firebase JS SDK is always required and must be listed first -->
 <script src="https://www.gstatic.com/firebasejs/8.2.2/firebase-app.js"></script>
@@ -319,8 +459,6 @@ var firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 
 </script>
-<script src="activeAuc.js"></script>
-
 </body>
 
 </html>
