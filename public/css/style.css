@@ -472,3 +472,29 @@ body,
    padding-left: 3rem;
  }
 }
+@media (max-width: 992px){
+  .change-modal{
+    width: 100vw!important;
+  }
+ }
+.white-board{
+  background-color: #fff;
+  border: 1px solid #c4c4c4;
+  min-height: 500px;
+  margin-left: 0.75rem;
+  margin-right: 0.75rem;
+  padding: 0px;
+}
+.board-title{
+  padding: 30px;
+  color: #454545;
+  font-size: 20px;
+  font-weight: 700;
+  border-bottom: 1px solid #c4c4c4;
+}
+.board-body{
+  padding: 30px;
+  font-size: 20px;
+  font-weight: 700;
+  color: #454545;
+}

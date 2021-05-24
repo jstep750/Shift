@@ -38,11 +38,31 @@ crossorigin="anonymous"></script>
           background-color: #fff;
       }
       .nav-tabs .nav-item.show .nav-link, .nav-tabs .nav-link.active {
-          background-color: transparent;
+          background-color: transparent!important;
       }
        a.active.tabcolor{color: #17375E!important;border-bottom: 1px solid #17375E!important;}
-       
-
+       @media (max-width: 992px){
+  .mobile-width{
+    margin-left: 0!important;
+    margin-right:0!important;
+  }
+  }
+  @media (max-width: 992px){
+  .modal-body{
+    padding: 0px;
+  }
+  .change-padding{
+    padding: 20px 5px 5px 5px!important;
+  }
+  .change-margin{
+    margin-left: 5vw!important;
+    margin-right: 5vw!important;
+  }
+  .change-width{
+    width: 90vw!important;
+  }
+}
+ 
 .list-content{
   height: 3rem;
   overflow: hidden;
@@ -69,6 +89,8 @@ crossorigin="anonymous"></script>
     defaultColor();  //시작하자마자 발동
     $("#navbar-beforelogin").load("../navbar/navbar-beforelogin.html");
     $("#navbar-afterlogin").load("../navbar/navbar-afterlogin.html");
+    $("#stockList").load("table.html");
+    $("#stockList_2").load("table.html");
    
 });
 let gwansim = false;
@@ -149,156 +171,28 @@ let gwansim = false;
         <!--여기까지 윗 내용-->
         <div class="row" style="margin: 0px;">
             <div class="col-md-7 mpr">
-                <div >
-                    <div class="row mt-5" style="font-size: 14px;">
-                      <div class="col-5 stock-setting" style="border-left: 1px solid #C4C4C4;">
-                        <div class="text-center stock-title">입찰가격(1주)</div>
-                      </div>
-                      <div class="col-2 stock-setting">
-                        <div class="text-center stock-title">수량</div>
-                      </div>
-                      <div class="col-5 stock-setting" style="border-right: 1px solid #C4C4C4;">
-                        <div class="text-center stock-title">예상결과</div>
-                      </div>
-                    </div>
-                    <div class="row overflow-auto hide-scrollbar" style="height: 600px;background-color: #fff;">
-                      <div class="col-5" style="border-left: 1px solid #C4C4C4;">
-                        <div class="list-content">51,000</div>
-                        <div class="list-content">51,000</div>
-                        <div class="list-content">51,000</div>
-                        <div class="list-content">51,000</div>
-                        <div class="list-content">51,000</div>
-                        <div class="list-content">51,000</div>
-                        <div class="list-content">51,000</div>
-                        <div class="list-content">51,000</div>
-                        <div class="list-content">51,000</div>
-                        <div class="list-content"></div>
-                        <div class="list-content"></div>
-                        <div class="list-content"></div>
-                        <div class="list-content"></div>
-                        <div class="list-content"></div>
-      
-                      </div>
-                      <div class="col-2">
-                        <div class="list-content">0.1</div>
-                        <div class="list-content">0.1</div>
-                        <div class="list-content">0.1</div>
-                        <div class="list-content">0.1</div>
-                        <div class="list-content">0.1</div>
-                        <div class="list-content">0.1</div>
-                        <div class="list-content">0.1</div>
-                        <div class="list-content">0.1</div>
-                        <div class="list-content">0.1</div>
-                      </div>
-                      <div class="col-5" style="border-right: 1px solid #C4C4C4;">
-                        <div class="list-content">낙찰</div>
-                        <div class="list-content">낙찰</div>
-                        <div class="list-content">낙찰</div>
-                        <div class="list-content">낙찰</div>
-                        <div class="list-content">낙찰</div>
-                        <div class="list-content">낙찰</div>
-                        <div class="list-content">낙찰</div>
-                        <div class="list-content">낙찰</div>
-                        <div class="list-content">낙찰</div>
-                      </div>
-                    </div>
-                    <div class="row" style="border: 1px solid #c4c4c4">
-                      <div class="col-5 stock-setting">
-                          <div class="list-content">합계</div>
-                      </div>
-                      <div class="col-2 stock-setting">
-                          <div class="list-content">22.2</div>
-                      </div>
-                      <div class="col-5 stock-setting">
-                          <div class="list-content d-flex align-items-center justify-content-center">
-                            <div class="btn text-white font-weight-bold" style="background-color: #17375E; padding: 5px 34px 5px 34px;">새로고침</div>
-                          </div>
-                      </div>
-                    </div>
+                <div class="mt-5" id="stockList">
+                    
                   </div>
             </div>
             <div class="col-md-5 mpl">
                 <div class="card mt-5" style="padding: 10px 16px;border: 2px solid #454545">
                     <div class="font-weight-bold" style="">입찰 주문</div>
                     <hr>
-                    <div class="btn btn-custom font-weight-bold" data-toggle="modal" data-target="#stockPage">마켓 주문 가능</div>
+                    <div class="btn btn-custom font-weight-bold text-white" data-toggle="modal" data-target="#stockPage">마켓 주문 가능</div>
                     <div id="stockPage" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="stockPageLabel" aria-hidden="true">
-                        <div class="modal-dialog change-margin" style="margin-left: 10vw; margin-right: 10vw; margin-top: 10vh;">
-                            <div class="modal-content change-width overflow-auto" style="width: 80vw;">
+                        <div class="modal-dialog mobile-width" style="margin-left: 10vw; margin-right: 10vw; margin-top: 10vh;">
+                            <div class="modal-content overflow-auto change-modal" style="width: 80vw;min-height: 80vh;">
                                 <div class="modal-body">
                                     <div class="container change-padding" style="padding: 40px;">
                                     <div class="row">
                                         <div class="col-md-7 mpr"><!--이건 위에 표랑 완전히 똑같은 표-->
-                                            <div >
-                                                <div class="row" style="font-size: 14px;">
-                                                  <div class="col-5 stock-setting" style="border-left: 1px solid #C4C4C4;">
-                                                    <div class="text-center stock-title">입찰가격(1주)</div>
-                                                  </div>
-                                                  <div class="col-2 stock-setting">
-                                                    <div class="text-center stock-title">수량</div>
-                                                  </div>
-                                                  <div class="col-5 stock-setting" style="border-right: 1px solid #C4C4C4;">
-                                                    <div class="text-center stock-title">예상결과</div>
-                                                  </div>
-                                                </div>
-                                                <div class="row overflow-auto hide-scrollbar" style="height: 600px;background-color: #fff;">
-                                                  <div class="col-5" style="border-left: 1px solid #C4C4C4;">
-                                                    <div class="list-content">51,000</div>
-                                                    <div class="list-content">51,000</div>
-                                                    <div class="list-content">51,000</div>
-                                                    <div class="list-content">51,000</div>
-                                                    <div class="list-content">51,000</div>
-                                                    <div class="list-content">51,000</div>
-                                                    <div class="list-content">51,000</div>
-                                                    <div class="list-content">51,000</div>
-                                                    <div class="list-content">51,000</div>
-                                                    <div class="list-content"></div>
-                                                    <div class="list-content"></div>
-                                                    <div class="list-content"></div>
-                                                    <div class="list-content"></div>
-                                                    <div class="list-content"></div>
-                                  
-                                                  </div>
-                                                  <div class="col-2">
-                                                    <div class="list-content">0.1</div>
-                                                    <div class="list-content">0.1</div>
-                                                    <div class="list-content">0.1</div>
-                                                    <div class="list-content">0.1</div>
-                                                    <div class="list-content">0.1</div>
-                                                    <div class="list-content">0.1</div>
-                                                    <div class="list-content">0.1</div>
-                                                    <div class="list-content">0.1</div>
-                                                    <div class="list-content">0.1</div>
-                                                  </div>
-                                                  <div class="col-5" style="border-right: 1px solid #C4C4C4;">
-                                                    <div class="list-content">낙찰</div>
-                                                    <div class="list-content">낙찰</div>
-                                                    <div class="list-content">낙찰</div>
-                                                    <div class="list-content">낙찰</div>
-                                                    <div class="list-content">낙찰</div>
-                                                    <div class="list-content">낙찰</div>
-                                                    <div class="list-content">낙찰</div>
-                                                    <div class="list-content">낙찰</div>
-                                                    <div class="list-content">낙찰</div>
-                                                  </div>
-                                                </div>
-                                                <div class="row" style="border: 1px solid #c4c4c4">
-                                                  <div class="col-5 stock-setting">
-                                                      <div class="list-content">합계</div>
-                                                  </div>
-                                                  <div class="col-2 stock-setting">
-                                                      <div class="list-content">22.2</div>
-                                                  </div>
-                                                  <div class="col-5 stock-setting">
-                                                      <div class="list-content d-flex align-items-center justify-content-center">
-                                                        <div class="btn text-white font-weight-bold" style="background-color: #17375E; padding: 5px 34px 5px 34px;">새로고침</div>
-                                                      </div>
-                                                  </div>
-                                                </div>
+                                            <div class="mobile-invisible" id="stockList_2"><!--표 수정은 같은 폴더에 있는  table.html에서-->
+                                                
                                               </div>
                                         </div>
                                         <div class="col-md-5 mpl">
-                                            <div class="p-3" style="height: 55%;border: 1px solid #454545">
+                                            <div class="p-3" style="height: 500px;border: 1px solid #454545">
                                                 <div class="font-weight-bold" style="font-size: 18px;">입찰 주문</div>
                                                 <hr>
                                                 <div class="d-flex justify-content-between" >
@@ -306,7 +200,7 @@ let gwansim = false;
                                                     <span style="color: #17375e;">{27,000}</span>
                                                     
                                                 </div>
-                                                <div class="d-flex justify-content-between mt-3" style="background-color: #eff1f4;padding: 10px;">
+                                                <div class="d-flex justify-content-between mt-3" style="background-color: #eff1f4;padding: 20px;">
                                                     <div class="d-flex" style="color: #454545; align-items: center;">입찰가격(0.1%)</div>
                                                     <div>
                                                       <span class="mr-1 font-weight-bold" style="color: #222222;">{25,500}</span>
@@ -316,7 +210,105 @@ let gwansim = false;
                                                       </span>
                                                     </div>
                                                   </div>
+                                                  <div class="d-flex justify-content-between mt-1" style="font-size: 14px;">
+                                                    <span style="color: #999999;">입찰가격 대비 최근 1년 저작권료 수익률</span>
+                                                    <span style="color: #17375e;">{9}%</span> 
+                                                </div>
+                                                <div class="d-flex justify-content-between mt-3" style="background-color: #eff1f4;padding: 20px;">
+                                                  <div class="d-flex" style="color: #454545; align-items: center;">수량(주)</div>
+                                                  <div>
+                                                    <span class="mr-3 font-weight-bold" style="color: #222222;">5</span>
+                                                    <span>
+                                                      <div class="btn btn-normal">-</div>
+                                                      <div class="btn btn-normal" style="">+</div>
+                                                    </span>
+                                                  </div>
+                                                </div>
+                                                <div class="d-flex mt-1" style="justify-content: stretch;color: #757575;">
+                                                  <a class="text-center" style="width: 20%;border: 1px solid #c4c4c4">5주</a>
+                                                  <a class="text-center" style="width: 20%;border: 1px solid #c4c4c4">10주</a>
+                                                  <a class="text-center" style="width: 20%;border: 1px solid #c4c4c4">20주</a>
+                                                  <a class="text-center" style="width: 20%;border: 1px solid #c4c4c4">30주</a>
+                                                  <a class="text-center" style="width: 20%;border: 1px solid #c4c4c4">100주</a>
+                                                </div>
+                                                <div class="d-flex justify-content-between font-weight-bold mt-3" style="font-size: 18px;">
+                                                  <span style="color: #222222;">주문 금액</span>
+                                                  <span style="color: #17375e;">{127,500} 캐쉬</span> 
+                                              </div>
+                                              <div class="btn btn-block btn-custom text-white mt-3 font-weight-bold">비밀번호 입력하고 진행하기</div>
+
                                             </div>
+                                            <ul class="nav nav-tabs mt-3 mb-3 d-flex justify-content-center" id="ex1" role="tablist" style="border-bottom: 1px solid #B1B1B1;">
+                                              <li class="nav-item" role="presentation" style="max-width: 50%;width: 150px">
+                                                <a
+                                                  class="nav-link active text-center tabcolor"
+                                                  id="ex2-tab-1"
+                                                  data-toggle="tab"
+                                                  data-mdb-toggle="tab"
+                                                  href="#ex2-tabs-1"
+                                                  role="tab"
+                                                  aria-controls="ex2-tabs-1"
+                                                  aria-selected="true"
+                                                  style="font-size: 16px; font-weight: 900;"
+                                                  >참여규정</a
+                                                >
+                                              </li>
+                                              <li class="nav-item" role="presentation" style="max-width: 50%;width: 150px">
+                                                <a
+                                                  class="nav-link text-center tabcolor"
+                                                  id="ex2-tab-2"
+                                                  data-mdb-toggle="tab"
+                                                  data-toggle="tab"
+                                                  href="#ex2-tabs-2"
+                                                  role="tab"
+                                                  aria-controls="ex2-tabs-2"
+                                                  aria-selected="false"
+                                                  style="font-size: 16px; font-weight: 900;padding-left: 0px;padding-right: 0px;"
+                                                  >재입찰 및 취소규정</a
+                                                >
+                                                
+                                              </li>  
+                                            </ul>
+                                            <div class="tab-content" id="ex1-content">
+                                              <div
+                                                class="tab-pane fade show active"
+                                                id="ex2-tabs-1"
+                                                role="tabpanel"
+                                                aria-labelledby="ex2-tab-1"
+                                              >
+                                              <div class="container" style="color: #666666;font-size: 14px;">
+                                                  -입찰 시 자동으로 입찰 보증금이 발생합니다.(재입찰 및 취소 규정 확인)<br>
+                                                  <span class="font-weight-bold">-입찰 보증금은 입찰 금액의 10%입니다.<br>
+                                                  -입찰 시 보증금은 즉시 차감됩니다.<br>
+                                                  -입찰보증금은 잔금 부족의 이유로 미낙찰 될 경우 환급되지 않습니다.<br></span>
+                                                  -입찰 시, 입찰하신 가격 대비 최근 12개월 수익률을 반드시 확인바랍니다.<br>
+                                                  -옥션 마감 후 단위 금액이 높은 임찰 순으로 낙찰됩니다.(같을 경우 높은 수량부터)<br>
+                                                  -낙찰 시, 입찰하신 가격으로 낙찰받게 됩니다.<br>
+                                                  -낙찰 시, 옥션 마감 후 다음날 오전 10시에 '쉬프팅 머니'에서 대금이 자동으로 출금됩니다.<br>
+                                                  -구매결정은 온전히 회원님의 판단으로 이뤄졌으며, 쉬프트는 어떠한 경우에도 미래의 배당금 및 배당금 참여청구권의
+                                                  판매 성사여부를 보장하거나 책임지지 않습니다.
+                                                  
+                                              </div>
+                                          </div>
+                                          <div
+                                                class="tab-pane fade show"
+                                                id="ex2-tabs-2"
+                                                role="tabpanel"
+                                                aria-labelledby="ex2-tab-2"
+                                              >
+                                              <div class="container" style="color: #666666;font-size: 14px;">
+                                                -재입찰 시 원래 입찰 시 부여받은 순위는 초기화됩니다.<br>
+                                                <span class="font-weight-bold">-입찰취소 시 입찰보증금(입찰금의 10%)는 환급됩니다.<br></span>
+                                                -재입찰 시 입찰 보증금은 이미 차감된 보증금과의 차액만큼 추가 차감 혹은 환급됩니다.<br>
+                                                -옥션 마지막 날(매주 목요일)은 취소 시 보증금이 환급되지 않습니다. 또한 재입찰 시 입찰 수량/금액보다 높은 수량/금액만
+                                                입찰이 가능합니다.<br>
+                                                -전체 옥션 수량 대비 30% 이상 수량으로 입찰하는 경우 입찰취소는 불가합니다.
+                                                </div>
+                                                
+                                                  
+                                              
+                                          </div>
+                                      </div>
                                         </div>
                                     </div>
                                 </div>
@@ -398,6 +390,43 @@ let gwansim = false;
                 </div>
             </div>
             </div>
+        </div>
+        <div style="padding: 12px;">
+          <div class="white-board mt-5">
+            <div class="board-title">
+              제품 소개
+            </div>
+            <div class="board-body">
+              <div class="row">
+                <div class="col-md-4">
+                  <img src="..\img\shift\land_mnc_1.png" alt="" style="overflow:hidden;width: 100%;background-color: #C4C4C4;">
+                </div>
+                <div class="col-md-8">
+                  <p>제품 이름</p>
+                  <p style="font-size: 16px; color: #757575; font-weight: 300;">
+                    간단한 소개 맞나
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="white-board mt-5">
+          <div class="board-title">
+            수익권료 정보
+          </div>
+          <div class="board-body">
+            
+          </div>
+        </div>
+        <div class="white-board mt-5 mb-5">
+          <div class="board-title">
+            수익권 정보
+          </div>
+          <div class="board-body">
+            
+          </div>
         </div>
         
   </main>
