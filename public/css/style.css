@@ -476,6 +476,9 @@ body,
   .change-modal{
     width: 100vw!important;
   }
+  .mobile-font{
+    font-size: 14px;
+  }
  }
 .white-board{
   background-color: #fff;

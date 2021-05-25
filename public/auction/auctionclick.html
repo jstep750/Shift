@@ -197,16 +197,16 @@ let gwansim = false;
                                                 <hr>
                                                 <div class="d-flex justify-content-between" >
                                                     <span style="color: #757575;">사용 가능 캐쉬</span>
-                                                    <span style="color: #17375e;">{27,000}</span>
+                                                    <span style="color: #17375e;">{27,000}</span><!--여기는 지금 남은 잔액 데이터 받아야함.-->
                                                     
                                                 </div>
                                                 <div class="d-flex justify-content-between mt-3" style="background-color: #eff1f4;padding: 20px;">
                                                     <div class="d-flex" style="color: #454545; align-items: center;">입찰가격(0.1%)</div>
                                                     <div>
-                                                      <span class="mr-1 font-weight-bold" style="color: #222222;">{25,500}</span>
+                                                      <span class="mr-1 font-weight-bold" style="color: #222222;" id="ipchal"></span>
                                                       <span>
-                                                        <div class="btn btn-normal">-</div>
-                                                        <div class="btn btn-normal" style="">+</div>
+                                                        <div class="btn btn-normal" onclick="minusCash()">-</div>
+                                                        <div class="btn btn-normal" onclick="plusCash()">+</div>
                                                       </span>
                                                     </div>
                                                   </div>
@@ -215,21 +215,21 @@ let gwansim = false;
                                                     <span style="color: #17375e;">{9}%</span> 
                                                 </div>
                                                 <div class="d-flex justify-content-between mt-3" style="background-color: #eff1f4;padding: 20px;">
-                                                  <div class="d-flex" style="color: #454545; align-items: center;">수량(주)</div>
+                                                  <div class="d-flex" style="color: #454545; align-items: center;">수량(0.1%)</div>
                                                   <div>
-                                                    <span class="mr-3 font-weight-bold" style="color: #222222;">5</span>
+                                                    <span class="mr-3 font-weight-bold" style="color: #222222;" id="ipchalRate"></span>
                                                     <span>
-                                                      <div class="btn btn-normal">-</div>
-                                                      <div class="btn btn-normal" style="">+</div>
+                                                      <div class="btn btn-normal" onclick="minusRate()">-</div>
+                                                      <div class="btn btn-normal" onclick="plusRate()">+</div>
                                                     </span>
                                                   </div>
                                                 </div>
                                                 <div class="d-flex mt-1" style="justify-content: stretch;color: #757575;">
-                                                  <a class="text-center" style="width: 20%;border: 1px solid #c4c4c4">5주</a>
-                                                  <a class="text-center" style="width: 20%;border: 1px solid #c4c4c4">10주</a>
-                                                  <a class="text-center" style="width: 20%;border: 1px solid #c4c4c4">20주</a>
-                                                  <a class="text-center" style="width: 20%;border: 1px solid #c4c4c4">30주</a>
-                                                  <a class="text-center" style="width: 20%;border: 1px solid #c4c4c4">100주</a>
+                                                  <a class="text-center" style="width: 20%;border: 1px solid #c4c4c4">0.5%</a>
+                                                  <a class="text-center" style="width: 20%;border: 1px solid #c4c4c4">1.0%</a>
+                                                  <a class="text-center" style="width: 20%;border: 1px solid #c4c4c4">2.0%</a>
+                                                  <a class="text-center" style="width: 20%;border: 1px solid #c4c4c4">3.0%</a>
+                                                  <a class="text-center" style="width: 20%;border: 1px solid #c4c4c4">10.0%</a>
                                                 </div>
                                                 <div class="d-flex justify-content-between font-weight-bold mt-3" style="font-size: 18px;">
                                                   <span style="color: #222222;">주문 금액</span>
@@ -451,7 +451,7 @@ let gwansim = false;
   <!-- MDB core JavaScript -->
   <script type="text/javascript" src="../js/mdb.min.js"></script>
   <!-- Initializations -->
-  <script type="text/javascript">
+  <script type="text/javascript" src="js\auctionclick.js">
   
     // Animations initialization
     new WOW().init();
