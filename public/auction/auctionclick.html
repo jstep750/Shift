@@ -197,7 +197,7 @@ let gwansim = false;
                                                 <hr>
                                                 <div class="d-flex justify-content-between" >
                                                     <span style="color: #757575;">사용 가능 캐쉬</span>
-                                                    <span style="color: #17375e;">{27,000}</span><!--여기는 지금 남은 잔액 데이터 받아야함.-->
+                                                    <span style="color: #17375e;" id="usableCash">{27,000}</span><!--여기는 지금 남은 잔액 데이터 받아야함.-->
                                                     
                                                 </div>
                                                 <div class="d-flex justify-content-between mt-3" style="background-color: #eff1f4;padding: 20px;">
@@ -225,15 +225,15 @@ let gwansim = false;
                                                   </div>
                                                 </div>
                                                 <div class="d-flex mt-1" style="justify-content: stretch;color: #757575;">
-                                                  <a class="text-center" style="width: 20%;border: 1px solid #c4c4c4">0.5%</a>
-                                                  <a class="text-center" style="width: 20%;border: 1px solid #c4c4c4">1.0%</a>
-                                                  <a class="text-center" style="width: 20%;border: 1px solid #c4c4c4">2.0%</a>
-                                                  <a class="text-center" style="width: 20%;border: 1px solid #c4c4c4">3.0%</a>
-                                                  <a class="text-center" style="width: 20%;border: 1px solid #c4c4c4">10.0%</a>
+                                                  <a class="text-center" style="width: 20%;border: 1px solid #c4c4c4" onclick="addRate(5)">0.5%</a>
+                                                  <a class="text-center" style="width: 20%;border: 1px solid #c4c4c4" onclick="addRate(10)">1.0%</a>
+                                                  <a class="text-center" style="width: 20%;border: 1px solid #c4c4c4" onclick="addRate(20)">2.0%</a>
+                                                  <a class="text-center" style="width: 20%;border: 1px solid #c4c4c4" onclick="addRate(30)">3.0%</a>
+                                                  <a class="text-center" style="width: 20%;border: 1px solid #c4c4c4" onclick="addRate(100)">10.0%</a>
                                                 </div>
                                                 <div class="d-flex justify-content-between font-weight-bold mt-3" style="font-size: 18px;">
                                                   <span style="color: #222222;">주문 금액</span>
-                                                  <span style="color: #17375e;">{127,500} 캐쉬</span> 
+                                                  <span style="color: #17375e;"><span id="costTotal"></span> <span style="color: #17375e;">캐쉬</span></span>
                                               </div>
                                               <div class="btn btn-block btn-custom text-white mt-3 font-weight-bold">비밀번호 입력하고 진행하기</div>
 
