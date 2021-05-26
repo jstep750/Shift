@@ -44,4 +44,13 @@ function addRate(stock){
     document.getElementById("costTotal").innerText = costTotal.toLocaleString('ko-KR');
 
 }
+function checkPw(){
+    if(usableCash>=costTotal){
+        window.location.href="checkPassword.html";
+        //그리고 데이터가 맞다는걸 받아들여서 아까 주문내역을 저장해서 처리해야겠지..? 이건 백앤드쪽이니깐 맡길게욤
+    }
+    else{
+        alert("사용가능캐쉬가 충분하지 않습니다.")
+    }
+}
 
