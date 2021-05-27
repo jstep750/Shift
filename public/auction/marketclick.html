@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <title>마켓-클릭(여기도 자바로 건드려야됨)</title>
+    <title id="marketTitle">마켓-클릭(여기도 자바로 건드려야됨)</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
@@ -45,35 +45,9 @@ crossorigin="anonymous"></script>
       $(window).resize(toggleNavbarMethod);  
       $("#navbar-beforelogin").load("../navbar/navbar-beforelogin.html");
       $("#navbar-afterlogin").load("../navbar/navbar-afterlogin.html");
-      var optionNum = 0;
-    var addiOptionNum = 0;
-    
-    document.querySelector("#optionGaesu").innerHTML=optionNum;
-    document.querySelector("addiOptionGaesu").innerHTML=addiOptionNum;
+      
   }); 
-  function addOptionNum(){
-        optionNum++;
-        document.querySelector("#optionGaesu").innerHTML=optionNum;
-    }
-    function subOptionNum(){
-        if(optionNum>0){
-            optionNum--;
-        }
-        else{
-            alert("옵션 수량이 0개입니다!");
-        }
-    }
-    function addAddiOptionNum(){
-        addiOptionNum++;
-    }
-    function subAddiOptionNum(){
-        if(addiOptionNum>0){
-            addiOptionNum--;
-        }
-        else{
-            alert("옵션 수량이 0개입니다!");
-        }   //해볼라는데 안되넹..일단 넘어갈게요
-    }
+  
     
     </script>
 </head>
@@ -87,20 +61,20 @@ crossorigin="anonymous"></script>
 <main class="mt-5 pt-4" style="min-height: 100vh;">
     <div class="container pt-5" style="padding: 0px;">
         <div style="font-size: 14px;"><!--해시태그 및 회사에 대한 설명이 데이터베이스로 추가되어야할듯-->
-            <span class="mr-3" style="color: #367dd3;">#상품#게임</span><span style="color: #666666;">회사(개인)</span>
+            <span class="mr-3" style="color: #367dd3;" id="hashTag"></span><span style="color: #666666;">회사(개인)</span>
         </div>
         <div class="row" style="border: 1px solid #d3d3d3;margin-left: 0px; margin-right: 0px;">
             <div class="col-lg-6" style="border-right: 1px solid #d3d3d3;">
-            <div class="img-square-container" style="margin-left: -12px;margin-right: -12px;">
-                <img class="img-square" src="..\img\shift\warlord_gandhi.jpg"> 
+            <div id="productImg" class="img-square-container" style="margin-left: -12px;margin-right: -12px;">
+                 
             </div>
                         
             </div>
             <div class="col-lg-6" style="padding: 24px;">
-                <div style="font-size: 30px;font-weight: 700;" id="">[Sid Meier's Civilization VI] 전쟁광을 피해 살아남아라</div>
-                <div style="color: #454545;" id="">21.04.21~21.06.21</div>
-                <div class="mt-2" style="border: 1px solid #d3d3d3; height: 300px;max-height: 40%; padding:1rem;">
-                    살려주세요 전 암것도 안했어요 옆에 있단 죄밖에 없는데 왜 공개비난 하세요 안돼요 싫어요 상인보내지 마세요
+                <div style="font-size: 30px;font-weight: 700;" id="">[<span id="productName"></span>] <span id="productSub"></span></div>
+                <div style="color: #454545;" id="term">21.04.21~21.06.21</div>
+                <div class="mt-2" style="border: 1px solid #d3d3d3; height: 300px;max-height: 40%; padding:1rem;" id="productExp">
+                    
                 </div>
                 <!--
                     <div class="row mt-3">
@@ -152,9 +126,9 @@ crossorigin="anonymous"></script>
                     </div>
                     <div class="d-flex justify-content-between mt-3">
                         <div class="d-flex" style="color: #222222;">
-                            <a class="plusminus-btn" href="" onclick="subOptionNum();"><i class="fas fa-minus"></i></a>
+                            <div class="plusminus-btn"  onclick="subOptionNum();"><i class="fas fa-minus"></i></div>
                             <div class="plusminus-btn" id="optionGaesu" style="background-color: #fff;width: 2.5rem"></div>
-                            <a href="" class="plusminus-btn" onclick="addOptionNum();"><i class="fas fa-plus"></i></a>
+                            <div href="" class="plusminus-btn" onclick="addOptionNum();"><i class="fas fa-plus"></i></div>
                         </div>
                         <div class="font-weight-bold" style="font-size: 24px;" id="">28,000원</div>
                     </div>
@@ -167,9 +141,9 @@ crossorigin="anonymous"></script>
                     </div>
                     <div class="d-flex justify-content-between mt-3">
                         <div class="d-flex" style="color: #222222;">
-                            <a class="plusminus-btn" href="" onclick="subOptionNum();"><i class="fas fa-minus"></i></a>
-                            <div class="plusminus-btn" id="optionGaesu" style="background-color: #fff;width: 2.5rem"></div>
-                            <a href="" class="plusminus-btn" onclick="addOptionNum();"><i class="fas fa-plus"></i></a>
+                            <div class="plusminus-btn" href="" onclick="subAddiOptionNum();"><i class="fas fa-minus"></i></div>
+                            <div class="plusminus-btn" id="addiOptionGaesu" style="background-color: #fff;width: 2.5rem"></div>
+                            <div href="" class="plusminus-btn" onclick="addAddiOptionNum()"><i class="fas fa-plus"></i></div>
                         </div>
                         <div class="font-weight-bold" style="font-size: 24px;" id="">20,000원</div>
                     </div>
@@ -286,8 +260,8 @@ crossorigin="anonymous"></script>
   <!-- MDB core JavaScript -->
   <script type="text/javascript" src="../js/mdb.min.js"></script>
   <!-- Initializations -->
+  <script type="text/javascript" src="js/marketclick.js"></script>
   <script type="text/javascript">
-  
     // Animations initialization
     new WOW().init();
 
